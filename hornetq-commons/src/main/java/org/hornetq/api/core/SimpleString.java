@@ -14,8 +14,8 @@
 package org.hornetq.api.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import org.hornetq.utils.DataConstants;
 
@@ -33,12 +33,12 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
    // Attributes
    // ------------------------------------------------------------------------
-   private final byte[] data;
+   //private final byte[] data;
 
    private transient int hash;
 
    // Cache the string
-   private transient String str;
+   private final String str;
 
    // Static
    // ----------------------------------------------------------------------
@@ -69,7 +69,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString(final String string)
    {
-      int len = string.length();
+/*      int len = string.length();
 
       data = new byte[len << 1];
 
@@ -87,10 +87,38 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
          data[j++] = high;
       }
-
+*/
       str = string;
    }
-
+   private byte[] getBytesFromString(String string)
+   {
+      int len = string.length();
+      byte[] rtrn = new byte[len << 1];
+      int j = 0;
+      for (int i = 0; i < len; i++)
+      {
+         char c = string.charAt(i);
+         byte low = (byte)(c & 0xFF); // low byte
+         rtrn[j++] = low;
+         byte high = (byte)(c >> 8 & 0xFF); //high byte
+         rtrn[j++] = high;
+      }
+      return rtrn;
+   }
+   private String getStringFromBytes(byte[] bytes)
+   {
+      int len = bytes.length >> 1;
+      char[] chars = new char[len];
+      int j = 0;
+      for (int i = 0; i < len; i++)
+      {
+         int low = bytes[j++] & 0xFF;
+         int high = bytes[j++] << 8 & 0xFF00;
+         chars[i] = (char)(low | high);
+      }
+      String rtrn = new String(chars);
+      return rtrn;
+   }
    /**
     * creates a SimpleString from a byte array
     *
@@ -98,7 +126,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString(final byte[] data)
    {
-      this.data = data;
+      //this.data = data;
+      this.str = getStringFromBytes(data);
    }
 
    // CharSequence implementation
@@ -106,23 +135,30 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
    public int length()
    {
-      return data.length >> 1;
+      //return data.length >> 1;
+      return str.length();
    }
 
    public char charAt(int pos)
    {
-      if (pos < 0 || pos >= data.length >> 1)
+      //if (pos < 0 || pos >= data.length >> 1)
+      //{
+      //   throw new IndexOutOfBoundsException();
+      //}
+      //pos <<= 1;
+      if ( pos < 0 || pos >= str.length() >> 1)
       {
          throw new IndexOutOfBoundsException();
       }
-      pos <<= 1;
 
-      return (char)((data[pos] & 0xFF) | (data[pos + 1] << 8) & 0xFF00);
+
+      //return (char)((data[pos] & 0xFF) | (data[pos + 1] << 8) & 0xFF00);
+      return str.charAt(pos);
    }
 
    public CharSequence subSequence(final int start, final int end)
    {
-      int len = data.length >> 1;
+/*      int len = data.length >> 1;
 
       if (end < start || start < 0 || end > len)
       {
@@ -137,6 +173,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
          return new SimpleString(bytes);
       }
+*/
+      return str.subSequence(start,end);
    }
 
    // Comparable implementation -------------------------------------
@@ -156,7 +194,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public byte[] getData()
    {
-      return data;
+      //return data;
+      return getBytesFromString(str);
    }
 
    /**
@@ -167,6 +206,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public boolean startsWith(final SimpleString other)
    {
+/*
       byte[] otherdata = other.data;
 
       if (otherdata.length > data.length)
@@ -183,12 +223,14 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
       }
 
       return true;
+*/
+      return str.startsWith(other.toString());
    }
 
    @Override
    public String toString()
    {
-      if (str == null)
+/*      if (str == null)
       {
          int len = data.length >> 1;
 
@@ -207,7 +249,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
          str = new String(chars);
       }
-
+*/
       return str;
    }
 
@@ -222,7 +264,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
       if (other instanceof SimpleString)
       {
          SimpleString s = (SimpleString)other;
-
+         return str.equals(other.toString());
+         /*
          if (data.length != s.data.length)
          {
             return false;
@@ -237,6 +280,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
          }
 
          return true;
+         */
       }
       else
       {
@@ -247,7 +291,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
    @Override
    public int hashCode()
    {
-      if (hash == 0)
+/*      if (hash == 0)
       {
          int tmphash = 0;
          for (byte element : data)
@@ -258,6 +302,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
       }
 
       return hash;
+*/
+      return str.hashCode();
    }
 
    /**
@@ -268,7 +314,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString[] split(final char delim)
    {
-      List<SimpleString> all = null;
+/*      List<SimpleString> all = null;
 
       byte low = (byte)(delim & 0xFF); // low byte
       byte high = (byte)(delim >> 8 & 0xFF); // high byte
@@ -310,6 +356,14 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
          SimpleString[] parts = new SimpleString[all.size()];
          return all.toArray(parts);
       }
+      */
+      String[] split = str.split("" + delim);
+      SimpleString[] rtrn = new SimpleString[split.length];
+      for (int i = 0; i < split.length; i++)
+      {
+         rtrn[i] = new SimpleString(split[i]);
+      }
+      return rtrn;
    }
 
    /**
@@ -320,7 +374,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public boolean contains(final char c)
    {
-      final byte low = (byte)(c & 0xFF); // low byte
+/*      final byte low = (byte)(c & 0xFF); // low byte
       final byte high = (byte)(c >> 8 & 0xFF); // high byte
 
       for (int i = 0; i < data.length; i += 2)
@@ -331,6 +385,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
          }
       }
       return false;
+      */
+      return str.contains("" + c);
    }
 
    /**
@@ -341,7 +397,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString concat(final String toAdd)
    {
-      return concat(new SimpleString(toAdd));
+      //return concat(new SimpleString(toAdd));
+      return new SimpleString(str + toAdd);
    }
 
    /**
@@ -352,10 +409,12 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString concat(final SimpleString toAdd)
    {
-      byte[] bytes = new byte[data.length + toAdd.getData().length];
+/*      byte[] bytes = new byte[data.length + toAdd.getData().length];
       System.arraycopy(data, 0, bytes, 0, data.length);
       System.arraycopy(toAdd.getData(), 0, bytes, data.length, toAdd.getData().length);
       return new SimpleString(bytes);
+*/
+      return new SimpleString(str + toAdd.toString());
    }
 
    /**
@@ -366,11 +425,13 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public SimpleString concat(final char c)
    {
-      byte[] bytes = new byte[data.length + 2];
+/*      byte[] bytes = new byte[data.length + 2];
       System.arraycopy(data, 0, bytes, 0, data.length);
       bytes[data.length] = (byte)(c & 0xFF);
       bytes[data.length + 1] = (byte)(c >> 8 & 0xFF);
       return new SimpleString(bytes);
+*/
+      return new SimpleString(str + c);
    }
 
    /**
@@ -380,7 +441,8 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     */
    public int sizeof()
    {
-      return DataConstants.SIZE_INT + data.length;
+      // return DataConstants.SIZE_INT + data.length;
+      return DataConstants.SIZE_INT + 2 * str.length();
    }
 
    /**
@@ -441,11 +503,12 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 
       for (int i = srcBegin; i < srcEnd; i++)
       {
-         int low = data[j++] & 0xFF;
+         //int low = data[j++] & 0xFF;
 
-         int high = data[j++] << 8 & 0xFF00;
+         //int high = data[j++] << 8 & 0xFF00;
 
-         dst[d++] = (char)(low | high);
+         //dst[d++] = (char)(low | high);
+         dst[d++] = str.charAt(i);
       }
    }
 
