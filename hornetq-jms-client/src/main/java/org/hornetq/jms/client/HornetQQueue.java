@@ -15,7 +15,7 @@ package org.hornetq.jms.client;
 
 import javax.jms.Queue;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * HornetQ implementation of a JMS Queue.
@@ -35,9 +35,9 @@ public class HornetQQueue extends HornetQDestination implements Queue
 
    // Static --------------------------------------------------------
 
-   public static SimpleString createAddressFromName(final String name)
+   public static String createAddressFromName(final String name)
    {
-      return new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + name);
+      return new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + name);
    }
 
    // Attributes ----------------------------------------------------

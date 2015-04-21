@@ -16,7 +16,7 @@ package org.hornetq.core.postoffice;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HornetQMessageBundle;
 
 /**
@@ -32,26 +32,26 @@ public class QueueInfo implements Serializable
 {
    private static final long serialVersionUID = 3451892849198803182L;
 
-   private final SimpleString routingName;
+   private final String routingName;
 
-   private final SimpleString clusterName;
+   private final String clusterName;
 
-   private final SimpleString address;
+   private final String address;
 
-   private final SimpleString filterString;
+   private final String filterString;
 
    private final long id;
 
-   private List<SimpleString> filterStrings;
+   private List<String> filterStrings;
 
    private int numberOfConsumers;
 
    private final int distance;
 
-   public QueueInfo(final SimpleString routingName,
-                    final SimpleString clusterName,
-                    final SimpleString address,
-                    final SimpleString filterString,
+   public QueueInfo(final String routingName,
+                    final String clusterName,
+                    final String address,
+                    final String filterString,
                     final long id,
                     final int distance)
    {
@@ -76,22 +76,22 @@ public class QueueInfo implements Serializable
       this.distance = distance;
    }
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return routingName;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return clusterName;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
@@ -106,12 +106,12 @@ public class QueueInfo implements Serializable
       return id;
    }
 
-   public List<SimpleString> getFilterStrings()
+   public List<String> getFilterStrings()
    {
       return filterStrings;
    }
 
-   public void setFilterStrings(final List<SimpleString> filterStrings)
+   public void setFilterStrings(final List<String> filterStrings)
    {
       this.filterStrings = filterStrings;
    }

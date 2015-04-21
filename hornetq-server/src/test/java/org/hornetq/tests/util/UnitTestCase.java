@@ -52,7 +52,7 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -1529,7 +1529,7 @@ public abstract class UnitTestCase extends CoreUnitTestCase
 
       message.getBodyBuffer().writeString(UUID.randomUUID().toString());
 
-      message.setAddress(new SimpleString("foo"));
+      message.setAddress(new String("foo"));
 
       return message;
    }
@@ -1597,7 +1597,7 @@ public abstract class UnitTestCase extends CoreUnitTestCase
    {
       ArrayList<QueueBinding> bindingsFound = new ArrayList<QueueBinding>();
 
-      Bindings bindings = postOffice.getBindingsForAddress(new SimpleString(address));
+      Bindings bindings = postOffice.getBindingsForAddress(new String(address));
 
       for (Binding binding : bindings.getBindings())
       {

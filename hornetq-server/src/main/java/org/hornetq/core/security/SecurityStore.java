@@ -13,7 +13,7 @@
 
 package org.hornetq.core.security;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.ServerSession;
 
 /**
@@ -25,7 +25,7 @@ public interface SecurityStore
 {
    void authenticate(String user, String password) throws Exception;
 
-   void check(SimpleString address, CheckType checkType, ServerSession session) throws Exception;
+   void check(String address, CheckType checkType, ServerSession session) throws Exception;
 
    void stop();
 }

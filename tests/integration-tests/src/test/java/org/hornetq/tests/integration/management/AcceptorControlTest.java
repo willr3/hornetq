@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 import org.junit.Assert;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -158,7 +158,7 @@ public class AcceptorControlTest extends ManagementTestBase
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.ACCEPTOR_STOPPED, notif.getType());
       Assert.assertEquals(InVMAcceptorFactory.class.getName(),
-                          notif.getProperties().getSimpleStringProperty(new SimpleString("factory")).toString());
+                          notif.getProperties().getStringProperty(new String("factory")).toString());
 
       acceptorControl.start();
 
@@ -166,7 +166,7 @@ public class AcceptorControlTest extends ManagementTestBase
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.ACCEPTOR_STARTED, notif.getType());
       Assert.assertEquals(InVMAcceptorFactory.class.getName(),
-                          notif.getProperties().getSimpleStringProperty(new SimpleString("factory")).toString());
+                          notif.getProperties().getStringProperty(new String("factory")).toString());
    }
 
    // Package protected ---------------------------------------------

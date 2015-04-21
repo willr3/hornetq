@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -30,10 +30,10 @@ import org.junit.Test;
  */
 public class RoutingTest extends ServiceTestBase
 {
-   public final SimpleString addressA = new SimpleString("addressA");
-   public final SimpleString queueA = new SimpleString("queueA");
-   public final SimpleString queueB = new SimpleString("queueB");
-   public final SimpleString queueC = new SimpleString("queueC");
+   public final String addressA = new String("addressA");
+   public final String queueA = new String("queueA");
+   public final String queueB = new String("queueB");
+   public final String queueC = new String("queueC");
 
    private ServerLocator locator;
    private HornetQServer server;
@@ -142,13 +142,13 @@ public class RoutingTest extends ServiceTestBase
    public void testRouteToSingleQueueWithFilter() throws Exception
    {
       ClientSession sendSession = cf.createSession(false, true, true);
-      sendSession.createQueue(addressA, queueA, new SimpleString("foo = 'bar'"), false);
+      sendSession.createQueue(addressA, queueA, new String("foo = 'bar'"), false);
       int numMessages = 300;
       ClientProducer p = sendSession.createProducer(addressA);
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage clientMessage = sendSession.createMessage(false);
-         clientMessage.putStringProperty(new SimpleString("foo"), new SimpleString("bar"));
+         clientMessage.putStringProperty(new String("foo"), new String("bar"));
          p.send(clientMessage);
       }
       ClientSession session = cf.createSession(false, true, true);
@@ -169,9 +169,9 @@ public class RoutingTest extends ServiceTestBase
    public void testRouteToMultipleQueueWithFilters() throws Exception
    {
       ClientSession sendSession = cf.createSession(false, true, true);
-      sendSession.createQueue(addressA, queueA, new SimpleString("foo = 'bar'"), false);
-      sendSession.createQueue(addressA, queueB, new SimpleString("x = 1"), false);
-      sendSession.createQueue(addressA, queueC, new SimpleString("b = false"), false);
+      sendSession.createQueue(addressA, queueA, new String("foo = 'bar'"), false);
+      sendSession.createQueue(addressA, queueB, new String("x = 1"), false);
+      sendSession.createQueue(addressA, queueC, new String("b = false"), false);
       int numMessages = 300;
       ClientProducer p = sendSession.createProducer(addressA);
       for (int i = 0; i < numMessages; i++)
@@ -179,15 +179,15 @@ public class RoutingTest extends ServiceTestBase
          ClientMessage clientMessage = sendSession.createMessage(false);
          if (i % 3 == 0)
          {
-            clientMessage.putStringProperty(new SimpleString("foo"), new SimpleString("bar"));
+            clientMessage.putStringProperty(new String("foo"), new String("bar"));
          }
          else if (i % 3 == 1)
          {
-            clientMessage.putIntProperty(new SimpleString("x"), 1);
+            clientMessage.putIntProperty(new String("x"), 1);
          }
          else
          {
-            clientMessage.putBooleanProperty(new SimpleString("b"), false);
+            clientMessage.putBooleanProperty(new String("b"), false);
          }
          p.send(clientMessage);
       }

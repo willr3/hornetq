@@ -16,7 +16,7 @@ package org.hornetq.core.buffers.impl;
 import java.nio.ByteBuffer;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.message.impl.MessageInternal;
 
 /**
@@ -330,20 +330,20 @@ public final class ResetLimitWrappedHornetQBuffer extends ChannelBufferWrapper
    }
 
    @Override
-   public void writeNullableSimpleString(final SimpleString val)
-   {
-      changed();
-
-      super.writeNullableSimpleString(val);
-   }
-
-   @Override
    public void writeNullableString(final String val)
    {
       changed();
 
       super.writeNullableString(val);
    }
+
+//   @Override
+//   public void writeNullableString(final String val)
+//   {
+//      changed();
+//
+//      super.writeNullableString(val);
+//   }
 
    @Override
    public void writeShort(final short value)
@@ -353,13 +353,13 @@ public final class ResetLimitWrappedHornetQBuffer extends ChannelBufferWrapper
       super.writeShort(value);
    }
 
-   @Override
-   public void writeSimpleString(final SimpleString val)
-   {
-      changed();
-
-      super.writeSimpleString(val);
-   }
+//   @Override
+//   public void writeString(final String val)
+//   {
+//      changed();
+//
+//      super.writeString(val);
+//   }
 
    @Override
    public void writeString(final String val)

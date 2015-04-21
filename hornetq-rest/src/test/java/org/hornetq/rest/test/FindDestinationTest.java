@@ -1,6 +1,6 @@
 package org.hornetq.rest.test;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.spi.Link;
@@ -19,7 +19,7 @@ public class FindDestinationTest extends MessageTestBase
    public void testFindQueue() throws Exception
    {
       String testName = "testFindQueue";
-      server.getHornetqServer().createQueue(new SimpleString(testName), new SimpleString(testName), null, false, false);
+      server.getHornetqServer().createQueue(new String(testName), new String(testName), null, false, false);
 
       ClientRequest request = new ClientRequest(generateURL("/queues/" + testName));
 
@@ -50,7 +50,7 @@ public class FindDestinationTest extends MessageTestBase
    @Test
    public void testFindTopic() throws Exception
    {
-      server.getHornetqServer().createQueue(new SimpleString("testTopic"), new SimpleString("testTopic"), null, false, false);
+      server.getHornetqServer().createQueue(new String("testTopic"), new String("testTopic"), null, false, false);
       ClientRequest request = new ClientRequest(generateURL("/topics/testTopic"));
 
       ClientResponse<?> response = request.head();

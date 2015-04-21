@@ -23,7 +23,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.CoreUnitTestCase;
 import org.hornetq.utils.TypedProperties;
@@ -40,10 +40,10 @@ public class TypedPropertiesTest extends Assert
       Assert.assertNotNull(actual);
       Assert.assertEquals(expected.getEncodeSize(), actual.getEncodeSize());
       Assert.assertEquals(expected.getPropertyNames(), actual.getPropertyNames());
-      Iterator<SimpleString> iterator = actual.getPropertyNames().iterator();
+      Iterator<String> iterator = actual.getPropertyNames().iterator();
       while (iterator.hasNext())
       {
-         SimpleString key = iterator.next();
+         String key = iterator.next();
          Object expectedValue = expected.getProperty(key);
          Object actualValue = actual.getProperty(key);
          if (expectedValue instanceof byte[] && actualValue instanceof byte[])
@@ -65,12 +65,12 @@ public class TypedPropertiesTest extends Assert
 
    private TypedProperties props;
 
-   private SimpleString key;
+   private String key;
 
    @Test
    public void testCopyContructor() throws Exception
    {
-      props.putSimpleStringProperty(key, RandomUtil.randomSimpleString());
+      props.putStringProperty(key, RandomUtil.randomString());
 
       TypedProperties copy = new TypedProperties(props);
 
@@ -84,7 +84,7 @@ public class TypedPropertiesTest extends Assert
    @Test
    public void testRemove() throws Exception
    {
-      props.putSimpleStringProperty(key, RandomUtil.randomSimpleString());
+      props.putStringProperty(key, RandomUtil.randomString());
 
       Assert.assertTrue(props.containsProperty(key));
       Assert.assertNotNull(props.getProperty(key));
@@ -98,7 +98,7 @@ public class TypedPropertiesTest extends Assert
    @Test
    public void testClear() throws Exception
    {
-      props.putSimpleStringProperty(key, RandomUtil.randomSimpleString());
+      props.putStringProperty(key, RandomUtil.randomString());
 
       Assert.assertTrue(props.containsProperty(key));
       Assert.assertNotNull(props.getProperty(key));
@@ -138,7 +138,7 @@ public class TypedPropertiesTest extends Assert
    @Test
    public void testNullProperty() throws Exception
    {
-      props.putSimpleStringProperty(key, null);
+      props.putStringProperty(key, null);
       Assert.assertTrue(props.containsProperty(key));
       Assert.assertNull(props.getProperty(key));
    }
@@ -156,20 +156,20 @@ public class TypedPropertiesTest extends Assert
    @Test
    public void testTypedProperties() throws Exception
    {
-      SimpleString longKey = RandomUtil.randomSimpleString();
+      String longKey = RandomUtil.randomString();
       long longValue = RandomUtil.randomLong();
-      SimpleString simpleStringKey = RandomUtil.randomSimpleString();
-      SimpleString simpleStringValue = RandomUtil.randomSimpleString();
+      String StringKey = RandomUtil.randomString();
+      String StringValue = RandomUtil.randomString();
       TypedProperties otherProps = new TypedProperties();
       otherProps.putLongProperty(longKey, longValue);
-      otherProps.putSimpleStringProperty(simpleStringKey, simpleStringValue);
+      otherProps.putStringProperty(StringKey, StringValue);
 
       props.putTypedProperties(otherProps);
 
       long ll = props.getLongProperty(longKey);
       Assert.assertEquals(longValue, ll);
-      SimpleString ss = props.getSimpleStringProperty(simpleStringKey);
-      Assert.assertEquals(simpleStringValue, ss);
+      String ss = props.getStringProperty(StringKey);
+      Assert.assertEquals(StringValue, ss);
    }
 
    @Test
@@ -195,20 +195,20 @@ public class TypedPropertiesTest extends Assert
    @Test
    public void testEncodeDecode() throws Exception
    {
-      props.putByteProperty(RandomUtil.randomSimpleString(), RandomUtil.randomByte());
-      props.putBytesProperty(RandomUtil.randomSimpleString(), RandomUtil.randomBytes());
-      props.putBytesProperty(RandomUtil.randomSimpleString(), null);
-      props.putBooleanProperty(RandomUtil.randomSimpleString(), RandomUtil.randomBoolean());
-      props.putShortProperty(RandomUtil.randomSimpleString(), RandomUtil.randomShort());
-      props.putIntProperty(RandomUtil.randomSimpleString(), RandomUtil.randomInt());
-      props.putLongProperty(RandomUtil.randomSimpleString(), RandomUtil.randomLong());
-      props.putFloatProperty(RandomUtil.randomSimpleString(), RandomUtil.randomFloat());
-      props.putDoubleProperty(RandomUtil.randomSimpleString(), RandomUtil.randomDouble());
-      props.putCharProperty(RandomUtil.randomSimpleString(), RandomUtil.randomChar());
-      props.putSimpleStringProperty(RandomUtil.randomSimpleString(), RandomUtil.randomSimpleString());
-      props.putSimpleStringProperty(RandomUtil.randomSimpleString(), null);
-      SimpleString keyToRemove = RandomUtil.randomSimpleString();
-      props.putSimpleStringProperty(keyToRemove, RandomUtil.randomSimpleString());
+      props.putByteProperty(RandomUtil.randomString(), RandomUtil.randomByte());
+      props.putBytesProperty(RandomUtil.randomString(), RandomUtil.randomBytes());
+      props.putBytesProperty(RandomUtil.randomString(), null);
+      props.putBooleanProperty(RandomUtil.randomString(), RandomUtil.randomBoolean());
+      props.putShortProperty(RandomUtil.randomString(), RandomUtil.randomShort());
+      props.putIntProperty(RandomUtil.randomString(), RandomUtil.randomInt());
+      props.putLongProperty(RandomUtil.randomString(), RandomUtil.randomLong());
+      props.putFloatProperty(RandomUtil.randomString(), RandomUtil.randomFloat());
+      props.putDoubleProperty(RandomUtil.randomString(), RandomUtil.randomDouble());
+      props.putCharProperty(RandomUtil.randomString(), RandomUtil.randomChar());
+      props.putStringProperty(RandomUtil.randomString(), RandomUtil.randomString());
+      props.putStringProperty(RandomUtil.randomString(), null);
+      String keyToRemove = RandomUtil.randomString();
+      props.putStringProperty(keyToRemove, RandomUtil.randomString());
 
       HornetQBuffer buffer = HornetQBuffers.dynamicBuffer(1024);
       props.encode(buffer);
@@ -251,7 +251,7 @@ public class TypedPropertiesTest extends Assert
 
 
       props = new TypedProperties();
-      key = RandomUtil.randomSimpleString();
+      key = RandomUtil.randomString();
    }
 
    @After

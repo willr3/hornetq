@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.utils.json.JSONArray;
 import org.hornetq.utils.json.JSONObject;
@@ -34,51 +34,51 @@ public final class ManagementHelper
 {
    // Constants -----------------------------------------------------
 
-   public static final SimpleString HDR_RESOURCE_NAME = new SimpleString("_HQ_ResourceName");
+   public static final String HDR_RESOURCE_NAME = new String("_HQ_ResourceName");
 
-   public static final SimpleString HDR_ATTRIBUTE = new SimpleString("_HQ_Attribute");
+   public static final String HDR_ATTRIBUTE = new String("_HQ_Attribute");
 
-   public static final SimpleString HDR_OPERATION_NAME = new SimpleString("_HQ_OperationName");
+   public static final String HDR_OPERATION_NAME = new String("_HQ_OperationName");
 
-   public static final SimpleString HDR_OPERATION_SUCCEEDED = new SimpleString("_HQ_OperationSucceeded");
+   public static final String HDR_OPERATION_SUCCEEDED = new String("_HQ_OperationSucceeded");
 
-   public static final SimpleString HDR_NOTIFICATION_TYPE = new SimpleString("_HQ_NotifType");
+   public static final String HDR_NOTIFICATION_TYPE = new String("_HQ_NotifType");
 
-   public static final SimpleString HDR_NOTIFICATION_TIMESTAMP = new SimpleString("_HQ_NotifTimestamp");
+   public static final String HDR_NOTIFICATION_TIMESTAMP = new String("_HQ_NotifTimestamp");
 
-   public static final SimpleString HDR_ROUTING_NAME = new SimpleString("_HQ_RoutingName");
+   public static final String HDR_ROUTING_NAME = new String("_HQ_RoutingName");
 
-   public static final SimpleString HDR_CLUSTER_NAME = new SimpleString("_HQ_ClusterName");
+   public static final String HDR_CLUSTER_NAME = new String("_HQ_ClusterName");
 
-   public static final SimpleString HDR_ADDRESS = new SimpleString("_HQ_Address");
+   public static final String HDR_ADDRESS = new String("_HQ_Address");
 
-   public static final SimpleString HDR_BINDING_ID = new SimpleString("_HQ_Binding_ID");
+   public static final String HDR_BINDING_ID = new String("_HQ_Binding_ID");
 
-   public static final SimpleString HDR_BINDING_TYPE = new SimpleString("_HQ_Binding_Type");
+   public static final String HDR_BINDING_TYPE = new String("_HQ_Binding_Type");
 
-   public static final SimpleString HDR_FILTERSTRING = new SimpleString("_HQ_FilterString");
+   public static final String HDR_FILTERSTRING = new String("_HQ_FilterString");
 
-   public static final SimpleString HDR_DISTANCE = new SimpleString("_HQ_Distance");
+   public static final String HDR_DISTANCE = new String("_HQ_Distance");
 
-   public static final SimpleString HDR_CONSUMER_COUNT = new SimpleString("_HQ_ConsumerCount");
+   public static final String HDR_CONSUMER_COUNT = new String("_HQ_ConsumerCount");
 
-   public static final SimpleString HDR_USER = new SimpleString("_HQ_User");
+   public static final String HDR_USER = new String("_HQ_User");
 
-   public static final SimpleString HDR_CHECK_TYPE = new SimpleString("_HQ_CheckType");
+   public static final String HDR_CHECK_TYPE = new String("_HQ_CheckType");
 
-   public static final SimpleString HDR_SESSION_NAME = new SimpleString("_HQ_SessionName");
+   public static final String HDR_SESSION_NAME = new String("_HQ_SessionName");
 
-   public static final SimpleString HDR_REMOTE_ADDRESS = new SimpleString("_HQ_RemoteAddress");
+   public static final String HDR_REMOTE_ADDRESS = new String("_HQ_RemoteAddress");
 
-   public static final SimpleString HDR_PROPOSAL_GROUP_ID = new SimpleString("_JBM_ProposalGroupId");
+   public static final String HDR_PROPOSAL_GROUP_ID = new String("_JBM_ProposalGroupId");
 
-   public static final SimpleString HDR_PROPOSAL_VALUE = new SimpleString("_JBM_ProposalValue");
+   public static final String HDR_PROPOSAL_VALUE = new String("_JBM_ProposalValue");
 
-   public static final SimpleString HDR_PROPOSAL_ALT_VALUE = new SimpleString("_JBM_ProposalAltValue");
+   public static final String HDR_PROPOSAL_ALT_VALUE = new String("_JBM_ProposalAltValue");
 
-   public static final SimpleString HDR_CONSUMER_NAME = new SimpleString("_HQ_ConsumerName");
+   public static final String HDR_CONSUMER_NAME = new String("_HQ_ConsumerName");
 
-   public static final SimpleString HDR_CONNECTION_NAME = new SimpleString("_HQ_ConnectionName");
+   public static final String HDR_CONNECTION_NAME = new String("_HQ_ConnectionName");
 
    // Attributes ----------------------------------------------------
 
@@ -94,8 +94,8 @@ public final class ManagementHelper
     */
    public static void putAttribute(final Message message, final String resourceName, final String attribute)
    {
-      message.putStringProperty(ManagementHelper.HDR_RESOURCE_NAME, new SimpleString(resourceName));
-      message.putStringProperty(ManagementHelper.HDR_ATTRIBUTE, new SimpleString(attribute));
+      message.putStringProperty(ManagementHelper.HDR_RESOURCE_NAME, new String(resourceName));
+      message.putStringProperty(ManagementHelper.HDR_ATTRIBUTE, new String(attribute));
    }
 
    /**
@@ -128,8 +128,8 @@ public final class ManagementHelper
                                              final Object... parameters) throws Exception
    {
       // store the name of the operation in the headers
-      message.putStringProperty(ManagementHelper.HDR_RESOURCE_NAME, new SimpleString(resourceName));
-      message.putStringProperty(ManagementHelper.HDR_OPERATION_NAME, new SimpleString(operationName));
+      message.putStringProperty(ManagementHelper.HDR_RESOURCE_NAME, new String(resourceName));
+      message.putStringProperty(ManagementHelper.HDR_OPERATION_NAME, new String(operationName));
 
       // and the params go in the body, since might be too large for header
 
@@ -146,7 +146,7 @@ public final class ManagementHelper
          paramString = null;
       }
 
-      message.getBodyBuffer().writeNullableSimpleString(SimpleString.toSimpleString(paramString));
+      message.getBodyBuffer().writeNullableString(paramString);
    }
 
    private static JSONArray toJSONArray(final Object[] array) throws Exception
@@ -302,7 +302,7 @@ public final class ManagementHelper
     */
    public static Object[] retrieveOperationParameters(final Message message) throws Exception
    {
-      SimpleString sstring = message.getBodyBuffer().readNullableSimpleString();
+      String sstring = message.getBodyBuffer().readNullableString();
       String jsonString = (sstring == null) ? null : sstring.toString();
 
       if (jsonString != null)
@@ -353,7 +353,7 @@ public final class ManagementHelper
          resultString = null;
       }
 
-      message.getBodyBuffer().writeNullableSimpleString(SimpleString.toSimpleString(resultString));
+      message.getBodyBuffer().writeNullableString(resultString);
    }
 
    /**
@@ -364,7 +364,7 @@ public final class ManagementHelper
     */
    public static Object[] getResults(final Message message) throws Exception
    {
-      SimpleString sstring = message.getBodyBuffer().readNullableSimpleString();
+      String sstring = message.getBodyBuffer().readNullableString();
       String jsonString = (sstring == null) ? null : sstring.toString();
       if (jsonString != null)
       {

@@ -2,7 +2,7 @@ package org.hornetq.jms.client;
 
 
 import org.hornetq.api.core.HornetQInvalidFilterExpressionException;
-import org.hornetq.api.core.SimpleString;
+
 import org.jboss.logging.Cause;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
@@ -24,5 +24,5 @@ public interface HornetQJMSClientBundle
    HornetQJMSClientBundle BUNDLE = Messages.getBundle(HornetQJMSClientBundle.class);
 
    @Message(id = 129000, value =  "Invalid filter: {0}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, SimpleString filter);
+   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, String filter);
 }

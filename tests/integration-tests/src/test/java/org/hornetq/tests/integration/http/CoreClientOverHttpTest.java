@@ -20,7 +20,6 @@ import java.util.Random;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -41,7 +40,7 @@ import org.hornetq.tests.util.UnitTestCase;
  */
 public class CoreClientOverHttpTest extends UnitTestCase
 {
-   private static final SimpleString QUEUE = new SimpleString("CoreClientOverHttpTestQueue");
+   private static final String QUEUE = new String("CoreClientOverHttpTestQueue");
    private Configuration conf;
    private HornetQServer server;
    private ServerLocator locator;

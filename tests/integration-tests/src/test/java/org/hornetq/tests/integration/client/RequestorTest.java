@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -53,10 +53,10 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testRequest() throws Exception
    {
-      final SimpleString key = RandomUtil.randomSimpleString();
+      final String key = RandomUtil.randomString();
       long value = RandomUtil.randomLong();
-      SimpleString requestAddress = new SimpleString("AdTest");
-      SimpleString requestQueue = RandomUtil.randomSimpleString();
+      String requestAddress = new String("AdTest");
+      String requestQueue = RandomUtil.randomString();
 
       final ClientSession session = sf.createSession(false, true, true);
 
@@ -82,7 +82,7 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testManyRequestsOverBlocked() throws Exception
    {
-      final SimpleString key = RandomUtil.randomSimpleString();
+      final String key = RandomUtil.randomString();
       long value = RandomUtil.randomLong();
 
       AddressSettings settings = new AddressSettings();
@@ -90,9 +90,9 @@ public class RequestorTest extends ServiceTestBase
       settings.setMaxSizeBytes(1024);
       service.getAddressSettingsRepository().addMatch("#", settings);
 
-      SimpleString requestAddress = new SimpleString("RequestAddress");
+      String requestAddress = new String("RequestAddress");
 
-      SimpleString requestQueue = new SimpleString("RequestAddress Queue");
+      String requestQueue = new String("RequestAddress Queue");
 
       final ClientSession sessionRequest = sf.createSession(false, true, true);
 
@@ -133,10 +133,10 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testTwoRequests() throws Exception
    {
-      final SimpleString key = RandomUtil.randomSimpleString();
+      final String key = RandomUtil.randomString();
       long value = RandomUtil.randomLong();
-      SimpleString requestAddress = RandomUtil.randomSimpleString();
-      SimpleString requestQueue = RandomUtil.randomSimpleString();
+      String requestAddress = RandomUtil.randomString();
+      String requestQueue = RandomUtil.randomString();
 
       ClientSessionFactory sf = createSessionFactory(locator);
       final ClientSession session = sf.createSession(false, true, true);
@@ -169,8 +169,8 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testRequestWithRequestConsumerWhichDoesNotReply() throws Exception
    {
-      SimpleString requestAddress = RandomUtil.randomSimpleString();
-      SimpleString requestQueue = RandomUtil.randomSimpleString();
+      String requestAddress = RandomUtil.randomString();
+      String requestQueue = RandomUtil.randomString();
 
       ClientSessionFactory sf = createSessionFactory(locator);
       final ClientSession session = sf.createSession(false, true, true);
@@ -201,7 +201,7 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testClientRequestorConstructorWithClosedSession() throws Exception
    {
-      final SimpleString requestAddress = RandomUtil.randomSimpleString();
+      final String requestAddress = RandomUtil.randomString();
 
       ClientSessionFactory sf = createSessionFactory(locator);
       final ClientSession session = sf.createSession(false, true, true);
@@ -224,10 +224,10 @@ public class RequestorTest extends ServiceTestBase
    @Test
    public void testClose() throws Exception
    {
-      final SimpleString key = RandomUtil.randomSimpleString();
+      final String key = RandomUtil.randomString();
       long value = RandomUtil.randomLong();
-      SimpleString requestAddress = RandomUtil.randomSimpleString();
-      SimpleString requestQueue = RandomUtil.randomSimpleString();
+      String requestAddress = RandomUtil.randomString();
+      String requestQueue = RandomUtil.randomString();
 
       ClientSessionFactory sf = createSessionFactory(locator);
       final ClientSession session = sf.createSession(false, true, true);
@@ -297,11 +297,11 @@ public class RequestorTest extends ServiceTestBase
 
    private final class SimpleMessageHandler implements MessageHandler
    {
-      private final SimpleString key;
+      private final String key;
 
       private final ClientSession session;
 
-      private SimpleMessageHandler(final SimpleString key, final ClientSession session)
+      private SimpleMessageHandler(final String key, final ClientSession session)
       {
          this.key = key;
          this.session = session;
@@ -312,7 +312,7 @@ public class RequestorTest extends ServiceTestBase
          try
          {
             ClientMessage reply = session.createMessage(false);
-            SimpleString replyTo = (SimpleString)request.getObjectProperty(ClientMessageImpl.REPLYTO_HEADER_NAME);
+            String replyTo = (String)request.getObjectProperty(ClientMessageImpl.REPLYTO_HEADER_NAME);
             long value = (Long)request.getObjectProperty(key);
             reply.putLongProperty(key, value);
             ClientProducer replyProducer = session.createProducer(replyTo);

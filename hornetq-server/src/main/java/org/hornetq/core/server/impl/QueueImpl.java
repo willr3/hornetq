@@ -37,7 +37,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.filter.Filter;
@@ -111,7 +111,7 @@ public class QueueImpl implements Queue
 
    private final long id;
 
-   private final SimpleString name;
+   private final String name;
 
    private volatile Filter filter;
 
@@ -171,7 +171,7 @@ public class QueueImpl implements Queue
 
    private final ScheduledExecutorService scheduledExecutor;
 
-   private final SimpleString address;
+   private final String address;
 
    private Redistributor redistributor;
 
@@ -185,9 +185,9 @@ public class QueueImpl implements Queue
 
    private final Set<Consumer> consumerSet = new HashSet<Consumer>();
 
-   private final Map<SimpleString, Consumer> groups = new HashMap<SimpleString, Consumer>();
+   private final Map<String, Consumer> groups = new HashMap<String, Consumer>();
 
-   private volatile SimpleString expiryAddress;
+   private volatile String expiryAddress;
 
    private int pos;
 
@@ -222,7 +222,7 @@ public class QueueImpl implements Queue
    /**
     * For testing only
     * */
-   public List<SimpleString> getGroupsUsed()
+   public List<String> getGroupsUsed()
    {
       final CountDownLatch flush = new CountDownLatch(1);
       executor.execute(new Runnable()
@@ -242,7 +242,7 @@ public class QueueImpl implements Queue
 
       synchronized (this)
       {
-         ArrayList<SimpleString> groupsUsed = new ArrayList<SimpleString>();
+         ArrayList<String> groupsUsed = new ArrayList<String>();
          groupsUsed.addAll(groups.keySet());
          return groupsUsed;
       }
@@ -294,8 +294,8 @@ public class QueueImpl implements Queue
    }
 
    public QueueImpl(final long id,
-                    final SimpleString address,
-                    final SimpleString name,
+                    final String address,
+                    final String name,
                     final Filter filter,
                     final boolean durable,
                     final boolean temporary,
@@ -320,8 +320,8 @@ public class QueueImpl implements Queue
    }
 
    public QueueImpl(final long id,
-                    final SimpleString address,
-                    final SimpleString name,
+                    final String address,
+                    final String name,
                     final Filter filter,
                     final PageSubscription pageSubscription,
                     final boolean durable,
@@ -382,12 +382,12 @@ public class QueueImpl implements Queue
 
    // Bindable implementation -------------------------------------------------------------------------------------
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return name;
    }
 
-   public SimpleString getUniqueName()
+   public String getUniqueName()
    {
       return name;
    }
@@ -414,12 +414,12 @@ public class QueueImpl implements Queue
       return temporary;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -439,7 +439,7 @@ public class QueueImpl implements Queue
       return filter;
    }
 
-   public void unproposed(final SimpleString groupID)
+   public void unproposed(final String groupID)
    {
       if (groupID.toString().endsWith("." + this.getName()))
       {
@@ -448,7 +448,7 @@ public class QueueImpl implements Queue
 
          // This is removing the name and a . added, giving us the original groupID used
          // this is because a groupID is stored per queue, and only this queue is expiring at this point
-         final SimpleString groupIDToRemove = (SimpleString)groupID.subSequence(0, groupID.length() - getName().length() - 1);
+         final String groupIDToRemove = (String)groupID.subSequence(0, groupID.length() - getName().length() - 1);
          // using an executor so we don't want to hold anyone just because of this
          getExecutor().execute(new Runnable()
          {
@@ -752,15 +752,15 @@ public class QueueImpl implements Queue
 
       consumerSet.remove(consumer);
 
-      LinkedList<SimpleString> groupsToRemove = null;
+      LinkedList<String> groupsToRemove = null;
 
-      for (SimpleString groupID : groups.keySet())
+      for (String groupID : groups.keySet())
       {
          if (consumer == groups.get(groupID))
          {
             if (groupsToRemove == null)
             {
-               groupsToRemove = new LinkedList<SimpleString>();
+               groupsToRemove = new LinkedList<String>();
             }
             groupsToRemove.add(groupID);
          }
@@ -771,7 +771,7 @@ public class QueueImpl implements Queue
       // Since that's a simple HashMap there's no Iterator's support with a remove operation
       if (groupsToRemove != null)
       {
-         for (SimpleString groupID : groupsToRemove)
+         for (String groupID : groupsToRemove)
          {
             groups.remove(groupID);
          }
@@ -1159,7 +1159,7 @@ public class QueueImpl implements Queue
       }
    }
 
-   public SimpleString getExpiryAddress()
+   public String getExpiryAddress()
    {
       return this.expiryAddress;
    }
@@ -1624,13 +1624,13 @@ public class QueueImpl implements Queue
       }
    }
 
-   public boolean moveReference(final long messageID, final SimpleString toAddress) throws Exception
+   public boolean moveReference(final long messageID, final String toAddress) throws Exception
    {
       return moveReference(messageID, toAddress, false);
    }
 
    public synchronized boolean moveReference(final long messageID,
-                                             final SimpleString toAddress,
+                                             final String toAddress,
                                              final boolean rejectDuplicate) throws Exception
    {
       LinkedListIterator<MessageReference> iter = iterator();
@@ -1665,13 +1665,13 @@ public class QueueImpl implements Queue
       }
    }
 
-   public int moveReferences(final Filter filter, final SimpleString toAddress) throws Exception
+   public int moveReferences(final Filter filter, final String toAddress) throws Exception
    {
       return moveReferences(filter, toAddress, false);
    }
 
    public synchronized int moveReferences(final Filter filter,
-                                          final SimpleString toAddress,
+                                          final String toAddress,
                                           final boolean rejectDuplicates) throws Exception
    {
       final DuplicateIDCache targetDuplicateCache = postOffice.getDuplicateIDCache(toAddress);
@@ -2018,7 +2018,7 @@ public class QueueImpl implements Queue
 
                // If a group id is set, then this overrides the consumer chosen round-robin
 
-               SimpleString groupID = extractGroupID(ref);
+               String groupID = extractGroupID(ref);
 
                if (groupID != null)
                {
@@ -2112,7 +2112,7 @@ public class QueueImpl implements Queue
       }
    }
 
-   private SimpleString extractGroupID(MessageReference ref)
+   private String extractGroupID(MessageReference ref)
    {
       if (internalQueue)
       {
@@ -2121,7 +2121,7 @@ public class QueueImpl implements Queue
       else
       {
          // But we don't use the groupID on internal queues (clustered queues) otherwise the group map would leak forever
-         return ref.getMessage().getSimpleStringProperty(Message.HDR_GROUP_ID);
+         return ref.getMessage().getStringProperty(Message.HDR_GROUP_ID);
       }
    }
 
@@ -2317,7 +2317,7 @@ public class QueueImpl implements Queue
       return messageReferences.size();
    }
 
-   private void move(final SimpleString toAddress,
+   private void move(final String toAddress,
                      final Transaction tx,
                      final MessageReference ref,
                      final boolean expiry,
@@ -2353,7 +2353,7 @@ public class QueueImpl implements Queue
 
    private void expire(final Transaction tx, final MessageReference ref) throws Exception
    {
-      SimpleString expiryAddress = addressSettingsRepository.getMatch(address.toString()).getExpiryAddress();
+      String expiryAddress = addressSettingsRepository.getMatch(address.toString()).getExpiryAddress();
 
       if (expiryAddress != null)
       {
@@ -2382,7 +2382,7 @@ public class QueueImpl implements Queue
       sendToDeadLetterAddress(ref, addressSettingsRepository.getMatch(address.toString()).getDeadLetterAddress());
    }
 
-   private void sendToDeadLetterAddress(final MessageReference ref, final SimpleString deadLetterAddress) throws Exception
+   private void sendToDeadLetterAddress(final MessageReference ref, final String deadLetterAddress) throws Exception
    {
       if (deadLetterAddress != null)
       {
@@ -2407,7 +2407,7 @@ public class QueueImpl implements Queue
       }
    }
 
-   private void move(final SimpleString address, final MessageReference ref, final boolean expiry, final boolean rejectDuplicate) throws Exception
+   private void move(final String address, final MessageReference ref, final boolean expiry, final boolean rejectDuplicate) throws Exception
    {
       Transaction tx = new TransactionImpl(storageManager);
 
@@ -2453,7 +2453,7 @@ public class QueueImpl implements Queue
 
             // If a group id is set, then this overrides the consumer chosen round-robin
 
-            SimpleString groupID = extractGroupID(ref);
+            String groupID = extractGroupID(ref);
 
             if (groupID != null)
             {
@@ -3195,21 +3195,21 @@ public class QueueImpl implements Queue
 
                         props.putIntProperty(ManagementHelper.HDR_CONSUMER_COUNT, getConsumerCount());
 
-                        props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
+                        props.putStringProperty(ManagementHelper.HDR_ADDRESS, address);
 
                         if (connection != null)
                         {
-                           props.putSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, SimpleString.toSimpleString(connection.getRemoteAddress()));
+                           props.putStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, (connection.getRemoteAddress()));
 
                            if (connection.getID() != null)
                            {
-                              props.putSimpleStringProperty(ManagementHelper.HDR_CONNECTION_NAME, SimpleString.toSimpleString(connection.getID().toString()));
+                              props.putStringProperty(ManagementHelper.HDR_CONNECTION_NAME, (connection.getID().toString()));
                            }
                         }
 
                         props.putLongProperty(ManagementHelper.HDR_CONSUMER_NAME, serverConsumer.getID());
 
-                        props.putSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME, SimpleString.toSimpleString(serverConsumer.getSessionID()));
+                        props.putStringProperty(ManagementHelper.HDR_SESSION_NAME, (serverConsumer.getSessionID()));
 
                         Notification notification = new Notification(null, CoreNotificationType.CONSUMER_SLOW, props);
 

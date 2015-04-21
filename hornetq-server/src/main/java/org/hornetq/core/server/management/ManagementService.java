@@ -19,7 +19,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import javax.management.ObjectName;
 
 import org.hornetq.api.core.BroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.ObjectNameBuilder;
 import org.hornetq.core.config.BridgeConfiguration;
@@ -58,9 +58,9 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    MessageCounterManager getMessageCounterManager();
 
-   SimpleString getManagementAddress();
+   String getManagementAddress();
 
-   SimpleString getManagementNotificationAddress();
+   String getManagementNotificationAddress();
 
    ObjectNameBuilder getObjectNameBuilder();
 
@@ -91,13 +91,13 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    void unregisterFromRegistry(final String resourceName);
 
-   void registerAddress(SimpleString address) throws Exception;
+   void registerAddress(String address) throws Exception;
 
-   void unregisterAddress(SimpleString address) throws Exception;
+   void unregisterAddress(String address) throws Exception;
 
-   void registerQueue(Queue queue, SimpleString address, StorageManager storageManager) throws Exception;
+   void registerQueue(Queue queue, String address, StorageManager storageManager) throws Exception;
 
-   void unregisterQueue(SimpleString name, SimpleString address) throws Exception;
+   void unregisterQueue(String name, String address) throws Exception;
 
    void registerAcceptor(Acceptor acceptor, TransportConfiguration configuration) throws Exception;
 
@@ -105,7 +105,7 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    void registerDivert(Divert divert, DivertConfiguration config) throws Exception;
 
-   void unregisterDivert(SimpleString name) throws Exception;
+   void unregisterDivert(String name) throws Exception;
 
    void registerBroadcastGroup(BroadcastGroup broadcastGroup, BroadcastGroupConfiguration configuration) throws Exception;
 

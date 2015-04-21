@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.server.Consumer;
@@ -45,7 +45,7 @@ public class FakeQueue implements Queue
    }
 
    @Override
-   public void unproposed(SimpleString groupID)
+   public void unproposed(String groupID)
    {
 
    }
@@ -124,16 +124,16 @@ public class FakeQueue implements Queue
 
    }
 
-   private final SimpleString name;
+   private final String name;
 
    private final long id;
 
-   public FakeQueue(final SimpleString name)
+   public FakeQueue(final String name)
    {
       this(name, 0);
    }
 
-   public FakeQueue(final SimpleString name, final long id)
+   public FakeQueue(final String name, final long id)
    {
       this.name = name;
       this.id = id;
@@ -320,12 +320,12 @@ public class FakeQueue implements Queue
    }
 
    @Override
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       // no-op
       return null;
@@ -387,14 +387,14 @@ public class FakeQueue implements Queue
    }
 
    @Override
-   public boolean moveReference(final long messageID, final SimpleString toAddress) throws Exception
+   public boolean moveReference(final long messageID, final String toAddress) throws Exception
    {
       // no-op
       return false;
    }
 
    @Override
-   public int moveReferences(final Filter filter, final SimpleString toAddress) throws Exception
+   public int moveReferences(final Filter filter, final String toAddress) throws Exception
    {
       // no-op
       return 0;
@@ -456,7 +456,7 @@ public class FakeQueue implements Queue
 
 
    @Override
-   public SimpleString getExpiryAddress()
+   public String getExpiryAddress()
    {
       return null;
    }
@@ -498,14 +498,14 @@ public class FakeQueue implements Queue
    }
 
    @Override
-   public boolean moveReference(long messageID, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+   public boolean moveReference(long messageID, String toAddress, boolean rejectDuplicates) throws Exception
    {
       // no-op
       return false;
    }
 
    @Override
-   public int moveReferences(Filter filter, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+   public int moveReferences(Filter filter, String toAddress, boolean rejectDuplicates) throws Exception
    {
       // no-op
       return 0;

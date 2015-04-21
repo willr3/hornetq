@@ -13,7 +13,6 @@
 
 package org.hornetq.core.server;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.postoffice.PostOffice;
@@ -31,8 +30,8 @@ import org.hornetq.core.postoffice.PostOffice;
 public interface QueueFactory
 {
    Queue createQueue(long persistenceID,
-                     final SimpleString address,
-                     SimpleString name,
+                     final String address,
+                     String name,
                      Filter filter,
                      PageSubscription pageSubscription,
                      boolean durable,

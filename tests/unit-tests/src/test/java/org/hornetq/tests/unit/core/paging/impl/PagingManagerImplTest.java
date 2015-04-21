@@ -20,7 +20,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.paging.PagedMessage;
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.paging.impl.Page;
@@ -69,9 +68,9 @@ public class PagingManagerImplTest extends UnitTestCase
 
       managerImpl.start();
 
-      PagingStore store = managerImpl.getPageStore(new SimpleString("simple-test"));
+      PagingStore store = managerImpl.getPageStore(new String("simple-test"));
 
-      ServerMessage msg = createMessage(1L, new SimpleString("simple-test"), createRandomBuffer(10));
+      ServerMessage msg = createMessage(1L, new String("simple-test"), createRandomBuffer(10));
 
       final RoutingContextImpl ctx = new RoutingContextImpl(null);
       Assert.assertFalse(store.page(msg, ctx.getTransaction(), ctx.getContextListing(store.getStoreName()), lock));
@@ -113,7 +112,7 @@ public class PagingManagerImplTest extends UnitTestCase
       recreateDirectory();
    }
 
-   protected ServerMessage createMessage(final long messageId, final SimpleString destination, final ByteBuffer buffer)
+   protected ServerMessage createMessage(final long messageId, final String destination, final ByteBuffer buffer)
    {
       ServerMessage msg = new ServerMessageImpl(messageId, 200);
 

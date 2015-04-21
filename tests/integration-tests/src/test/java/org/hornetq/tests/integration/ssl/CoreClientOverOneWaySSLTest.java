@@ -20,7 +20,7 @@ import org.hornetq.api.core.HornetQConnectionTimedOutException;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -46,7 +46,7 @@ public class CoreClientOverOneWaySSLTest extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   public static final SimpleString QUEUE = new SimpleString("QueueOverSSL");
+   public static final String QUEUE = new String("QueueOverSSL");
 
    public static final String SERVER_SIDE_KEYSTORE = "server-side.keystore";
    public static final String CLIENT_SIDE_TRUSTSTORE = "client-side.truststore";

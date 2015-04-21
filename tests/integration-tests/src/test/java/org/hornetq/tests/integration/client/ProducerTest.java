@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -42,7 +42,7 @@ public class ProducerTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    @Override
    @Before

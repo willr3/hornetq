@@ -14,7 +14,8 @@
 package org.hornetq.core.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.journal.EncodingSupport;
 
 /**
@@ -33,21 +34,21 @@ public class PersistedRoles implements EncodingSupport
 
    private long storeId;
 
-   private SimpleString addressMatch;
+   private String addressMatch;
 
-   private SimpleString sendRoles;
+   private String sendRoles;
 
-   private SimpleString consumeRoles;
+   private String consumeRoles;
 
-   private SimpleString createDurableQueueRoles;
+   private String createDurableQueueRoles;
 
-   private SimpleString deleteDurableQueueRoles;
+   private String deleteDurableQueueRoles;
 
-   private SimpleString createNonDurableQueueRoles;
+   private String createNonDurableQueueRoles;
 
-   private SimpleString deleteNonDurableQueueRoles;
+   private String deleteNonDurableQueueRoles;
 
-   private SimpleString manageRoles;
+   private String manageRoles;
 
    // Static --------------------------------------------------------
 
@@ -58,7 +59,7 @@ public class PersistedRoles implements EncodingSupport
    }
 
    /**
-    * @param address
+    * param address
     * @param addressMatch
     * @param sendRoles
     * @param consumeRoles
@@ -78,14 +79,14 @@ public class PersistedRoles implements EncodingSupport
                          final String manageRoles)
    {
       super();
-      this.addressMatch = SimpleString.toSimpleString(addressMatch);
-      this.sendRoles = SimpleString.toSimpleString(sendRoles);
-      this.consumeRoles = SimpleString.toSimpleString(consumeRoles);
-      this.createDurableQueueRoles = SimpleString.toSimpleString(createDurableQueueRoles);
-      this.deleteDurableQueueRoles = SimpleString.toSimpleString(deleteDurableQueueRoles);
-      this.createNonDurableQueueRoles = SimpleString.toSimpleString(createNonDurableQueueRoles);
-      this.deleteNonDurableQueueRoles = SimpleString.toSimpleString(deleteNonDurableQueueRoles);
-      this.manageRoles = SimpleString.toSimpleString(manageRoles);
+      this.addressMatch = (addressMatch);
+      this.sendRoles = (sendRoles);
+      this.consumeRoles = (consumeRoles);
+      this.createDurableQueueRoles = (createDurableQueueRoles);
+      this.deleteDurableQueueRoles = (deleteDurableQueueRoles);
+      this.createNonDurableQueueRoles = (createNonDurableQueueRoles);
+      this.deleteNonDurableQueueRoles = (deleteNonDurableQueueRoles);
+      this.manageRoles = (manageRoles);
    }
 
    // Public --------------------------------------------------------
@@ -103,7 +104,7 @@ public class PersistedRoles implements EncodingSupport
    /**
     * @return the addressMatch
     */
-   public SimpleString getAddressMatch()
+   public String getAddressMatch()
    {
       return addressMatch;
    }
@@ -167,40 +168,40 @@ public class PersistedRoles implements EncodingSupport
    @Override
    public void encode(final HornetQBuffer buffer)
    {
-      buffer.writeSimpleString(addressMatch);
-      buffer.writeNullableSimpleString(sendRoles);
-      buffer.writeNullableSimpleString(consumeRoles);
-      buffer.writeNullableSimpleString(createDurableQueueRoles);
-      buffer.writeNullableSimpleString(deleteDurableQueueRoles);
-      buffer.writeNullableSimpleString(createNonDurableQueueRoles);
-      buffer.writeNullableSimpleString(deleteNonDurableQueueRoles);
-      buffer.writeNullableSimpleString(manageRoles);
+      buffer.writeString(addressMatch);
+      buffer.writeNullableString(sendRoles);
+      buffer.writeNullableString(consumeRoles);
+      buffer.writeNullableString(createDurableQueueRoles);
+      buffer.writeNullableString(deleteDurableQueueRoles);
+      buffer.writeNullableString(createNonDurableQueueRoles);
+      buffer.writeNullableString(deleteNonDurableQueueRoles);
+      buffer.writeNullableString(manageRoles);
    }
 
    @Override
    public int getEncodeSize()
    {
-      return addressMatch.sizeof() + SimpleString.sizeofNullableString(sendRoles) +
-             SimpleString.sizeofNullableString(consumeRoles) +
-             SimpleString.sizeofNullableString(createDurableQueueRoles) +
-             SimpleString.sizeofNullableString(deleteDurableQueueRoles) +
-             SimpleString.sizeofNullableString(createNonDurableQueueRoles) +
-             SimpleString.sizeofNullableString(deleteNonDurableQueueRoles) +
-             SimpleString.sizeofNullableString(manageRoles);
+      return SSU.sizeof(addressMatch) + SSU.sizeof(sendRoles) +
+             SSU.sizeof(consumeRoles) +
+             SSU.sizeof(createDurableQueueRoles) +
+             SSU.sizeof(deleteDurableQueueRoles) +
+             SSU.sizeof(createNonDurableQueueRoles) +
+             SSU.sizeof(deleteNonDurableQueueRoles) +
+             SSU.sizeof(manageRoles);
 
    }
 
    @Override
    public void decode(final HornetQBuffer buffer)
    {
-      addressMatch = buffer.readSimpleString();
-      sendRoles = buffer.readNullableSimpleString();
-      consumeRoles = buffer.readNullableSimpleString();
-      createDurableQueueRoles = buffer.readNullableSimpleString();
-      deleteDurableQueueRoles = buffer.readNullableSimpleString();
-      createNonDurableQueueRoles = buffer.readNullableSimpleString();
-      deleteNonDurableQueueRoles = buffer.readNullableSimpleString();
-      manageRoles = buffer.readNullableSimpleString();
+      addressMatch = buffer.readString();
+      sendRoles = buffer.readNullableString();
+      consumeRoles = buffer.readNullableString();
+      createDurableQueueRoles = buffer.readNullableString();
+      deleteDurableQueueRoles = buffer.readNullableString();
+      createNonDurableQueueRoles = buffer.readNullableString();
+      deleteNonDurableQueueRoles = buffer.readNullableString();
+      manageRoles = buffer.readNullableString();
    }
 
    /* (non-Javadoc)

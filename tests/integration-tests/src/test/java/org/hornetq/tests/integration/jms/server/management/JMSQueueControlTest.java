@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -406,7 +405,7 @@ public class JMSQueueControlTest extends ManagementTestBase
    @Test
    public void testGetExpiryAddress() throws Exception
    {
-      final SimpleString expiryAddress = RandomUtil.randomSimpleString();
+      final String expiryAddress = RandomUtil.randomString();
 
       JMSQueueControl queueControl = createManagementControl();
 
@@ -417,7 +416,7 @@ public class JMSQueueControlTest extends ManagementTestBase
          private static final long serialVersionUID = -7668739851356971411L;
 
          @Override
-         public SimpleString getExpiryAddress()
+         public String getExpiryAddress()
          {
             return expiryAddress;
          }
@@ -562,7 +561,7 @@ public class JMSQueueControlTest extends ManagementTestBase
    @Test
    public void testGetDeadLetterAddress() throws Exception
    {
-      final SimpleString deadLetterAddress = RandomUtil.randomSimpleString();
+      final String deadLetterAddress = RandomUtil.randomString();
 
       JMSQueueControl queueControl = createManagementControl();
 
@@ -573,7 +572,7 @@ public class JMSQueueControlTest extends ManagementTestBase
          private static final long serialVersionUID = -5979378001862611598L;
 
          @Override
-         public SimpleString getDeadLetterAddress()
+         public String getDeadLetterAddress()
          {
             return deadLetterAddress;
          }
@@ -830,7 +829,7 @@ public class JMSQueueControlTest extends ManagementTestBase
       {
          ClientMessage msg = session.createMessage(true);
 
-         msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString("dupl-" + i));
+         msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new String("dupl-" + i));
 
          prod1.send(msg);
          if (i < 5)
@@ -911,7 +910,7 @@ public class JMSQueueControlTest extends ManagementTestBase
       {
          ClientMessage msg = session.createMessage(true);
 
-         msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString("dupl-" + i));
+         msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new String("dupl-" + i));
 
          msg.setUserID(UUIDGenerator.getInstance().generateUUID());
 
@@ -993,7 +992,7 @@ public class JMSQueueControlTest extends ManagementTestBase
 
       ClientMessage msg = session.createMessage(true);
 
-      msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString("dupl-1"));
+      msg.putStringProperty(org.hornetq.api.core.Message.HDR_DUPLICATE_DETECTION_ID, new String("dupl-1"));
 
       prod1.send(msg);
       prod2.send(msg);

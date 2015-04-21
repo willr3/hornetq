@@ -38,7 +38,7 @@ import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.ConfigurationImpl;
@@ -797,9 +797,9 @@ public final class XmlDataExporter
 
          manager.start();
 
-         SimpleString[] stores = manager.getStoreNames();
+         String[] stores = manager.getStoreNames();
 
-         for (SimpleString store : stores)
+         for (String store : stores)
          {
             PagingStore pageStore = manager.getPageStore(store);
             String folder = null;
@@ -843,7 +843,7 @@ public final class XmlDataExporter
                         PersistentQueueBindingEncoding queueBinding = queueBindings.get(queueID);
                         if (queueBinding != null)
                         {
-                           SimpleString queueName = queueBinding.getQueueName();
+                           String queueName = queueBinding.getQueueName();
                            queueNames.add(queueName.toString());
                         }
                      }
@@ -961,7 +961,7 @@ public final class XmlDataExporter
    private void printMessageProperties(ServerMessage message) throws XMLStreamException
    {
       xmlWriter.writeStartElement(XmlDataConstants.PROPERTIES_PARENT);
-      for (SimpleString key : message.getPropertyNames())
+      for (String key : message.getPropertyNames())
       {
          Object value = message.getObjectProperty(key);
          xmlWriter.writeEmptyElement(XmlDataConstants.PROPERTIES_CHILD);
@@ -1007,10 +1007,10 @@ public final class XmlDataExporter
          {
             xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_STRING);
          }
-         else if (value instanceof SimpleString)
-         {
-            xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_SIMPLE_STRING);
-         }
+//         else if (value instanceof String)
+//         {
+//            xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_SIMPLE_STRING);
+//         }
          else if (value instanceof byte[])
          {
             xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_BYTES);

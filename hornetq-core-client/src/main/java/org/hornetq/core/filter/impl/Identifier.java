@@ -22,8 +22,6 @@
 
 package org.hornetq.core.filter.impl;
 
-import org.hornetq.api.core.SimpleString;
-
 /**
  *
  * A Identifier
@@ -36,14 +34,14 @@ import org.hornetq.api.core.SimpleString;
  */
 public class Identifier
 {
-   private final SimpleString name;
+   private final String name;
 
    private final int hash;
 
    private Object value;
 
 
-   public Identifier(final SimpleString name)
+   public Identifier(final String name)
    {
       this.name = name;
 
@@ -78,7 +76,7 @@ public class Identifier
       return hash;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }

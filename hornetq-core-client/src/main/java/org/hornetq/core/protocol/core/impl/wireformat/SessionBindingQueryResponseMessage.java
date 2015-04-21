@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -31,9 +31,9 @@ public class SessionBindingQueryResponseMessage extends PacketImpl
 {
    private boolean exists;
 
-   private List<SimpleString> queueNames;
+   private List<String> queueNames;
 
-   public SessionBindingQueryResponseMessage(final boolean exists, final List<SimpleString> queueNames)
+   public SessionBindingQueryResponseMessage(final boolean exists, final List<String> queueNames)
    {
       super(SESS_BINDINGQUERY_RESP);
 
@@ -58,7 +58,7 @@ public class SessionBindingQueryResponseMessage extends PacketImpl
       return exists;
    }
 
-   public List<SimpleString> getQueueNames()
+   public List<String> getQueueNames()
    {
       return queueNames;
    }
@@ -68,9 +68,9 @@ public class SessionBindingQueryResponseMessage extends PacketImpl
    {
       buffer.writeBoolean(exists);
       buffer.writeInt(queueNames.size());
-      for (SimpleString queueName : queueNames)
+      for (String queueName : queueNames)
       {
-         buffer.writeSimpleString(queueName);
+         buffer.writeString(queueName);
       }
    }
 
@@ -79,10 +79,10 @@ public class SessionBindingQueryResponseMessage extends PacketImpl
    {
       exists = buffer.readBoolean();
       int numQueues = buffer.readInt();
-      queueNames = new ArrayList<SimpleString>(numQueues);
+      queueNames = new ArrayList<String>(numQueues);
       for (int i = 0; i < numQueues; i++)
       {
-         queueNames.add(buffer.readSimpleString());
+         queueNames.add(buffer.readString());
       }
    }
 

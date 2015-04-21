@@ -1,6 +1,6 @@
 package org.hornetq.api.config;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.impl.JournalConstants;
 
 /**
@@ -256,12 +256,12 @@ public final class HornetQDefaultConfiguration
       return DEFAULT_TRANSACTION_TIMEOUT_SCAN_PERIOD;
    }
 
-   public static SimpleString getDefaultManagementAddress()
+   public static String getDefaultManagementAddress()
    {
       return DEFAULT_MANAGEMENT_ADDRESS;
    }
 
-   public static SimpleString getDefaultManagementNotificationAddress()
+   public static String getDefaultManagementNotificationAddress()
    {
       return DEFAULT_MANAGEMENT_NOTIFICATION_ADDRESS;
    }
@@ -509,8 +509,8 @@ public final class HornetQDefaultConfiguration
     * The management address is prefixed with {@literal jms.queue} so that JMS clients can send
     * messages to it too.
     */
-   private static SimpleString DEFAULT_MANAGEMENT_ADDRESS = new SimpleString("jms.queue.hornetq.management");
-   private static SimpleString DEFAULT_MANAGEMENT_NOTIFICATION_ADDRESS = new SimpleString("hornetq.notifications");
+   private static String DEFAULT_MANAGEMENT_ADDRESS = new String("jms.queue.hornetq.management");
+   private static String DEFAULT_MANAGEMENT_NOTIFICATION_ADDRESS = new String("hornetq.notifications");
    private static String DEFAULT_CLUSTER_USER = "HORNETQ.CLUSTER.ADMIN.USER";
    private static String DEFAULT_CLUSTER_PASSWORD = "CHANGE ME!!";
    private static int DEFAULT_MAX_SAVED_REPLICATED_JOURNALS_SIZE = 2;

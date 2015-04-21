@@ -1,6 +1,6 @@
 package org.hornetq.rest.queue;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.rest.HornetQRestLogger;
 import org.hornetq.rest.HttpHeaderProperty;
@@ -30,7 +30,7 @@ public abstract class ConsumedMessage
 
    protected void buildHeaders(Response.ResponseBuilder builder)
    {
-      for (SimpleString key : message.getPropertyNames())
+      for (String key : message.getPropertyNames())
       {
          String k = key.toString();
          String headerName = HttpHeaderProperty.fromPropertyName(k);

@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.QueueControl;
@@ -154,10 +154,10 @@ public class ManagementServiceImplTest extends UnitTestCase
       ManagementServiceImpl managementService = new ManagementServiceImpl(null, conf);
       managementService.setStorageManager(new NullStorageManager());
 
-      SimpleString address = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
       managementService.registerAddress(address);
-      Queue queue = new FakeQueue(RandomUtil.randomSimpleString());
-      managementService.registerQueue(queue, RandomUtil.randomSimpleString(), new FakeStorageManager());
+      Queue queue = new FakeQueue(RandomUtil.randomString());
+      managementService.registerQueue(queue, RandomUtil.randomString(), new FakeStorageManager());
 
       Object[] addresses = managementService.getResources(AddressControl.class);
       Assert.assertEquals(1, addresses.length);

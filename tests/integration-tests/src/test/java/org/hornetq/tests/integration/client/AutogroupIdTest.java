@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.client;
 import java.util.concurrent.CountDownLatch;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -36,15 +36,15 @@ public class AutogroupIdTest extends ServiceTestBase
 {
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
-   public final SimpleString addressA = new SimpleString("addressA");
+   public final String addressA = new String("addressA");
 
-   public final SimpleString queueA = new SimpleString("queueA");
+   public final String queueA = new String("queueA");
 
-   public final SimpleString queueB = new SimpleString("queueB");
+   public final String queueB = new String("queueB");
 
-   public final SimpleString queueC = new SimpleString("queueC");
+   public final String queueC = new String("queueC");
 
-   private final SimpleString groupTestQ = new SimpleString("testGroupQueue");
+   private final String groupTestQ = new String("testGroupQueue");
 
    /* auto group id tests*/
 

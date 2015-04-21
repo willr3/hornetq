@@ -34,7 +34,7 @@ import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.NotificationType;
@@ -89,9 +89,9 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 {
    private static final boolean isTrace = HornetQServerLogger.LOGGER.isTraceEnabled();
 
-   public static final SimpleString HDR_RESET_QUEUE_DATA = new SimpleString("_HQ_RESET_QUEUE_DATA");
+   public static final String HDR_RESET_QUEUE_DATA = new String("_HQ_RESET_QUEUE_DATA");
 
-   public static final SimpleString BRIDGE_CACHE_STR = new SimpleString("BRIDGE.");
+   public static final String BRIDGE_CACHE_STR = new String("BRIDGE.");
 
    private final AddressManager addressManager;
 
@@ -113,13 +113,13 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
    private final int reaperPriority;
 
-   private final ConcurrentMap<SimpleString, DuplicateIDCache> duplicateIDCaches = new ConcurrentHashMap<SimpleString, DuplicateIDCache>();
+   private final ConcurrentMap<String, DuplicateIDCache> duplicateIDCaches = new ConcurrentHashMap<String, DuplicateIDCache>();
 
    private final int idCacheSize;
 
    private final boolean persistIDCache;
 
-   private final Map<SimpleString, QueueInfo> queueInfos = new HashMap<SimpleString, QueueInfo>();
+   private final Map<String, QueueInfo> queueInfos = new HashMap<String, QueueInfo>();
 
    private final Object notificationLock = new Object();
 
@@ -247,11 +247,11 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
                   return;
                }
 
-               SimpleString routingName = props.getSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME);
+               String routingName = props.getStringProperty(ManagementHelper.HDR_ROUTING_NAME);
 
-               SimpleString clusterName = props.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+               String clusterName = props.getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
-               SimpleString address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+               String address = props.getStringProperty(ManagementHelper.HDR_ADDRESS);
 
                if (!props.containsProperty(ManagementHelper.HDR_BINDING_ID))
                {
@@ -260,7 +260,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                long id = props.getLongProperty(ManagementHelper.HDR_BINDING_ID);
 
-               SimpleString filterString = props.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+               String filterString = props.getStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
                if (!props.containsProperty(ManagementHelper.HDR_DISTANCE))
                {
@@ -284,7 +284,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
                   throw new IllegalStateException("No cluster name");
                }
 
-               SimpleString clusterName = props.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+               String clusterName = props.getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
                QueueInfo info = queueInfos.remove(clusterName);
 
@@ -304,9 +304,9 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
                   throw new IllegalStateException("No cluster name");
                }
 
-               SimpleString clusterName = props.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+               String clusterName = props.getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
-               SimpleString filterString = props.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+               String filterString = props.getStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
                QueueInfo info = queueInfos.get(clusterName);
 
@@ -319,11 +319,11 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                if (filterString != null)
                {
-                  List<SimpleString> filterStrings = info.getFilterStrings();
+                  List<String> filterStrings = info.getFilterStrings();
 
                   if (filterStrings == null)
                   {
-                     filterStrings = new ArrayList<SimpleString>();
+                     filterStrings = new ArrayList<String>();
 
                      info.setFilterStrings(filterStrings);
                   }
@@ -340,7 +340,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                if (distance > 0)
                {
-                  SimpleString queueName = props.getSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME);
+                  String queueName = props.getStringProperty(ManagementHelper.HDR_ROUTING_NAME);
 
                   if (queueName == null)
                   {
@@ -372,14 +372,14 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
             {
                TypedProperties props = notification.getProperties();
 
-               SimpleString clusterName = props.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+               String clusterName = props.getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
                if (clusterName == null)
                {
                   throw new IllegalStateException("No cluster name");
                }
 
-               SimpleString filterString = props.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+               String filterString = props.getStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
                QueueInfo info = queueInfos.get(clusterName);
 
@@ -392,7 +392,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                if (filterString != null)
                {
-                  List<SimpleString> filterStrings = info.getFilterStrings();
+                  List<String> filterStrings = info.getFilterStrings();
 
                   filterStrings.remove(filterString);
                }
@@ -408,7 +408,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                   if (distance == 0)
                   {
-                     SimpleString queueName = props.getSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME);
+                     String queueName = props.getStringProperty(ManagementHelper.HDR_ROUTING_NAME);
 
                      if (queueName == null)
                      {
@@ -461,11 +461,11 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
       props.putIntProperty(ManagementHelper.HDR_BINDING_TYPE, binding.getType().toInt());
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
+      props.putStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
+      props.putStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
+      props.putStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
 
       props.putLongProperty(ManagementHelper.HDR_BINDING_ID, binding.getID());
 
@@ -475,7 +475,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
       if (filter != null)
       {
-         props.putSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING, filter.getFilterString());
+         props.putStringProperty(ManagementHelper.HDR_FILTERSTRING, filter.getFilterString());
       }
 
       String uid = UUIDGenerator.getInstance().generateStringUUID();
@@ -488,7 +488,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       managementService.sendNotification(new Notification(uid, CoreNotificationType.BINDING_ADDED, props));
    }
 
-   public synchronized Binding removeBinding(final SimpleString uniqueName, Transaction tx) throws Exception
+   public synchronized Binding removeBinding(final String uniqueName, Transaction tx) throws Exception
    {
 
       addressSettingsRepository.clearCache();
@@ -522,11 +522,11 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       {
          TypedProperties props = new TypedProperties();
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
+         props.putStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
+         props.putStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
+         props.putStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
 
          props.putIntProperty(ManagementHelper.HDR_DISTANCE, binding.getDistance());
 
@@ -534,11 +534,11 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
          if (binding.getFilter() == null)
          {
-            props.putSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING, null);
+            props.putStringProperty(ManagementHelper.HDR_FILTERSTRING, null);
          }
          else
          {
-            props.putSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING, binding.getFilter().getFilterString());
+            props.putStringProperty(ManagementHelper.HDR_FILTERSTRING, binding.getFilter().getFilterString());
          }
 
          managementService.sendNotification(new Notification(null, CoreNotificationType.BINDING_REMOVED, props));
@@ -549,7 +549,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       return binding;
    }
 
-   private void deleteDuplicateCache(SimpleString address) throws Exception
+   private void deleteDuplicateCache(String address) throws Exception
    {
       DuplicateIDCache cache = duplicateIDCaches.remove(address);
 
@@ -567,14 +567,14 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
    }
 
    @Override
-   public boolean isAddressBound(final SimpleString address) throws Exception
+   public boolean isAddressBound(final String address) throws Exception
    {
       Bindings bindings = getBindingsForAddress(address);
       return bindings != null && !bindings.getBindings().isEmpty();
    }
 
 
-   public Bindings getBindingsForAddress(final SimpleString address) throws Exception
+   public Bindings getBindingsForAddress(final String address) throws Exception
    {
       Bindings bindings = addressManager.getBindingsForRoutingAddress(address);
 
@@ -587,17 +587,17 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
    }
 
 
-   public Bindings lookupBindingsForAddress(final SimpleString address) throws Exception
+   public Bindings lookupBindingsForAddress(final String address) throws Exception
    {
       return addressManager.getBindingsForRoutingAddress(address);
    }
 
-   public Binding getBinding(final SimpleString name)
+   public Binding getBinding(final String name)
    {
       return addressManager.getBinding(name);
    }
 
-   public Bindings getMatchingBindings(final SimpleString address) throws Exception
+   public Bindings getMatchingBindings(final String address) throws Exception
    {
       return addressManager.getMatchingBindings(address);
    }
@@ -636,7 +636,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
          throw new IllegalStateException("Message cannot be routed more than once");
       }
 
-      SimpleString address = message.getAddress();
+      String address = message.getAddress();
 
       setPagingStore(message);
 
@@ -690,7 +690,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
          {
             // Send to the DLA for the address
 
-            SimpleString dlaAddress = addressSettings.getDeadLetterAddress();
+            String dlaAddress = addressSettings.getDeadLetterAddress();
 
             if (HornetQServerLogger.LOGGER.isDebugEnabled())
             {
@@ -750,7 +750,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
    }
 
    // HORNETQ-1029
-   private void applyExpiryDelay(ServerMessage message, SimpleString address)
+   private void applyExpiryDelay(ServerMessage message, String address)
    {
       long expirationOverride = addressSettingsRepository.getMatch(address.toString()).getExpiryDelay();
 
@@ -825,7 +825,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       return null;
    }
 
-   public DuplicateIDCache getDuplicateIDCache(final SimpleString address)
+   public DuplicateIDCache getDuplicateIDCache(final String address)
    {
       DuplicateIDCache cache = duplicateIDCaches.get(address);
 
@@ -844,7 +844,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       return cache;
    }
 
-   public ConcurrentMap<SimpleString, DuplicateIDCache> getDuplicateIDCaches()
+   public ConcurrentMap<String, DuplicateIDCache> getDuplicateIDCaches()
    {
       return duplicateIDCaches;
    }
@@ -854,7 +854,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       return notificationLock;
    }
 
-   public void sendQueueInfoToQueue(final SimpleString queueName, final SimpleString address) throws Exception
+   public void sendQueueInfoToQueue(final String queueName, final String address) throws Exception
    {
       // We send direct to the queue so we can send it to the same queue that is bound to the notifications adress -
       // this is crucial for ensuring
@@ -919,7 +919,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
                if (info.getFilterStrings() != null)
                {
-                  for (SimpleString filterString : info.getFilterStrings())
+                  for (String filterString : info.getFilterStrings())
                   {
                      message = createQueueInfoMessage(CoreNotificationType.CONSUMER_CREATED, queueName);
 
@@ -954,10 +954,10 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
     */
    protected void cleanupInternalPropertiesBeforeRouting(final ServerMessage message)
    {
-      LinkedList<SimpleString> valuesToRemove = null;
+      LinkedList<String> valuesToRemove = null;
 
 
-      for (SimpleString name : message.getPropertyNames())
+      for (String name : message.getPropertyNames())
       {
          // We use properties to establish routing context on clustering.
          // However if the client resends the message after receiving, it needs to be removed
@@ -965,7 +965,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
          {
             if (valuesToRemove == null)
             {
-               valuesToRemove = new LinkedList<SimpleString>();
+               valuesToRemove = new LinkedList<String>();
             }
             valuesToRemove.add(name);
          }
@@ -973,7 +973,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
       if (valuesToRemove != null)
       {
-         for (SimpleString removal : valuesToRemove)
+         for (String removal : valuesToRemove)
          {
             message.removeProperty(removal);
          }
@@ -1035,7 +1035,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
       Transaction tx = context.getTransaction();
 
-      for (Map.Entry<SimpleString, RouteContextList> entry : context.getContexListing().entrySet())
+      for (Map.Entry<String, RouteContextList> entry : context.getContexListing().entrySet())
       {
          PagingStore store = pagingManager.getPageStore(entry.getKey());
 
@@ -1185,7 +1185,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
     * @param tx
     * @param entry
     */
-   private void schedulePageDelivery(Transaction tx, Map.Entry<SimpleString, RouteContextList> entry)
+   private void schedulePageDelivery(Transaction tx, Map.Entry<String, RouteContextList> entry)
    {
       if (tx != null)
       {
@@ -1351,7 +1351,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       }
    }
 
-   private ServerMessage createQueueInfoMessage(final NotificationType type, final SimpleString queueName)
+   private ServerMessage createQueueInfoMessage(final NotificationType type, final String queueName)
    {
       ServerMessage message = new ServerMessageImpl(storageManager.generateUniqueID(), 50);
 
@@ -1359,10 +1359,10 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
       String uid = UUIDGenerator.getInstance().generateStringUUID();
 
-      message.putStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE, new SimpleString(type.toString()));
+      message.putStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE, new String(type.toString()));
       message.putLongProperty(ManagementHelper.HDR_NOTIFICATION_TIMESTAMP, System.currentTimeMillis());
 
-      message.putStringProperty(new SimpleString("foobar"), new SimpleString(uid));
+      message.putStringProperty(new String("foobar"), new String(uid));
 
       return message;
    }
@@ -1394,7 +1394,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
             if (!isStarted())
                return;
 
-            Map<SimpleString, Binding> nameMap = addressManager.getBindings();
+            Map<String, Binding> nameMap = addressManager.getBindings();
 
             List<Queue> queues = new ArrayList<Queue>();
 
@@ -1485,7 +1485,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       }
    }
 
-   public Bindings createBindings(final SimpleString address) throws Exception
+   public Bindings createBindings(final String address) throws Exception
    {
       GroupingHandler groupingHandler = server.getGroupingHandler();
       BindingsImpl bindings = new BindingsImpl(address, groupingHandler, pagingManager.getPageStore(address));

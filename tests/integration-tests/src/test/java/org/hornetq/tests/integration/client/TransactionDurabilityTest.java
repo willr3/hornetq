@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -62,11 +62,11 @@ public class TransactionDurabilityTest extends ServiceTestBase
    {
       Configuration conf = createDefaultConfig();
 
-      final SimpleString testAddress = new SimpleString("testAddress");
+      final String testAddress = new String("testAddress");
 
-      final SimpleString queue1 = new SimpleString("queue1");
+      final String queue1 = new String("queue1");
 
-      final SimpleString queue2 = new SimpleString("queue2");
+      final String queue2 = new String("queue2");
 
       HornetQServer server = createServer(true, conf);
 

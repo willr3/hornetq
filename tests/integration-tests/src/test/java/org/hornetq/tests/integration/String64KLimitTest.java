@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -75,8 +75,8 @@ public class String64KLimitTest extends UnitTestCase
    @Test
    public void test64KLimitWithWriteString() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -140,8 +140,8 @@ public class String64KLimitTest extends UnitTestCase
    @Test
    public void test64KLimitWithWriteUTF() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 

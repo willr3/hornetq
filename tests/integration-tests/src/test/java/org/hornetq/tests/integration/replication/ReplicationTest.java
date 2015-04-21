@@ -33,7 +33,7 @@ import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -106,7 +106,7 @@ public final class ReplicationTest extends ServiceTestBase
    private ServerLocator locator;
 
    private ReplicationManager manager;
-   private static final SimpleString ADDRESS = new SimpleString("foobar123");
+   private static final String ADDRESS = new String("foobar123");
 
 
    private void setupServer(boolean backup, String... interceptors) throws Exception
@@ -230,7 +230,7 @@ public final class ReplicationTest extends ServiceTestBase
 
       ServerMessage msg = new ServerMessageImpl(1, 1024);
 
-      SimpleString dummy = new SimpleString("dummy");
+      String dummy = new String("dummy");
       msg.setAddress(dummy);
 
       replicatedJournal.appendAddRecordTransactional(23, 24, (byte)1, new FakeData());
@@ -263,7 +263,7 @@ public final class ReplicationTest extends ServiceTestBase
 
       ServerMessageImpl serverMsg = new ServerMessageImpl();
       serverMsg.setMessageID(500);
-      serverMsg.setAddress(new SimpleString("tttt"));
+      serverMsg.setAddress(new String("tttt"));
 
       HornetQBuffer buffer = HornetQBuffers.dynamicBuffer(100);
       serverMsg.encodeHeadersAndProperties(buffer);

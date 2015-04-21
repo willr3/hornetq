@@ -16,7 +16,6 @@ package org.hornetq.jms.example;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
 import org.hornetq.spi.core.protocol.RemotingConnection;
@@ -39,7 +38,7 @@ public class SimpleInterceptor implements Interceptor
       {
          SessionSendMessage realPacket = (SessionSendMessage)packet;
          Message msg = realPacket.getMessage();
-         msg.putStringProperty(new SimpleString("newproperty"), new SimpleString("Hello from interceptor!"));
+         msg.putStringProperty(new String("newproperty"), new String("Hello from interceptor!"));
       }
       // We return true which means "call next interceptor" (if there is one) or target.
       // If we returned false, it means "abort call" - no more interceptors would be called and neither would

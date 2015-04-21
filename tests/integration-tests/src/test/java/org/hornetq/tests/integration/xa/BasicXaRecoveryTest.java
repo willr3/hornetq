@@ -21,7 +21,7 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -67,7 +67,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
 
    private Configuration configuration;
 
-   private final SimpleString atestq = new SimpleString("atestq");
+   private final String atestq = new String("atestq");
 
    private ServerLocator locator;
 
@@ -293,7 +293,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
    {
       Xid xid = new XidImpl("xa1".getBytes(), 1, UUIDGenerator.getInstance().generateStringUUID().getBytes());
 
-      SimpleString pageQueue = new SimpleString("pagequeue");
+      String pageQueue = new String("pagequeue");
 
       AddressSettings pageAddressSettings = new AddressSettings();
       pageAddressSettings.setMaxSizeBytes(100 * 1024);
@@ -376,7 +376,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
    {
       Xid xid = new XidImpl("xa1".getBytes(), 1, UUIDGenerator.getInstance().generateStringUUID().getBytes());
 
-      SimpleString pageQueue = new SimpleString("pagequeue");
+      String pageQueue = new String("pagequeue");
 
       AddressSettings pageAddressSettings = new AddressSettings();
       pageAddressSettings.setMaxSizeBytes(100 * 1024);
@@ -986,7 +986,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
       checkQueueDeliveryCount(atestq, 0);
    }
 
-   private void checkQueueDeliveryCount(SimpleString thequeue, int expectedCount) throws Exception
+   private void checkQueueDeliveryCount(String thequeue, int expectedCount) throws Exception
    {
       QueueControl queueControl = ManagementControlHelper.createQueueControl(thequeue, thequeue, mbeanServer);
 
@@ -1081,7 +1081,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
       ClientMessage m8 = createTextMessage("m8");
       ClientSession clientSession2 = sessionFactory.createSession(false, true, true);
       ClientProducer clientProducer2 = clientSession2.createProducer(atestq);
-      SimpleString anewtestq = new SimpleString("anewtestq");
+      String anewtestq = new String("anewtestq");
       clientSession.createQueue(anewtestq, anewtestq, null, true);
       ClientProducer clientProducer3 = clientSession2.createProducer(anewtestq);
       clientProducer2.send(m1);
@@ -1171,7 +1171,7 @@ public class BasicXaRecoveryTest extends ServiceTestBase
       ClientMessage m8 = createTextMessage("m8");
       ClientSession clientSession2 = sessionFactory.createSession(false, true, true);
       ClientProducer clientProducer2 = clientSession2.createProducer(atestq);
-      SimpleString anewtestq = new SimpleString("anewtestq");
+      String anewtestq = new String("anewtestq");
       clientSession.createQueue(anewtestq, anewtestq, null, true);
       ClientProducer clientProducer3 = clientSession2.createProducer(anewtestq);
       clientProducer2.send(m1);

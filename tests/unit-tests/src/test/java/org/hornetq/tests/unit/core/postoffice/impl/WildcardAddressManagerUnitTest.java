@@ -16,7 +16,6 @@ package org.hornetq.tests.unit.core.postoffice.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.BindingType;
@@ -46,10 +45,10 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
       ad.addBinding(new BindingFake("jms.topic.Topic1", "jms.topic.Topic1"));
       ad.addBinding(new BindingFake("jms.topic.Topic1", "one"));
       ad.addBinding(new BindingFake("jms.topic.*", "two"));
-      ad.removeBinding(SimpleString.toSimpleString("one"), null);
+      ad.removeBinding(("one"), null);
       try
       {
-         ad.removeBinding(SimpleString.toSimpleString("two"), null);
+         ad.removeBinding(("two"), null);
       }
       catch (Throwable e)
       {
@@ -77,7 +76,7 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
 
    class BindingFactoryFake implements BindingsFactory
    {
-      public Bindings createBindings(SimpleString address) throws Exception
+      public Bindings createBindings(String address) throws Exception
       {
          return new BindignsFake();
       }
@@ -86,15 +85,15 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
    class BindingFake implements Binding
    {
 
-      final SimpleString address;
-      final SimpleString id;
+      final String address;
+      final String id;
+
+//      public BindingFake(String addressParameter, String id)
+//      {
+//         this((addressParameter), (id));
+//      }
 
       public BindingFake(String addressParameter, String id)
-      {
-         this(SimpleString.toSimpleString(addressParameter), SimpleString.toSimpleString(id));
-      }
-
-      public BindingFake(SimpleString addressParameter, SimpleString id)
       {
          this.address = addressParameter;
          this.id = id;
@@ -102,13 +101,13 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
 
 
       @Override
-      public void unproposed(SimpleString groupID)
+      public void unproposed(String groupID)
       {
 
       }
 
       @Override
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return address;
       }
@@ -126,19 +125,19 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
       }
 
       @Override
-      public SimpleString getUniqueName()
+      public String getUniqueName()
       {
          return id;
       }
 
       @Override
-      public SimpleString getRoutingName()
+      public String getRoutingName()
       {
          return null;
       }
 
       @Override
-      public SimpleString getClusterName()
+      public String getClusterName()
       {
          return null;
       }
@@ -221,7 +220,7 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
       }
 
       @Override
-      public void unproposed(SimpleString groupID)
+      public void unproposed(String groupID)
       {
       }
 

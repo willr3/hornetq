@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -78,9 +78,9 @@ public class MessageRedistributionTest extends ClusterTestBase
 
 
       getServer(0).getConfiguration().setGroupingHandlerConfiguration(
-         new GroupingHandlerConfiguration(new SimpleString("handler"), GroupingHandlerConfiguration.TYPE.LOCAL, new SimpleString("queues")));
+         new GroupingHandlerConfiguration(new String("handler"), GroupingHandlerConfiguration.TYPE.LOCAL, new String("queues")));
       getServer(1).getConfiguration().setGroupingHandlerConfiguration(
-         new GroupingHandlerConfiguration(new SimpleString("handler"), GroupingHandlerConfiguration.TYPE.REMOTE, new SimpleString("queues")));
+         new GroupingHandlerConfiguration(new String("handler"), GroupingHandlerConfiguration.TYPE.REMOTE, new String("queues")));
 
       startServers(0, 1);
 
@@ -100,7 +100,7 @@ public class MessageRedistributionTest extends ClusterTestBase
       waitForBindings(1, "queues.testaddress", 1, 0, false);
 
       //send some grouped messages before we add the consumer to node 0 so we guarantee its pinned to node 1
-      sendWithProperty(0, "queues.testaddress", 10, false, Message.HDR_GROUP_ID, new SimpleString("grp1"));
+      sendWithProperty(0, "queues.testaddress", 10, false, Message.HDR_GROUP_ID, new String("grp1"));
       addConsumer(0, 0, "queue0", null);
 
       waitForBindings(0, "queues.testaddress", 1, 1, true);
@@ -117,7 +117,7 @@ public class MessageRedistributionTest extends ClusterTestBase
          ClientMessage message = getConsumer(1).receive(1000);
          assertNotNull(message);
          message.acknowledge();
-         assertNotNull(message.getSimpleStringProperty(Message.HDR_GROUP_ID));
+         assertNotNull(message.getStringProperty(Message.HDR_GROUP_ID));
       }
 
       //now consume the non grouped messages from node 1 where they are pinned
@@ -126,7 +126,7 @@ public class MessageRedistributionTest extends ClusterTestBase
          ClientMessage message = getConsumer(0).receive(5000);
          assertNotNull("" + i, message);
          message.acknowledge();
-         assertNull(message.getSimpleStringProperty(Message.HDR_GROUP_ID));
+         assertNull(message.getStringProperty(Message.HDR_GROUP_ID));
       }
 
       ClientMessage clientMessage = getConsumer(0).receiveImmediate();
@@ -148,7 +148,7 @@ public class MessageRedistributionTest extends ClusterTestBase
          }
          assertNotNull("" + i, message);
          message.acknowledge();
-         assertNull(message.getSimpleStringProperty(Message.HDR_GROUP_ID));
+         assertNull(message.getStringProperty(Message.HDR_GROUP_ID));
       }
 
       clientMessage = getConsumer(0).receiveImmediate();
@@ -164,7 +164,7 @@ public class MessageRedistributionTest extends ClusterTestBase
          ClientMessage message = getConsumer(1).receive(1000);
          assertNotNull(message);
          message.acknowledge();
-         assertNotNull(message.getSimpleStringProperty(Message.HDR_GROUP_ID));
+         assertNotNull(message.getStringProperty(Message.HDR_GROUP_ID));
       }
       MessageRedistributionTest.log.info("Test done");
    }
@@ -202,7 +202,7 @@ public class MessageRedistributionTest extends ClusterTestBase
       removeConsumer(0);
       addConsumer(0, 0, "queue0", null);
 
-      Bindable bindable = servers[0].getPostOffice().getBinding(new SimpleString("queue0")).getBindable();
+      Bindable bindable = servers[0].getPostOffice().getBinding(new String("queue0")).getBindable();
       String debug = ((QueueImpl)bindable).debug();
       assertFalse(debug.contains(Redistributor.class.getName()));
       MessageRedistributionTest.log.info("Test done");
@@ -1019,7 +1019,7 @@ public class MessageRedistributionTest extends ClusterTestBase
 
       waitForBindings(0, "queues.testaddress", 1, 0, false);
 
-      getServer(0).getPagingManager().getPageStore(new SimpleString("queues.testaddress")).startPaging();
+      getServer(0).getPagingManager().getPageStore(new String("queues.testaddress")).startPaging();
 
       ClientSession session0 = sfs[0].createSession(true, true, 0);
       ClientProducer producer0 = session0.createProducer("queues.testaddress");

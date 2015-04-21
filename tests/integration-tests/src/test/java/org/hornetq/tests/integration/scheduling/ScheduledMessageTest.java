@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -46,9 +45,9 @@ public class ScheduledMessageTest extends ServiceTestBase
 {
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
-   private final SimpleString atestq = new SimpleString("ascheduledtestq");
+   private final String atestq = new String("ascheduledtestq");
 
-   private final SimpleString atestq2 = new SimpleString("ascheduledtestq2");
+   private final String atestq2 = new String("ascheduledtestq2");
 
    private Configuration configuration;
 

@@ -13,7 +13,6 @@
 
 package org.hornetq.jms.example;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.Transformer;
 
@@ -28,7 +27,7 @@ public class AddForwardingTimeTransformer implements Transformer
 {
    public ServerMessage transform(final ServerMessage message)
    {
-      message.putLongProperty(new SimpleString("time_of_forward"), System.currentTimeMillis());
+      message.putLongProperty(new String("time_of_forward"), System.currentTimeMillis());
 
       return message;
    }

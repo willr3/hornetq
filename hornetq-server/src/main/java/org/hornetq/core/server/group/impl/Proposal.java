@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.server.group.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A proposal to select a group id
@@ -21,22 +21,22 @@ import org.hornetq.api.core.SimpleString;
  */
 public class Proposal
 {
-   private final SimpleString groupId;
+   private final String groupId;
 
-   private final SimpleString clusterName;
+   private final String clusterName;
 
-   public Proposal(final SimpleString groupId, final SimpleString clusterName)
+   public Proposal(final String groupId, final String clusterName)
    {
       this.clusterName = clusterName;
       this.groupId = groupId;
    }
 
-   public SimpleString getGroupId()
+   public String getGroupId()
    {
       return groupId;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return clusterName;
    }

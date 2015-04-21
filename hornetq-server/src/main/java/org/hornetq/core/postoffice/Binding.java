@@ -13,7 +13,6 @@
 
 package org.hornetq.core.postoffice;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.Bindable;
 import org.hornetq.core.server.RoutingContext;
@@ -27,17 +26,17 @@ import org.hornetq.core.server.group.UnproposalListener;
  */
 public interface Binding extends UnproposalListener
 {
-   SimpleString getAddress();
+   String getAddress();
 
    Bindable getBindable();
 
    BindingType getType();
 
-   SimpleString getUniqueName();
+   String getUniqueName();
 
-   SimpleString getRoutingName();
+   String getRoutingName();
 
-   SimpleString getClusterName();
+   String getClusterName();
 
    Filter getFilter();
 

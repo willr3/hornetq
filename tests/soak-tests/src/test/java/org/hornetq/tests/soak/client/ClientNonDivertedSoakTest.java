@@ -16,7 +16,6 @@ package org.hornetq.tests.soak.client;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -41,7 +40,7 @@ public class ClientNonDivertedSoakTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   private static final SimpleString ADDRESS = new SimpleString("ADD");
+   private static final String ADDRESS = new String("ADD");
 
    private static final boolean IS_NETTY = false;
 

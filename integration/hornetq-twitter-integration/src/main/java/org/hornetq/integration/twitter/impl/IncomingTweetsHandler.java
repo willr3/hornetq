@@ -17,7 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
@@ -98,7 +98,7 @@ public class IncomingTweetsHandler implements ConnectorService
 
    public void start() throws Exception
    {
-      Binding b = postOffice.getBinding(new SimpleString(queueName));
+      Binding b = postOffice.getBinding(new String(queueName));
       if (b == null)
       {
          throw new Exception(connectorName + ": queue " + queueName + " not found");
@@ -163,7 +163,7 @@ public class IncomingTweetsHandler implements ConnectorService
 
          ServerMessage msg = new ServerMessageImpl(this.storageManager.generateUniqueID(),
                                                    TwitterConstants.INITIAL_MESSAGE_BUFFER_SIZE);
-         msg.setAddress(new SimpleString(this.queueName));
+         msg.setAddress(new String(this.queueName));
          msg.setDurable(true);
          msg.encodeMessageIDToBuffer();
 

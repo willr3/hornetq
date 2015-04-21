@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -44,7 +43,7 @@ public class SimpleSendReceiveSoakTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   private static final SimpleString ADDRESS = new SimpleString("ADD");
+   private static final String ADDRESS = new String("ADD");
 
    private static final boolean IS_NETTY = false;
 

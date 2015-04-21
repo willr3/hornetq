@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -349,7 +349,7 @@ public class LargeMessageTest extends LargeMessageTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -459,7 +459,7 @@ public class LargeMessageTest extends LargeMessageTestBase
       session.createQueue(ADDRESS, ADDRESS, true);
       session.createQueue(ADDRESS, ADDRESS.concat("-2"), true);
 
-      SimpleString ADDRESS_DLA = ADDRESS.concat("-dla");
+      String ADDRESS_DLA = ADDRESS.concat("-dla");
 
       AddressSettings addressSettings = new AddressSettings();
 
@@ -625,8 +625,8 @@ public class LargeMessageTest extends LargeMessageTestBase
 
       ClientSessionFactory sf = addSessionFactory(createSessionFactory(locator));
 
-      SimpleString ADDRESS_DLA = ADDRESS.concat("-dla");
-      SimpleString ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
+      String ADDRESS_DLA = ADDRESS.concat("-dla");
+      String ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
 
       AddressSettings addressSettings = new AddressSettings();
 
@@ -742,8 +742,8 @@ public class LargeMessageTest extends LargeMessageTestBase
 
       ClientSessionFactory sf = addSessionFactory(createSessionFactory(locator));
 
-      SimpleString ADDRESS_DLA = ADDRESS.concat("-dla");
-      SimpleString ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
+      String ADDRESS_DLA = ADDRESS.concat("-dla");
+      String ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
 
       AddressSettings addressSettings = new AddressSettings();
 
@@ -859,7 +859,7 @@ public class LargeMessageTest extends LargeMessageTestBase
 
          AddressSettings addressSettings = new AddressSettings();
 
-         SimpleString ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
+         String ADDRESS_EXPIRY = ADDRESS.concat("-expiry");
 
          addressSettings.setExpiryAddress(ADDRESS_EXPIRY);
 
@@ -1057,7 +1057,7 @@ public class LargeMessageTest extends LargeMessageTestBase
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
-         SimpleString ADDRESS2 = ADDRESS.concat("-2");
+         String ADDRESS2 = ADDRESS.concat("-2");
 
          session.createQueue(ADDRESS2, ADDRESS2, true);
 
@@ -2107,7 +2107,7 @@ public class LargeMessageTest extends LargeMessageTestBase
 
       server.start();
 
-      SimpleString[] queue = new SimpleString[]{new SimpleString("queue1"), new SimpleString("queue2")};
+      String[] queue = new String[]{new String("queue1"), new String("queue2")};
 
       ClientSessionFactory sf = addSessionFactory(createSessionFactory(locator));
 
@@ -2177,7 +2177,7 @@ public class LargeMessageTest extends LargeMessageTestBase
 
       server.start();
 
-      SimpleString[] queue = new SimpleString[]{new SimpleString("queue1"), new SimpleString("queue2")};
+      String[] queue = new String[]{new String("queue1"), new String("queue2")};
 
       ClientSessionFactory sf = addSessionFactory(createSessionFactory(locator));
 
@@ -2996,7 +2996,7 @@ public class LargeMessageTest extends LargeMessageTestBase
       {
          ClientMessage msg = session.createMessage(true);
          msg.setBodyInputStream(UnitTestCase.createFakeLargeStream(SIZE));
-         msg.putIntProperty(new SimpleString("key"), i);
+         msg.putIntProperty(new String("key"), i);
          producer.send(msg);
 
          log.debug("Sent msg " + i);
@@ -3017,7 +3017,7 @@ public class LargeMessageTest extends LargeMessageTestBase
          ClientMessage msg = consumer.receive(50000);
          Assert.assertNotNull(msg);
 
-         Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("key")));
+         Assert.assertEquals(i, msg.getObjectProperty(new String("key")));
 
          msg.acknowledge();
       }

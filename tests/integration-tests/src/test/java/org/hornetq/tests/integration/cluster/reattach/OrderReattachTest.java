@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -50,7 +50,7 @@ public class OrderReattachTest extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   final SimpleString ADDRESS = new SimpleString("address");
+   final String ADDRESS = new String("address");
 
    // Attributes ----------------------------------------------------
    private final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
@@ -190,7 +190,7 @@ public class OrderReattachTest extends ServiceTestBase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          // failureQueue.push(true);
 
@@ -221,7 +221,7 @@ public class OrderReattachTest extends ServiceTestBase
          {
             // failureQueue.push(true);
          }
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -306,7 +306,7 @@ public class OrderReattachTest extends ServiceTestBase
 
          failureQueue.push(true);
 
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }

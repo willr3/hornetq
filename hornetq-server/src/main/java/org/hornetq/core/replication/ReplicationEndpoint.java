@@ -29,7 +29,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.IOCriticalErrorListener;
 import org.hornetq.core.journal.Journal;
@@ -111,8 +111,8 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
 
    private PagingManager pageManager;
 
-   private final ConcurrentMap<SimpleString, ConcurrentMap<Integer, Page>> pageIndex =
-      new ConcurrentHashMap<SimpleString, ConcurrentMap<Integer, Page>>();
+   private final ConcurrentMap<String, ConcurrentMap<Integer, Page>> pageIndex =
+      new ConcurrentHashMap<String, ConcurrentMap<Integer, Page>>();
    private final ConcurrentMap<Long, ReplicatedLargeMessage> largeMessages =
       new ConcurrentHashMap<Long, ReplicatedLargeMessage>();
 
@@ -832,7 +832,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
       page.write(pgdMessage);
    }
 
-   private ConcurrentMap<Integer, Page> getPageMap(final SimpleString storeName)
+   private ConcurrentMap<Integer, Page> getPageMap(final String storeName)
    {
       ConcurrentMap<Integer, Page> resultIndex = pageIndex.get(storeName);
 
@@ -849,7 +849,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
       return resultIndex;
    }
 
-   private Page getPage(final SimpleString storeName, final int pageId) throws Exception
+   private Page getPage(final String storeName, final int pageId) throws Exception
    {
       ConcurrentMap<Integer, Page> map = getPageMap(storeName);
 
@@ -869,7 +869,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
     * @return
     */
    private synchronized Page newPage(final int pageId,
-                                     final SimpleString storeName,
+                                     final String storeName,
                                      final ConcurrentMap<Integer, Page> map) throws Exception
    {
       Page page = map.get(pageId);

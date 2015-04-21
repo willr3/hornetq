@@ -19,7 +19,7 @@ import java.util.Map;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -45,7 +45,7 @@ public class CoreClientOverTwoWaySSLTest extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   public static final SimpleString QUEUE = new SimpleString("QueueOverSSL");
+   public static final String QUEUE = new String("QueueOverSSL");
 
    public static final String SERVER_SIDE_KEYSTORE = "server-side.keystore";
    public static final String SERVER_SIDE_TRUSTSTORE = "server-side.truststore";

@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -102,8 +102,8 @@ public class XmlImportExportTest extends ServiceTestBase
          msg.putStringProperty("myNullStringProperty", null);
          msg.putStringProperty("myNonAsciiStringProperty", international.toString());
          msg.putStringProperty("mySpecialCharacters", special);
-         msg.putStringProperty(new SimpleString("mySimpleStringProperty"), new SimpleString("mySimpleStringPropertyValue_" + i));
-         msg.putStringProperty(new SimpleString("myNullSimpleStringProperty"), null);
+         msg.putStringProperty(new String("myStringProperty"), new String("myStringPropertyValue_" + i));
+         msg.putStringProperty(new String("myNullStringProperty"), null);
          producer.send(msg);
       }
 
@@ -152,8 +152,8 @@ public class XmlImportExportTest extends ServiceTestBase
          Assert.assertEquals(null, msg.getStringProperty("myNullStringProperty"));
          Assert.assertEquals(international.toString(), msg.getStringProperty("myNonAsciiStringProperty"));
          Assert.assertEquals(special, msg.getStringProperty("mySpecialCharacters"));
-         Assert.assertEquals(new SimpleString("mySimpleStringPropertyValue_" + i), msg.getSimpleStringProperty(new SimpleString("mySimpleStringProperty")));
-         Assert.assertEquals(null, msg.getSimpleStringProperty(new SimpleString("myNullSimpleStringProperty")));
+         Assert.assertEquals(new String("myStringPropertyValue_" + i), msg.getStringProperty(new String("myStringProperty")));
+         Assert.assertEquals(null, msg.getStringProperty(new String("myNullStringProperty")));
       }
    }
 
@@ -311,12 +311,12 @@ public class XmlImportExportTest extends ServiceTestBase
       XmlDataImporter xmlDataImporter = new XmlDataImporter(xmlInputStream, session);
       xmlDataImporter.processXml();
 
-      ClientSession.QueueQuery queueQuery = session.queueQuery(new SimpleString("queueName1"));
+      ClientSession.QueueQuery queueQuery = session.queueQuery(new String("queueName1"));
 
       Assert.assertEquals("addressName1", queueQuery.getAddress().toString());
       Assert.assertNull(queueQuery.getFilterString());
 
-      queueQuery = session.queueQuery(new SimpleString("queueName2"));
+      queueQuery = session.queueQuery(new String("queueName2"));
 
       Assert.assertEquals("addressName1", queueQuery.getAddress().toString());
       Assert.assertEquals("bob", queueQuery.getFilterString().toString());

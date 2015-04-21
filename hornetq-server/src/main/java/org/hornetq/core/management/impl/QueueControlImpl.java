@@ -22,7 +22,7 @@ import java.util.Map;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.MessageCounterInfo;
 import org.hornetq.api.core.management.QueueControl;
 import org.hornetq.core.filter.Filter;
@@ -317,7 +317,7 @@ public class QueueControlImpl extends AbstractControl implements QueueControl
          if (addressSettings != null && deadLetterAddress != null)
          {
             addressSettings = new AddressSettings(addressSettings);
-            addressSettings.setDeadLetterAddress(SimpleString.toSimpleString(deadLetterAddress));
+            addressSettings.setDeadLetterAddress((deadLetterAddress));
             addressSettingsRepository.addMatch(address, addressSettings);
          }
 
@@ -364,7 +364,7 @@ public class QueueControlImpl extends AbstractControl implements QueueControl
          if (addressSettings != null && expiryAddress != null)
          {
             addressSettings = new AddressSettings(addressSettings);
-            addressSettings.setExpiryAddress(SimpleString.toSimpleString(expiryAddress));
+            addressSettings.setExpiryAddress((expiryAddress));
             addressSettingsRepository.addMatch(address, addressSettings);
          }
 
@@ -639,7 +639,7 @@ public class QueueControlImpl extends AbstractControl implements QueueControl
       clearIO();
       try
       {
-         Binding binding = postOffice.getBinding(new SimpleString(otherQueueName));
+         Binding binding = postOffice.getBinding(new String(otherQueueName));
 
          if (binding == null)
          {
@@ -669,7 +669,7 @@ public class QueueControlImpl extends AbstractControl implements QueueControl
       {
          Filter filter = FilterImpl.createFilter(filterStr);
 
-         Binding binding = postOffice.getBinding(new SimpleString(otherQueueName));
+         Binding binding = postOffice.getBinding(new String(otherQueueName));
 
          if (binding == null)
          {

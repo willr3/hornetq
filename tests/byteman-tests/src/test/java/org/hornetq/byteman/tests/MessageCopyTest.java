@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.tests.util.RandomUtil;
@@ -82,7 +82,7 @@ public class MessageCopyTest
 
       msg.setMessageID(RandomUtil.randomLong());
       msg.encodeMessageIDToBuffer();
-      msg.setAddress(new SimpleString("Batatantkashf aksjfh aksfjh askfdjh askjfh "));
+      msg.setAddress(new String("Batatantkashf aksjfh aksfjh askfdjh askjfh "));
 
       final AtomicInteger errors = new AtomicInteger(0);
 

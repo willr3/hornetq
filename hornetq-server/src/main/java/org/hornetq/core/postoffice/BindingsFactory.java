@@ -12,7 +12,6 @@
  */
 package org.hornetq.core.postoffice;
 
-import org.hornetq.api.core.SimpleString;
 
 /**
  * A factory for creating bindings
@@ -21,5 +20,5 @@ import org.hornetq.api.core.SimpleString;
  */
 public interface BindingsFactory
 {
-   Bindings createBindings(SimpleString address) throws Exception;
+   Bindings createBindings(String address) throws Exception;
 }

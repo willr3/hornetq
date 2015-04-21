@@ -15,7 +15,7 @@ package org.hornetq.core.server;
 
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  *
@@ -28,9 +28,9 @@ public class BindingQueryResult
 {
    private boolean exists;
 
-   private List<SimpleString> queueNames;
+   private List<String> queueNames;
 
-   public BindingQueryResult(final boolean exists, final List<SimpleString> queueNames)
+   public BindingQueryResult(final boolean exists, final List<String> queueNames)
    {
       this.exists = exists;
 
@@ -42,7 +42,7 @@ public class BindingQueryResult
       return exists;
    }
 
-   public List<SimpleString> getQueueNames()
+   public List<String> getQueueNames()
    {
       return queueNames;
    }

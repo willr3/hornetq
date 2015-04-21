@@ -20,7 +20,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.impl.FilterImpl;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.impl.LocalQueueBinding;
@@ -79,7 +79,7 @@ public class TopicCleanupTest extends JMSTestBase
          {
             long txid = storage.generateUniqueID();
 
-            final Queue queue = new QueueImpl(storage.generateUniqueID(), SimpleString.toSimpleString("jms.topic.topic"), SimpleString.toSimpleString("jms.topic.topic"), FilterImpl.createFilter(HornetQServerImpl.GENERIC_IGNORED_FILTER), true, false, server.getScheduledPool(), server.getPostOffice(),
+            final Queue queue = new QueueImpl(storage.generateUniqueID(), ("jms.topic.topic"), ("jms.topic.topic"), FilterImpl.createFilter(HornetQServerImpl.GENERIC_IGNORED_FILTER), true, false, server.getScheduledPool(), server.getPostOffice(),
                                               storage, server.getAddressSettingsRepository(), server.getExecutorFactory().getExecutor());
 
             LocalQueueBinding binding = new LocalQueueBinding(queue.getAddress(), queue, server.getNodeID());

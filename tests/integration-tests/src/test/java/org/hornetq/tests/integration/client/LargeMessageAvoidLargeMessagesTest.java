@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -382,7 +382,7 @@ public class LargeMessageAvoidLargeMessagesTest extends LargeMessageTest
                           true);
       session.createQueue(ADDRESS, ADDRESS.concat("-2"), true);
 
-      SimpleString ADDRESS_DLA = ADDRESS.concat("-dla");
+      String ADDRESS_DLA = ADDRESS.concat("-dla");
 
       AddressSettings addressSettings = new AddressSettings();
 

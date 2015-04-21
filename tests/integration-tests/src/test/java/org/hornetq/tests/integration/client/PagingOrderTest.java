@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -69,7 +69,7 @@ public class PagingOrderTest extends ServiceTestBase
 
    // Static --------------------------------------------------------
 
-   static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   static final String ADDRESS = new String("SimpleAddress");
 
    private Connection conn;
 
@@ -140,7 +140,7 @@ public class PagingOrderTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -232,7 +232,7 @@ public class PagingOrderTest extends ServiceTestBase
 
       Queue q1 = server.createQueue(ADDRESS, ADDRESS, null, true, false);
 
-      Queue q2 = server.createQueue(ADDRESS, new SimpleString("inactive"), null, true, false);
+      Queue q2 = server.createQueue(ADDRESS, new String("inactive"), null, true, false);
 
       ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
 
@@ -290,7 +290,7 @@ public class PagingOrderTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 20 == 0)
@@ -333,7 +333,7 @@ public class PagingOrderTest extends ServiceTestBase
                q1 = qb.getQueue();
             }
 
-            if (qb.getQueue().getName().equals(new SimpleString("inactive")))
+            if (qb.getQueue().getName().equals(new String("inactive")))
             {
                q2 = qb.getQueue();
             }
@@ -386,7 +386,7 @@ public class PagingOrderTest extends ServiceTestBase
 
       Queue q1 = server.createQueue(ADDRESS, ADDRESS, null, true, false);
 
-      Queue q2 = server.createQueue(ADDRESS, new SimpleString("inactive"), null, true, false);
+      Queue q2 = server.createQueue(ADDRESS, new String("inactive"), null, true, false);
 
       ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
 
@@ -440,7 +440,7 @@ public class PagingOrderTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 20 == 0)
@@ -521,7 +521,7 @@ public class PagingOrderTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -622,7 +622,7 @@ public class PagingOrderTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -768,7 +768,7 @@ public class PagingOrderTest extends ServiceTestBase
       TextMessage txt = sess.createTextMessage("TST");
       prod.send(txt);
 
-      PagingStore store = server.getPagingManager().getPageStore(new SimpleString("jms.topic.TT"));
+      PagingStore store = server.getPagingManager().getPageStore(new String("jms.topic.TT"));
 
       assertEquals(1024 * 1024, store.getMaxSize());
       assertEquals(10 * 1024, store.getPageSizeBytes());
@@ -788,7 +788,7 @@ public class PagingOrderTest extends ServiceTestBase
       assertEquals(10 * 1024, settings.getPageSizeBytes());
       assertEquals(AddressFullMessagePolicy.PAGE, settings.getAddressFullMessagePolicy());
 
-      store = server.getPagingManager().getPageStore(new SimpleString("TT"));
+      store = server.getPagingManager().getPageStore(new String("TT"));
 
       conn.close();
 
@@ -851,7 +851,7 @@ public class PagingOrderTest extends ServiceTestBase
          prod.send(bmt);
       }
 
-      PagingStore store = server.getPagingManager().getPageStore(new SimpleString("jms.queue.Q1"));
+      PagingStore store = server.getPagingManager().getPageStore(new String("jms.queue.Q1"));
 
       assertEquals(100 * 1024, store.getMaxSize());
       assertEquals(10 * 1024, store.getPageSizeBytes());
@@ -872,7 +872,7 @@ public class PagingOrderTest extends ServiceTestBase
       assertEquals(10 * 1024, settings.getPageSizeBytes());
       assertEquals(AddressFullMessagePolicy.PAGE, settings.getAddressFullMessagePolicy());
 
-      store = server.getPagingManager().getPageStore(new SimpleString("jms.queue.Q1"));
+      store = server.getPagingManager().getPageStore(new String("jms.queue.Q1"));
       assertEquals(100 * 1024, store.getMaxSize());
       assertEquals(10 * 1024, store.getPageSizeBytes());
       assertEquals(AddressFullMessagePolicy.PAGE, store.getAddressFullMessagePolicy());

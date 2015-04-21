@@ -26,7 +26,7 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -56,7 +56,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
    // Constants -----------------------------------------------------
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
-   protected final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   protected final String ADDRESS = new String("SimpleAddress");
 
    protected HornetQServer server;
 
@@ -295,7 +295,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
                      {
                         if (delayDelivery > 0)
                         {
-                           long originalTime = (Long)message.getObjectProperty(new SimpleString("original-time"));
+                           long originalTime = (Long)message.getObjectProperty(new String("original-time"));
                            Assert.assertTrue(System.currentTimeMillis() - originalTime + "<" + delayDelivery,
                                              System.currentTimeMillis() - originalTime >= delayDelivery);
                         }
@@ -313,7 +313,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
                            // the same
                            // scheduled delivery time
                            Assert.assertEquals(msgCounter,
-                                               ((Integer)message.getObjectProperty(new SimpleString("counter-message"))).intValue());
+                                               ((Integer)message.getObjectProperty(new String("counter-message"))).intValue());
                         }
 
                         if (useStreamOnConsume)
@@ -415,7 +415,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
 
                   if (delayDelivery > 0)
                   {
-                     long originalTime = (Long)message.getObjectProperty(new SimpleString("original-time"));
+                     long originalTime = (Long)message.getObjectProperty(new String("original-time"));
                      Assert.assertTrue(System.currentTimeMillis() - originalTime + "<" + delayDelivery,
                                        System.currentTimeMillis() - originalTime >= delayDelivery);
                   }
@@ -432,7 +432,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
                      // right now there is no guarantee of ordered delivered on multiple scheduledMessages with the same
                      // scheduled delivery time
                      Assert.assertEquals(i,
-                                         ((Integer)message.getObjectProperty(new SimpleString("counter-message"))).intValue());
+                                         ((Integer)message.getObjectProperty(new String("counter-message"))).intValue());
                   }
 
                   if (useStreamOnConsume)
@@ -552,7 +552,7 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
     * @param delayDelivery
     * @param session
     * @param producer
-    * @throws FileNotFoundException
+    * throws FileNotFoundException
     * @throws IOException
     * @throws HornetQException
     */
@@ -584,11 +584,11 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
             }
             message.getBodyBuffer().writeBytes(bytes);
          }
-         message.putIntProperty(new SimpleString("counter-message"), i);
+         message.putIntProperty(new String("counter-message"), i);
          if (delayDelivery > 0)
          {
             long time = System.currentTimeMillis();
-            message.putLongProperty(new SimpleString("original-time"), time);
+            message.putLongProperty(new String("original-time"), time);
             message.putLongProperty(Message.HDR_SCHEDULED_DELIVERY_TIME, time + delayDelivery);
 
             producer.send(message);
@@ -642,10 +642,10 @@ public abstract class LargeMessageTestBase extends ServiceTestBase
     * @param queueToRead
     * @param numberOfBytes
     * @throws HornetQException
-    * @throws FileNotFoundException
+    * throws FileNotFoundException
     * @throws IOException
     */
-   protected void readMessage(final ClientSession session, final SimpleString queueToRead, final int numberOfBytes) throws HornetQException,
+   protected void readMessage(final ClientSession session, final String queueToRead, final int numberOfBytes) throws HornetQException,
       IOException
    {
       session.start();

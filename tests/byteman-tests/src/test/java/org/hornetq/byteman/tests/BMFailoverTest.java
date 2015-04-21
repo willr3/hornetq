@@ -28,7 +28,7 @@ import javax.transaction.xa.Xid;
 import org.hornetq.api.core.HornetQTransactionOutcomeUnknownException;
 import org.hornetq.api.core.HornetQTransactionRolledBackException;
 import org.hornetq.api.core.HornetQUnBlockedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -222,8 +222,8 @@ public class BMFailoverTest extends FailoverTestBase
       serverToStop = liveServer;
       locator = getServerLocator();
       locator.setFailoverOnInitialConnection(true);
-      SimpleString inQueue = new SimpleString("inQueue");
-      SimpleString outQueue = new SimpleString("outQueue");
+      String inQueue = new String("inQueue");
+      String outQueue = new String("outQueue");
       createSessionFactory();
       createSessionFactory2();
 

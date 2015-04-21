@@ -22,7 +22,7 @@ import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.message.impl.MessageInternal;
@@ -49,7 +49,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
    // Attributes -----------------------------------------------------------------------------------
 
-   private final SimpleString address;
+   private final String address;
 
    private final ClientSessionInternal session;
 
@@ -65,7 +65,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
    private final boolean blockOnDurableSend;
 
-   private final SimpleString groupID;
+   private final String groupID;
 
    private final int minLargeMessageSize;
 
@@ -76,12 +76,12 @@ public class ClientProducerImpl implements ClientProducerInternal
    // Constructors ---------------------------------------------------------------------------------
 
    public ClientProducerImpl(final ClientSessionInternal session,
-                             final SimpleString address,
+                             final String address,
                              final TokenBucketLimiter rateLimiter,
                              final boolean blockOnNonDurableSend,
                              final boolean blockOnDurableSend,
                              final boolean autoGroup,
-                             final SimpleString groupID,
+                             final String groupID,
                              final int minLargeMessageSize,
                              final Channel channel)
    {
@@ -99,7 +99,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
       if (autoGroup)
       {
-         this.groupID = UUIDGenerator.getInstance().generateSimpleStringUUID();
+         this.groupID = UUIDGenerator.getInstance().generateStringUUID();
       }
       else
       {
@@ -120,7 +120,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
    // ClientProducer implementation ----------------------------------------------------------------
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -132,17 +132,17 @@ public class ClientProducerImpl implements ClientProducerInternal
       doSend(null, msg);
    }
 
-   public void send(final SimpleString address, final Message msg) throws HornetQException
+   public void send(final String address, final Message msg) throws HornetQException
    {
       checkClosed();
 
       doSend(address, msg);
    }
 
-   public void send(final String address, final Message message) throws HornetQException
-   {
-      send(SimpleString.toSimpleString(address), message);
-   }
+//   public void send(final String address, final Message message) throws HornetQException
+//   {
+//      send((address), message);
+//   }
 
    public synchronized void close() throws HornetQException
    {
@@ -209,7 +209,7 @@ public class ClientProducerImpl implements ClientProducerInternal
       closed = true;
    }
 
-   private void doSend(final SimpleString address, final Message msg) throws HornetQException
+   private void doSend(final String address, final Message msg) throws HornetQException
    {
       session.startCall();
 

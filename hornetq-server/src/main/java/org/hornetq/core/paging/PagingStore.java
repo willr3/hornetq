@@ -16,7 +16,7 @@ package org.hornetq.core.paging;
 import java.util.Collection;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.paging.cursor.PageCursorProvider;
 import org.hornetq.core.paging.impl.Page;
 import org.hornetq.core.replication.ReplicationManager;
@@ -40,7 +40,7 @@ import org.hornetq.core.transaction.Transaction;
  */
 public interface PagingStore extends HornetQComponent
 {
-   SimpleString getAddress();
+   String getAddress();
 
    int getNumberOfPages();
 
@@ -49,7 +49,7 @@ public interface PagingStore extends HornetQComponent
     */
    int getCurrentWritingPage();
 
-   SimpleString getStoreName();
+   String getStoreName();
 
    String getFolder();
 

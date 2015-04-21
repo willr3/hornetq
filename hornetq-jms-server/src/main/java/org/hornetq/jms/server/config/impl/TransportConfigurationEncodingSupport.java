@@ -56,14 +56,14 @@ public class TransportConfigurationEncodingSupport
 
    public static TransportConfiguration decode(HornetQBuffer buffer)
    {
-      String name = BufferHelper.readNullableSimpleStringAsString(buffer);
-      String factoryClassName = buffer.readSimpleString().toString();
+      String name = BufferHelper.readNullableStringAsString(buffer);
+      String factoryClassName = buffer.readString().toString();
       int paramSize = buffer.readInt();
       Map<String, Object> params = new HashMap<String, Object>();
       for (int i = 0; i < paramSize; i++)
       {
-         String key = buffer.readSimpleString().toString();
-         String value = buffer.readSimpleString().toString();
+         String key = buffer.readString().toString();
+         String value = buffer.readString().toString();
          params.put(key, value);
       }
       TransportConfiguration config = new TransportConfiguration(factoryClassName, params, name);
@@ -91,26 +91,26 @@ public class TransportConfigurationEncodingSupport
 
    public static void encode(HornetQBuffer buffer, TransportConfiguration config)
    {
-      BufferHelper.writeAsNullableSimpleString(buffer, config.getName());
-      BufferHelper.writeAsSimpleString(buffer, config.getFactoryClassName());
+      BufferHelper.writeAsNullableString(buffer, config.getName());
+      BufferHelper.writeAsString(buffer, config.getFactoryClassName());
       buffer.writeInt(config.getParams().size());
       for (Entry<String, Object> param : config.getParams().entrySet())
       {
-         BufferHelper.writeAsSimpleString(buffer, param.getKey());
-         BufferHelper.writeAsSimpleString(buffer, param.getValue().toString());
+         BufferHelper.writeAsString(buffer, param.getKey());
+         BufferHelper.writeAsString(buffer, param.getValue().toString());
       }
    }
 
    public static int getEncodeSize(TransportConfiguration config)
    {
-      int size = BufferHelper.sizeOfNullableSimpleString(config.getName()) +
-                 BufferHelper.sizeOfSimpleString(config.getFactoryClassName());
+      int size = BufferHelper.sizeOfNullableString(config.getName()) +
+                 BufferHelper.sizeOfString(config.getFactoryClassName());
 
       size += DataConstants.SIZE_INT; // number of params
       for (Entry<String, Object> param : config.getParams().entrySet())
       {
-         size += BufferHelper.sizeOfSimpleString(param.getKey());
-         size += BufferHelper.sizeOfSimpleString(param.getValue().toString());
+         size += BufferHelper.sizeOfString(param.getKey());
+         size += BufferHelper.sizeOfString(param.getValue().toString());
       }
       return size;
    }

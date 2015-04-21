@@ -14,7 +14,8 @@
 package org.hornetq.core.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.settings.impl.AddressSettings;
 
@@ -31,7 +32,7 @@ public class PersistedAddressSetting implements EncodingSupport
 
    private long storeId;
 
-   private SimpleString addressMatch;
+   private String addressMatch;
 
    private AddressSettings setting;
 
@@ -62,7 +63,7 @@ public class PersistedAddressSetting implements EncodingSupport
     * @param addressMatch
     * @param setting
     */
-   public PersistedAddressSetting(SimpleString addressMatch, AddressSettings setting)
+   public PersistedAddressSetting(String addressMatch, AddressSettings setting)
    {
       super();
       this.addressMatch = addressMatch;
@@ -84,7 +85,7 @@ public class PersistedAddressSetting implements EncodingSupport
    /**
     * @return the addressMatch
     */
-   public SimpleString getAddressMatch()
+   public String getAddressMatch()
    {
       return addressMatch;
    }
@@ -100,7 +101,7 @@ public class PersistedAddressSetting implements EncodingSupport
    @Override
    public void decode(HornetQBuffer buffer)
    {
-      addressMatch = buffer.readSimpleString();
+      addressMatch = buffer.readString();
 
       setting = new AddressSettings();
       setting.decode(buffer);
@@ -109,7 +110,7 @@ public class PersistedAddressSetting implements EncodingSupport
    @Override
    public void encode(HornetQBuffer buffer)
    {
-      buffer.writeSimpleString(addressMatch);
+      buffer.writeString(addressMatch);
 
       setting.encode(buffer);
    }
@@ -117,7 +118,7 @@ public class PersistedAddressSetting implements EncodingSupport
    @Override
    public int getEncodeSize()
    {
-      return addressMatch.sizeof() + setting.getEncodeSize();
+      return SSU.sizeof(addressMatch) + setting.getEncodeSize();
    }
 
    // Package protected ---------------------------------------------

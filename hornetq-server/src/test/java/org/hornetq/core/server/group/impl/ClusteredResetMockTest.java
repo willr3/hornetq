@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import junit.framework.Assert;
 
 import org.hornetq.api.core.BroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.ObjectNameBuilder;
@@ -68,7 +68,7 @@ import org.junit.Test;
 public class ClusteredResetMockTest extends UnitTestCase
 {
 
-   public static final SimpleString ANYCLUSTER = SimpleString.toSimpleString("anycluster");
+   public static final String ANYCLUSTER = ("anycluster");
 
    @Test
    public void testMultipleSenders() throws Throwable
@@ -78,7 +78,7 @@ public class ClusteredResetMockTest extends UnitTestCase
       ReusableLatch latchSends = new ReusableLatch(NUMBER_OF_SENDERS);
 
       FakeManagement fake = new FakeManagement(latchSends);
-      RemoteGroupingHandler handler = new RemoteGroupingHandler(fake, SimpleString.toSimpleString("tst1"), SimpleString.toSimpleString("tst2"), 50000, 499);
+      RemoteGroupingHandler handler = new RemoteGroupingHandler(fake, ("tst1"), ("tst2"), 50000, 499);
       handler.start();
 
 
@@ -111,11 +111,11 @@ public class ClusteredResetMockTest extends UnitTestCase
 
          assertTrue(latchSends.await(10, TimeUnit.SECONDS));
 
-         HashSet<SimpleString> codesAsked = new HashSet<SimpleString>();
+         HashSet<String> codesAsked = new HashSet<String>();
 
          for (Notification notification : fake.pendingNotifications)
          {
-            codesAsked.add(notification.getProperties().getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID));
+            codesAsked.add(notification.getProperties().getStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID));
          }
 
          for (Sender snItem : sn)
@@ -157,7 +157,7 @@ public class ClusteredResetMockTest extends UnitTestCase
 
    class Sender extends Thread
    {
-      SimpleString code;
+      String code;
       public RemoteGroupingHandler handler;
 
       Throwable ex;
@@ -165,7 +165,7 @@ public class ClusteredResetMockTest extends UnitTestCase
       Sender(String code, RemoteGroupingHandler handler)
       {
          super("Sender::" + code);
-         this.code = SimpleString.toSimpleString(code);
+         this.code = (code);
          this.handler = handler;
       }
 
@@ -215,13 +215,13 @@ public class ClusteredResetMockTest extends UnitTestCase
       }
 
       @Override
-      public SimpleString getManagementAddress()
+      public String getManagementAddress()
       {
          return null;
       }
 
       @Override
-      public SimpleString getManagementNotificationAddress()
+      public String getManagementNotificationAddress()
       {
          return null;
       }
@@ -275,25 +275,25 @@ public class ClusteredResetMockTest extends UnitTestCase
       }
 
       @Override
-      public void registerAddress(SimpleString address) throws Exception
+      public void registerAddress(String address) throws Exception
       {
 
       }
 
       @Override
-      public void unregisterAddress(SimpleString address) throws Exception
+      public void unregisterAddress(String address) throws Exception
       {
 
       }
 
       @Override
-      public void registerQueue(Queue queue, SimpleString address, StorageManager storageManager) throws Exception
+      public void registerQueue(Queue queue, String address, StorageManager storageManager) throws Exception
       {
 
       }
 
       @Override
-      public void unregisterQueue(SimpleString name, SimpleString address) throws Exception
+      public void unregisterQueue(String name, String address) throws Exception
       {
 
       }
@@ -317,7 +317,7 @@ public class ClusteredResetMockTest extends UnitTestCase
       }
 
       @Override
-      public void unregisterDivert(SimpleString name) throws Exception
+      public void unregisterDivert(String name) throws Exception
       {
 
       }

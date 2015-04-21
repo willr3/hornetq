@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -206,7 +206,7 @@ public class JMSFailoverTest extends ServiceTestBase
 
       ClientSession coreSession = ((HornetQSession)sess).getCoreSession();
 
-      SimpleString jmsQueueName = new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
+      String jmsQueueName = new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
 
       coreSession.createQueue(jmsQueueName, jmsQueueName, null, true);
 
@@ -287,7 +287,7 @@ public class JMSFailoverTest extends ServiceTestBase
 
       RemotingConnection coreConnLive = ((ClientSessionInternal)coreSessionLive).getConnection();
 
-      SimpleString jmsQueueName = new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
+      String jmsQueueName = new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
 
       coreSessionLive.createQueue(jmsQueueName, jmsQueueName, null, true);
 
@@ -340,7 +340,7 @@ public class JMSFailoverTest extends ServiceTestBase
    @Test
    public void testSendReceiveLargeMessages() throws Exception
    {
-      SimpleString QUEUE = new SimpleString("jms.queue.somequeue");
+      String QUEUE = new String("jms.queue.somequeue");
 
       HornetQConnectionFactory jbcf = HornetQJMSClient.createConnectionFactoryWithHA(JMSFactoryType.CF, livetc, backuptc);
       jbcf.setReconnectAttempts(-1);

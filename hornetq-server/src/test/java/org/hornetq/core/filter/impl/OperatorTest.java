@@ -15,7 +15,7 @@ package org.hornetq.core.filter.impl;
 
 import java.util.HashSet;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -104,9 +104,9 @@ public class OperatorTest extends Assert
       OperatorTest.assertSuccess(Operator.EQUAL, false, true, false);
       OperatorTest.assertSuccess(Operator.EQUAL, true, true, true);
 
-      SimpleString foo = new SimpleString("foo");
-      SimpleString foo2 = new SimpleString("foo");
-      SimpleString bar = new SimpleString("bar");
+      String foo = new String("foo");
+      String foo2 = new String("foo");
+      String bar = new String("bar");
       OperatorTest.assertSuccess(Operator.EQUAL, foo, foo, true);
       OperatorTest.assertSuccess(Operator.EQUAL, foo, foo2, true);
       OperatorTest.assertSuccess(Operator.EQUAL, foo, bar, false);
@@ -130,9 +130,9 @@ public class OperatorTest extends Assert
       OperatorTest.assertSuccess(Operator.DIFFERENT, false, true, true);
       OperatorTest.assertSuccess(Operator.DIFFERENT, true, true, false);
 
-      SimpleString foo = new SimpleString("foo");
-      SimpleString foo2 = new SimpleString("foo");
-      SimpleString bar = new SimpleString("bar");
+      String foo = new String("foo");
+      String foo2 = new String("foo");
+      String bar = new String("bar");
       OperatorTest.assertSuccess(Operator.DIFFERENT, foo, foo, false);
       OperatorTest.assertSuccess(Operator.DIFFERENT, foo, foo2, false);
       OperatorTest.assertSuccess(Operator.DIFFERENT, foo, bar, true);
@@ -391,15 +391,15 @@ public class OperatorTest extends Assert
    @Test
    public void test_IN() throws Exception
    {
-      HashSet<SimpleString> set = new HashSet<SimpleString>();
-      set.add(new SimpleString("foo"));
-      set.add(new SimpleString("bar"));
-      set.add(new SimpleString("baz"));
+      HashSet<String> set = new HashSet<String>();
+      set.add(new String("foo"));
+      set.add(new String("bar"));
+      set.add(new String("baz"));
 
-      SimpleString foo = new SimpleString("foo");
+      String foo = new String("foo");
 
       OperatorTest.assertSuccess(Operator.IN, foo, set, true);
-      OperatorTest.assertSuccess(Operator.IN, foo, new HashSet<SimpleString>(), false);
+      OperatorTest.assertSuccess(Operator.IN, foo, new HashSet<String>(), false);
 
       // incompatible types
       OperatorTest.assertFailure(Operator.IN, true, set);
@@ -408,15 +408,15 @@ public class OperatorTest extends Assert
    @Test
    public void test_NOT_IN() throws Exception
    {
-      HashSet<SimpleString> set = new HashSet<SimpleString>();
-      set.add(new SimpleString("foo"));
-      set.add(new SimpleString("bar"));
-      set.add(new SimpleString("baz"));
+      HashSet<String> set = new HashSet<String>();
+      set.add(new String("foo"));
+      set.add(new String("bar"));
+      set.add(new String("baz"));
 
-      SimpleString foo = new SimpleString("foo");
+      String foo = new String("foo");
 
       OperatorTest.assertSuccess(Operator.NOT_IN, foo, set, false);
-      OperatorTest.assertSuccess(Operator.NOT_IN, foo, new HashSet<SimpleString>(), true);
+      OperatorTest.assertSuccess(Operator.NOT_IN, foo, new HashSet<String>(), true);
 
       // incompatible types
       OperatorTest.assertFailure(Operator.NOT_IN, true, set);
@@ -425,14 +425,14 @@ public class OperatorTest extends Assert
    @Test
    public void test_LIKE() throws Exception
    {
-      SimpleString pattern = new SimpleString("12%3");
-      OperatorTest.assertSuccess(Operator.LIKE, new SimpleString("123"), pattern, true);
-      OperatorTest.assertSuccess(Operator.LIKE, new SimpleString("12993"), pattern, true);
-      OperatorTest.assertSuccess(Operator.LIKE, new SimpleString("1234"), pattern, false);
+      String pattern = new String("12%3");
+      OperatorTest.assertSuccess(Operator.LIKE, new String("123"), pattern, true);
+      OperatorTest.assertSuccess(Operator.LIKE, new String("12993"), pattern, true);
+      OperatorTest.assertSuccess(Operator.LIKE, new String("1234"), pattern, false);
 
-      pattern = new SimpleString("l_se");
-      OperatorTest.assertSuccess(Operator.LIKE, new SimpleString("lose"), pattern, true);
-      OperatorTest.assertSuccess(Operator.LIKE, new SimpleString("loose"), pattern, false);
+      pattern = new String("l_se");
+      OperatorTest.assertSuccess(Operator.LIKE, new String("lose"), pattern, true);
+      OperatorTest.assertSuccess(Operator.LIKE, new String("loose"), pattern, false);
 
       OperatorTest.assertSuccess(Operator.LIKE, null, pattern, null);
    }
@@ -440,40 +440,40 @@ public class OperatorTest extends Assert
    @Test
    public void test_LIKE_ESCAPE() throws Exception
    {
-      SimpleString pattern = new SimpleString("\\_%");
-      SimpleString escapeChar = new SimpleString("\\");
-      OperatorTest.assertSuccess(Operator.LIKE_ESCAPE, new SimpleString("_foo"), pattern, escapeChar, true);
-      OperatorTest.assertSuccess(Operator.LIKE_ESCAPE, new SimpleString("bar"), pattern, escapeChar, false);
+      String pattern = new String("\\_%");
+      String escapeChar = new String("\\");
+      OperatorTest.assertSuccess(Operator.LIKE_ESCAPE, new String("_foo"), pattern, escapeChar, true);
+      OperatorTest.assertSuccess(Operator.LIKE_ESCAPE, new String("bar"), pattern, escapeChar, false);
       OperatorTest.assertSuccess(Operator.LIKE_ESCAPE, null, pattern, escapeChar, null);
 
       OperatorTest.assertFailure(Operator.LIKE_ESCAPE,
-                                 new SimpleString("_foo"),
+                                 new String("_foo"),
                                  pattern,
-                                 new SimpleString("must be a single char"));
+                                 new String("must be a single char"));
    }
 
    @Test
    public void test_NOT_LIKE() throws Exception
    {
-      SimpleString pattern = new SimpleString("12%3");
-      OperatorTest.assertSuccess(Operator.NOT_LIKE, new SimpleString("123"), pattern, false);
-      OperatorTest.assertSuccess(Operator.NOT_LIKE, new SimpleString("12993"), pattern, false);
-      OperatorTest.assertSuccess(Operator.NOT_LIKE, new SimpleString("1234"), pattern, true);
+      String pattern = new String("12%3");
+      OperatorTest.assertSuccess(Operator.NOT_LIKE, new String("123"), pattern, false);
+      OperatorTest.assertSuccess(Operator.NOT_LIKE, new String("12993"), pattern, false);
+      OperatorTest.assertSuccess(Operator.NOT_LIKE, new String("1234"), pattern, true);
       OperatorTest.assertSuccess(Operator.NOT_LIKE, null, pattern, null);
    }
 
    @Test
    public void test_NOT_LIKE_ESCAPE() throws Exception
    {
-      SimpleString pattern = new SimpleString("\\_%");
-      SimpleString escapeChar = new SimpleString("\\");
-      OperatorTest.assertSuccess(Operator.NOT_LIKE_ESCAPE, new SimpleString("_foo"), pattern, escapeChar, false);
-      OperatorTest.assertSuccess(Operator.NOT_LIKE_ESCAPE, new SimpleString("bar"), pattern, escapeChar, true);
+      String pattern = new String("\\_%");
+      String escapeChar = new String("\\");
+      OperatorTest.assertSuccess(Operator.NOT_LIKE_ESCAPE, new String("_foo"), pattern, escapeChar, false);
+      OperatorTest.assertSuccess(Operator.NOT_LIKE_ESCAPE, new String("bar"), pattern, escapeChar, true);
       OperatorTest.assertSuccess(Operator.NOT_LIKE_ESCAPE, null, pattern, escapeChar, null);
 
       OperatorTest.assertFailure(Operator.NOT_LIKE_ESCAPE,
-                                 new SimpleString("_foo"),
+                                 new String("_foo"),
                                  pattern,
-                                 new SimpleString("must be a single char"));
+                                 new String("must be a single char"));
    }
 }

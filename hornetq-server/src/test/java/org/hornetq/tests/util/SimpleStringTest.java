@@ -291,7 +291,7 @@ public class SimpleStringTest extends Assert
    @Test
    public void testSizeofNullableString() throws Exception
    {
-      Assert.assertEquals(1, SimpleString.sizeofNullableString(null));
+      Assert.assertEquals(1, SimpleString.sizeofNullableString((SimpleString)null));
 
       Assert.assertEquals(1 + DataConstants.SIZE_INT, SimpleString.sizeofNullableString(new SimpleString("")));
 

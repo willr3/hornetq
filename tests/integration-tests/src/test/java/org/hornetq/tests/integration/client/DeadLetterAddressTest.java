@@ -24,7 +24,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -59,14 +59,14 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testBasicSend() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
-      SimpleString adName = new SimpleString("ad1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
+      String adName = new String("ad1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(1);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(adName.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
+      String dlq = new String("DLQ1");
       clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(adName, qName, null, false);
       ClientProducer producer = clientSession.createProducer(adName);
@@ -94,13 +94,13 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testBasicSendWithDLAButNoBinding() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(1);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
-      //SimpleString dlq = new SimpleString("DLQ1");
+      //String dlq = new String("DLQ1");
       //clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(qName, qName, null, false);
       ClientProducer producer = clientSession.createProducer(qName);
@@ -123,13 +123,13 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testBasicSend2times() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(2);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
+      String dlq = new String("DLQ1");
       clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(qName, qName, null, false);
       ClientProducer producer = clientSession.createProducer(qName);
@@ -161,13 +161,13 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testReceiveWithListeners() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(2);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
+      String dlq = new String("DLQ1");
       clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(qName, qName, null, false);
       ClientProducer producer = clientSession.createProducer(qName);
@@ -217,14 +217,14 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testBasicSendToMultipleQueues() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(1);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
-      SimpleString dlq2 = new SimpleString("DLQ2");
+      String dlq = new String("DLQ1");
+      String dlq2 = new String("DLQ2");
       clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(dla, dlq2, null, false);
       clientSession.createQueue(qName, qName, null, false);
@@ -258,7 +258,7 @@ public class DeadLetterAddressTest extends ServiceTestBase
    @Test
    public void testBasicSendToNoQueue() throws Exception
    {
-      SimpleString qName = new SimpleString("q1");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(1);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
@@ -283,13 +283,13 @@ public class DeadLetterAddressTest extends ServiceTestBase
    {
       final int MAX_DELIVERIES = 16;
       final int NUM_MESSAGES = 5;
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString qName = new SimpleString("q1");
+      String dla = new String("DLA");
+      String qName = new String("q1");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(MAX_DELIVERIES);
       addressSettings.setDeadLetterAddress(dla);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
+      String dlq = new String("DLQ1");
       clientSession.createQueue(dla, dlq, null, false);
       clientSession.createQueue(qName, qName, null, false);
       ServerLocator locator = createInVMNonHALocator();
@@ -349,7 +349,7 @@ public class DeadLetterAddressTest extends ServiceTestBase
          Assert.assertEquals("Message:" + i, text);
 
          // Check the headers
-         SimpleString origDest = (SimpleString)tm.getObjectProperty(Message.HDR_ORIGINAL_ADDRESS);
+         String origDest = (String)tm.getObjectProperty(Message.HDR_ORIGINAL_ADDRESS);
 
          Long origMessageId = (Long)tm.getObjectProperty(Message.HDR_ORIG_MESSAGE_ID);
 
@@ -369,10 +369,10 @@ public class DeadLetterAddressTest extends ServiceTestBase
    {
       int deliveryAttempt = 3;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString deadLetterAdress = RandomUtil.randomSimpleString();
-      SimpleString deadLetterQueue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
+      String deadLetterAdress = RandomUtil.randomString();
+      String deadLetterQueue = RandomUtil.randomString();
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(deliveryAttempt);
       addressSettings.setDeadLetterAddress(deadLetterAdress);
@@ -412,10 +412,10 @@ public class DeadLetterAddressTest extends ServiceTestBase
    {
       int deliveryAttempt = 3;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString deadLetterAdress = RandomUtil.randomSimpleString();
-      SimpleString deadLetterQueue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
+      String deadLetterAdress = RandomUtil.randomString();
+      String deadLetterQueue = RandomUtil.randomString();
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setMaxDeliveryAttempts(deliveryAttempt);
       addressSettings.setDeadLetterAddress(deadLetterAdress);
@@ -454,12 +454,12 @@ public class DeadLetterAddressTest extends ServiceTestBase
       int defaultDeliveryAttempt = 3;
       int specificeDeliveryAttempt = defaultDeliveryAttempt + 1;
 
-      SimpleString address = new SimpleString("prefix.address");
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString defaultDeadLetterAddress = RandomUtil.randomSimpleString();
-      SimpleString defaultDeadLetterQueue = RandomUtil.randomSimpleString();
-      SimpleString specificDeadLetterAddress = RandomUtil.randomSimpleString();
-      SimpleString specificDeadLetterQueue = RandomUtil.randomSimpleString();
+      String address = new String("prefix.address");
+      String queue = RandomUtil.randomString();
+      String defaultDeadLetterAddress = RandomUtil.randomString();
+      String defaultDeadLetterQueue = RandomUtil.randomString();
+      String specificDeadLetterAddress = RandomUtil.randomString();
+      String specificDeadLetterQueue = RandomUtil.randomString();
 
       AddressSettings defaultAddressSettings = new AddressSettings();
       defaultAddressSettings.setMaxDeliveryAttempts(defaultDeliveryAttempt);

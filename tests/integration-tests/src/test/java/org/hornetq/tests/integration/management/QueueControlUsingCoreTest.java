@@ -17,7 +17,6 @@ import org.junit.Before;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.ServerLocator;
@@ -37,7 +36,7 @@ public class QueueControlUsingCoreTest extends QueueControlTest
    private ServerLocator locator;
 
    @Override
-   protected QueueControl createManagementControl(final SimpleString address, final SimpleString queue) throws Exception
+   protected QueueControl createManagementControl(final String address, final String queue) throws Exception
    {
       return new QueueControl()
       {

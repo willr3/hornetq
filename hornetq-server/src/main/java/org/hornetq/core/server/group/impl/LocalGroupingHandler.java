@@ -25,7 +25,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.persistence.OperationContext;
@@ -44,11 +44,11 @@ import org.hornetq.utils.TypedProperties;
  */
 public final class LocalGroupingHandler extends GroupHandlingAbstract
 {
-   private final ConcurrentMap<SimpleString, GroupBinding> map = new ConcurrentHashMap<SimpleString, GroupBinding>();
+   private final ConcurrentMap<String, GroupBinding> map = new ConcurrentHashMap<String, GroupBinding>();
 
-   private final ConcurrentMap<SimpleString, List<GroupBinding>> groupMap = new ConcurrentHashMap<SimpleString, List<GroupBinding>>();
+   private final ConcurrentMap<String, List<GroupBinding>> groupMap = new ConcurrentHashMap<String, List<GroupBinding>>();
 
-   private final SimpleString name;
+   private final String name;
 
    private final StorageManager storageManager;
 
@@ -63,7 +63,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
     * when the group is waiting for them.
     * During a small window between the server is started and the wait wasn't called yet, this will contain bindings that were already added
     */
-   private List<SimpleString> expectedBindings = new LinkedList<SimpleString>();
+   private List<String> expectedBindings = new LinkedList<String>();
 
    private final long groupTimeout;
 
@@ -80,8 +80,8 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
    public LocalGroupingHandler(final ExecutorFactory executorFactory,
                                final ScheduledExecutorService scheduledExecutor,
                                final ManagementService managementService,
-                               final SimpleString name,
-                               final SimpleString address,
+                               final String name,
+                               final String address,
                                final StorageManager storageManager,
                                final long timeout,
                                final long groupTimeout,
@@ -96,7 +96,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
       this.groupTimeout = groupTimeout;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -180,7 +180,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName, int distance) throws Exception
+   public void remove(String groupid, String clusterName, int distance) throws Exception
    {
       remove(groupid, clusterName);
    }
@@ -188,11 +188,11 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
    public void sendProposalResponse(final Response response, final int distance) throws Exception
    {
       TypedProperties props = new TypedProperties();
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, response.getGroupId());
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, response.getClusterName());
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_ALT_VALUE, response.getAlternativeClusterName());
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, response.getGroupId());
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, response.getClusterName());
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_ALT_VALUE, response.getAlternativeClusterName());
       props.putIntProperty(ManagementHelper.HDR_BINDING_TYPE, BindingType.LOCAL_QUEUE_INDEX);
-      props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
+      props.putStringProperty(ManagementHelper.HDR_ADDRESS, address);
       props.putIntProperty(ManagementHelper.HDR_DISTANCE, distance);
       Notification notification = new Notification(null, CoreNotificationType.PROPOSAL_RESPONSE, props);
       managementService.sendNotification(notification);
@@ -216,7 +216,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
       newList.add(groupBinding);
    }
 
-   public Response getProposal(final SimpleString fullID, final boolean touchTime)
+   public Response getProposal(final String fullID, final boolean touchTime)
    {
       GroupBinding original = map.get(fullID);
 
@@ -235,7 +235,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName)
+   public void remove(String groupid, String clusterName)
    {
       GroupBinding groupBinding = map.remove(groupid);
       List<GroupBinding> groupBindings = groupMap.get(clusterName);
@@ -267,15 +267,15 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
             waitingForBindings = true;
 
             //make a copy of the bindings added so far from the cluster via onNotification().
-            List<SimpleString> bindingsAlreadyAdded;
+            List<String> bindingsAlreadyAdded;
             if (expectedBindings == null)
             {
                bindingsAlreadyAdded = Collections.emptyList();
-               expectedBindings = new LinkedList<SimpleString>();
+               expectedBindings = new LinkedList<String>();
             }
             else
             {
-               bindingsAlreadyAdded = new ArrayList<SimpleString>(expectedBindings);
+               bindingsAlreadyAdded = new ArrayList<String>(expectedBindings);
                //clear the bindings
                expectedBindings.clear();
             }
@@ -312,14 +312,14 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
 
       if (notification.getType() == CoreNotificationType.BINDING_REMOVED)
       {
-         SimpleString clusterName = notification.getProperties()
-            .getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = notification.getProperties()
+            .getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
          removeGrouping(clusterName);
       }
       else if (notification.getType() == CoreNotificationType.BINDING_ADDED)
       {
-         SimpleString clusterName = notification.getProperties()
-            .getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = notification.getProperties()
+            .getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
          try
          {
             lock.lock();
@@ -345,7 +345,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
 
                if (HornetQServerLogger.LOGGER.isDebugEnabled())
                {
-                  for (SimpleString stillWaiting : expectedBindings)
+                  for (String stillWaiting : expectedBindings)
                   {
                      HornetQServerLogger.LOGGER.debug("Notification for waitForbindings::Still waiting for clusterName=" + stillWaiting);
                   }
@@ -372,7 +372,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
       if (expectedBindings == null)
       {
          // just in case the component is restarted
-         expectedBindings = new LinkedList<SimpleString>();
+         expectedBindings = new LinkedList<String>();
       }
 
       if (reaperPeriod > 0 && groupTimeout > 0)
@@ -404,7 +404,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
       return started;
    }
 
-   private void removeGrouping(final SimpleString clusterName)
+   private void removeGrouping(final String clusterName)
    {
       final List<GroupBinding> list = groupMap.remove(clusterName);
       if (list != null)
@@ -449,7 +449,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
                   }
                   catch (Exception e)
                   {
-                     HornetQServerLogger.LOGGER.unableToDeleteGroupBindings(e, SimpleString.toSimpleString("TX:" + txID));
+                     HornetQServerLogger.LOGGER.unableToDeleteGroupBindings(e, ("TX:" + txID));
                   }
                }
             }
@@ -525,7 +525,7 @@ public final class LocalGroupingHandler extends GroupHandlingAbstract
                }
                catch (Exception e)
                {
-                  HornetQServerLogger.LOGGER.unableToDeleteGroupBindings(e, SimpleString.toSimpleString("TX:" + txID));
+                  HornetQServerLogger.LOGGER.unableToDeleteGroupBindings(e, ("TX:" + txID));
                }
             }
          }

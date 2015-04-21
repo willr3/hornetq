@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.paging.PagingStore;
@@ -52,9 +52,9 @@ public final class BindingsImpl implements Bindings
 
    private static boolean isTrace = HornetQServerLogger.LOGGER.isTraceEnabled();
 
-   private final ConcurrentMap<SimpleString, List<Binding>> routingNameBindingMap = new ConcurrentHashMap<SimpleString, List<Binding>>();
+   private final ConcurrentMap<String, List<Binding>> routingNameBindingMap = new ConcurrentHashMap<String, List<Binding>>();
 
-   private final Map<SimpleString, Integer> routingNamePositions = new ConcurrentHashMap<SimpleString, Integer>();
+   private final Map<String, Integer> routingNamePositions = new ConcurrentHashMap<String, Integer>();
 
    private final Map<Long, Binding> bindingsMap = new ConcurrentHashMap<Long, Binding>();
 
@@ -66,9 +66,9 @@ public final class BindingsImpl implements Bindings
 
    private final PagingStore pageStore;
 
-   private final SimpleString name;
+   private final String name;
 
-   public BindingsImpl(final SimpleString name, final GroupingHandler groupingHandler, final PagingStore pageStore)
+   public BindingsImpl(final String name, final GroupingHandler groupingHandler, final PagingStore pageStore)
    {
       this.groupingHandler = groupingHandler;
       this.pageStore = pageStore;
@@ -85,7 +85,7 @@ public final class BindingsImpl implements Bindings
       return bindingsMap.values();
    }
 
-   public void unproposed(SimpleString groupID)
+   public void unproposed(String groupID)
    {
       for (Binding binding : bindingsMap.values())
       {
@@ -105,7 +105,7 @@ public final class BindingsImpl implements Bindings
       }
       else
       {
-         SimpleString routingName = binding.getRoutingName();
+         String routingName = binding.getRoutingName();
 
          List<Binding> bindings = routingNameBindingMap.get(routingName);
 
@@ -141,7 +141,7 @@ public final class BindingsImpl implements Bindings
       }
       else
       {
-         SimpleString routingName = binding.getRoutingName();
+         String routingName = binding.getRoutingName();
 
          List<Binding> bindings = routingNameBindingMap.get(routingName);
 
@@ -177,7 +177,7 @@ public final class BindingsImpl implements Bindings
          HornetQServerLogger.LOGGER.trace("Redistributing message " + message);
       }
 
-      SimpleString routingName = originatingQueue.getName();
+      String routingName = originatingQueue.getName();
 
       List<Binding> bindings = routingNameBindingMap.get(routingName);
 
@@ -296,9 +296,9 @@ public final class BindingsImpl implements Bindings
             {
                HornetQServerLogger.LOGGER.trace("Routing message " + message + " on binding=" + this);
             }
-            for (Map.Entry<SimpleString, List<Binding>> entry : routingNameBindingMap.entrySet())
+            for (Map.Entry<String, List<Binding>> entry : routingNameBindingMap.entrySet())
             {
-               SimpleString routingName = entry.getKey();
+               String routingName = entry.getKey();
 
                List<Binding> bindings = entry.getValue();
 
@@ -335,7 +335,7 @@ public final class BindingsImpl implements Bindings
     * (depending if you are using multi-thread), and not lose messages.
     */
    private Binding getNextBinding(final ServerMessage message,
-                                  final SimpleString routingName,
+                                  final String routingName,
                                   final List<Binding> bindings)
    {
       Integer ipos = routingNamePositions.get(routingName);
@@ -441,11 +441,11 @@ public final class BindingsImpl implements Bindings
                                          final GroupingHandler groupingGroupingHandler,
                                          final int tries) throws Exception
    {
-      SimpleString groupId = message.getSimpleStringProperty(Message.HDR_GROUP_ID);
+      String groupId = message.getStringProperty(Message.HDR_GROUP_ID);
 
-      for (Map.Entry<SimpleString, List<Binding>> entry : routingNameBindingMap.entrySet())
+      for (Map.Entry<String, List<Binding>> entry : routingNameBindingMap.entrySet())
       {
-         SimpleString routingName = entry.getKey();
+         String routingName = entry.getKey();
 
          List<Binding> bindings = entry.getValue();
 
@@ -459,7 +459,7 @@ public final class BindingsImpl implements Bindings
          // concat a full group id, this is for when a binding has multiple bindings
          // NOTE: In case a dev ever change this rule, QueueImpl::unproposed is using this rule to determine if
          //       the binding belongs to its Queue before removing it
-         SimpleString fullID = groupId.concat(".").concat(routingName);
+         String fullID = groupId.concat(".").concat(routingName);
 
          // see if there is already a response
          Response resp = groupingGroupingHandler.getProposal(fullID, true);
@@ -502,7 +502,7 @@ public final class BindingsImpl implements Bindings
       }
    }
 
-   private Binding locateBinding(SimpleString clusterName, List<Binding> bindings)
+   private Binding locateBinding(String clusterName, List<Binding> bindings)
    {
       for (Binding binding : bindings)
       {
@@ -515,7 +515,7 @@ public final class BindingsImpl implements Bindings
       return null;
    }
 
-   private void routeAndCheckNull(ServerMessage message, RoutingContext context, Response resp, Binding theBinding, SimpleString groupId, int tries) throws Exception
+   private void routeAndCheckNull(ServerMessage message, RoutingContext context, Response resp, Binding theBinding, String groupId, int tries) throws Exception
    {
       // and let's route it
       if (theBinding != null)
@@ -557,7 +557,7 @@ public final class BindingsImpl implements Bindings
       {
          out.println("EMPTY!");
       }
-      for (Map.Entry<SimpleString, List<Binding>> entry : routingNameBindingMap.entrySet())
+      for (Map.Entry<String, List<Binding>> entry : routingNameBindingMap.entrySet())
       {
          out.print("key=" + entry.getKey() + ", value=" + entry.getValue());
 //         for (Binding bind : entry.getValue())
@@ -574,7 +574,7 @@ public final class BindingsImpl implements Bindings
       {
          out.println("EMPTY!");
       }
-      for (Map.Entry<SimpleString, Integer> entry : routingNamePositions.entrySet())
+      for (Map.Entry<String, Integer> entry : routingNamePositions.entrySet())
       {
          out.println("key=" + entry.getKey() + ", value=" + entry.getValue());
       }

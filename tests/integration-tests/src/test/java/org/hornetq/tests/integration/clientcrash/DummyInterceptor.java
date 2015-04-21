@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.HornetQInternalErrorException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveMessage;
 import org.hornetq.spi.core.protocol.RemotingConnection;
@@ -61,7 +61,7 @@ public class DummyInterceptor implements Interceptor
          {
             SessionReceiveMessage deliver = (SessionReceiveMessage)packet;
             log.debug("msg = " + deliver.getMessage().getClass().getName());
-            deliver.getMessage().putStringProperty(new SimpleString("DummyInterceptor"), new SimpleString("was here"));
+            deliver.getMessage().putStringProperty(new String("DummyInterceptor"), new String("was here"));
          }
       }
       return true;

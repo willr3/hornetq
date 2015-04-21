@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -54,7 +54,7 @@ public class JournalCrashTest extends ServiceTestBase
 
    private ClientSessionFactory factory;
 
-   private final SimpleString QUEUE = new SimpleString("queue");
+   private final String QUEUE = new String("queue");
 
    private ServerLocator locator;
 
@@ -139,7 +139,7 @@ public class JournalCrashTest extends ServiceTestBase
          for (int i = start; i < end; i++)
          {
             ClientMessage msg = session.createMessage(true);
-            msg.putIntProperty(new SimpleString("key"), i);
+            msg.putIntProperty(new String("key"), i);
             msg.getBodyBuffer().writeUTF("message " + i);
             prod.send(msg);
          }
@@ -181,7 +181,7 @@ public class JournalCrashTest extends ServiceTestBase
 
             msg.acknowledge();
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("key")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("key")));
          }
          session.close();
       }

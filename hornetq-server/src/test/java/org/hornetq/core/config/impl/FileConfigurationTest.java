@@ -17,7 +17,7 @@ import java.util.Collections;
 
 import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.core.config.BridgeConfiguration;
@@ -51,8 +51,8 @@ public class FileConfigurationTest extends ConfigurationImplTest
       Assert.assertEquals(false, conf.isSecurityEnabled());
       Assert.assertEquals(5423, conf.getSecurityInvalidationInterval());
       Assert.assertEquals(true, conf.isWildcardRoutingEnabled());
-      Assert.assertEquals(new SimpleString("Giraffe"), conf.getManagementAddress());
-      Assert.assertEquals(new SimpleString("Whatever"), conf.getManagementNotificationAddress());
+      Assert.assertEquals(new String("Giraffe"), conf.getManagementAddress());
+      Assert.assertEquals(new String("Whatever"), conf.getManagementNotificationAddress());
       Assert.assertEquals("Frog", conf.getClusterUser());
       Assert.assertEquals("Wombat", conf.getClusterPassword());
       Assert.assertEquals(false, conf.isJMXManagementEnabled());

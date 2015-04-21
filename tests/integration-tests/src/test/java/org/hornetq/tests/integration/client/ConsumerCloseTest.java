@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -51,9 +51,9 @@ public class ConsumerCloseTest extends ServiceTestBase
 
    private ClientSession session;
 
-   private SimpleString queue;
+   private String queue;
 
-   private SimpleString address;
+   private String address;
    private ServerLocator locator;
 
    // Static --------------------------------------------------------
@@ -310,8 +310,8 @@ public class ConsumerCloseTest extends ServiceTestBase
       server = addServer(HornetQServers.newHornetQServer(config, false));
       server.start();
 
-      address = RandomUtil.randomSimpleString();
-      queue = RandomUtil.randomSimpleString();
+      address = RandomUtil.randomString();
+      queue = RandomUtil.randomString();
 
       locator =
          addServerLocator(HornetQClient.createServerLocatorWithoutHA(new TransportConfiguration(

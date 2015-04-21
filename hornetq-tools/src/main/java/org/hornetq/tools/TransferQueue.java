@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -157,7 +157,7 @@ public class TransferQueue // NO_UCD (unused code)
 
             LinkedList<String> listToRemove = new LinkedList<String>();
 
-            for (SimpleString name : message.getPropertyNames())
+            for (String name : message.getPropertyNames())
             {
                if (name.toString().startsWith("_HQ_ROUTE_TO"))
                {

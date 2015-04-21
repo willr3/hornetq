@@ -20,7 +20,7 @@ import java.util.Set;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -123,7 +123,7 @@ public class DelegatingSession implements ClientSessionInternal
       session.addProducer(producer);
    }
 
-   public BindingQuery bindingQuery(final SimpleString address) throws HornetQException
+   public BindingQuery bindingQuery(final String address) throws HornetQException
    {
       return session.bindingQuery(address);
    }
@@ -180,31 +180,31 @@ public class DelegatingSession implements ClientSessionInternal
       return session.createMessage(type, durable);
    }
 
-   public ClientConsumer createConsumer(final SimpleString queueName,
-                                        final SimpleString filterString,
-                                        final boolean browseOnly) throws HornetQException
-   {
-      return session.createConsumer(queueName, filterString, browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName,
+//                                        final String filterString,
+//                                        final boolean browseOnly) throws HornetQException
+//   {
+//      return session.createConsumer(queueName, filterString, browseOnly);
+//   }
 
-   public ClientConsumer createConsumer(final SimpleString queueName,
-                                        final SimpleString filterString,
-                                        final int windowSize,
-                                        final int maxRate,
-                                        final boolean browseOnly) throws HornetQException
-   {
-      return session.createConsumer(queueName, filterString, windowSize, maxRate, browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName,
+//                                        final String filterString,
+//                                        final int windowSize,
+//                                        final int maxRate,
+//                                        final boolean browseOnly) throws HornetQException
+//   {
+//      return session.createConsumer(queueName, filterString, windowSize, maxRate, browseOnly);
+//   }
 
-   public ClientConsumer createConsumer(final SimpleString queueName, final SimpleString filterString) throws HornetQException
-   {
-      return session.createConsumer(queueName, filterString);
-   }
+//   public ClientConsumer createConsumer(final String queueName, final String filterString) throws HornetQException
+//   {
+//      return session.createConsumer(queueName, filterString);
+//   }
 
-   public ClientConsumer createConsumer(final SimpleString queueName) throws HornetQException
-   {
-      return session.createConsumer(queueName);
-   }
+//   public ClientConsumer createConsumer(final String queueName) throws HornetQException
+//   {
+//      return session.createConsumer(queueName);
+//   }
 
    public ClientConsumer createConsumer(final String queueName, final String filterString, final boolean browseOnly) throws HornetQException
    {
@@ -230,10 +230,10 @@ public class DelegatingSession implements ClientSessionInternal
       return session.createConsumer(queueName);
    }
 
-   public ClientConsumer createConsumer(final SimpleString queueName, final boolean browseOnly) throws HornetQException
-   {
-      return session.createConsumer(queueName, browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
+//   {
+//      return session.createConsumer(queueName, browseOnly);
+//   }
 
    public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
    {
@@ -245,43 +245,43 @@ public class DelegatingSession implements ClientSessionInternal
       return session.createProducer();
    }
 
-   public ClientProducer createProducer(final SimpleString address, final int rate) throws HornetQException
+   public ClientProducer createProducer(final String address, final int rate) throws HornetQException
    {
       return session.createProducer(address, rate);
    }
 
-   public ClientProducer createProducer(final SimpleString address) throws HornetQException
-   {
-      return session.createProducer(address);
-   }
+//   public ClientProducer createProducer(final String address) throws HornetQException
+//   {
+//      return session.createProducer(address);
+//   }
 
    public ClientProducer createProducer(final String address) throws HornetQException
    {
       return session.createProducer(address);
    }
 
+//   public void createQueue(final String address, final String queueName) throws HornetQException
+//   {
+//      session.createQueue(address, queueName);
+//   }
+
    public void createQueue(final String address, final String queueName) throws HornetQException
    {
       session.createQueue(address, queueName);
    }
 
-   public void createQueue(final SimpleString address, final SimpleString queueName) throws HornetQException
-   {
-      session.createQueue(address, queueName);
-   }
+//   public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
+//   {
+//      session.createQueue(address, queueName, durable);
+//   }
 
-   public void createQueue(final SimpleString address, final SimpleString queueName, final boolean durable) throws HornetQException
-   {
-      session.createQueue(address, queueName, durable);
-   }
-
-   public void createQueue(final SimpleString address,
-                           final SimpleString queueName,
-                           final SimpleString filterString,
-                           final boolean durable) throws HornetQException
-   {
-      session.createQueue(address, queueName, filterString, durable);
-   }
+//   public void createQueue(final String address,
+//                           final String queueName,
+//                           final String filterString,
+//                           final boolean durable) throws HornetQException
+//   {
+//      session.createQueue(address, queueName, filterString, durable);
+//   }
 
    public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
    {
@@ -296,15 +296,15 @@ public class DelegatingSession implements ClientSessionInternal
       session.createQueue(address, queueName, filterString, durable);
    }
 
-   public void createTemporaryQueue(final SimpleString address, final SimpleString queueName, final SimpleString filter) throws HornetQException
-   {
-      session.createTemporaryQueue(address, queueName, filter);
-   }
+//   public void createTemporaryQueue(final String address, final String queueName, final String filter) throws HornetQException
+//   {
+//      session.createTemporaryQueue(address, queueName, filter);
+//   }
 
-   public void createTemporaryQueue(final SimpleString address, final SimpleString queueName) throws HornetQException
-   {
-      session.createTemporaryQueue(address, queueName);
-   }
+//   public void createTemporaryQueue(final String address, final String queueName) throws HornetQException
+//   {
+//      session.createTemporaryQueue(address, queueName);
+//   }
 
    public void createTemporaryQueue(final String address, final String queueName, final String filter) throws HornetQException
    {
@@ -316,10 +316,10 @@ public class DelegatingSession implements ClientSessionInternal
       session.createTemporaryQueue(address, queueName);
    }
 
-   public void deleteQueue(final SimpleString queueName) throws HornetQException
-   {
-      session.deleteQueue(queueName);
-   }
+//   public void deleteQueue(final String queueName) throws HornetQException
+//   {
+//      session.deleteQueue(queueName);
+//   }
 
    public void deleteQueue(final String queueName) throws HornetQException
    {
@@ -436,7 +436,7 @@ public class DelegatingSession implements ClientSessionInternal
       return session.prepare(xid);
    }
 
-   public QueueQuery queueQuery(final SimpleString queueName) throws HornetQException
+   public QueueQuery queueQuery(final String queueName) throws HornetQException
    {
       return session.queueQuery(queueName);
    }
@@ -536,27 +536,27 @@ public class DelegatingSession implements ClientSessionInternal
       session.workDone();
    }
 
-   public void sendProducerCreditsMessage(final int credits, final SimpleString address)
+   public void sendProducerCreditsMessage(final int credits, final String address)
    {
       session.sendProducerCreditsMessage(credits, address);
    }
 
-   public ClientProducerCredits getCredits(final SimpleString address, final boolean anon)
+   public ClientProducerCredits getCredits(final String address, final boolean anon)
    {
       return session.getCredits(address, anon);
    }
 
-   public void returnCredits(final SimpleString address)
+   public void returnCredits(final String address)
    {
       session.returnCredits(address);
    }
 
-   public void handleReceiveProducerCredits(final SimpleString address, final int credits)
+   public void handleReceiveProducerCredits(final String address, final int credits)
    {
       session.handleReceiveProducerCredits(address, credits);
    }
 
-   public void handleReceiveProducerFailCredits(final SimpleString address, final int credits)
+   public void handleReceiveProducerFailCredits(final String address, final int credits)
    {
       session.handleReceiveProducerFailCredits(address, credits);
    }
@@ -566,7 +566,7 @@ public class DelegatingSession implements ClientSessionInternal
       return session.getProducerCreditManager();
    }
 
-   public void setAddress(Message message, SimpleString address)
+   public void setAddress(Message message, String address)
    {
       session.setAddress(message, address);
    }

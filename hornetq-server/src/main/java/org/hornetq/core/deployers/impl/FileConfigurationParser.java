@@ -29,7 +29,7 @@ import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
@@ -270,13 +270,13 @@ public final class FileConfigurationParser extends XMLConfigurationUtil
 
       config.setPersistIDCache(getBoolean(e, "persist-id-cache", config.isPersistIDCache()));
 
-      config.setManagementAddress(new SimpleString(getString(e,
+      config.setManagementAddress(new String(getString(e,
                                                              "management-address",
                                                              config.getManagementAddress()
                                                                 .toString(),
                                                              Validators.NOT_NULL_OR_EMPTY)));
 
-      config.setManagementNotificationAddress(new SimpleString(getString(e,
+      config.setManagementNotificationAddress(new String(getString(e,
                                                                          "management-notification-address",
                                                                          config.getManagementNotificationAddress()
                                                                             .toString(),
@@ -806,12 +806,12 @@ public final class FileConfigurationParser extends XMLConfigurationUtil
          final String name = child.getNodeName();
          if (DEAD_LETTER_ADDRESS_NODE_NAME.equalsIgnoreCase(name))
          {
-            SimpleString queueName = new SimpleString(getTrimmedTextContent(child));
+            String queueName = new String(getTrimmedTextContent(child));
             addressSettings.setDeadLetterAddress(queueName);
          }
          else if (EXPIRY_ADDRESS_NODE_NAME.equalsIgnoreCase(name))
          {
-            SimpleString queueName = new SimpleString(getTrimmedTextContent(child));
+            String queueName = new String(getTrimmedTextContent(child));
             addressSettings.setExpiryAddress(queueName);
          }
          else if (EXPIRY_DELAY_NODE_NAME.equalsIgnoreCase(name))
@@ -1201,11 +1201,11 @@ public final class FileConfigurationParser extends XMLConfigurationUtil
       Integer timeout = getInteger(node, "timeout", GroupingHandlerConfiguration.DEFAULT_TIMEOUT, Validators.GT_ZERO);
       Integer groupTimeout = getInteger(node, "group-timeout", GroupingHandlerConfiguration.DEFAULT_GROUP_TIMEOUT, Validators.MINUS_ONE_OR_GT_ZERO);
       Long reaperPeriod = getLong(node, "reaper-period", GroupingHandlerConfiguration.DEFAULT_REAPER_PERIOD, Validators.GT_ZERO);
-      mainConfiguration.setGroupingHandlerConfiguration(new GroupingHandlerConfiguration(new SimpleString(name),
+      mainConfiguration.setGroupingHandlerConfiguration(new GroupingHandlerConfiguration(new String(name),
                                                                                          type.equals(GroupingHandlerConfiguration.TYPE.LOCAL.getType())
                                                                                             ? GroupingHandlerConfiguration.TYPE.LOCAL
                                                                                             : GroupingHandlerConfiguration.TYPE.REMOTE,
-                                                                                         new SimpleString(address),
+                                                                                         new String(address),
                                                                                          timeout,
                                                                                          groupTimeout,
                                                                                          reaperPeriod));

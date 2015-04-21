@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -63,7 +63,7 @@ public class RandomReattachTest extends UnitTestCase
 
    // Attributes ----------------------------------------------------
 
-   private static final SimpleString ADDRESS = new SimpleString("FailoverTestAddress");
+   private static final String ADDRESS = new String("FailoverTestAddress");
 
    private HornetQServer liveService;
 
@@ -301,7 +301,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, true, true);
 
@@ -327,7 +327,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -345,7 +345,7 @@ public class RandomReattachTest extends UnitTestCase
                Assert.fail("Too many messages");
             }
 
-            Assert.assertEquals(count, message.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(count, message.getObjectProperty(new String("count")));
 
             count++;
 
@@ -393,7 +393,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -420,7 +420,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, true, true);
 
@@ -444,7 +444,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -467,7 +467,7 @@ public class RandomReattachTest extends UnitTestCase
                Assert.fail("Too many messages");
             }
 
-            Assert.assertEquals(count, message.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(count, message.getObjectProperty(new String("count")));
 
             count++;
 
@@ -507,7 +507,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -535,7 +535,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, false, false);
 
@@ -561,7 +561,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -574,7 +574,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -594,7 +594,7 @@ public class RandomReattachTest extends UnitTestCase
                Assert.fail("Too many messages, expected " + count);
             }
 
-            Assert.assertEquals(count, message.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(count, message.getObjectProperty(new String("count")));
 
             count++;
 
@@ -674,7 +674,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -701,7 +701,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, false, false);
 
@@ -725,7 +725,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -738,7 +738,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -763,7 +763,7 @@ public class RandomReattachTest extends UnitTestCase
                Assert.fail("Too many messages, " + count);
             }
 
-            Assert.assertEquals(count, message.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(count, message.getObjectProperty(new String("count")));
 
             count++;
 
@@ -833,7 +833,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -862,7 +862,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, true, true);
 
@@ -888,7 +888,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -900,7 +900,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -924,7 +924,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -951,7 +951,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, true, true);
 
@@ -975,7 +975,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -997,7 +997,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -1021,7 +1021,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -1050,7 +1050,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, false, false);
 
@@ -1076,7 +1076,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -1089,7 +1089,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -1103,7 +1103,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -1129,7 +1129,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -1158,7 +1158,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -1185,7 +1185,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          ClientSession sessConsume = sf.createSession(false, false, false);
 
@@ -1209,7 +1209,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -1222,7 +1222,7 @@ public class RandomReattachTest extends UnitTestCase
                                                         0,
                                                         System.currentTimeMillis(),
                                                         (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -1241,7 +1241,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -1270,7 +1270,7 @@ public class RandomReattachTest extends UnitTestCase
 
             Assert.assertNotNull(msg);
 
-            Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, msg.getObjectProperty(new String("count")));
 
             msg.acknowledge();
          }
@@ -1299,7 +1299,7 @@ public class RandomReattachTest extends UnitTestCase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }
@@ -1416,7 +1416,7 @@ public class RandomReattachTest extends UnitTestCase
       ClientSession sessCreate = sf.createSession(false, true, true);
 
       sessCreate.createQueue(RandomReattachTest.ADDRESS,
-                             new SimpleString(RandomReattachTest.ADDRESS.toString()),
+                             new String(RandomReattachTest.ADDRESS.toString()),
                              null,
                              false);
 
@@ -1428,7 +1428,7 @@ public class RandomReattachTest extends UnitTestCase
 
       sess.stop();
 
-      ClientConsumer consumer = sess.createConsumer(new SimpleString(RandomReattachTest.ADDRESS.toString()));
+      ClientConsumer consumer = sess.createConsumer(new String(RandomReattachTest.ADDRESS.toString()));
 
       ClientProducer producer = sess.createProducer(RandomReattachTest.ADDRESS);
 
@@ -1453,7 +1453,7 @@ public class RandomReattachTest extends UnitTestCase
 
       sess.close();
 
-      sessCreate.deleteQueue(new SimpleString(RandomReattachTest.ADDRESS.toString()));
+      sessCreate.deleteQueue(new String(RandomReattachTest.ADDRESS.toString()));
 
       sessCreate.close();
    }

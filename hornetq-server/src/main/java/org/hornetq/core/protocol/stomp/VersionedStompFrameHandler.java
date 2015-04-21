@@ -14,7 +14,7 @@ package org.hornetq.core.protocol.stomp;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.protocol.stomp.Stomp.Headers;
 import org.hornetq.core.protocol.stomp.v10.StompFrameHandlerV10;
@@ -201,7 +201,7 @@ public abstract class VersionedStompFrameHandler
 
          ServerMessageImpl message = connection.createServerMessage();
          message.setTimestamp(timestamp);
-         message.setAddress(SimpleString.toSimpleString(destination));
+         message.setAddress((destination));
          StompUtils.copyStandardHeadersFromFrameToMessage(frame, message);
          if (frame.hasHeader(Stomp.Headers.CONTENT_LENGTH))
          {
@@ -212,7 +212,7 @@ public abstract class VersionedStompFrameHandler
          {
             message.setType(Message.TEXT_TYPE);
             String text = frame.getBody();
-            message.getBodyBuffer().writeNullableSimpleString(SimpleString.toSimpleString(text));
+            message.getBodyBuffer().writeNullableString((text));
          }
 
          connection.sendServerMessage(message, txID);
@@ -360,7 +360,7 @@ public abstract class VersionedStompFrameHandler
       }
       else
       {
-         SimpleString text = buffer.readNullableSimpleString();
+         String text = buffer.readNullableString();
          if (text != null)
          {
             data = text.toString().getBytes("UTF-8");

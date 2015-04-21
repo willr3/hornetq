@@ -50,13 +50,14 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
     *
     * @param string String used to instantiate a SimpleString.
     */
-   public static SimpleString toSimpleString(final String string)
+   public static String toSimpleString(final String string)
    {
-      if (string == null)
-      {
-         return null;
-      }
-      return new SimpleString(string);
+      return string;
+//      if (string == null)
+//      {
+//         return null;
+//      }
+//      return new SimpleString(string);
    }
 
    // Constructors
@@ -90,7 +91,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
 */
       str = string;
    }
-   private byte[] getBytesFromString(String string)
+   public static byte[] getBytesFromString(String string)
    {
       int len = string.length();
       byte[] rtrn = new byte[len << 1];
@@ -105,7 +106,7 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
       }
       return rtrn;
    }
-   private String getStringFromBytes(byte[] bytes)
+   public static String getStringFromBytes(byte[] bytes)
    {
       int len = bytes.length >> 1;
       char[] chars = new char[len];
@@ -455,7 +456,10 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
    {
       return str.sizeof();
    }
-
+   public static int sizeofString(final String str)
+   {
+      return new SimpleString(str).sizeof();
+   }
    /**
     * returns the size of a SimpleString which could be null
     *
@@ -473,7 +477,17 @@ public final class SimpleString implements CharSequence, Serializable, Comparabl
          return 1 + str.sizeof();
       }
    }
-
+   public static int sizeofNullableString(final String str)
+   {
+      if (str == null)
+      {
+         return 1;
+      }
+      else
+      {
+         return 1 + new SimpleString(str).sizeof();
+      }
+   }
    /**
     * This method performs a similar function to {@link String#getChars(int, int, char[], int)}.
     * This is mainly used by the Parsers on Filters

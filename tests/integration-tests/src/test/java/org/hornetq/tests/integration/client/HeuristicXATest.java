@@ -26,7 +26,7 @@ import javax.transaction.xa.Xid;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -49,7 +49,7 @@ import org.hornetq.tests.util.ServiceTestBase;
 public class HeuristicXATest extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
-   final SimpleString ADDRESS = new SimpleString("ADDRESS");
+   final String ADDRESS = new String("ADDRESS");
 
    final String body = "this is the body";
 

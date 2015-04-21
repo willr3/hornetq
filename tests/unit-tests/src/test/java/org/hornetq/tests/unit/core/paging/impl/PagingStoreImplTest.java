@@ -29,7 +29,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
@@ -65,7 +65,7 @@ import org.junit.Test;
 public class PagingStoreImplTest extends UnitTestCase
 {
 
-   private static final SimpleString destinationTestName = new SimpleString("test");
+   private static final String destinationTestName = new String("test");
    private final ReadLock lock = new ReentrantReadWriteLock().readLock();
 
    protected ExecutorService executor;
@@ -162,7 +162,7 @@ public class PagingStoreImplTest extends UnitTestCase
       HornetQBuffer buffer = createRandomBuffer(0, 10);
 
       buffers.add(buffer);
-      SimpleString destination = new SimpleString("test");
+      String destination = new String("test");
 
       ServerMessage msg = createMessage(1, storeImpl, destination, buffer);
 
@@ -191,7 +191,7 @@ public class PagingStoreImplTest extends UnitTestCase
    {
       SequentialFileFactory factory = new FakeSequentialFileFactory();
 
-      SimpleString destination = new SimpleString("test");
+      String destination = new String("test");
 
       PagingStoreFactory storeFactory = new FakeStoreFactory(factory);
 
@@ -264,7 +264,7 @@ public class PagingStoreImplTest extends UnitTestCase
    public void testDepageMultiplePages() throws Exception
    {
       SequentialFileFactory factory = new FakeSequentialFileFactory();
-      SimpleString destination = new SimpleString("test");
+      String destination = new String("test");
 
       PagingStoreFactory storeFactory = new FakeStoreFactory(factory);
 
@@ -423,7 +423,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       final PagingStore storeImpl =
          new PagingStoreImpl(PagingStoreImplTest.destinationTestName, null, 100, createMockManager(),
-                             createStorageManagerMock(), factory, storeFactory, new SimpleString("test"),
+                             createStorageManagerMock(), factory, storeFactory, new String("test"),
                              settings, getExecutorFactory().getExecutor(), true);
 
       storeImpl.start();
@@ -435,7 +435,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       Assert.assertEquals(1, storeImpl.getNumberOfPages());
 
-      final SimpleString destination = new SimpleString("test");
+      final String destination = new String("test");
 
       class WriterThread extends Thread
       {
@@ -581,7 +581,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       PagingStore storeImpl2 =
          new PagingStoreImpl(PagingStoreImplTest.destinationTestName, null, 100, createMockManager(),
-                             createStorageManagerMock(), factory, storeFactory, new SimpleString("test"),
+                             createStorageManagerMock(), factory, storeFactory, new String("test"),
                              settings, getExecutorFactory().getExecutor(), true);
       storeImpl2.start();
 
@@ -664,7 +664,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       final PagingStore storeImpl =
          new PagingStoreImpl(PagingStoreImplTest.destinationTestName, null, 100, createMockManager(),
-                             createStorageManagerMock(), factory, storeFactory, new SimpleString("test"),
+                             createStorageManagerMock(), factory, storeFactory, new String("test"),
                              settings, getExecutorFactory().getExecutor(), true);
 
       storeImpl.start();
@@ -701,7 +701,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       final PagingStore store =
          new PagingStoreImpl(PagingStoreImplTest.destinationTestName, null, 100, createMockManager(),
-                             createStorageManagerMock(), factory, storeFactory, new SimpleString("test"),
+                             createStorageManagerMock(), factory, storeFactory, new String("test"),
                              settings, getExecutorFactory().getExecutor(), false);
 
       store.start();
@@ -715,7 +715,7 @@ public class PagingStoreImplTest extends UnitTestCase
 
       Assert.assertEquals(1, store.getNumberOfPages());
 
-      final SimpleString destination = new SimpleString("test");
+      final String destination = new String("test");
 
       final long NUMBER_OF_MESSAGES = 100000;
 
@@ -857,7 +857,7 @@ public class PagingStoreImplTest extends UnitTestCase
       };
    }
 
-   private ServerMessage createMessage(final long id, final PagingStore store, final SimpleString destination,
+   private ServerMessage createMessage(final long id, final PagingStore store, final String destination,
                                        final HornetQBuffer buffer)
    {
       ServerMessage msg = new ServerMessageImpl(id, 50 + buffer.capacity());
@@ -913,13 +913,13 @@ public class PagingStoreImplTest extends UnitTestCase
       }
 
       @Override
-      public SequentialFileFactory newFileFactory(final SimpleString destinationName) throws Exception
+      public SequentialFileFactory newFileFactory(final String destinationName) throws Exception
       {
          return factory;
       }
 
       @Override
-      public PagingStore newStore(final SimpleString destinationName, final AddressSettings addressSettings)
+      public PagingStore newStore(final String destinationName, final AddressSettings addressSettings)
       {
          return null;
       }

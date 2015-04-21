@@ -14,7 +14,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -25,9 +25,9 @@ public class SessionProducerCreditsMessage extends PacketImpl
 {
    private int credits;
 
-   private SimpleString address;
+   private String address;
 
-   public SessionProducerCreditsMessage(final int credits, final SimpleString address)
+   public SessionProducerCreditsMessage(final int credits, final String address)
    {
       super(SESS_PRODUCER_CREDITS);
 
@@ -46,7 +46,7 @@ public class SessionProducerCreditsMessage extends PacketImpl
       return credits;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -55,14 +55,14 @@ public class SessionProducerCreditsMessage extends PacketImpl
    public void encodeRest(final HornetQBuffer buffer)
    {
       buffer.writeInt(credits);
-      buffer.writeSimpleString(address);
+      buffer.writeString(address);
    }
 
    @Override
    public void decodeRest(final HornetQBuffer buffer)
    {
       credits = buffer.readInt();
-      address = buffer.readSimpleString();
+      address = buffer.readString();
    }
 
    @Override

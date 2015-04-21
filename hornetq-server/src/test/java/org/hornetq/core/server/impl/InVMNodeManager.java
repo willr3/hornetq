@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.utils.UUIDGenerator;
 
@@ -158,7 +158,7 @@ public final class InVMNodeManager extends NodeManager
    }
 
    @Override
-   public SimpleString readNodeId() throws HornetQIllegalStateException, IOException
+   public String readNodeId() throws HornetQIllegalStateException, IOException
    {
       return getNodeId();
    }

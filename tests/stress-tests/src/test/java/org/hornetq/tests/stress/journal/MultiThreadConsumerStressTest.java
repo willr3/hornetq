@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -47,9 +47,9 @@ public class MultiThreadConsumerStressTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   final SimpleString ADDRESS = new SimpleString("SomeAddress");
+   final String ADDRESS = new String("SomeAddress");
 
-   final SimpleString QUEUE = new SimpleString("SomeQueue");
+   final String QUEUE = new String("SomeQueue");
 
    private HornetQServer server;
 

@@ -21,7 +21,7 @@ import java.util.zip.Inflater;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.persistence.OperationContext;
@@ -84,11 +84,11 @@ public class StompSession implements SessionCallback
       return session;
    }
 
-   public void sendProducerCreditsMessage(int credits, SimpleString address)
+   public void sendProducerCreditsMessage(int credits, String address)
    {
    }
 
-   public void sendProducerCreditsFailMessage(int credits, SimpleString address)
+   public void sendProducerCreditsFailMessage(int credits, String address)
    {
    }
 
@@ -244,7 +244,7 @@ public class StompSession implements SessionCallback
                                String selector,
                                String ack) throws Exception
    {
-      SimpleString queue = SimpleString.toSimpleString(destination);
+      String queue = (destination);
       if (destination.startsWith("jms.topic"))
       {
          // subscribes to a topic
@@ -254,23 +254,23 @@ public class StompSession implements SessionCallback
             {
                throw new IllegalStateException("Cannot create a subscriber on the durable subscription if the client-id of the connection is not set");
             }
-            queue = SimpleString.toSimpleString(clientID + "." + durableSubscriptionName);
+            queue = (clientID + "." + durableSubscriptionName);
             QueueQueryResult query = session.executeQueueQuery(queue);
             if (!query.isExists())
             {
-               session.createQueue(SimpleString.toSimpleString(destination), queue, SimpleString.toSimpleString(selector), false, true);
+               session.createQueue((destination), queue, (selector), false, true);
             }
          }
          else
          {
-            queue = UUIDGenerator.getInstance().generateSimpleStringUUID();
-            session.createQueue(SimpleString.toSimpleString(destination), queue, SimpleString.toSimpleString(selector), true, false);
+            queue = UUIDGenerator.getInstance().generateStringUUID();
+            session.createQueue((destination), queue, (selector), true, false);
          }
          ((ServerSessionImpl)session).createConsumer(consumerID, queue, null, false, false);
       }
       else
       {
-         ((ServerSessionImpl)session).createConsumer(consumerID, queue, SimpleString.toSimpleString(selector), false, false);
+         ((ServerSessionImpl)session).createConsumer(consumerID, queue, (selector), false, false);
       }
 
       StompSubscription subscription = new StompSubscription(subscriptionID, ack);
@@ -300,14 +300,14 @@ public class StompSession implements SessionCallback
          {
             iterator.remove();
             session.closeConsumer(consumerID);
-            SimpleString queueName;
+            String queueName;
             if (durableSubscriptionName != null && durableSubscriptionName.trim().length() != 0)
             {
-               queueName = SimpleString.toSimpleString(id + "." + durableSubscriptionName);
+               queueName = (id + "." + durableSubscriptionName);
             }
             else
             {
-               queueName = SimpleString.toSimpleString(id);
+               queueName = (id);
             }
             QueueQueryResult query = session.executeQueueQuery(queueName);
             if (query.isExists())

@@ -14,7 +14,6 @@ package org.hornetq.core.server.group.impl;
 
 import java.io.Serializable;
 
-import org.hornetq.api.core.SimpleString;
 
 /**
  * A remote Grouping handler configuration
@@ -35,11 +34,11 @@ public final class GroupingHandlerConfiguration implements Serializable
 
    public static final String REAPER_PERIOD_PROP_NAME = "org.hornetq.GroupingHandlerConfiguration.reaperPeriod";
 
-   private final SimpleString name;
+   private final String name;
 
    private final TYPE type;
 
-   private final SimpleString address;
+   private final String address;
 
    private final long timeout;
 
@@ -48,7 +47,7 @@ public final class GroupingHandlerConfiguration implements Serializable
    private final long reaperPeriod;
 
 
-   public GroupingHandlerConfiguration(final SimpleString name, final TYPE type, final SimpleString address)
+   public GroupingHandlerConfiguration(final String name, final TYPE type, final String address)
    {
       this(name, type, address,
             GroupingHandlerConfiguration.DEFAULT_TIMEOUT,
@@ -56,9 +55,9 @@ public final class GroupingHandlerConfiguration implements Serializable
             GroupingHandlerConfiguration.DEFAULT_REAPER_PERIOD);
    }
 
-   public GroupingHandlerConfiguration(final SimpleString name,
+   public GroupingHandlerConfiguration(final String name,
                                        final TYPE type,
-                                       final SimpleString address,
+                                       final String address,
                                        final int timeout)
    {
       this(name, type, address, timeout,
@@ -66,9 +65,9 @@ public final class GroupingHandlerConfiguration implements Serializable
             GroupingHandlerConfiguration.DEFAULT_REAPER_PERIOD);
    }
 
-   public GroupingHandlerConfiguration(final SimpleString name,
+   public GroupingHandlerConfiguration(final String name,
                                        final TYPE type,
-                                       final SimpleString address,
+                                       final String address,
                                        final int timeout,
                                        final long groupTimeout,
                                        final long reaperPeriod)
@@ -96,7 +95,7 @@ public final class GroupingHandlerConfiguration implements Serializable
       }
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -106,7 +105,7 @@ public final class GroupingHandlerConfiguration implements Serializable
       return type;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }

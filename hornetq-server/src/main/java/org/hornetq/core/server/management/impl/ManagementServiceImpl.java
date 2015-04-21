@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 
 import org.hornetq.api.core.BroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.AcceptorControl;
 import org.hornetq.api.core.management.BridgeControl;
@@ -117,9 +117,9 @@ public class ManagementServiceImpl implements ManagementService
 
    private MessageCounterManager messageCounterManager;
 
-   private final SimpleString managementNotificationAddress;
+   private final String managementNotificationAddress;
 
-   private final SimpleString managementAddress;
+   private final String managementAddress;
 
    private boolean started = false;
 
@@ -214,7 +214,7 @@ public class ManagementServiceImpl implements ManagementService
       unregisterFromRegistry(ResourceNames.CORE_SERVER);
    }
 
-   public synchronized void registerAddress(final SimpleString address) throws Exception
+   public synchronized void registerAddress(final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getAddressObjectName(address);
       AddressControlImpl addressControl = new AddressControlImpl(address,
@@ -233,7 +233,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterAddress(final SimpleString address) throws Exception
+   public synchronized void unregisterAddress(final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getAddressObjectName(address);
 
@@ -242,7 +242,7 @@ public class ManagementServiceImpl implements ManagementService
    }
 
    public synchronized void registerQueue(final Queue queue,
-                                          final SimpleString address,
+                                          final String address,
                                           final StorageManager storageManager) throws Exception
    {
       QueueControlImpl queueControl = new QueueControlImpl(queue,
@@ -271,7 +271,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterQueue(final SimpleString name, final SimpleString address) throws Exception
+   public synchronized void unregisterQueue(final String name, final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getQueueObjectName(address, name);
       unregisterFromJMX(objectName);
@@ -292,7 +292,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterDivert(final SimpleString name) throws Exception
+   public synchronized void unregisterDivert(final String name) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getDivertObjectName(name.toString());
       unregisterFromJMX(objectName);
@@ -552,12 +552,12 @@ public class ManagementServiceImpl implements ManagementService
       listeners.remove(listener);
    }
 
-   public SimpleString getManagementAddress()
+   public String getManagementAddress()
    {
       return managementAddress;
    }
 
-   public SimpleString getManagementNotificationAddress()
+   public String getManagementNotificationAddress()
    {
       return managementNotificationAddress;
    }
@@ -714,21 +714,21 @@ public class ManagementServiceImpl implements ManagementService
                if (notification.getProperties() != null)
                {
                   TypedProperties props = notification.getProperties();
-                  for (SimpleString name : notification.getProperties().getPropertyNames())
+                  for (String name : notification.getProperties().getPropertyNames())
                   {
                      notificationMessage.putObjectProperty(name, props.getProperty(name));
                   }
                }
 
                notificationMessage.putStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE,
-                                                     new SimpleString(notification.getType().toString()));
+                                                     new String(notification.getType().toString()));
 
                notificationMessage.putLongProperty(ManagementHelper.HDR_NOTIFICATION_TIMESTAMP, System.currentTimeMillis());
 
                if (notification.getUID() != null)
                {
-                  notificationMessage.putStringProperty(new SimpleString("foobar"),
-                                                        new SimpleString(notification.getUID()));
+                  notificationMessage.putStringProperty(new String("foobar"),
+                                                        new String(notification.getUID()));
                }
 
                postOffice.route(notificationMessage, false);

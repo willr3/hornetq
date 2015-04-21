@@ -702,9 +702,9 @@ public interface HornetQBuffer
    boolean readBoolean();
 
    /**
-    * Gets a SimpleString (potentially {@code null}) at the current {@code readerIndex}
+    * Gets a String (potentially {@code null}) at the current {@code readerIndex}
     */
-   SimpleString readNullableSimpleString();
+   //String readNullableSimpleString();
 
    /**
     * Gets a String (potentially {@code null}) at the current {@code readerIndex}
@@ -712,9 +712,9 @@ public interface HornetQBuffer
    String readNullableString();
 
    /**
-    * Gets a non-null SimpleString at the current {@code readerIndex}
+    * Gets a non-null String at the current {@code readerIndex}
     */
-   SimpleString readSimpleString();
+   //String readString();
 
    /**
     * Gets a non-null String at the current {@code readerIndex}
@@ -920,9 +920,9 @@ public interface HornetQBuffer
    void writeBoolean(boolean val);
 
    /**
-    * Sets the specified SimpleString (potentially {@code null}) at the current {@code writerIndex}
+    * Sets the specified String (potentially {@code null}) at the current {@code writerIndex}
     */
-   void writeNullableSimpleString(SimpleString val);
+   //void writeNullableString(String val);
 
    /**
     * Sets the specified String (potentially {@code null}) at the current {@code writerIndex}
@@ -930,9 +930,9 @@ public interface HornetQBuffer
    void writeNullableString(String val);
 
    /**
-    * Sets the specified non-null SimpleString at the current {@code writerIndex}
+    * Sets the specified non-null String at the current {@code writerIndex}
     */
-   void writeSimpleString(SimpleString val);
+   //void writeString(String val);
 
    /**
     * Sets the specified non-null String at the current {@code writerIndex}

@@ -23,7 +23,8 @@ import java.util.Set;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.SSU;
+
 
 import static org.hornetq.utils.DataConstants.BOOLEAN;
 import static org.hornetq.utils.DataConstants.BYTE;
@@ -51,9 +52,9 @@ import static org.hornetq.utils.DataConstants.STRING;
 public final class TypedProperties
 {
 
-   private static final SimpleString HQ_PROPNAME = new SimpleString("_HQ_");
+   private static final String HQ_PROPNAME = new String("_HQ_");
 
-   private Map<SimpleString, PropertyValue> properties;
+   private Map<String, PropertyValue> properties;
 
    private volatile int size;
 
@@ -74,7 +75,7 @@ public final class TypedProperties
 
    public TypedProperties(final TypedProperties other)
    {
-      properties = other.properties == null ? null : new HashMap<SimpleString, PropertyValue>(other.properties);
+      properties = other.properties == null ? null : new HashMap<String, PropertyValue>(other.properties);
       size = other.size;
    }
 
@@ -83,67 +84,67 @@ public final class TypedProperties
       return internalProperties;
    }
 
-   public void putBooleanProperty(final SimpleString key, final boolean value)
+   public void putBooleanProperty(final String key, final boolean value)
    {
       checkCreateProperties();
       doPutValue(key, new BooleanValue(value));
    }
 
-   public void putByteProperty(final SimpleString key, final byte value)
+   public void putByteProperty(final String key, final byte value)
    {
       checkCreateProperties();
       doPutValue(key, new ByteValue(value));
    }
 
-   public void putBytesProperty(final SimpleString key, final byte[] value)
+   public void putBytesProperty(final String key, final byte[] value)
    {
       checkCreateProperties();
       doPutValue(key, value == null ? new NullValue() : new BytesValue(value));
    }
 
-   public void putShortProperty(final SimpleString key, final short value)
+   public void putShortProperty(final String key, final short value)
    {
       checkCreateProperties();
       doPutValue(key, new ShortValue(value));
    }
 
-   public void putIntProperty(final SimpleString key, final int value)
+   public void putIntProperty(final String key, final int value)
    {
       checkCreateProperties();
       doPutValue(key, new IntValue(value));
    }
 
-   public void putLongProperty(final SimpleString key, final long value)
+   public void putLongProperty(final String key, final long value)
    {
       checkCreateProperties();
       doPutValue(key, new LongValue(value));
    }
 
-   public void putFloatProperty(final SimpleString key, final float value)
+   public void putFloatProperty(final String key, final float value)
    {
       checkCreateProperties();
       doPutValue(key, new FloatValue(value));
    }
 
-   public void putDoubleProperty(final SimpleString key, final double value)
+   public void putDoubleProperty(final String key, final double value)
    {
       checkCreateProperties();
       doPutValue(key, new DoubleValue(value));
    }
 
-   public void putSimpleStringProperty(final SimpleString key, final SimpleString value)
+   public void putStringProperty(final String key, final String value)
    {
       checkCreateProperties();
       doPutValue(key, value == null ? new NullValue() : new StringValue(value));
    }
 
-   public void putNullValue(final SimpleString key)
+   public void putNullValue(final String key)
    {
       checkCreateProperties();
       doPutValue(key, new NullValue());
    }
 
-   public void putCharProperty(final SimpleString key, final char value)
+   public void putCharProperty(final String key, final char value)
    {
       checkCreateProperties();
       doPutValue(key, new CharValue(value));
@@ -157,19 +158,19 @@ public final class TypedProperties
       }
 
       checkCreateProperties();
-      Set<Entry<SimpleString, PropertyValue>> otherEntries = otherProps.properties.entrySet();
-      for (Entry<SimpleString, PropertyValue> otherEntry : otherEntries)
+      Set<Entry<String, PropertyValue>> otherEntries = otherProps.properties.entrySet();
+      for (Entry<String, PropertyValue> otherEntry : otherEntries)
       {
          doPutValue(otherEntry.getKey(), otherEntry.getValue());
       }
    }
 
-   public Object getProperty(final SimpleString key)
+   public Object getProperty(final String key)
    {
       return doGetProperty(key);
    }
 
-   public Boolean getBooleanProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Boolean getBooleanProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -180,9 +181,9 @@ public final class TypedProperties
       {
          return (Boolean)value;
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Boolean.valueOf(((SimpleString)value).toString());
+         return Boolean.valueOf(((String)value).toString());
       }
       else
       {
@@ -190,7 +191,7 @@ public final class TypedProperties
       }
    }
 
-   public Byte getByteProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Byte getByteProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -201,9 +202,9 @@ public final class TypedProperties
       {
          return (Byte)value;
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Byte.parseByte(((SimpleString)value).toString());
+         return Byte.parseByte(((String)value).toString());
       }
       else
       {
@@ -211,7 +212,7 @@ public final class TypedProperties
       }
    }
 
-   public Character getCharProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Character getCharProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -229,7 +230,7 @@ public final class TypedProperties
       }
    }
 
-   public byte[] getBytesProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public byte[] getBytesProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -246,7 +247,7 @@ public final class TypedProperties
       }
    }
 
-   public Double getDoubleProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Double getDoubleProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -261,9 +262,9 @@ public final class TypedProperties
       {
          return (Double)value;
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Double.parseDouble(((SimpleString)value).toString());
+         return Double.parseDouble(((String)value).toString());
       }
       else
       {
@@ -271,7 +272,7 @@ public final class TypedProperties
       }
    }
 
-   public Integer getIntProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Integer getIntProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -290,9 +291,9 @@ public final class TypedProperties
       {
          return ((Short)value).intValue();
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Integer.parseInt(((SimpleString)value).toString());
+         return Integer.parseInt(((String)value).toString());
       }
       else
       {
@@ -300,7 +301,7 @@ public final class TypedProperties
       }
    }
 
-   public Long getLongProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Long getLongProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -323,9 +324,9 @@ public final class TypedProperties
       {
          return ((Integer)value).longValue();
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Long.parseLong(((SimpleString)value).toString());
+         return Long.parseLong(((String)value).toString());
       }
       else
       {
@@ -333,7 +334,7 @@ public final class TypedProperties
       }
    }
 
-   public Short getShortProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Short getShortProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -348,9 +349,9 @@ public final class TypedProperties
       {
          return (Short)value;
       }
-      else if (value instanceof SimpleString)
+      else if (value instanceof String)
       {
-         return Short.parseShort(((SimpleString)value).toString());
+         return Short.parseShort(((String)value).toString());
       }
       else
       {
@@ -358,7 +359,7 @@ public final class TypedProperties
       }
    }
 
-   public Float getFloatProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Float getFloatProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
       if (value == null)
@@ -367,14 +368,14 @@ public final class TypedProperties
       {
          return ((Float)value);
       }
-      if (value instanceof SimpleString)
+      if (value instanceof String)
       {
-         return Float.parseFloat(((SimpleString)value).toString());
+         return Float.parseFloat(((String)value).toString());
       }
       throw new HornetQPropertyConversionException("Invalid conversion: " + key);
    }
 
-   public SimpleString getSimpleStringProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public String getStringProperty(final String key) throws HornetQPropertyConversionException
    {
       Object value = doGetProperty(key);
 
@@ -383,51 +384,51 @@ public final class TypedProperties
          return null;
       }
 
-      if (value instanceof SimpleString)
+      if (value instanceof String)
       {
-         return (SimpleString)value;
+         return (String)value;
       }
       else if (value instanceof Boolean)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Character)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Byte)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Short)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Integer)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Long)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Float)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       else if (value instanceof Double)
       {
-         return new SimpleString(value.toString());
+         return new String(value.toString());
       }
       throw new HornetQPropertyConversionException("Invalid conversion");
    }
 
-   public Object removeProperty(final SimpleString key)
+   public Object removeProperty(final String key)
    {
       return doRemoveProperty(key);
    }
 
-   public boolean containsProperty(final SimpleString key)
+   public boolean containsProperty(final String key)
    {
       if (size == 0)
       {
@@ -440,7 +441,7 @@ public final class TypedProperties
       }
    }
 
-   public Set<SimpleString> getPropertyNames()
+   public Set<String> getPropertyNames()
    {
       if (size == 0)
       {
@@ -464,7 +465,7 @@ public final class TypedProperties
       {
          int numHeaders = buffer.readInt();
 
-         properties = new HashMap<SimpleString, PropertyValue>(numHeaders);
+         properties = new HashMap<String, PropertyValue>(numHeaders);
          size = 0;
 
          for (int i = 0; i < numHeaders; i++)
@@ -472,7 +473,7 @@ public final class TypedProperties
             int len = buffer.readInt();
             byte[] data = new byte[len];
             buffer.readBytes(data);
-            SimpleString key = new SimpleString(data);
+            String key = SSU.getStringFromBytes(data);
 
             byte type = buffer.readByte();
 
@@ -567,10 +568,10 @@ public final class TypedProperties
 
          buffer.writeInt(properties.size());
 
-         for (Map.Entry<SimpleString, PropertyValue> entry : properties.entrySet())
+         for (Map.Entry<String, PropertyValue> entry : properties.entrySet())
          {
-            SimpleString s = entry.getKey();
-            byte[] data = s.getData();
+            String s = entry.getKey();
+            byte[] data = SSU.getBytesFromString(s);
             buffer.writeInt(data.length);
             buffer.writeBytes(data);
 
@@ -608,11 +609,11 @@ public final class TypedProperties
       if (properties != null)
       {
 
-         Iterator<Entry<SimpleString, PropertyValue>> iter = properties.entrySet().iterator();
+         Iterator<Entry<String, PropertyValue>> iter = properties.entrySet().iterator();
 
          while (iter.hasNext())
          {
-            Entry<SimpleString, PropertyValue> iterItem = iter.next();
+            Entry<String, PropertyValue> iterItem = iter.next();
             sb.append(iterItem.getKey() + "=");
 
             // it seems weird but it's right!!
@@ -674,11 +675,11 @@ public final class TypedProperties
    {
       if (properties == null)
       {
-         properties = new HashMap<SimpleString, PropertyValue>();
+         properties = new HashMap<String, PropertyValue>();
       }
    }
 
-   private synchronized void doPutValue(final SimpleString key, final PropertyValue value)
+   private synchronized void doPutValue(final String key, final PropertyValue value)
    {
       if (key.startsWith(HQ_PROPNAME))
       {
@@ -692,11 +693,11 @@ public final class TypedProperties
       }
       else
       {
-         size += SimpleString.sizeofString(key) + value.encodeSize();
+         size += SSU.sizeof(key) + value.encodeSize();
       }
    }
 
-   private synchronized Object doRemoveProperty(final SimpleString key)
+   private synchronized Object doRemoveProperty(final String key)
    {
       if (properties == null)
       {
@@ -711,7 +712,7 @@ public final class TypedProperties
       }
       else
       {
-         size -= SimpleString.sizeofString(key) + val.encodeSize();
+         size -= SSU.sizeof(key) + val.encodeSize();
 
          return val.getValue();
       }
@@ -1093,16 +1094,16 @@ public final class TypedProperties
 
    private static final class StringValue extends PropertyValue
    {
-      final SimpleString val;
+      final String val;
 
-      public StringValue(final SimpleString val)
+      public StringValue(final String val)
       {
          this.val = val;
       }
 
       public StringValue(final HornetQBuffer buffer)
       {
-         val = buffer.readSimpleString();
+         val = buffer.readString().toString();
       }
 
       @Override
@@ -1115,25 +1116,26 @@ public final class TypedProperties
       public void write(final HornetQBuffer buffer)
       {
          buffer.writeByte(DataConstants.STRING);
-         buffer.writeSimpleString(val);
+
+         buffer.writeString(val);
       }
 
       @Override
       public int encodeSize()
       {
-         return DataConstants.SIZE_BYTE + SimpleString.sizeofString(val);
+         return DataConstants.SIZE_BYTE + SSU.sizeof(val);
       }
    }
 
    public Map<String, Object> getMap()
    {
       Map<String, Object> m = new HashMap<String, Object>();
-      for (Entry<SimpleString, PropertyValue> entry : properties.entrySet())
+      for (Entry<String, PropertyValue> entry : properties.entrySet())
       {
          Object val = entry.getValue().getValue();
-         if (val instanceof SimpleString)
+         if (val instanceof String)
          {
-            m.put(entry.getKey().toString(), ((SimpleString)val).toString());
+            m.put(entry.getKey().toString(), ((String)val).toString());
          }
          else
          {
@@ -1144,13 +1146,13 @@ public final class TypedProperties
    }
 
    /**
-    * Helper for {@link MapMessage#setObjectProperty(String, Object)}
+    * Helper for {link MapMessage#setObjectProperty(String, Object)}
     *
     * @param key
     * @param value
     * @param properties
     */
-   public static void setObjectProperty(final SimpleString key, final Object value,
+   public static void setObjectProperty(final String key, final Object value,
                                        final TypedProperties properties)
    {
       if (value == null)
@@ -1189,13 +1191,13 @@ public final class TypedProperties
       {
          properties.putDoubleProperty(key, (Double)value);
       }
+//      else if (value instanceof String)
+//      {
+//         properties.putStringProperty(key, new String((String)value));
+//      }
       else if (value instanceof String)
       {
-         properties.putSimpleStringProperty(key, new SimpleString((String)value));
-      }
-      else if (value instanceof SimpleString)
-      {
-         properties.putSimpleStringProperty(key, (SimpleString)value);
+         properties.putStringProperty(key, (String) value);
       }
       else if (value instanceof byte[])
       {

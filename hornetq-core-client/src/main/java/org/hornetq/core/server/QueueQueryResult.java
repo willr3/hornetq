@@ -13,7 +13,7 @@
 
 package org.hornetq.core.server;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  *
@@ -24,7 +24,7 @@ import org.hornetq.api.core.SimpleString;
  */
 public class QueueQueryResult
 {
-   private SimpleString name;
+   private String name;
 
    private boolean exists;
 
@@ -34,17 +34,17 @@ public class QueueQueryResult
 
    private long messageCount;
 
-   private SimpleString filterString;
+   private String filterString;
 
-   private SimpleString address;
+   private String address;
 
    private boolean temporary;
 
-   public QueueQueryResult(final SimpleString name,
-                                           final SimpleString address,
+   public QueueQueryResult(final String name,
+                                           final String address,
                                            final boolean durable,
                                            final boolean temporary,
-                                           final SimpleString filterString,
+                                           final String filterString,
                                            final int consumerCount,
                                            final long messageCount)
    {
@@ -56,11 +56,11 @@ public class QueueQueryResult
       this(null, null, false, false, null, 0, 0, false);
    }
 
-   private QueueQueryResult(final SimpleString name,
-                                            final SimpleString address,
+   private QueueQueryResult(final String name,
+                                            final String address,
                                             final boolean durable,
                                             final boolean temporary,
-                                            final SimpleString filterString,
+                                            final String filterString,
                                             final int consumerCount,
                                             final long messageCount,
                                             final boolean exists)
@@ -102,17 +102,17 @@ public class QueueQueryResult
       return messageCount;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }

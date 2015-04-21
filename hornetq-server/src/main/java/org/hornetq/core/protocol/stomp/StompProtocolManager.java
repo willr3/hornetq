@@ -24,7 +24,7 @@ import java.util.concurrent.Executor;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
@@ -455,7 +455,7 @@ class StompProtocolManager implements ProtocolManager, NotificationListener
                return;
             }
 
-            SimpleString address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+            String address = props.getStringProperty(ManagementHelper.HDR_ADDRESS);
 
             destinations.add(address.toString());
 
@@ -463,7 +463,7 @@ class StompProtocolManager implements ProtocolManager, NotificationListener
          }
          case BINDING_REMOVED:
          {
-            SimpleString address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+            String address = props.getStringProperty(ManagementHelper.HDR_ADDRESS);
             destinations.remove(address.toString());
             break;
          }

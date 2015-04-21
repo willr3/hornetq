@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -62,7 +62,7 @@ public class CoreClientTest extends ServiceTestBase
 
    private void testCoreClient(final String acceptorFactoryClassName, final String connectorFactoryClassName) throws Exception
    {
-      final SimpleString QUEUE = new SimpleString("CoreClientTestQueue");
+      final String QUEUE = new String("CoreClientTestQueue");
 
       Configuration conf = createDefaultConfig();
 

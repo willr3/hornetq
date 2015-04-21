@@ -22,7 +22,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageCache;
@@ -63,7 +62,7 @@ public class PageCursorStressTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   private final SimpleString ADDRESS = new SimpleString("test-add");
+   private final String ADDRESS = new String("test-add");
 
    private HornetQServer server;
 
@@ -171,9 +170,9 @@ public class PageCursorStressTest extends ServiceTestBase
             }
          }
 
-         public SimpleString getFilterString()
+         public String getFilterString()
          {
-            return new SimpleString("even=true");
+            return new String("even=true");
          }
 
       });
@@ -194,9 +193,9 @@ public class PageCursorStressTest extends ServiceTestBase
             }
          }
 
-         public SimpleString getFilterString()
+         public String getFilterString()
          {
-            return new SimpleString("even=true");
+            return new String("even=true");
          }
 
       });
@@ -849,7 +848,7 @@ public class PageCursorStressTest extends ServiceTestBase
     * @return
     * @throws Exception
     */
-   private PagingStoreImpl lookupPageStore(SimpleString address) throws Exception
+   private PagingStoreImpl lookupPageStore(String address) throws Exception
    {
       return (PagingStoreImpl)server.getPagingManager().getPageStore(address);
    }
@@ -913,7 +912,7 @@ public class PageCursorStressTest extends ServiceTestBase
    private PageSubscription createNonPersistentCursor(Filter filter) throws Exception
    {
       long id = server.getStorageManager().generateUniqueID();
-      FakeQueue queue = new FakeQueue(new SimpleString(filter.toString()), id);
+      FakeQueue queue = new FakeQueue(new String(filter.toString()), id);
       queueList.add(queue);
 
       PageSubscription subs = lookupCursorProvider().createSubscription(id, filter, false);

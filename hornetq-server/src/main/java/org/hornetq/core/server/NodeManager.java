@@ -20,7 +20,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.utils.UUID;
 import org.hornetq.utils.UUIDGenerator;
 
@@ -38,7 +38,7 @@ public abstract class NodeManager implements HornetQComponent
    protected final boolean replicatedBackup;
    private final String directory;
    private final Object nodeIDGuard = new Object();
-   private SimpleString nodeID;
+   private String nodeID;
    private UUID uuid;
    private String nodeGroupName;
    private boolean isStarted = false;
@@ -77,7 +77,7 @@ public abstract class NodeManager implements HornetQComponent
       return isStarted;
    }
 
-   public SimpleString getNodeId()
+   public String getNodeId()
    {
       synchronized (nodeIDGuard)
       {
@@ -85,7 +85,7 @@ public abstract class NodeManager implements HornetQComponent
       }
    }
 
-   public abstract SimpleString readNodeId() throws HornetQIllegalStateException, IOException;
+   public abstract String readNodeId() throws HornetQIllegalStateException, IOException;
 
    public UUID getUUID()
    {
@@ -106,7 +106,7 @@ public abstract class NodeManager implements HornetQComponent
    {
       synchronized (nodeIDGuard)
       {
-         this.nodeID = new SimpleString(nodeID);
+         this.nodeID = new String(nodeID);
          this.uuid = new UUID(UUID.TYPE_TIME_BASED, UUID.stringToBytes(nodeID));
       }
    }
@@ -119,7 +119,7 @@ public abstract class NodeManager implements HornetQComponent
       synchronized (nodeIDGuard)
       {
          uuid = generateUUID;
-         nodeID = new SimpleString(uuid.toString());
+         nodeID = new String(uuid.toString());
       }
    }
 

@@ -21,7 +21,7 @@ import java.nio.ByteBuffer;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
 import org.hornetq.utils.DataConstants;
@@ -591,19 +591,19 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
       return Float.intBitsToFloat(readInt());
    }
 
-   @Override
-   public SimpleString readNullableSimpleString()
-   {
-      int b = readByte();
-      if (b == DataConstants.NULL)
-      {
-         return null;
-      }
-      else
-      {
-         return readSimpleString();
-      }
-   }
+//   @Override
+//   public String readNullableString()
+//   {
+//      int b = readByte();
+//      if (b == DataConstants.NULL)
+//      {
+//         return null;
+//      }
+//      else
+//      {
+//         return readString();
+//      }
+//   }
 
    @Override
    public String readNullableString()
@@ -619,14 +619,14 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
       }
    }
 
-   @Override
-   public SimpleString readSimpleString()
-   {
-      int len = readInt();
-      byte[] data = new byte[len];
-      readBytes(data);
-      return new SimpleString(data);
-   }
+//   @Override
+//   public String readString()
+//   {
+//      int len = readInt();
+//      byte[] data = new byte[len];
+//      readBytes(data);
+//      return new String(data);
+//   }
 
    @Override
    public String readString()
@@ -648,7 +648,7 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
       }
       else
       {
-         return readSimpleString().toString();
+         return readString().toString();
       }
    }
 
@@ -685,22 +685,22 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
    }
 
    @Override
-   public void writeNullableSimpleString(final SimpleString val)
-   {
-      throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
-   }
-
-   @Override
    public void writeNullableString(final String val)
    {
       throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
    }
 
-   @Override
-   public void writeSimpleString(final SimpleString val)
-   {
-      throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
-   }
+//   @Override
+//   public void writeNullableString(final String val)
+//   {
+//      throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
+//   }
+
+//   @Override
+//   public void writeString(final String val)
+//   {
+//      throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
+//   }
 
    @Override
    public void writeString(final String val)

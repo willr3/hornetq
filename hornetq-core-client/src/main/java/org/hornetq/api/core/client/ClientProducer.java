@@ -15,7 +15,7 @@ package org.hornetq.api.core.client;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A ClientProducer is used to send messages to a specific address. Messages are then routed on the
@@ -47,7 +47,7 @@ public interface ClientProducer
     *
     * @return the address where messages will be sent
     */
-   SimpleString getAddress();
+   String getAddress();
 
    /**
     * Sends a message to an address. specified in {@link ClientSession#createProducer(String)} or
@@ -73,7 +73,7 @@ public interface ClientProducer
     * @param message the message to send
     * @throws HornetQException if an exception occurs while sending the message
     */
-   void send(SimpleString address, Message message) throws HornetQException;
+   //void send(String address, Message message) throws HornetQException;
 
    /**
     * Sends a message to the specified address instead of the ClientProducer's address. <br>

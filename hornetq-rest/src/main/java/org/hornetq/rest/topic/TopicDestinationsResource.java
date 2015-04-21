@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.client.HornetQTopic;
@@ -59,7 +58,7 @@ public class TopicDestinationsResource
          try
          {
 
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(topicName));
+            ClientSession.QueueQuery query = session.queueQuery(new String(topicName));
             if (!query.isExists())
             {
                session.createQueue(topicName, topicName, "__HQX=-1", true);
@@ -120,7 +119,7 @@ public class TopicDestinationsResource
       try
       {
 
-         SimpleString topicName = new SimpleString(name);
+         String topicName = new String(name);
          ClientSession.QueueQuery query = session.queueQuery(topicName);
          if (query.isExists())
          {
@@ -154,7 +153,7 @@ public class TopicDestinationsResource
          ClientSession session = manager.getSessionFactory().createSession(false, false, false);
          try
          {
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(name));
+            ClientSession.QueueQuery query = session.queueQuery(new String(name));
             if (!query.isExists())
             {
                System.err.println("Topic '" + name + "' does not exist");

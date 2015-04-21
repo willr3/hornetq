@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.paging.PagedMessage;
@@ -72,14 +72,14 @@ public final class Page implements Comparable<Page>
 
    private final StorageManager storageManager;
 
-   private final SimpleString storeName;
+   private final String storeName;
 
    /**
     * A list of subscriptions containing pending counters (with non tx adds) on this page
     */
    private Set<PageSubscriptionCounter> pendingCounters;
 
-   public Page(final SimpleString storeName,
+   public Page(final String storeName,
                final StorageManager storageManager,
                final SequentialFileFactory factory,
                final SequentialFile file,

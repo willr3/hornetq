@@ -17,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -40,7 +40,7 @@ import org.junit.Test;
 public class ReplicatedDistributionTest extends ClusterTestBase
 {
 
-   private static final SimpleString ADDRESS = new SimpleString("test.SomeAddress");
+   private static final String ADDRESS = new String("test.SomeAddress");
    private ClientSession sessionOne;
    private ClientSession sessionThree;
    private ClientConsumer consThree;
@@ -95,7 +95,7 @@ public class ReplicatedDistributionTest extends ClusterTestBase
 
          // System.out.println(i + " msg = " + msg);
 
-         int received = (Integer)msg.getObjectProperty(new SimpleString("key"));
+         int received = (Integer)msg.getObjectProperty(new String("key"));
 
          Assert.assertEquals(i, received);
 
@@ -155,7 +155,7 @@ public class ReplicatedDistributionTest extends ClusterTestBase
       for (int i = 0; i < 100; i++)
       {
          ClientMessage msg = sessionOne.createMessage(true);
-         msg.putIntProperty(new SimpleString("key"), i);
+         msg.putIntProperty(new String("key"), i);
          producer.send(msg);
       }
       sessionOne.commit();

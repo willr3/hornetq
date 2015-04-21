@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientSession;
@@ -48,7 +48,7 @@ public class ClientExitTest extends ClientTestBase
 
    private static final String MESSAGE_TEXT = RandomUtil.randomString();
 
-   private static final SimpleString QUEUE = new SimpleString("ClientExitTestQueue");
+   private static final String QUEUE = new String("ClientExitTestQueue");
 
    // Static ---------------------------------------------------------------------------------------
 

@@ -33,7 +33,7 @@ import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.client.impl.ServerLocatorInternal;
@@ -68,8 +68,8 @@ import org.hornetq.utils.FutureLatch;
 /**
  * A ClusterManager manages {@link ClusterConnection}s, {@link BroadcastGroup}s and {@link Bridge}s.
  * <p/>
- * Note that {@link ClusterConnectionBridge}s extend Bridges but are controlled over through
- * {@link ClusterConnectionImpl}. As a node is discovered a new {@link ClusterConnectionBridge} is
+ * Note that {link ClusterConnectionBridge}s extend Bridges but are controlled over through
+ * {@link ClusterConnectionImpl}. As a node is discovered a new {link ClusterConnectionBridge} is
  * deployed.
  *
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
@@ -507,7 +507,7 @@ public final class ClusterManager implements HornetQComponent
 
       Transformer transformer = instantiateTransformer(config.getTransformerClassName());
 
-      Binding binding = postOffice.getBinding(new SimpleString(config.getQueueName()));
+      Binding binding = postOffice.getBinding(new String(config.getQueueName()));
 
       if (binding == null)
       {
@@ -625,11 +625,11 @@ public final class ClusterManager implements HornetQComponent
                                      config.getRetryIntervalMultiplier(),
                                      config.getMaxRetryInterval(),
                                      nodeManager.getUUID(),
-                                     new SimpleString(config.getName()),
+                                     new String(config.getName()),
                                      queue,
                                      executorFactory.getExecutor(),
                                      FilterImpl.createFilter(config.getFilterString()),
-                                     SimpleString.toSimpleString(config.getForwardingAddress()),
+                                     (config.getForwardingAddress()),
                                      scheduledExecutor,
                                      transformer,
                                      config.isUseDuplicateDetection(),
@@ -805,8 +805,8 @@ public final class ClusterManager implements HornetQComponent
          clusterConnection = new ClusterConnectionImpl(this,
                                                        dg,
                                                        connector,
-                                                       new SimpleString(config.getName()),
-                                                       new SimpleString(config.getAddress()),
+                                                       new String(config.getName()),
+                                                       new String(config.getAddress()),
                                                        config.getMinLargeMessageSize(),
                                                        config.getClientFailureCheckPeriod(),
                                                        config.getConnectionTTL(),
@@ -847,8 +847,8 @@ public final class ClusterManager implements HornetQComponent
          clusterConnection = new ClusterConnectionImpl(this,
                                                        tcConfigs,
                                                        connector,
-                                                       new SimpleString(config.getName()),
-                                                       new SimpleString(config.getAddress()),
+                                                       new String(config.getName()),
+                                                       new String(config.getAddress()),
                                                        config.getMinLargeMessageSize(),
                                                        config.getClientFailureCheckPeriod(),
                                                        config.getConnectionTTL(),

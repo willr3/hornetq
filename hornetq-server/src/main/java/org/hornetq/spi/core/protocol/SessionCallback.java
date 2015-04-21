@@ -13,7 +13,7 @@
 
 package org.hornetq.spi.core.protocol;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.spi.core.remoting.ReadyListener;
 
@@ -26,9 +26,9 @@ import org.hornetq.spi.core.remoting.ReadyListener;
  */
 public interface SessionCallback
 {
-   void sendProducerCreditsMessage(int credits, SimpleString address);
+   void sendProducerCreditsMessage(int credits, String address);
 
-   void sendProducerCreditsFailMessage(int credits, SimpleString address);
+   void sendProducerCreditsFailMessage(int credits, String address);
 
    int sendMessage(ServerMessage message, long consumerID, int deliveryCount);
 

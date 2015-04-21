@@ -15,7 +15,6 @@ package org.hornetq.tests.integration.paging;
 
 import junit.framework.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -33,7 +32,7 @@ import org.junit.Test;
 public class PagingReceiveTest extends ServiceTestBase
 {
 
-   private static final SimpleString ADDRESS = new SimpleString("jms.queue.catalog-service.price.change.bm");
+   private static final String ADDRESS = new String("jms.queue.catalog-service.price.change.bm");
 
    private HornetQServer server;
 

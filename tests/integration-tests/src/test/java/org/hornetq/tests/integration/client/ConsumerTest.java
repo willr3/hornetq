@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -47,7 +47,7 @@ public class ConsumerTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private ServerLocator locator;
 
@@ -386,7 +386,7 @@ public class ConsumerTest extends ServiceTestBase
       final Set<Object> sessions = new ConcurrentHashSet<Object>();
       final AtomicInteger errors = new AtomicInteger(0);
 
-      final SimpleString QUEUE_RESPONSE = SimpleString.toSimpleString("QUEUE_RESPONSE");
+      final String QUEUE_RESPONSE = "QUEUE_RESPONSE";
 
       final int numberOfSessions = 50;
       final int numberOfMessages = 10;

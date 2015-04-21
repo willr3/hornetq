@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.transaction.impl.XidImpl;
 
 /**
@@ -40,10 +40,10 @@ public final class RandomUtil
       return UUID.randomUUID().toString();
    }
 
-   public static SimpleString randomSimpleString()
-   {
-      return new SimpleString(RandomUtil.randomString());
-   }
+//   public static String randomSString()
+//   {
+//      return new String(RandomUtil.randomString());
+//   }
 
    public static char randomChar()
    {

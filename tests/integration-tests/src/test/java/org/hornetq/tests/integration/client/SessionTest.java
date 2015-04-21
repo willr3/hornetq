@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInternalErrorException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -171,20 +171,20 @@ public class SessionTest extends ServiceTestBase
       clientSession.createQueue("a2", "q3", false);
       clientSession.createQueue("a2", "q4", false);
       clientSession.createQueue("a2", "q5", false);
-      BindingQuery resp = clientSession.bindingQuery(new SimpleString("a"));
-      List<SimpleString> queues = resp.getQueueNames();
+      BindingQuery resp = clientSession.bindingQuery(new String("a"));
+      List<String> queues = resp.getQueueNames();
       Assert.assertTrue(queues.isEmpty());
-      resp = clientSession.bindingQuery(new SimpleString("a1"));
+      resp = clientSession.bindingQuery(new String("a1"));
       queues = resp.getQueueNames();
       Assert.assertEquals(queues.size(), 2);
-      Assert.assertTrue(queues.contains(new SimpleString("q1")));
-      Assert.assertTrue(queues.contains(new SimpleString("q2")));
-      resp = clientSession.bindingQuery(new SimpleString("a2"));
+      Assert.assertTrue(queues.contains(new String("q1")));
+      Assert.assertTrue(queues.contains(new String("q2")));
+      resp = clientSession.bindingQuery(new String("a2"));
       queues = resp.getQueueNames();
       Assert.assertEquals(queues.size(), 3);
-      Assert.assertTrue(queues.contains(new SimpleString("q3")));
-      Assert.assertTrue(queues.contains(new SimpleString("q4")));
-      Assert.assertTrue(queues.contains(new SimpleString("q5")));
+      Assert.assertTrue(queues.contains(new String("q3")));
+      Assert.assertTrue(queues.contains(new String("q4")));
+      Assert.assertTrue(queues.contains(new String("q5")));
       clientSession.close();
    }
 
@@ -199,8 +199,8 @@ public class SessionTest extends ServiceTestBase
       ClientProducer cp = clientSession.createProducer("a1");
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
-      QueueQuery resp = clientSession.queueQuery(new SimpleString(queueName));
-      Assert.assertEquals(new SimpleString("a1"), resp.getAddress());
+      QueueQuery resp = clientSession.queueQuery(new String(queueName));
+      Assert.assertEquals(new String("a1"), resp.getAddress());
       Assert.assertEquals(2, resp.getConsumerCount());
       Assert.assertEquals(2, resp.getMessageCount());
       Assert.assertEquals(null, resp.getFilterString());
@@ -215,11 +215,11 @@ public class SessionTest extends ServiceTestBase
       clientSession.createQueue("a1", queueName, "foo=bar", false);
       clientSession.createConsumer(queueName);
       clientSession.createConsumer(queueName);
-      QueueQuery resp = clientSession.queueQuery(new SimpleString(queueName));
-      Assert.assertEquals(new SimpleString("a1"), resp.getAddress());
+      QueueQuery resp = clientSession.queueQuery(new String(queueName));
+      Assert.assertEquals(new String("a1"), resp.getAddress());
       Assert.assertEquals(2, resp.getConsumerCount());
       Assert.assertEquals(0, resp.getMessageCount());
-      Assert.assertEquals(new SimpleString("foo=bar"), resp.getFilterString());
+      Assert.assertEquals(new String("foo=bar"), resp.getFilterString());
       clientSession.close();
    }
 
@@ -228,7 +228,7 @@ public class SessionTest extends ServiceTestBase
    {
       cf = createSessionFactory(locator);
       ClientSession clientSession = cf.createSession(false, true, true);
-      QueueQuery resp = clientSession.queueQuery(new SimpleString(queueName));
+      QueueQuery resp = clientSession.queueQuery(new String(queueName));
       Assert.assertFalse(resp.isExists());
       Assert.assertEquals(null, resp.getAddress());
       clientSession.close();
@@ -342,7 +342,7 @@ public class SessionTest extends ServiceTestBase
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
-      Queue q = (Queue)server.getPostOffice().getBinding(new SimpleString(queueName)).getBindable();
+      Queue q = (Queue)server.getPostOffice().getBinding(new String(queueName)).getBindable();
       Assert.assertEquals(0, q.getMessageCount());
       clientSession.commit();
       Assert.assertEquals(10, q.getMessageCount());
@@ -366,7 +366,7 @@ public class SessionTest extends ServiceTestBase
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
-      Queue q = (Queue)server.getPostOffice().getBinding(new SimpleString(queueName)).getBindable();
+      Queue q = (Queue)server.getPostOffice().getBinding(new String(queueName)).getBindable();
       Assert.assertEquals(0, q.getMessageCount());
       clientSession.rollback();
       cp.send(clientSession.createMessage(false));
@@ -396,7 +396,7 @@ public class SessionTest extends ServiceTestBase
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
-      Queue q = (Queue)server.getPostOffice().getBinding(new SimpleString(queueName)).getBindable();
+      Queue q = (Queue)server.getPostOffice().getBinding(new String(queueName)).getBindable();
       Assert.assertEquals(10, q.getMessageCount());
       ClientConsumer cc = clientSession.createConsumer(queueName);
       clientSession.start();
@@ -456,7 +456,7 @@ public class SessionTest extends ServiceTestBase
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
       cp.send(clientSession.createMessage(false));
-      Queue q = (Queue)server.getPostOffice().getBinding(new SimpleString(queueName)).getBindable();
+      Queue q = (Queue)server.getPostOffice().getBinding(new String(queueName)).getBindable();
       Assert.assertEquals(10, q.getMessageCount());
       ClientConsumer cc = clientSession.createConsumer(queueName);
       clientSession.start();

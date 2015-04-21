@@ -1,6 +1,6 @@
 package org.hornetq.rest.util;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.rest.HornetQRestLogger;
 import org.hornetq.rest.HttpHeaderProperty;
@@ -30,7 +30,7 @@ public class HttpMessageHelper
 
    public static void buildMessage(ClientMessage message, Response.ResponseBuilder builder)
    {
-      for (SimpleString key : message.getPropertyNames())
+      for (String key : message.getPropertyNames())
       {
          String k = key.toString();
          String headerName = HttpHeaderProperty.fromPropertyName(k);
@@ -70,7 +70,7 @@ public class HttpMessageHelper
 
    public static void buildMessage(ClientMessage message, ClientRequest request, String contentType)
    {
-      for (SimpleString key : message.getPropertyNames())
+      for (String key : message.getPropertyNames())
       {
          String k = key.toString();
          String headerName = HttpHeaderProperty.fromPropertyName(k);

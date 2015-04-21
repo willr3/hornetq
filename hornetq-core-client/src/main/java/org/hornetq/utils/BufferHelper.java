@@ -14,7 +14,7 @@
 package org.hornetq.utils;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * Helper methods to read and write from HornetQBuffer.
@@ -27,7 +27,7 @@ public class BufferHelper
 {
 
    /** Size of a String as if it was a Nullable Simple String */
-   public static int sizeOfNullableSimpleString(String str)
+   public static int sizeOfNullableString(String str)
    {
       if (str == null)
       {
@@ -35,30 +35,30 @@ public class BufferHelper
       }
       else
       {
-         return DataConstants.SIZE_BOOLEAN + sizeOfSimpleString(str);
+         return DataConstants.SIZE_BOOLEAN + sizeOfString(str);
       }
    }
 
    /** Size of a String as it if was a Simple String*/
-   public static int sizeOfSimpleString(String str)
+   public static int sizeOfString(String str)
    {
       return DataConstants.SIZE_INT + str.length() * 2;
    }
 
-   public static void writeAsNullableSimpleString(HornetQBuffer buffer, String str)
+   public static void writeAsNullableString(HornetQBuffer buffer, String str)
    {
-      buffer.writeNullableSimpleString(SimpleString.toSimpleString(str));
+      buffer.writeNullableString((str));
    }
 
-   public static String readNullableSimpleStringAsString(HornetQBuffer buffer)
+   public static String readNullableStringAsString(HornetQBuffer buffer)
    {
-      SimpleString str = buffer.readNullableSimpleString();
+      String str = buffer.readNullableString();
       return str != null ? str.toString() : null;
    }
 
-   public static void writeAsSimpleString(HornetQBuffer buffer, String str)
+   public static void writeAsString(HornetQBuffer buffer, String str)
    {
-      buffer.writeSimpleString(new SimpleString(str));
+      buffer.writeString(new String(str));
    }
 
    /**

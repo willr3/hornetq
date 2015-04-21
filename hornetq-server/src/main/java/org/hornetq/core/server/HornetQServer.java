@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.BridgeConfiguration;
 import org.hornetq.core.config.Configuration;
@@ -139,7 +139,7 @@ public interface HornetQServer extends HornetQComponent
 
    ClusterManager getClusterManager();
 
-   SimpleString getNodeID();
+   String getNodeID();
 
    boolean isActive();
 
@@ -151,7 +151,7 @@ public interface HornetQServer extends HornetQComponent
     * @return {@code true} if the server was already initialized or if it was initialized within the
     * timeout period, {@code false} otherwise.
     * @throws InterruptedException
-    * @see CountDownLatch#await(long, TimeUnit)
+    * see CountDownLatch#await(long, TimeUnit)
     */
    boolean waitForActivation(long timeout, TimeUnit unit) throws InterruptedException;
 
@@ -163,29 +163,29 @@ public interface HornetQServer extends HornetQComponent
     * @return {@code true} if the server was already initialized or if it was initialized within the
     * timeout period, {@code false} otherwise.
     * @throws InterruptedException
-    * @see CountDownLatch#await(long, TimeUnit)
+    * see CountDownLatch#await(long, TimeUnit)
     */
    boolean waitForBackupSync(long timeout, TimeUnit unit) throws InterruptedException;
 
-   Queue createQueue(SimpleString address,
-                     SimpleString queueName,
-                     SimpleString filter,
+   Queue createQueue(String address,
+                     String queueName,
+                     String filter,
                      boolean durable,
                      boolean temporary) throws Exception;
 
-   Queue deployQueue(SimpleString address,
-                     SimpleString queueName,
-                     SimpleString filterString,
+   Queue deployQueue(String address,
+                     String queueName,
+                     String filterString,
                      boolean durable,
                      boolean temporary) throws Exception;
 
-   Queue locateQueue(SimpleString queueName) throws Exception;
+   Queue locateQueue(String queueName) throws Exception;
 
-   void destroyQueue(SimpleString queueName) throws Exception;
+   void destroyQueue(String queueName) throws Exception;
 
-   void destroyQueue(SimpleString queueName, ServerSession session) throws Exception;
+   void destroyQueue(String queueName, ServerSession session) throws Exception;
 
-   void destroyQueue(SimpleString queueName, ServerSession session, boolean checkConsumerCount) throws Exception;
+   void destroyQueue(String queueName, ServerSession session, boolean checkConsumerCount) throws Exception;
 
    String destroyConnectionWithSessionMetadata(String metaKey, String metaValue) throws Exception;
 
@@ -203,7 +203,7 @@ public interface HornetQServer extends HornetQComponent
 
    void deployDivert(DivertConfiguration config) throws Exception;
 
-   void destroyDivert(SimpleString name) throws Exception;
+   void destroyDivert(String name) throws Exception;
 
    ConnectorsService getConnectorsService();
 
@@ -234,7 +234,7 @@ public interface HornetQServer extends HornetQComponent
     * @param rc
     * @param pair
     * @param clusterConnection
-    * @throws HornetQAlreadyReplicatingException if replication is already taking place
+    * throws HornetQAlreadyReplicatingException if replication is already taking place
     * @throws HornetQException
     */
    void startReplication(CoreRemotingConnection rc, ClusterConnection clusterConnection,

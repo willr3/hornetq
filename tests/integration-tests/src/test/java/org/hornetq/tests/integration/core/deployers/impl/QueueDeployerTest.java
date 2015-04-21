@@ -16,7 +16,7 @@ import org.junit.Before;
 
 import org.junit.Test;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.deployers.impl.FileDeploymentManager;
 import org.hornetq.core.deployers.impl.QueueDeployer;
@@ -64,7 +64,7 @@ public class QueueDeployerTest extends ServiceTestBase
       assertEquals(1, queueNodes.getLength());
       deployer.deploy(queueNodes.item(0));
 
-      Bindings bindings = server.getPostOffice().getBindingsForAddress(SimpleString.toSimpleString("bar"));
+      Bindings bindings = server.getPostOffice().getBindingsForAddress(("bar"));
       assertEquals(1, bindings.getBindings().size());
       Binding binding = bindings.getBindings().iterator().next();
       assertTrue(binding instanceof LocalQueueBinding);

@@ -24,7 +24,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientProducer;
@@ -85,7 +85,7 @@ public class SessionCloseTest extends UnitTestCase
       {
          public void run() throws HornetQException
          {
-            session.createConsumer(RandomUtil.randomSimpleString());
+            session.createConsumer(RandomUtil.randomString());
          }
       });
 
@@ -93,8 +93,8 @@ public class SessionCloseTest extends UnitTestCase
       {
          public void run() throws HornetQException
          {
-            session.createQueue(RandomUtil.randomSimpleString(),
-                                RandomUtil.randomSimpleString(),
+            session.createQueue(RandomUtil.randomString(),
+                                RandomUtil.randomString(),
                                 RandomUtil.randomBoolean());
          }
       });
@@ -103,7 +103,7 @@ public class SessionCloseTest extends UnitTestCase
       {
          public void run() throws HornetQException
          {
-            session.createTemporaryQueue(RandomUtil.randomSimpleString(), RandomUtil.randomSimpleString());
+            session.createTemporaryQueue(RandomUtil.randomString(), RandomUtil.randomString());
          }
       });
 
@@ -143,7 +143,7 @@ public class SessionCloseTest extends UnitTestCase
       {
          public void run() throws HornetQException
          {
-            session.queueQuery(RandomUtil.randomSimpleString());
+            session.queueQuery(RandomUtil.randomString());
          }
       });
 
@@ -151,7 +151,7 @@ public class SessionCloseTest extends UnitTestCase
       {
          public void run() throws HornetQException
          {
-            session.bindingQuery(RandomUtil.randomSimpleString());
+            session.bindingQuery(RandomUtil.randomString());
          }
       });
 
@@ -229,8 +229,8 @@ public class SessionCloseTest extends UnitTestCase
    @Test
    public void testCloseHierarchy() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       ClientSession session = sf.createSession(false, true, true);
 

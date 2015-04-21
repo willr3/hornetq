@@ -20,7 +20,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HandleStatus;
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;
@@ -69,8 +69,8 @@ public class QueueTest extends UnitTestCase
    public void testConcurrentAddsDeliver() throws Exception
    {
       QueueImpl queue = (QueueImpl)queueFactory.createQueue(1,
-                                             new SimpleString("address1"),
-                                             new SimpleString("queue1"),
+                                             new String("address1"),
+                                             new String("queue1"),
                                              null,
                                              null,
                                              false,

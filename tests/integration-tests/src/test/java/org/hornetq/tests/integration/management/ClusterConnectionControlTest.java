@@ -27,7 +27,7 @@ import javax.management.MBeanServerFactory;
 
 import org.junit.Assert;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.management.ClusterConnectionControl;
@@ -170,7 +170,7 @@ public class ClusterConnectionControlTest extends ManagementTestBase
       Notification notif = notifListener.getNotifications().get(notifListener.getNotifications().size() - 1);
       Assert.assertEquals(CoreNotificationType.CLUSTER_CONNECTION_STOPPED, notif.getType());
       Assert.assertEquals(clusterConnectionControl.getName(), notif.getProperties()
-                                                                   .getSimpleStringProperty(new SimpleString("name"))
+                                                                   .getStringProperty(new String("name"))
                                                                    .toString());
 
       clusterConnectionControl.start();
@@ -179,7 +179,7 @@ public class ClusterConnectionControlTest extends ManagementTestBase
       notif = notifListener.getNotifications().get(notifListener.getNotifications().size() - 1);
       Assert.assertEquals(CoreNotificationType.CLUSTER_CONNECTION_STARTED, notif.getType());
       Assert.assertEquals(clusterConnectionControl.getName(), notif.getProperties()
-                                                                   .getSimpleStringProperty(new SimpleString("name"))
+                                                                   .getStringProperty(new String("name"))
                                                                    .toString());
    }
 

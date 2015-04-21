@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession.BindingQuery;
@@ -75,9 +75,9 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
 
    // Attributes ----------------------------------------------------
 
-   private static final SimpleString JMS_QUEUE_ADDRESS_PREFIX = new SimpleString("jms.queue.");
+   private static final String JMS_QUEUE_ADDRESS_PREFIX = new String("jms.queue.");
 
-   private static final SimpleString JMS_TOPIC_ADDRESS_PREFIX = new SimpleString("jms.topic.");
+   private static final String JMS_TOPIC_ADDRESS_PREFIX = new String("jms.topic.");
 
    protected final ServerLocatorInternal serverLocator;
 
@@ -89,13 +89,13 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
 
    private final UUID nodeUUID;
 
-   private final SimpleString name;
+   private final String name;
 
    private final Queue queue;
 
    private final Filter filter;
 
-   private final SimpleString forwardingAddress;
+   private final String forwardingAddress;
 
    private final java.util.Queue<MessageReference> refs = new ConcurrentLinkedQueue<MessageReference>();
 
@@ -159,11 +159,11 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
                      final double retryMultiplier,
                      final long maxRetryInterval,
                      final UUID nodeUUID,
-                     final SimpleString name,
+                     final String name,
                      final Queue queue,
                      final Executor executor,
                      final Filter filter,
-                     final SimpleString forwardingAddress,
+                     final String forwardingAddress,
                      final ScheduledExecutorService scheduledExecutor,
                      final Transformer transformer,
                      final boolean useDuplicateDetection,
@@ -203,11 +203,11 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
                      final double retryMultiplier,
                      final long maxRetryInterval,
                      final UUID nodeUUID,
-                     final SimpleString name,
+                     final String name,
                      final Queue queue,
                      final Executor executor,
                      final Filter filter,
-                     final SimpleString forwardingAddress,
+                     final String forwardingAddress,
                      final ScheduledExecutorService scheduledExecutor,
                      final Transformer transformer,
                      final boolean useDuplicateDetection,
@@ -311,7 +311,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), name);
+         props.putStringProperty(new String("name"), name);
          Notification notification = new Notification(nodeUUID.toString(), CoreNotificationType.BRIDGE_STARTED, props);
          notificationService.sendNotification(notification);
       }
@@ -437,7 +437,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), name);
+         props.putStringProperty(new String("name"), name);
          Notification notification = new Notification(nodeUUID.toString(), CoreNotificationType.BRIDGE_STOPPED, props);
          try
          {
@@ -462,7 +462,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), name);
+         props.putStringProperty(new String("name"), name);
          Notification notification = new Notification(nodeUUID.toString(), CoreNotificationType.BRIDGE_STOPPED, props);
          try
          {
@@ -493,7 +493,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
       executor.execute(new ConnectRunnable(this));
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -510,7 +510,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
 
    // SendAcknowledgementHandler implementation ---------------------
 
-   public SimpleString getForwardingAddress()
+   public String getForwardingAddress()
    {
       return forwardingAddress;
    }
@@ -627,7 +627,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
 
          final ServerMessage message = beforeForward(ref.getMessage());
 
-         final SimpleString dest;
+         final String dest;
 
          if (forwardingAddress != null)
          {
@@ -717,7 +717,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
       // fail(false);
    }
 
-   private void deliverLargeMessage(final SimpleString dest,
+   private void deliverLargeMessage(final String dest,
                                     final MessageReference ref,
                                     final LargeServerMessage message)
    {
@@ -755,7 +755,7 @@ public class BridgeImpl implements Bridge, SessionFailureListener, SendAcknowled
     * @param message
     * @return
     */
-   private HandleStatus deliverStandardMessage(SimpleString dest, final MessageReference ref, ServerMessage message)
+   private HandleStatus deliverStandardMessage(String dest, final MessageReference ref, ServerMessage message)
    {
       // if we failover during send then there is a chance that the
       // that this will throw a disconnect, we need to remove the message

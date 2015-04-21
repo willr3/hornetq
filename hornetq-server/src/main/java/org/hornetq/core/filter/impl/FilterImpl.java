@@ -18,7 +18,7 @@ import java.util.Map;
 
 import org.hornetq.api.core.FilterConstants;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.HornetQMessageBundle;
 import org.hornetq.core.server.HornetQServerLogger;
@@ -42,7 +42,7 @@ import org.hornetq.core.server.ServerMessage;
 * HQUserID - the user specified ID string (if any)
 * Any other identifers that appear in a filter expression represent header values for the message
 *
-* String values must be set as <code>SimpleString</code>, not <code>java.lang.String</code> (see JBMESSAGING-1307).
+* String values must be set as <code>String</code>, not <code>java.lang.String</code> (see JBMESSAGING-1307).
 * Derived from JBoss MQ version by
 *
 * @author <a href="mailto:Norbert.Lataille@m4x.org">Norbert Lataille</a>
@@ -60,9 +60,9 @@ public class FilterImpl implements Filter
 
    // Constants -----------------------------------------------------
 
-   private final SimpleString sfilterString;
+   private final String sfilterString;
 
-   private final Map<SimpleString, Identifier> identifiers;
+   private final Map<String, Identifier> identifiers;
 
    private final Object result;
 
@@ -74,39 +74,40 @@ public class FilterImpl implements Filter
     * @return null if <code>filterStr</code> is null or an empty String and a valid filter else
     * @throws HornetQException if the string does not correspond to a valid filter
     */
-   public static Filter createFilter(final String filterStr) throws HornetQException
-   {
-      return FilterImpl.createFilter(SimpleString.toSimpleString(filterStr == null ? null : filterStr.trim()));
-   }
+//   public static Filter createFilter(final String filterStr) throws HornetQException
+//   {
+//      return FilterImpl.createFilter((filterStr == null ? null : filterStr.trim()));
+//   }
 
    /**
     * @return null if <code>filterStr</code> is null or an empty String and a valid filter else
     * @throws HornetQException if the string does not correspond to a valid filter
     */
-   public static Filter createFilter(final SimpleString filterStr) throws HornetQException
+   public static Filter createFilter(final String filterStr) throws HornetQException
    {
-      if (filterStr == null || filterStr.length() == 0)
+      String trimFilterStr = filterStr == null ? null : filterStr.trim();
+      if (trimFilterStr == null || trimFilterStr.length() == 0)
       {
          return null;
       }
 
-      HashMap<SimpleString, Identifier> identifierMap = new HashMap<SimpleString, Identifier>();
+      HashMap<String, Identifier> identifierMap = new HashMap<String, Identifier>();
       Object result0;
       try
       {
-         result0 = new FilterParser().parse(filterStr, identifierMap);
+         result0 = new FilterParser().parse(trimFilterStr, identifierMap);
       }
       catch (Throwable e)
       {
-         HornetQServerLogger.LOGGER.invalidFilter(e, filterStr);
-         throw HornetQMessageBundle.BUNDLE.invalidFilter(e, filterStr);
+         HornetQServerLogger.LOGGER.invalidFilter(e, trimFilterStr);
+         throw HornetQMessageBundle.BUNDLE.invalidFilter(e, trimFilterStr);
       }
-      return new FilterImpl(filterStr, identifierMap, result0);
+      return new FilterImpl(trimFilterStr, identifierMap, result0);
    }
 
    // Constructors ---------------------------------------------------
 
-   private FilterImpl(final SimpleString str, final HashMap<SimpleString, Identifier> identifierMap,
+   private FilterImpl(final String str, final HashMap<String, Identifier> identifierMap,
                       final Object result0)
    {
       sfilterString = str;
@@ -117,7 +118,7 @@ public class FilterImpl implements Filter
 
    // Filter implementation ---------------------------------------------------------------------
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return sfilterString;
    }
@@ -217,12 +218,12 @@ public class FilterImpl implements Filter
 
    // Private --------------------------------------------------------------------------
 
-   private Object getHeaderFieldValue(final ServerMessage msg, final SimpleString fieldName)
+   private Object getHeaderFieldValue(final ServerMessage msg, final String fieldName)
    {
       if (FilterConstants.HORNETQ_USERID.equals(fieldName))
       {
          // It's the stringified (hex) representation of a user id that can be used in a selector expression
-         return new SimpleString("ID:" + msg.getUserID());
+         return new String("ID:" + msg.getUserID());
       }
       else if (FilterConstants.HORNETQ_PRIORITY.equals(fieldName))
       {

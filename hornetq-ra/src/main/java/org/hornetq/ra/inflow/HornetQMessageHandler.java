@@ -24,7 +24,7 @@ import javax.transaction.TransactionManager;
 import javax.transaction.xa.XAResource;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession.QueueQuery;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -100,7 +100,7 @@ public class HornetQMessageHandler implements MessageHandler
       String selector = spec.getMessageSelector();
 
       // Create the message consumer
-      SimpleString selectorString = selector == null || selector.trim().equals("") ? null : new SimpleString(selector);
+      String selectorString = selector == null || selector.trim().equals("") ? null : new String(selector);
       if (activation.isTopic() && spec.isSubscriptionDurable())
       {
          String subscriptionName = spec.getSubscriptionName();
@@ -113,7 +113,7 @@ public class HornetQMessageHandler implements MessageHandler
                                                " - client ID has not been set");
          }
 
-         SimpleString queueName = new SimpleString(HornetQDestination.createQueueNameForDurableSubscription(clientID,
+         String queueName = new String(HornetQDestination.createQueueNameForDurableSubscription(clientID,
                                                                                                             subscriptionName));
 
          QueueQuery subResponse = session.queueQuery(queueName);
@@ -140,7 +140,7 @@ public class HornetQMessageHandler implements MessageHandler
                }
             }
 
-            SimpleString oldFilterString = subResponse.getFilterString();
+            String oldFilterString = subResponse.getFilterString();
 
             boolean selectorChanged = selector == null && oldFilterString != null ||
                                       oldFilterString == null &&
@@ -148,7 +148,7 @@ public class HornetQMessageHandler implements MessageHandler
                                       (oldFilterString != null && selector != null && !oldFilterString.toString()
                                                                                                       .equals(selector));
 
-            SimpleString oldTopicName = subResponse.getAddress();
+            String oldTopicName = subResponse.getAddress();
 
             boolean topicChanged = !oldTopicName.equals(activation.getAddress());
 
@@ -165,12 +165,12 @@ public class HornetQMessageHandler implements MessageHandler
       }
       else
       {
-         SimpleString tempQueueName;
+         String tempQueueName;
          if (activation.isTopic())
          {
             if (activation.getTopicTemporaryQueue() == null)
             {
-               tempQueueName = new SimpleString(UUID.randomUUID().toString());
+               tempQueueName = new String(UUID.randomUUID().toString());
                session.createTemporaryQueue(activation.getAddress(), tempQueueName, selectorString);
                activation.setTopicTemporaryQueue(tempQueueName);
             }
@@ -260,7 +260,7 @@ public class HornetQMessageHandler implements MessageHandler
          if (activation.getTopicTemporaryQueue() != null)
          {
             // We need to delete temporary topics when the activation is stopped or messages will build up on the server
-            SimpleString tmpQueue = activation.getTopicTemporaryQueue();
+            String tmpQueue = activation.getTopicTemporaryQueue();
             QueueQuery subResponse = session.queueQuery(tmpQueue);
             if (subResponse.getConsumerCount() == 0)
             {

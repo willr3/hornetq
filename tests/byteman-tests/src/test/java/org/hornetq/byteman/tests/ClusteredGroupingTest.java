@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.server.HornetQServer;
@@ -90,7 +90,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       waitForBindings(0, "queues.testaddress", 1, 1, false);
       waitForBindings(1, "queues.testaddress", 1, 0, false);
 
-      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
 
       latch = new CountDownLatch(1);
       latch2 = new CountDownLatch(1);
@@ -103,7 +103,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       {
          try
          {
-            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
          }
          catch (HornetQNonExistentQueueException e)
          {
@@ -172,7 +172,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       waitForBindings(1, "queues.testaddress", 2, 1, false);
       waitForBindings(2, "queues.testaddress", 2, 0, false);
 
-      sendWithProperty(1, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(1, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
 
       latch = new CountDownLatch(1);
       latch2 = new CountDownLatch(1);
@@ -186,7 +186,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       {
          try
          {
-            sendWithProperty(1, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+            sendWithProperty(1, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
          }
          catch (HornetQNonExistentQueueException e)
          {
@@ -257,7 +257,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       waitForBindings(1, "queues.testaddress", 2, 1, false);
       waitForBindings(2, "queues.testaddress", 2, 0, false);
 
-      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
 
       latch = new CountDownLatch(1);
       latch2 = new CountDownLatch(1);
@@ -271,7 +271,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       {
          try
          {
-            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
          }
          catch (HornetQNonExistentQueueException e)
          {
@@ -350,7 +350,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       waitForBindings(2, "queues.testaddress", 3, 0, false);
       waitForBindings(3, "queues.testaddress", 3, 1, false);
 
-      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
 
       latch = new CountDownLatch(1);
       latch2 = new CountDownLatch(1);
@@ -364,7 +364,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
       {
          try
          {
-            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+            sendWithProperty(0, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
          }
          catch (HornetQNonExistentQueueException e)
          {
@@ -379,17 +379,17 @@ public class ClusteredGroupingTest extends ClusterTestBase
       getServer(2).start();
       waitForBindings(2, "queues.testaddress", 1, 0, true);
       waitForBindings(2, "queues.testaddress", 3, 0, false);
-      sendWithProperty(3, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(3, "queues.testaddress", 1, true, Message.HDR_GROUP_ID, new String("id1"));
       Thread.sleep(2000);
       assertHandlersAreSame(getServer(0), getServer(1), getServer(2), getServer(3));
    }
 
    private void assertHandlersAreSame(HornetQServer server, HornetQServer... qServers)
    {
-      SimpleString id = server.getGroupingHandler().getProposal(new SimpleString("id1.queue0"), false).getClusterName();
+      String id = server.getGroupingHandler().getProposal(new String("id1.queue0"), false).getClusterName();
       for (HornetQServer qServer : qServers)
       {
-         Response proposal = qServer.getGroupingHandler().getProposal(new SimpleString("id1.queue0"), false);
+         Response proposal = qServer.getGroupingHandler().getProposal(new String("id1.queue0"), false);
          if (proposal != null)
          {
             assertEquals(qServer.getIdentity() + " is incorrect", id, proposal.getChosenClusterName());
@@ -401,7 +401,7 @@ public class ClusteredGroupingTest extends ClusterTestBase
    static CountDownLatch latch2;
    static Thread main;
 
-   public static void pause(SimpleString clusterName)
+   public static void pause(String clusterName)
    {
       if (clusterName.toString().startsWith("queue0"))
       {
@@ -421,8 +421,8 @@ public class ClusteredGroupingTest extends ClusterTestBase
    {
       if (notification.getType() == CoreNotificationType.BINDING_REMOVED)
       {
-         SimpleString clusterName = notification.getProperties()
-            .getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = notification.getProperties()
+            .getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
          boolean inMain = main == Thread.currentThread();
          if (clusterName.toString().startsWith("queue0") && !inMain)
          {

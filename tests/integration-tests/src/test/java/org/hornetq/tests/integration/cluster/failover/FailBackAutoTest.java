@@ -16,7 +16,7 @@ package org.hornetq.tests.integration.cluster.failover;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -115,7 +115,7 @@ public class FailBackAutoTest extends FailoverTestBase
 
    /**
     * @throws Exception
-    * @throws HornetQException
+    * throws HornetQException
     */
    private void verifyMessageOnServer(final int server, final int numberOfMessages) throws Exception
    {
@@ -309,7 +309,7 @@ public class FailBackAutoTest extends FailoverTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte)1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -324,7 +324,7 @@ public class FailBackAutoTest extends FailoverTestBase
 
          Assert.assertEquals("aardvarks", message2.getBodyBuffer().readString());
 
-         Assert.assertEquals(i, message2.getObjectProperty(new SimpleString("count")));
+         Assert.assertEquals(i, message2.getObjectProperty(new String("count")));
 
          message2.acknowledge();
       }

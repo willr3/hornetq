@@ -1,6 +1,6 @@
 package org.hornetq.tests.integration.ra;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -77,7 +77,7 @@ public class HornetQClusteredTest extends HornetQRAClusteredTestBase
 
       HornetQActivation activation =  lookupActivation(qResourceAdapter);
 
-      SimpleString tempQueue = activation.getTopicTemporaryQueue();
+      String tempQueue = activation.getTopicTemporaryQueue();
 
       assertNotNull(server.locateQueue(tempQueue));
       assertNotNull(secondaryServer.locateQueue(tempQueue));

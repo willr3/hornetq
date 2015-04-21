@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -1066,7 +1066,7 @@ public abstract class ServiceTestBase extends UnitTestCase
 
          totConsumers = 0;
 
-         Bindings bindings = po.getBindingsForAddress(new SimpleString(address));
+         Bindings bindings = po.getBindingsForAddress(new String(address));
 
          for (Binding binding : bindings.getBindings())
          {

@@ -24,7 +24,7 @@ package org.hornetq.core.filter.impl;
 
 import java.util.HashSet;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientMessageBundle;
 
 /**
@@ -949,7 +949,7 @@ public final class Operator
             throwBadObjectException(class3);
          }
 
-         SimpleString escapeString = (SimpleString)arg3;
+         String escapeString = (String)arg3;
          if (escapeString.length() != 1)
          {
             throw new Exception("LIKE ESCAPE: Bad escape character " + escapeString.toString());
@@ -1054,7 +1054,7 @@ public final class Operator
 
       className = arg1.getClass();
 
-      if (className == SimpleString.class)
+      if (className == String.class)
       {
          class1 = Operator.SIMPLE_STRING;
       }
@@ -1127,7 +1127,7 @@ public final class Operator
 
       className = arg2.getClass();
 
-      if (className == SimpleString.class)
+      if (className == String.class)
       {
          class2 = Operator.SIMPLE_STRING;
       }
@@ -1200,7 +1200,7 @@ public final class Operator
 
       className = arg3.getClass();
 
-      if (className == SimpleString.class)
+      if (className == String.class)
       {
          class3 = Operator.SIMPLE_STRING;
       }
@@ -1323,7 +1323,7 @@ public final class Operator
       switch (class1)
       {
          case SIMPLE_STRING:
-            return "SimpleString";
+            return "String";
          case LONG:
             return "Long";
          case DOUBLE:

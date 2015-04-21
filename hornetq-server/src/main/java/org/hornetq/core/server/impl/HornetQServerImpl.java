@@ -48,7 +48,7 @@ import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.api.core.HornetQInternalErrorException;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClusterTopologyListener;
 import org.hornetq.api.core.client.HornetQClient;
@@ -518,7 +518,7 @@ public class HornetQServerImpl implements HornetQServer
    @Override
    public boolean isAddressBound(String address) throws Exception
    {
-      return postOffice.isAddressBound(SimpleString.toSimpleString(address));
+      return postOffice.isAddressBound((address));
    }
 
    public void threadDump(final String reason)
@@ -709,7 +709,7 @@ public class HornetQServerImpl implements HornetQServer
       activationLatch.setCount(1);
 
       // to display in the log message
-      SimpleString tempNodeID = getNodeID();
+      String tempNodeID = getNodeID();
       if (activation != null)
       {
          activation.close(failoverOnServerShutdown);
@@ -1006,7 +1006,7 @@ public class HornetQServerImpl implements HornetQServer
                                    this,
                                    configuration.getManagementAddress(),
                                    defaultAddress == null ? null
-                                      : new SimpleString(defaultAddress),
+                                      : new String(defaultAddress),
                                    callback,
                                    context);
    }
@@ -1103,21 +1103,21 @@ public class HornetQServerImpl implements HornetQServer
       return queueFactory;
    }
 
-   public SimpleString getNodeID()
+   public String getNodeID()
    {
       return nodeManager == null ? null : nodeManager.getNodeId();
    }
 
-   public Queue createQueue(final SimpleString address,
-                            final SimpleString queueName,
-                            final SimpleString filterString,
+   public Queue createQueue(final String address,
+                            final String queueName,
+                            final String filterString,
                             final boolean durable,
                             final boolean temporary) throws Exception
    {
       return createQueue(address, queueName, filterString, durable, temporary, false);
    }
 
-   public Queue locateQueue(SimpleString queueName) throws Exception
+   public Queue locateQueue(String queueName) throws Exception
    {
       Binding binding = postOffice.getBinding(queueName);
 
@@ -1136,9 +1136,9 @@ public class HornetQServerImpl implements HornetQServer
       return (Queue)binding.getBindable();
    }
 
-   public Queue deployQueue(final SimpleString address,
-                            final SimpleString queueName,
-                            final SimpleString filterString,
+   public Queue deployQueue(final String address,
+                            final String queueName,
+                            final String filterString,
                             final boolean durable,
                             final boolean temporary) throws Exception
    {
@@ -1147,7 +1147,7 @@ public class HornetQServerImpl implements HornetQServer
       return createQueue(address, queueName, filterString, durable, temporary, true);
    }
 
-   public void destroyQueue(final SimpleString queueName) throws Exception
+   public void destroyQueue(final String queueName) throws Exception
    {
       // The session is passed as an argument to verify if the user has authorization to delete the queue
       // in some cases (such as temporary queues) this should happen regardless of the authorization
@@ -1155,12 +1155,12 @@ public class HornetQServerImpl implements HornetQServer
       destroyQueue(queueName, null, true);
    }
 
-   public void destroyQueue(final SimpleString queueName, final ServerSession session) throws Exception
+   public void destroyQueue(final String queueName, final ServerSession session) throws Exception
    {
       destroyQueue(queueName, session, true);
    }
 
-   public void destroyQueue(final SimpleString queueName, final ServerSession session, final boolean checkConsumerCount) throws Exception
+   public void destroyQueue(final String queueName, final ServerSession session, final boolean checkConsumerCount) throws Exception
    {
       addressSettingsRepository.clearCache();
 
@@ -1273,7 +1273,7 @@ public class HornetQServerImpl implements HornetQServer
          return;
       }
 
-      SimpleString sName = new SimpleString(config.getName());
+      String sName = new String(config.getName());
 
       if (postOffice.getBinding(sName) != null)
       {
@@ -1282,15 +1282,15 @@ public class HornetQServerImpl implements HornetQServer
          return;
       }
 
-      SimpleString sAddress = new SimpleString(config.getAddress());
+      String sAddress = new String(config.getAddress());
 
       Transformer transformer = instantiateTransformer(config.getTransformerClassName());
 
       Filter filter = FilterImpl.createFilter(config.getFilterString());
 
-      Divert divert = new DivertImpl(new SimpleString(config.getForwardingAddress()),
+      Divert divert = new DivertImpl(new String(config.getForwardingAddress()),
                                      sName,
-                                     new SimpleString(config.getRoutingName()),
+                                     new String(config.getRoutingName()),
                                      config.isExclusive(),
                                      filter,
                                      transformer,
@@ -1304,7 +1304,7 @@ public class HornetQServerImpl implements HornetQServer
       managementService.registerDivert(divert, config);
    }
 
-   public void destroyDivert(SimpleString name) throws Exception
+   public void destroyDivert(String name) throws Exception
    {
       Binding binding = postOffice.getBinding(name);
       if (binding == null)
@@ -1680,9 +1680,9 @@ public class HornetQServerImpl implements HornetQServer
    {
       for (CoreQueueConfiguration config : configuration.getQueueConfigurations())
       {
-         deployQueue(SimpleString.toSimpleString(config.getAddress()),
-                     SimpleString.toSimpleString(config.getName()),
-                     SimpleString.toSimpleString(config.getFilterString()),
+         deployQueue((config.getAddress()),
+                     (config.getName()),
+                     (config.getFilterString()),
                      config.isDurable(),
                      false);
       }
@@ -1736,7 +1736,7 @@ public class HornetQServerImpl implements HornetQServer
             else
             {
 
-               SimpleString newName = queueBindingInfo.getQueueName().concat("-" + (duplicateID++));
+               String newName = queueBindingInfo.getQueueName().concat("-" + (duplicateID++));
                HornetQServerLogger.LOGGER.queueDuplicatedRenaming(queueBindingInfo.getQueueName().toString(), newName.toString());
                queueBindingInfo.replaceQueueName(newName);
             }
@@ -1780,7 +1780,7 @@ public class HornetQServerImpl implements HornetQServer
          }
       }
 
-      Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap = new HashMap<SimpleString, List<Pair<byte[], Long>>>();
+      Map<String, List<Pair<byte[], Long>>> duplicateIDMap = new HashMap<String, List<Pair<byte[], Long>>>();
 
       HashSet<Pair<Long, Long>> pendingLargeMessages = new HashSet<Pair<Long, Long>>();
 
@@ -1796,9 +1796,9 @@ public class HornetQServerImpl implements HornetQServer
                                                          pendingNonTXPageCounter);
 
 
-      for (Map.Entry<SimpleString, List<Pair<byte[], Long>>> entry : duplicateIDMap.entrySet())
+      for (Map.Entry<String, List<Pair<byte[], Long>>> entry : duplicateIDMap.entrySet())
       {
-         SimpleString address = entry.getKey();
+         String address = entry.getKey();
 
          DuplicateIDCache cache = postOffice.getDuplicateIDCache(address);
 
@@ -1848,9 +1848,9 @@ public class HornetQServerImpl implements HornetQServer
 
       Transaction txRecoverCounter = new TransactionImpl(storageManager);
 
-      Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = generateMapsOnPendingCount(queues, pendingNonTXPageCounter, txRecoverCounter);
+      Map<String, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = generateMapsOnPendingCount(queues, pendingNonTXPageCounter, txRecoverCounter);
 
-      for (SimpleString address : perAddressMap.keySet())
+      for (String address : perAddressMap.keySet())
       {
          PagingStore store = pagingManager.getPageStore(address);
          Map<Long, Map<Long, List<PageCountPending>>> perPageMap = perAddressMap.get(address);
@@ -1943,11 +1943,11 @@ public class HornetQServerImpl implements HornetQServer
     * @return
     * @throws Exception
     */
-   private Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>>
+   private Map<String, Map<Long, Map<Long, List<PageCountPending>>>>
    generateMapsOnPendingCount(Map<Long, Queue> queues, List<PageCountPending>
       pendingNonTXPageCounter, Transaction txRecoverCounter) throws Exception
    {
-      Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = new HashMap<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>>();
+      Map<String, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = new HashMap<String, Map<Long, Map<Long, List<PageCountPending>>>>();
       for (PageCountPending pgCount : pendingNonTXPageCounter)
       {
          long queueID = pgCount.getQueueID();
@@ -1966,7 +1966,7 @@ public class HornetQServerImpl implements HornetQServer
          }
 
          // Level 1 on the structure, per address
-         SimpleString address = queue.getAddress();
+         String address = queue.getAddress();
 
          Map<Long, Map<Long, List<PageCountPending>>> perPageMap = perAddressMap.get(address);
 
@@ -2027,9 +2027,9 @@ public class HornetQServerImpl implements HornetQServer
       }
    }
 
-   private Queue createQueue(final SimpleString address,
-                             final SimpleString queueName,
-                             final SimpleString filterString,
+   private Queue createQueue(final String address,
+                             final String queueName,
+                             final String filterString,
                              final boolean durable,
                              final boolean temporary,
                              final boolean ignoreIfExists) throws Exception
@@ -2857,7 +2857,7 @@ public class HornetQServerImpl implements HornetQServer
       {
          if (configuration.getClusterConfigurations().isEmpty())
             return false;
-         SimpleString nodeId0;
+         String nodeId0;
          try
          {
             nodeId0 = nodeManager.readNodeId();
@@ -2927,10 +2927,10 @@ public class HornetQServerImpl implements HornetQServer
    {
       volatile boolean isNodePresent = false;
 
-      private final SimpleString nodeId;
+      private final String nodeId;
       private final CountDownLatch latch = new CountDownLatch(1);
 
-      public NodeIdListener(SimpleString nodeId)
+      public NodeIdListener(String nodeId)
       {
          this.nodeId = nodeId;
       }

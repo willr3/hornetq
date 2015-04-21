@@ -12,6 +12,7 @@
  */
 
 package org.hornetq.tests.unit.core.remoting;
+import org.hornetq.api.core.SSU;
 import org.junit.Before;
 import org.junit.After;
 
@@ -20,7 +21,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
 
@@ -62,6 +63,32 @@ public abstract class HornetQBufferTestBase extends UnitTestCase
 
    protected abstract HornetQBuffer createBuffer();
 
+//   @Test
+//   public void testNullString() throws Exception
+//   {
+//      Assert.assertNull(putAndGetNullableString(null));
+//   }
+
+//   @Test
+//   public void testEmptyString() throws Exception
+//   {
+//      String result = putAndGetNullableString("");
+//
+//      Assert.assertNotNull(result);
+//      Assert.assertEquals("", result);
+//   }
+
+//   @Test
+//   public void testNonEmptyString() throws Exception
+//   {
+//      String junk = RandomUtil.randomString();
+//
+//      String result = putAndGetNullableString(junk);
+//
+//      Assert.assertNotNull(result);
+//      Assert.assertEquals(junk, result);
+//   }
+
    @Test
    public void testNullString() throws Exception
    {
@@ -71,47 +98,21 @@ public abstract class HornetQBufferTestBase extends UnitTestCase
    @Test
    public void testEmptyString() throws Exception
    {
-      String result = putAndGetNullableString("");
+      String emptyString = new String("");
+      String result = putAndGetNullableString(emptyString);
 
       Assert.assertNotNull(result);
-      Assert.assertEquals("", result);
+      UnitTestCase.assertEqualsByteArrays(SSU.getData(emptyString), SSU.getData(result));
    }
 
    @Test
    public void testNonEmptyString() throws Exception
    {
       String junk = RandomUtil.randomString();
-
       String result = putAndGetNullableString(junk);
 
       Assert.assertNotNull(result);
-      Assert.assertEquals(junk, result);
-   }
-
-   @Test
-   public void testNullSimpleString() throws Exception
-   {
-      Assert.assertNull(putAndGetNullableSimpleString(null));
-   }
-
-   @Test
-   public void testEmptySimpleString() throws Exception
-   {
-      SimpleString emptySimpleString = new SimpleString("");
-      SimpleString result = putAndGetNullableSimpleString(emptySimpleString);
-
-      Assert.assertNotNull(result);
-      UnitTestCase.assertEqualsByteArrays(emptySimpleString.getData(), result.getData());
-   }
-
-   @Test
-   public void testNonEmptySimpleString() throws Exception
-   {
-      SimpleString junk = RandomUtil.randomSimpleString();
-      SimpleString result = putAndGetNullableSimpleString(junk);
-
-      Assert.assertNotNull(result);
-      UnitTestCase.assertEqualsByteArrays(junk.getData(), result.getData());
+      UnitTestCase.assertEqualsByteArrays(SSU.getData(junk), SSU.getData(junk));
    }
 
    @Test
@@ -347,12 +348,12 @@ public abstract class HornetQBufferTestBase extends UnitTestCase
       return wrapper.readNullableString();
    }
 
-   private SimpleString putAndGetNullableSimpleString(final SimpleString nullableSimpleString) throws Exception
-   {
-      wrapper.writeNullableSimpleString(nullableSimpleString);
-
-      return wrapper.readNullableSimpleString();
-   }
+//   private String putAndGetNullableString(final String nullableString) throws Exception
+//   {
+//      wrapper.writeNullableString(nullableString);
+//
+//      return wrapper.readNullableString();
+//   }
 
    // Inner classes -------------------------------------------------
 }

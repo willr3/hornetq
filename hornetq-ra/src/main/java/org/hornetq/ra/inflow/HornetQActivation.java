@@ -33,7 +33,6 @@ import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -102,7 +101,7 @@ public class HornetQActivation
    /**
     * The name of the temporary subscription name that all the sessions will share
     */
-   private SimpleString topicTemporaryQueue;
+   private String topicTemporaryQueue;
 
    private final List<HornetQMessageHandler> handlers = new ArrayList<HornetQMessageHandler>();
 
@@ -267,7 +266,7 @@ public class HornetQActivation
    /**
     * @return the topicTemporaryQueue
     */
-   public SimpleString getTopicTemporaryQueue()
+   public String getTopicTemporaryQueue()
    {
       return topicTemporaryQueue;
    }
@@ -275,7 +274,7 @@ public class HornetQActivation
    /**
     * @param topicTemporaryQueue the topicTemporaryQueue to set
     */
-   public void setTopicTemporaryQueue(SimpleString topicTemporaryQueue)
+   public void setTopicTemporaryQueue(String topicTemporaryQueue)
    {
       this.topicTemporaryQueue = topicTemporaryQueue;
    }
@@ -559,7 +558,7 @@ public class HornetQActivation
       }
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return destination.getSimpleAddress();
    }

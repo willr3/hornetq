@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.api.core.management.ResourceNames;
@@ -940,7 +940,7 @@ public class JMSServerManagerImpl implements JMSServerManager, ActivateCallback
       {
          for (String queueName : addressControl.getQueueNames())
          {
-            Binding binding = server.getPostOffice().getBinding(new SimpleString(queueName));
+            Binding binding = server.getPostOffice().getBinding(new String(queueName));
             if (binding == null)
             {
                HornetQJMSServerLogger.LOGGER.noQueueOnTopic(queueName, name);
@@ -950,7 +950,7 @@ public class JMSServerManagerImpl implements JMSServerManager, ActivateCallback
             // We can't remove the remote binding. As this would be the bridge associated with the topic on this case
             if (binding.getType() != BindingType.REMOTE_QUEUE)
             {
-               server.destroyQueue(SimpleString.toSimpleString(queueName), null, true);
+               server.destroyQueue((queueName), null, true);
             }
          }
 
@@ -1237,7 +1237,7 @@ public class JMSServerManagerImpl implements JMSServerManager, ActivateCallback
    private void sendNotification(JMSNotificationType type, String message)
    {
       TypedProperties prop = new TypedProperties();
-      prop.putSimpleStringProperty(JMSNotificationType.MESSAGE, SimpleString.toSimpleString(message));
+      prop.putStringProperty(JMSNotificationType.MESSAGE, (message));
       Notification notif = new Notification(null, type, prop);
       try
       {
@@ -1293,9 +1293,9 @@ public class JMSServerManagerImpl implements JMSServerManager, ActivateCallback
             coreFilterString = SelectorTranslator.convertToHornetQFilterString(selectorString);
          }
 
-         Queue queue = server.deployQueue(SimpleString.toSimpleString(hqQueue.getAddress()),
-                                          SimpleString.toSimpleString(hqQueue.getAddress()),
-                                          SimpleString.toSimpleString(coreFilterString),
+         Queue queue = server.deployQueue((hqQueue.getAddress()),
+                                          (hqQueue.getAddress()),
+                                          (coreFilterString),
                                           durable,
                                           false);
 
@@ -1331,9 +1331,9 @@ public class JMSServerManagerImpl implements JMSServerManager, ActivateCallback
          // checks when routing messages to a topic that
          // does not exist - otherwise we would not be able to distinguish from a non existent topic and one with no
          // subscriptions - core has no notion of a topic
-         server.deployQueue(SimpleString.toSimpleString(hqTopic.getAddress()),
-                            SimpleString.toSimpleString(hqTopic.getAddress()),
-                            SimpleString.toSimpleString(JMSServerManagerImpl.REJECT_FILTER),
+         server.deployQueue((hqTopic.getAddress()),
+                            (hqTopic.getAddress()),
+                            (JMSServerManagerImpl.REJECT_FILTER),
                             true,
                             false);
 

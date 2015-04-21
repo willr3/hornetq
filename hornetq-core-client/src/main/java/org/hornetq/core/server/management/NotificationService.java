@@ -23,8 +23,8 @@ public interface NotificationService
    /**
     * the message corresponding to a notification will always contain the properties:
     * <ul>
-    * <li><code>ManagementHelper.HDR_NOTIFICATION_TYPE</code> - the type of notification (SimpleString)</li>
-    * <li><code>ManagementHelper.HDR_NOTIFICATION_MESSAGE</code> - a message contextual to the notification (SimpleString)</li>
+    * <li><code>ManagementHelper.HDR_NOTIFICATION_TYPE</code> - the type of notification (String)</li>
+    * <li><code>ManagementHelper.HDR_NOTIFICATION_MESSAGE</code> - a message contextual to the notification (String)</li>
     * <li><code>ManagementHelper.HDR_NOTIFICATION_TIMESTAMP</code> - the timestamp when the notification occured (long)</li>
     * </ul>
     * <p/>

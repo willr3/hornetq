@@ -23,7 +23,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.IOAsyncTask;
 import org.hornetq.core.journal.Journal;
 import org.hornetq.core.journal.JournalLoadInformation;
@@ -215,18 +215,18 @@ public class NullStorageManager implements StorageManager
    }
 
    @Override
-   public void storeDuplicateID(final SimpleString address, final byte[] duplID, final long recordID) throws Exception
+   public void storeDuplicateID(final String address, final byte[] duplID, final long recordID) throws Exception
    {
    }
 
    @Override
-   public void storeDuplicateIDTransactional(final long txID, final SimpleString address, final byte[] duplID,
+   public void storeDuplicateIDTransactional(final long txID, final String address, final byte[] duplID,
                                              final long recordID) throws Exception
    {
    }
 
    @Override
-   public void updateDuplicateIDTransactional(final long txID, final SimpleString address, final byte[] duplID,
+   public void updateDuplicateIDTransactional(final long txID, final String address, final byte[] duplID,
                                               final long recordID) throws Exception
    {
    }
@@ -314,7 +314,7 @@ public class NullStorageManager implements StorageManager
                                                     final ResourceManager resourceManager,
                                                     final Map<Long, Queue> queues,
                                                     final Map<Long, QueueBindingInfo> queueInfos,
-                                                    final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                                    final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                                     final Set<Pair<Long, Long>> pendingLargeMessages,
                                                     List<PageCountPending> pendingNonTXPageCounter) throws Exception
    {
@@ -332,12 +332,12 @@ public class NullStorageManager implements StorageManager
    }
 
    @Override
-   public void pageClosed(final SimpleString storeName, final int pageNumber)
+   public void pageClosed(final String storeName, final int pageNumber)
    {
    }
 
    @Override
-   public void pageDeleted(final SimpleString storeName, final int pageNumber)
+   public void pageDeleted(final String storeName, final int pageNumber)
    {
    }
 
@@ -424,12 +424,12 @@ public class NullStorageManager implements StorageManager
    }
 
    @Override
-   public void deleteAddressSetting(final SimpleString addressMatch) throws Exception
+   public void deleteAddressSetting(final String addressMatch) throws Exception
    {
    }
 
    @Override
-   public void deleteSecurityRoles(final SimpleString addressMatch) throws Exception
+   public void deleteSecurityRoles(final String addressMatch) throws Exception
    {
    }
 

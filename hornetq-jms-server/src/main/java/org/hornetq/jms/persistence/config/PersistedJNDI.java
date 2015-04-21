@@ -65,13 +65,13 @@ public class PersistedJNDI implements EncodingSupport
    public void decode(HornetQBuffer buffer)
    {
       type = PersistedType.getType(buffer.readByte());
-      name = buffer.readSimpleString().toString();
+      name = buffer.readString().toString();
       int jndiArraySize = buffer.readInt();
       jndi = new ArrayList<String>(jndiArraySize);
 
       for (int i = 0; i < jndiArraySize; i++)
       {
-         jndi.add(buffer.readSimpleString().toString());
+         jndi.add(buffer.readString().toString());
       }
    }
 
@@ -79,11 +79,11 @@ public class PersistedJNDI implements EncodingSupport
    public void encode(HornetQBuffer buffer)
    {
       buffer.writeByte(type.getType());
-      BufferHelper.writeAsSimpleString(buffer, name);
+      BufferHelper.writeAsString(buffer, name);
       buffer.writeInt(jndi.size());
       for (String jndiEl : jndi)
       {
-         BufferHelper.writeAsSimpleString(buffer, jndiEl);
+         BufferHelper.writeAsString(buffer, jndiEl);
       }
    }
 
@@ -91,7 +91,7 @@ public class PersistedJNDI implements EncodingSupport
    public int getEncodeSize()
    {
       return DataConstants.SIZE_BYTE +
-         BufferHelper.sizeOfSimpleString(name) +
+         BufferHelper.sizeOfString(name) +
          sizeOfJNDI();
    }
 
@@ -101,7 +101,7 @@ public class PersistedJNDI implements EncodingSupport
 
       for (String str : jndi)
       {
-         size += BufferHelper.sizeOfSimpleString(str);
+         size += BufferHelper.sizeOfString(str);
       }
 
       return size;

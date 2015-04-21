@@ -16,7 +16,8 @@ package org.hornetq.core.settings.impl;
 import java.io.Serializable;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.settings.Mergeable;
 import org.hornetq.utils.BufferHelper;
@@ -85,9 +86,9 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
 
    private Long maxRedeliveryDelay = null;
 
-   private SimpleString deadLetterAddress = null;
+   private String deadLetterAddress = null;
 
-   private SimpleString expiryAddress = null;
+   private String expiryAddress = null;
 
    private Long expiryDelay = AddressSettings.DEFAULT_EXPIRY_DELAY;
 
@@ -233,22 +234,22 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
       this.maxRedeliveryDelay = maxRedeliveryDelay;
    }
 
-   public SimpleString getDeadLetterAddress()
+   public String getDeadLetterAddress()
    {
       return deadLetterAddress;
    }
 
-   public void setDeadLetterAddress(final SimpleString deadLetterAddress)
+   public void setDeadLetterAddress(final String deadLetterAddress)
    {
       this.deadLetterAddress = deadLetterAddress;
    }
 
-   public SimpleString getExpiryAddress()
+   public String getExpiryAddress()
    {
       return expiryAddress;
    }
 
-   public void setExpiryAddress(final SimpleString expiryAddress)
+   public void setExpiryAddress(final String expiryAddress)
    {
       this.expiryAddress = expiryAddress;
    }
@@ -398,7 +399,7 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
    @Override
    public void decode(HornetQBuffer buffer)
    {
-      SimpleString policyStr = buffer.readNullableSimpleString();
+      String policyStr = buffer.readNullableString();
 
       if (policyStr != null)
       {
@@ -427,9 +428,9 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
 
       maxRedeliveryDelay = BufferHelper.readNullableLong(buffer);
 
-      deadLetterAddress = buffer.readNullableSimpleString();
+      deadLetterAddress = buffer.readNullableString();
 
-      expiryAddress = buffer.readNullableSimpleString();
+      expiryAddress = buffer.readNullableString();
 
       expiryDelay = BufferHelper.readNullableLong(buffer);
 
@@ -443,7 +444,7 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
 
       slowConsumerCheckPeriod = BufferHelper.readNullableLong(buffer);
 
-      policyStr = buffer.readNullableSimpleString();
+      policyStr = buffer.readNullableString();
 
       if (policyStr != null)
       {
@@ -459,7 +460,7 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
    public int getEncodeSize()
    {
 
-      return BufferHelper.sizeOfNullableSimpleString(addressFullMessagePolicy != null ? addressFullMessagePolicy.toString() : null) +
+      return BufferHelper.sizeOfNullableString(addressFullMessagePolicy != null ? addressFullMessagePolicy.toString() : null) +
          BufferHelper.sizeOfNullableLong(maxSizeBytes) +
          BufferHelper.sizeOfNullableLong(pageSizeBytes) +
          BufferHelper.sizeOfNullableInteger(pageMaxCache) +
@@ -469,21 +470,21 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
          BufferHelper.sizeOfNullableLong(redeliveryDelay) +
          BufferHelper.sizeOfNullableDouble(redeliveryMultiplier) +
          BufferHelper.sizeOfNullableLong(maxRedeliveryDelay) +
-         SimpleString.sizeofNullableString(deadLetterAddress) +
-         SimpleString.sizeofNullableString(expiryAddress) +
+         SSU.sizeof(deadLetterAddress) +
+         SSU.sizeof(expiryAddress) +
          BufferHelper.sizeOfNullableLong(expiryDelay) +
          BufferHelper.sizeOfNullableBoolean(lastValueQueue) +
          BufferHelper.sizeOfNullableLong(redistributionDelay) +
          BufferHelper.sizeOfNullableBoolean(sendToDLAOnNoRoute) +
          BufferHelper.sizeOfNullableLong(slowConsumerCheckPeriod) +
          BufferHelper.sizeOfNullableLong(slowConsumerThreshold) +
-         BufferHelper.sizeOfNullableSimpleString(slowConsumerPolicy != null ? slowConsumerPolicy.toString() : null);
+         BufferHelper.sizeOfNullableString(slowConsumerPolicy != null ? slowConsumerPolicy.toString() : null);
    }
 
    @Override
    public void encode(HornetQBuffer buffer)
    {
-      buffer.writeNullableSimpleString(addressFullMessagePolicy != null ? new SimpleString(addressFullMessagePolicy.toString())
+      buffer.writeNullableString(addressFullMessagePolicy != null ? new String(addressFullMessagePolicy.toString())
                                           : null);
 
       BufferHelper.writeNullableLong(buffer, maxSizeBytes);
@@ -504,9 +505,9 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
 
       BufferHelper.writeNullableLong(buffer, maxRedeliveryDelay);
 
-      buffer.writeNullableSimpleString(deadLetterAddress);
+      buffer.writeNullableString(deadLetterAddress);
 
-      buffer.writeNullableSimpleString(expiryAddress);
+      buffer.writeNullableString(expiryAddress);
 
       BufferHelper.writeNullableLong(buffer, expiryDelay);
 
@@ -520,7 +521,7 @@ public class AddressSettings implements Mergeable<AddressSettings>, Serializable
 
       BufferHelper.writeNullableLong(buffer, slowConsumerCheckPeriod);
 
-      buffer.writeNullableSimpleString(slowConsumerPolicy != null ? new SimpleString(slowConsumerPolicy.toString()) : null);
+      buffer.writeNullableString(slowConsumerPolicy != null ? new String(slowConsumerPolicy.toString()) : null);
    }
 
    /* (non-Javadoc)

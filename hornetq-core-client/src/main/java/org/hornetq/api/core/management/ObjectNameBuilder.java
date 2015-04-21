@@ -16,7 +16,7 @@ package org.hornetq.api.core.management;
 import javax.management.ObjectName;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * Helper class to build ObjectNames for HornetQ resources.
@@ -76,7 +76,7 @@ public final class ObjectNameBuilder
     *
     * @see AddressControl
     */
-   public ObjectName getAddressObjectName(final SimpleString address) throws Exception
+   public ObjectName getAddressObjectName(final String address) throws Exception
    {
       return createObjectName(ObjectNameBuilder.CORE_MODULE, "Address", address.toString());
    }
@@ -86,7 +86,7 @@ public final class ObjectNameBuilder
     *
     * @see QueueControl
     */
-   public ObjectName getQueueObjectName(final SimpleString address, final SimpleString name) throws Exception
+   public ObjectName getQueueObjectName(final String address, final String name) throws Exception
    {
       return ObjectName.getInstance(String.format("%s:module=%s,type=%s,address=%s,name=%s",
                                                   domain,

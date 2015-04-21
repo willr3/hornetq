@@ -19,7 +19,6 @@ import javax.management.MBeanServer;
 import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.management.AcceptorControl;
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.api.core.management.BridgeControl;
@@ -92,8 +91,8 @@ public class ManagementControlHelper
                                                                        mbeanServer);
    }
 
-   public static QueueControl createQueueControl(final SimpleString address,
-                                                 final SimpleString name,
+   public static QueueControl createQueueControl(final String address,
+                                                 final String name,
                                                  final MBeanServer mbeanServer) throws Exception
    {
       return (QueueControl)ManagementControlHelper.createProxy(ObjectNameBuilder.DEFAULT.getQueueObjectName(address,
@@ -102,7 +101,7 @@ public class ManagementControlHelper
                                                                mbeanServer);
    }
 
-   public static AddressControl createAddressControl(final SimpleString address, final MBeanServer mbeanServer) throws Exception
+   public static AddressControl createAddressControl(final String address, final MBeanServer mbeanServer) throws Exception
    {
       return (AddressControl)ManagementControlHelper.createProxy(ObjectNameBuilder.DEFAULT.getAddressObjectName(address),
                                                                  AddressControl.class,

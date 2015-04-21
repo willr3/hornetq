@@ -26,7 +26,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.core.journal.PreparedTransactionInfo;
 import org.hornetq.core.journal.RecordInfo;
@@ -88,9 +88,9 @@ public class PrintPages // NO_UCD (unused code)
 
          manager.start();
 
-         SimpleString[] stores = manager.getStoreNames();
+         String[] stores = manager.getStoreNames();
 
-         for (SimpleString store : stores)
+         for (String store : stores)
          {
             PagingStore pgStore = manager.getPageStore(store);
             String folder = null;

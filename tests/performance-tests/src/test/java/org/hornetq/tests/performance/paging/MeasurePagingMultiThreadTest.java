@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -60,7 +59,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
       {
 
          final ClientSessionFactory factory = createSessionFactory(locator);
-         final SimpleString adr = new SimpleString("test-adr");
+         final String adr = new String("test-adr");
 
          createDestination(factory, adr);
 
@@ -184,7 +183,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
     * @param factory
     * @throws HornetQException
     */
-   private void sendInitialBatch(final SimpleString adr,
+   private void sendInitialBatch(final String adr,
                                  final int nMessages,
                                  final int messageSize,
                                  final ClientSessionFactory factory) throws HornetQException
@@ -217,7 +216,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
     * @param adr
     * @throws HornetQException
     */
-   private void createDestination(final ClientSessionFactory factory, final SimpleString adr) throws HornetQException
+   private void createDestination(final ClientSessionFactory factory, final String adr) throws HornetQException
    {
       {
          ClientSession session = factory.createSession(false, false, false);

@@ -18,7 +18,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.persistence.StorageManager;
@@ -32,7 +32,7 @@ import org.hornetq.core.settings.impl.AddressSettings;
 
 /**
  * A queue that will discard messages if a newer message with the same
- * {@link MessageImpl#HDR_LAST_VALUE_NAME} property value. In other words it only retains the last
+ * {link MessageImpl#HDR_LAST_VALUE_NAME} property value. In other words it only retains the last
  * value
  * <p/>
  * This is useful for example, for stock prices, where you're only interested in the latest value
@@ -43,11 +43,11 @@ import org.hornetq.core.settings.impl.AddressSettings;
  */
 public class LastValueQueue extends QueueImpl
 {
-   private final Map<SimpleString, HolderReference> map = new ConcurrentHashMap<SimpleString, HolderReference>();
+   private final Map<String, HolderReference> map = new ConcurrentHashMap<String, HolderReference>();
 
    public LastValueQueue(final long persistenceID,
-                         final SimpleString address,
-                         final SimpleString name,
+                         final String address,
+                         final String name,
                          final Filter filter,
                          final PageSubscription pageSubscription,
                          final boolean durable,
@@ -76,7 +76,7 @@ public class LastValueQueue extends QueueImpl
    @Override
    public synchronized void addTail(final MessageReference ref, final boolean direct)
    {
-      SimpleString prop = ref.getMessage().getSimpleStringProperty(Message.HDR_LAST_VALUE_NAME);
+      String prop = ref.getMessage().getStringProperty(Message.HDR_LAST_VALUE_NAME);
 
       if (prop != null)
       {
@@ -120,7 +120,7 @@ public class LastValueQueue extends QueueImpl
    @Override
    public synchronized void addHead(final MessageReference ref)
    {
-      SimpleString prop = ref.getMessage().getSimpleStringProperty(Message.HDR_LAST_VALUE_NAME);
+      String prop = ref.getMessage().getStringProperty(Message.HDR_LAST_VALUE_NAME);
 
       if (prop != null)
       {
@@ -160,7 +160,7 @@ public class LastValueQueue extends QueueImpl
    {
       synchronized (this)
       {
-         SimpleString prop = ref.getMessage().getSimpleStringProperty(Message.HDR_LAST_VALUE_NAME);
+         String prop = ref.getMessage().getStringProperty(Message.HDR_LAST_VALUE_NAME);
 
          if (prop != null)
          {
@@ -173,13 +173,13 @@ public class LastValueQueue extends QueueImpl
 
    private class HolderReference implements MessageReference
    {
-      private final SimpleString prop;
+      private final String prop;
 
       private volatile MessageReference ref;
 
       private Long consumerId;
 
-      HolderReference(final SimpleString prop, final MessageReference ref)
+      HolderReference(final String prop, final MessageReference ref)
       {
          this.prop = prop;
 

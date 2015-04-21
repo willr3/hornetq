@@ -31,7 +31,7 @@ import javax.jms.Topic;
 import javax.jms.TopicPublisher;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -55,7 +55,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
 
    private final HornetQConnection jbossConn;
 
-   private final SimpleString connID;
+   private final String connID;
 
    private final ClientProducer producer;
 
@@ -82,7 +82,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
    {
       this.jbossConn = jbossConn;
 
-      connID = jbossConn.getClientID() != null ? new SimpleString(jbossConn.getClientID()) : jbossConn.getUID();
+      connID = jbossConn.getClientID() != null ? new String(jbossConn.getClientID()) : jbossConn.getUID();
 
       this.producer = producer;
 
@@ -326,7 +326,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
          message.setJMSTimestamp(0);
       }
 
-      SimpleString address = null;
+      String address = null;
 
       if (destination == null)
       {

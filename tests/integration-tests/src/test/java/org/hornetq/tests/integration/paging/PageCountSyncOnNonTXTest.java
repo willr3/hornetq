@@ -13,7 +13,7 @@
 
 package org.hornetq.tests.integration.paging;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -157,7 +157,7 @@ public class PageCountSyncOnNonTXTest extends ServiceTestBase
 
          try
          {
-            Queue queue = server.locateQueue(new SimpleString(QUEUE_NAME));
+            Queue queue = server.locateQueue(new String(QUEUE_NAME));
 
             assertNotNull(queue);
 

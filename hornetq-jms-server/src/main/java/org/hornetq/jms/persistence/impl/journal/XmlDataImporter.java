@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -489,7 +489,7 @@ public final class XmlDataImporter
          {
             realValue = value;
          }
-         message.putStringProperty(new SimpleString(key), new SimpleString(realValue));
+         message.putStringProperty(new String(key), new String(realValue));
       }
       else if (propertyType.equals(XmlDataConstants.PROPERTY_TYPE_STRING))
       {
@@ -581,7 +581,7 @@ public final class XmlDataImporter
          }
       }
 
-      ClientSession.QueueQuery queueQuery = session.queueQuery(new SimpleString(queueName));
+      ClientSession.QueueQuery queueQuery = session.queueQuery(new String(queueName));
 
       if (!queueQuery.isExists())
       {

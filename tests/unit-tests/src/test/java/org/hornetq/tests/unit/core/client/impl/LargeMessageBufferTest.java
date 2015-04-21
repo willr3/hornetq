@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.MessageHandler;
 import org.hornetq.core.client.impl.ClientConsumerInternal;
@@ -869,7 +869,7 @@ public class LargeMessageBufferTest extends UnitTestCase
          return 0;
       }
 
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
 
          return null;
@@ -881,7 +881,7 @@ public class LargeMessageBufferTest extends UnitTestCase
          return 0;
       }
 
-      public SimpleString getQueueName()
+      public String getQueueName()
       {
 
          return null;

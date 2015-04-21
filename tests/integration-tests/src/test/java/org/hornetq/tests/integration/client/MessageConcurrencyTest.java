@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -44,9 +44,9 @@ public class MessageConcurrencyTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString ADDRESS = new SimpleString("MessageConcurrencyTestAddress");
+   private final String ADDRESS = new String("MessageConcurrencyTestAddress");
 
-   private final SimpleString QUEUE_NAME = new SimpleString("MessageConcurrencyTestQueue");
+   private final String QUEUE_NAME = new String("MessageConcurrencyTestQueue");
 
    private ServerLocator locator;
 

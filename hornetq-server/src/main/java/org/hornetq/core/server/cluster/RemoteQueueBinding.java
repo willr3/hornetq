@@ -13,7 +13,6 @@
 
 package org.hornetq.core.server.cluster;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.postoffice.QueueBinding;
 
 /**
@@ -27,7 +26,7 @@ import org.hornetq.core.postoffice.QueueBinding;
  */
 public interface RemoteQueueBinding extends QueueBinding
 {
-   void addConsumer(SimpleString filterString) throws Exception;
+   void addConsumer(String filterString) throws Exception;
 
-   void removeConsumer(SimpleString filterString) throws Exception;
+   void removeConsumer(String filterString) throws Exception;
 }

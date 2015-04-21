@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -148,7 +148,7 @@ public class BridgeStartTest extends ServiceTestBase
 
          ClientSession session1 = sf1.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -156,7 +156,7 @@ public class BridgeStartTest extends ServiceTestBase
 
          final int numMessages = 10;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {
@@ -319,11 +319,11 @@ public class BridgeStartTest extends ServiceTestBase
 
          ClientSession session0 = sf0.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          final int numMessages = 10;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {
@@ -536,11 +536,11 @@ public class BridgeStartTest extends ServiceTestBase
 
          ClientSession session0 = sf0.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          final int numMessages = 10;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {
@@ -696,11 +696,11 @@ public class BridgeStartTest extends ServiceTestBase
 
          ClientSession session0 = sf0.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          final int numMessages = 10;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {

@@ -14,7 +14,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -24,11 +24,11 @@ import org.hornetq.core.protocol.core.impl.PacketImpl;
 public class CreateQueueMessage extends PacketImpl
 {
 
-   private SimpleString address;
+   private String address;
 
-   private SimpleString queueName;
+   private String queueName;
 
-   private SimpleString filterString;
+   private String filterString;
 
    private boolean durable;
 
@@ -36,9 +36,9 @@ public class CreateQueueMessage extends PacketImpl
 
    private boolean requiresResponse;
 
-   public CreateQueueMessage(final SimpleString address,
-                             final SimpleString queueName,
-                             final SimpleString filterString,
+   public CreateQueueMessage(final String address,
+                             final String queueName,
+                             final String filterString,
                              final boolean durable,
                              final boolean temporary,
                              final boolean requiresResponse)
@@ -73,17 +73,17 @@ public class CreateQueueMessage extends PacketImpl
       return buff.toString();
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
@@ -103,17 +103,17 @@ public class CreateQueueMessage extends PacketImpl
       return requiresResponse;
    }
 
-   public void setAddress(SimpleString address)
+   public void setAddress(String address)
    {
       this.address = address;
    }
 
-   public void setQueueName(SimpleString queueName)
+   public void setQueueName(String queueName)
    {
       this.queueName = queueName;
    }
 
-   public void setFilterString(SimpleString filterString)
+   public void setFilterString(String filterString)
    {
       this.filterString = filterString;
    }
@@ -131,9 +131,9 @@ public class CreateQueueMessage extends PacketImpl
    @Override
    public void encodeRest(final HornetQBuffer buffer)
    {
-      buffer.writeSimpleString(address);
-      buffer.writeSimpleString(queueName);
-      buffer.writeNullableSimpleString(filterString);
+      buffer.writeString(address);
+      buffer.writeString(queueName);
+      buffer.writeNullableString(filterString);
       buffer.writeBoolean(durable);
       buffer.writeBoolean(temporary);
       buffer.writeBoolean(requiresResponse);
@@ -142,9 +142,9 @@ public class CreateQueueMessage extends PacketImpl
    @Override
    public void decodeRest(final HornetQBuffer buffer)
    {
-      address = buffer.readSimpleString();
-      queueName = buffer.readSimpleString();
-      filterString = buffer.readNullableSimpleString();
+      address = buffer.readString();
+      queueName = buffer.readString();
+      filterString = buffer.readNullableString();
       durable = buffer.readBoolean();
       temporary = buffer.readBoolean();
       requiresResponse = buffer.readBoolean();

@@ -21,7 +21,6 @@ import java.util.concurrent.CountDownLatch;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -54,9 +53,9 @@ public class NIOMultiThreadCompactorStressTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   final SimpleString ADDRESS = new SimpleString("SomeAddress");
+   final String ADDRESS = new String("SomeAddress");
 
-   final SimpleString QUEUE = new SimpleString("SomeQueue");
+   final String QUEUE = new String("SomeQueue");
 
    private HornetQServer server;
 
@@ -250,13 +249,13 @@ public class NIOMultiThreadCompactorStressTest extends ServiceTestBase
       setupServer(getJournalType());
 
       drainQueue(numberOfMessagesExpected, QUEUE);
-      drainQueue(100, new SimpleString("LAZY-QUEUE"));
+      drainQueue(100, new String("LAZY-QUEUE"));
 
       server.stop();
 
       setupServer(getJournalType());
       drainQueue(0, QUEUE);
-      drainQueue(0, new SimpleString("LAZY-QUEUE"));
+      drainQueue(0, new String("LAZY-QUEUE"));
 
       checkEmptyXID(xid);
 
@@ -267,7 +266,7 @@ public class NIOMultiThreadCompactorStressTest extends ServiceTestBase
     * @param queue
     * @throws HornetQException
     */
-   private void drainQueue(final int numberOfMessagesExpected, final SimpleString queue) throws HornetQException
+   private void drainQueue(final int numberOfMessagesExpected, final String queue) throws HornetQException
    {
       ClientSession sess = sf.createSession(true, true);
 

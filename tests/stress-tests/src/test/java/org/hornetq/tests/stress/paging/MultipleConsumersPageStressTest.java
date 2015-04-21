@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -56,7 +56,7 @@ public class MultipleConsumersPageStressTest extends ServiceTestBase
 
    private static final int TIME_TO_RUN = 60 * 1000;
 
-   private static final SimpleString ADDRESS = new SimpleString("page-adr");
+   private static final String ADDRESS = new String("page-adr");
 
    private int numberOfProducers;
 

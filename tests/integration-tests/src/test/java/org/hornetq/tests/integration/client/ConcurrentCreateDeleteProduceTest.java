@@ -16,7 +16,7 @@ package org.hornetq.tests.integration.client;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -42,7 +42,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
 
    volatile boolean running = true;
 
-   private final SimpleString ADDRESS = new SimpleString("ADQUEUE");
+   private final String ADDRESS = new String("ADQUEUE");
 
 
    AtomicInteger sequence = new AtomicInteger(0);
@@ -83,7 +83,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
       ClientProducer producer = session.createProducer(ADDRESS);
 
       // just to make it page forever
-      Queue serverQueue = server.createQueue(ADDRESS, SimpleString.toSimpleString("everPage"), null, true, false);
+      Queue serverQueue = server.createQueue(ADDRESS, ("everPage"), null, true, false);
       serverQueue.getPageSubscription().getPagingStore().startPaging();
 
       Consumer[] consumers = new Consumer[10];
@@ -135,7 +135,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
 
             for (int i = 0; i < 100 && running; i++)
             {
-               SimpleString queueName = ADDRESS.concat("_" + sequence.incrementAndGet());
+               String queueName = ADDRESS.concat("_" + sequence.incrementAndGet());
                session.createQueue(ADDRESS, queueName, true);
                ClientConsumer consumer = session.createConsumer(queueName);
                while (running)

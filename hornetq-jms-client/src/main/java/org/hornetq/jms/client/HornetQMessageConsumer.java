@@ -24,7 +24,7 @@ import javax.jms.Topic;
 import javax.jms.TopicSubscriber;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.MessageHandler;
@@ -59,7 +59,7 @@ public final class HornetQMessageConsumer implements QueueReceiver, TopicSubscri
 
    private final String selector;
 
-   private final SimpleString autoDeleteQueueName;
+   private final String autoDeleteQueueName;
 
    private boolean closed = false;
 
@@ -70,7 +70,7 @@ public final class HornetQMessageConsumer implements QueueReceiver, TopicSubscri
                                  final boolean noLocal,
                                  final HornetQDestination destination,
                                  final String selector,
-                                 final SimpleString autoDeleteQueueName) throws JMSException
+                                 final String autoDeleteQueueName) throws JMSException
    {
       this.session = session;
 

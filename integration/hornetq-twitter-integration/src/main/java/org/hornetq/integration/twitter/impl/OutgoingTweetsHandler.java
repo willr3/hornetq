@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
@@ -104,7 +104,7 @@ public class OutgoingTweetsHandler implements Consumer, ConnectorService
          throw new Exception("invalid queue name: " + queueName);
       }
 
-      SimpleString name = new SimpleString(this.queueName);
+      String name = new String(this.queueName);
       Binding b = this.postOffice.getBinding(name);
       if (b == null)
       {

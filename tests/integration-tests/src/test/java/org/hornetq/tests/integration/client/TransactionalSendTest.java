@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -29,13 +29,13 @@ import org.junit.Test;
  */
 public class TransactionalSendTest extends ServiceTestBase
 {
-   public final SimpleString addressA = new SimpleString("addressA");
+   public final String addressA = new String("addressA");
 
-   public final SimpleString queueA = new SimpleString("queueA");
+   public final String queueA = new String("queueA");
 
-   public final SimpleString queueB = new SimpleString("queueB");
+   public final String queueB = new String("queueB");
 
-   public final SimpleString queueC = new SimpleString("queueC");
+   public final String queueC = new String("queueC");
 
    private ServerLocator locator;
 

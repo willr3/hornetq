@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -36,7 +36,7 @@ public class QueueBrowserTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private ServerLocator locator;
 
@@ -119,11 +119,11 @@ public class QueueBrowserTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("x"), i);
+         message.putIntProperty(new String("x"), i);
          producer.send(message);
       }
 
-      ClientConsumer consumer = session.createConsumer(QUEUE, new SimpleString("x >= 50"), true);
+      ClientConsumer consumer = session.createConsumer(QUEUE, new String("x >= 50"), true);
 
       for (int i = 50; i < numMessages; i++)
       {
@@ -167,12 +167,12 @@ public class QueueBrowserTest extends ServiceTestBase
          ClientMessage message = createTextMessage(session, "m" + i);
          if (i % 2 == 0)
          {
-            message.putStringProperty(new SimpleString("color"), new SimpleString("RED"));
+            message.putStringProperty(new String("color"), new String("RED"));
          }
          producer.send(message);
       }
 
-      ClientConsumer consumer = session.createConsumer(QUEUE, new SimpleString("color = 'RED'"), true);
+      ClientConsumer consumer = session.createConsumer(QUEUE, new String("color = 'RED'"), true);
 
       for (int i = 0; i < numMessages; i += 2)
       {
@@ -241,12 +241,12 @@ public class QueueBrowserTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("x"), i);
+         message.putIntProperty(new String("x"), i);
          producer.send(message);
       }
 
-      ClientConsumer consumer = session.createConsumer(QUEUE, new SimpleString("x < 50"), true);
-      ClientConsumer consumer2 = session.createConsumer(QUEUE, new SimpleString("x >= 50"), true);
+      ClientConsumer consumer = session.createConsumer(QUEUE, new String("x < 50"), true);
+      ClientConsumer consumer2 = session.createConsumer(QUEUE, new String("x >= 50"), true);
       ClientConsumer consumer3 = session.createConsumer(QUEUE, null, true);
 
       for (int i = 0; i < 50; i++)

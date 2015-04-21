@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -72,7 +72,7 @@ public class XaTimeoutTest extends UnitTestCase
 
    private ConfigurationImpl configuration;
 
-   private final SimpleString atestq = new SimpleString("atestq");
+   private final String atestq = new String("atestq");
 
    private ServerLocator locator;
 

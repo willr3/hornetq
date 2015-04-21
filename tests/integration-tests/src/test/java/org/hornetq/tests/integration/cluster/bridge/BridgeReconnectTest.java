@@ -22,7 +22,7 @@ import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -247,7 +247,7 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -333,7 +333,7 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -413,7 +413,7 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -523,7 +523,7 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -627,7 +627,7 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -738,9 +738,9 @@ public class BridgeReconnectTest extends BridgeTestBase
 
       final int numMessages = NUM_MESSAGES;
 
-      SimpleString propKey = new SimpleString("propkey");
+      String propKey = new String("propkey");
 
-      final Queue queue = (Queue)server0.getPostOffice().getBinding(new SimpleString(queueName)).getBindable();
+      final Queue queue = (Queue)server0.getPostOffice().getBinding(new String(queueName)).getBindable();
 
       System.out.println("DeliveringCount: " + queue.getDeliveringCount());
 

@@ -27,7 +27,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -65,7 +65,7 @@ public class SecurityNotificationTest extends UnitTestCase
 
    private ClientConsumer notifConsumer;
 
-   private SimpleString notifQueue;
+   private String notifQueue;
 
    // Static --------------------------------------------------------
 
@@ -101,8 +101,8 @@ public class SecurityNotificationTest extends UnitTestCase
    @Test
    public void testSECURITY_PERMISSION_VIOLATION() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       // guest can not create queue
       Role role = new Role("roleCanNotCreateQueue", true, true, false, true, false, true, true);
@@ -157,7 +157,7 @@ public class SecurityNotificationTest extends UnitTestCase
       server = HornetQServers.newHornetQServer(conf, false);
       server.start();
 
-      notifQueue = RandomUtil.randomSimpleString();
+      notifQueue = RandomUtil.randomString();
 
       HornetQSecurityManager securityManager = server.getSecurityManager();
       securityManager.addUser("admin", "admin");
@@ -218,7 +218,7 @@ public class SecurityNotificationTest extends UnitTestCase
          m = consumer.receive(500);
          if (m != null)
          {
-            for (SimpleString key : m.getPropertyNames())
+            for (String key : m.getPropertyNames())
             {
                System.out.println(key + "=" + m.getObjectProperty(key));
             }
@@ -230,7 +230,7 @@ public class SecurityNotificationTest extends UnitTestCase
       m = consumer.receiveImmediate();
       if (m != null)
       {
-         for (SimpleString key : m.getPropertyNames())
+         for (String key : m.getPropertyNames())
 
          {
             System.out.println(key + "=" + m.getObjectProperty(key));

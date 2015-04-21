@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -31,33 +31,33 @@ import org.junit.Test;
  */
 public class AddressSettingsTest extends ServiceTestBase
 {
-   private final SimpleString addressA = new SimpleString("addressA");
+   private final String addressA = new String("addressA");
 
-   private final SimpleString addressA2 = new SimpleString("add.addressA");
+   private final String addressA2 = new String("add.addressA");
 
-   private final SimpleString addressB = new SimpleString("addressB");
+   private final String addressB = new String("addressB");
 
-   private final SimpleString addressB2 = new SimpleString("add.addressB");
+   private final String addressB2 = new String("add.addressB");
 
-   private final SimpleString addressC = new SimpleString("addressC");
+   private final String addressC = new String("addressC");
 
-   private final SimpleString queueA = new SimpleString("queueA");
+   private final String queueA = new String("queueA");
 
-   private final SimpleString queueB = new SimpleString("queueB");
+   private final String queueB = new String("queueB");
 
-   private final SimpleString queueC = new SimpleString("queueC");
+   private final String queueC = new String("queueC");
 
-   private final SimpleString dlaA = new SimpleString("dlaA");
+   private final String dlaA = new String("dlaA");
 
-   private final SimpleString dlqA = new SimpleString("dlqA");
+   private final String dlqA = new String("dlqA");
 
-   private final SimpleString dlaB = new SimpleString("dlaB");
+   private final String dlaB = new String("dlaB");
 
-   private final SimpleString dlqB = new SimpleString("dlqB");
+   private final String dlqB = new String("dlqB");
 
-   private final SimpleString dlaC = new SimpleString("dlaC");
+   private final String dlaC = new String("dlaC");
 
-   private final SimpleString dlqC = new SimpleString("dlqC");
+   private final String dlqC = new String("dlqC");
 
    @Test
    public void testSimpleHierarchyWithDLA() throws Exception

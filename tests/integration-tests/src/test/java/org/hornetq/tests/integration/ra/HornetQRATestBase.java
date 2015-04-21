@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.concurrent.CountDownLatch;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.jms.client.HornetQMessage;
@@ -54,7 +54,7 @@ public abstract class HornetQRATestBase extends JMSTestBase
    protected static final String MDBQUEUE = "mdbQueue";
    protected static final String DLQ = "dlqQueue";
    protected static final String MDBQUEUEPREFIXED = "jms.queue.mdbQueue";
-   protected static final SimpleString MDBQUEUEPREFIXEDSIMPLE = new SimpleString("jms.queue.mdbQueue");
+   protected static final String MDBQUEUEPREFIXEDSIMPLE = new String("jms.queue.mdbQueue");
 
    @Override
    @Before
@@ -70,7 +70,7 @@ public abstract class HornetQRATestBase extends JMSTestBase
    protected void setupDLQ(int maxDeliveries)
    {
       AddressSettings settings = new AddressSettings();
-      settings.setDeadLetterAddress(SimpleString.toSimpleString("jms.queue." + DLQ));
+      settings.setDeadLetterAddress(("jms.queue." + DLQ));
       settings.setMaxDeliveryAttempts(maxDeliveries);
       server.getAddressSettingsRepository().addMatch("#", settings);
    }

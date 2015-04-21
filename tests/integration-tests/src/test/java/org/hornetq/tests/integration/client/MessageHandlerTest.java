@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -41,7 +41,7 @@ public class MessageHandlerTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private ServerLocator locator;
 
@@ -137,7 +137,7 @@ public class MessageHandlerTest extends ServiceTestBase
       {
          ClientMessage message = createTextMessage(session, "m" + i);
 
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
 
          producer.send(message);
       }
@@ -237,7 +237,7 @@ public class MessageHandlerTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -324,7 +324,7 @@ public class MessageHandlerTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 

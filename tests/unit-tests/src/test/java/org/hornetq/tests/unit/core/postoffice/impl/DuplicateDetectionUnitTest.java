@@ -28,7 +28,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.persistence.GroupingInfo;
 import org.hornetq.core.persistence.QueueBindingInfo;
@@ -94,7 +94,7 @@ public class DuplicateDetectionUnitTest extends ServiceTestBase
       {
          clearDataRecreateServerDirs();
 
-         SimpleString ADDRESS = new SimpleString("address");
+         String ADDRESS = new String("address");
 
          Configuration configuration = createDefaultConfig();
 
@@ -107,7 +107,7 @@ public class DuplicateDetectionUnitTest extends ServiceTestBase
          journal.start();
          journal.loadBindingJournal(new ArrayList<QueueBindingInfo>(), new ArrayList<GroupingInfo>());
 
-         HashMap<SimpleString, List<Pair<byte[], Long>>> mapDups = new HashMap<SimpleString, List<Pair<byte[], Long>>>();
+         HashMap<String, List<Pair<byte[], Long>>> mapDups = new HashMap<String, List<Pair<byte[], Long>>>();
 
          journal.loadMessageJournal(postOffice,
                                     new FakePagingManager(),

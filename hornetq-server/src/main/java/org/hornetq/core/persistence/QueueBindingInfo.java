@@ -13,7 +13,7 @@
 
 package org.hornetq.core.persistence;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A QueueBindingInfo
@@ -28,16 +28,16 @@ public interface QueueBindingInfo
 {
    long getId();
 
-   SimpleString getAddress();
+   String getAddress();
 
-   SimpleString getQueueName();
+   String getQueueName();
 
    /**
     * used to rename the queue in case of a duplication during load time
     * @param newName
     */
-   void replaceQueueName(SimpleString newName);
+   void replaceQueueName(String newName);
 
-   SimpleString getFilterString();
+   String getFilterString();
 
 }

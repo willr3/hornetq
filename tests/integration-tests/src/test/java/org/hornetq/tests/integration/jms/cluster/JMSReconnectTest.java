@@ -34,7 +34,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -114,7 +114,7 @@ public class JMSReconnectTest extends UnitTestCase
 
       RemotingConnection coreConn = ((ClientSessionInternal)coreSession).getConnection();
 
-      SimpleString jmsQueueName = new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
+      String jmsQueueName = new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
 
       coreSession.createQueue(jmsQueueName, jmsQueueName, null, true);
 

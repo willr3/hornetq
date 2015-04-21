@@ -19,7 +19,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -40,9 +39,9 @@ public class ReceiveImmediateTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ReceiveImmediateTest.queue");
+   private final String QUEUE = new String("ReceiveImmediateTest.queue");
 
-   private final SimpleString ADDRESS = new SimpleString("ReceiveImmediateTest.address");
+   private final String ADDRESS = new String("ReceiveImmediateTest.address");
 
    private ServerLocator locator;
 

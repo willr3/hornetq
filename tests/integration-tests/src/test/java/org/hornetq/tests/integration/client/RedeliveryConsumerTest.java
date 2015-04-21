@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -55,7 +55,7 @@ public class RedeliveryConsumerTest extends ServiceTestBase
 
    HornetQServer server;
 
-   final SimpleString ADDRESS = new SimpleString("address");
+   final String ADDRESS = new String("address");
 
    ClientSessionFactory factory;
 

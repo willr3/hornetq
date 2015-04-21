@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.paging;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -322,7 +322,7 @@ public class PagingWithFailoverAndCountersTest extends ServiceTestBase
             }
             System.out.println("Started monitoring");
 
-            Queue queue2 = inProcessBackup.getServer().locateQueue(SimpleString.toSimpleString("cons2"));
+            Queue queue2 = inProcessBackup.getServer().locateQueue(("cons2"));
 
             while (isRunning(1))
             {
@@ -425,7 +425,7 @@ public class PagingWithFailoverAndCountersTest extends ServiceTestBase
       server.start();
 
       waitForServer(server);
-      Queue queue = server.locateQueue(SimpleString.toSimpleString("cons2"));
+      Queue queue = server.locateQueue(("cons2"));
 
 
       int messageCount = (int) queue.getMessageCount(5000);

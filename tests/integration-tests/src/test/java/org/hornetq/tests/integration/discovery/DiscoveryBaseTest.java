@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.core.cluster.DiscoveryEntry;
@@ -227,7 +227,7 @@ public class DiscoveryBaseTest extends UnitTestCase
       }
 
       @Override
-      public SimpleString readNodeId() throws HornetQIllegalStateException, IOException
+      public String readNodeId() throws HornetQIllegalStateException, IOException
       {
          return null;
       }

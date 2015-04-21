@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.transaction.Transaction;
@@ -33,7 +32,7 @@ import org.hornetq.utils.LinkedListIterator;
  */
 public interface Queue extends Bindable
 {
-   SimpleString getName();
+   String getName();
 
    long getID();
 
@@ -75,7 +74,7 @@ public interface Queue extends Bindable
 
    void deliverAsync();
 
-   void unproposed(SimpleString groupID);
+   void unproposed(String groupID);
 
    /**
     * This method will make sure that any pending message (including paged message) will be delivered
@@ -172,13 +171,13 @@ public interface Queue extends Bindable
 
    int changeReferencesPriority(Filter filter, byte newPriority) throws Exception;
 
-   boolean moveReference(long messageID, SimpleString toAddress) throws Exception;
+   boolean moveReference(long messageID, String toAddress) throws Exception;
 
-   boolean moveReference(long messageID, SimpleString toAddress, boolean rejectDuplicates) throws Exception;
+   boolean moveReference(long messageID, String toAddress, boolean rejectDuplicates) throws Exception;
 
-   int moveReferences(Filter filter, SimpleString toAddress) throws Exception;
+   int moveReferences(Filter filter, String toAddress) throws Exception;
 
-   int moveReferences(Filter filter, SimpleString toAddress, boolean rejectDuplicates) throws Exception;
+   int moveReferences(Filter filter, String toAddress, boolean rejectDuplicates) throws Exception;
 
    void addRedistributor(long delay);
 
@@ -194,7 +193,7 @@ public interface Queue extends Bindable
 
    LinkedListIterator<MessageReference> totalIterator();
 
-   SimpleString getExpiryAddress();
+   String getExpiryAddress();
 
    /**
     * Pauses the queue. It will receive messages but won't give them to the consumers until resumed.
@@ -225,7 +224,7 @@ public interface Queue extends Bindable
 
    boolean isDirectDeliver();
 
-   SimpleString getAddress();
+   String getAddress();
 
    /**
     * We can't send stuff to DLQ on queues used on clustered-bridge-communication

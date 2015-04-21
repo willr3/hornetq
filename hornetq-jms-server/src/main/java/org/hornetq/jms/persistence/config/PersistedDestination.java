@@ -14,7 +14,7 @@
 package org.hornetq.jms.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.utils.BufferHelper;
 import org.hornetq.utils.DataConstants;
@@ -105,24 +105,24 @@ public class PersistedDestination implements EncodingSupport
    public int getEncodeSize()
    {
       return DataConstants.SIZE_BYTE +
-            BufferHelper.sizeOfSimpleString(name) +
-            BufferHelper.sizeOfNullableSimpleString(selector) +
+            BufferHelper.sizeOfString(name) +
+            BufferHelper.sizeOfNullableString(selector) +
             DataConstants.SIZE_BOOLEAN;
    }
 
    public void encode(final HornetQBuffer buffer)
    {
       buffer.writeByte(type.getType());
-      buffer.writeSimpleString(SimpleString.toSimpleString(name));
-      buffer.writeNullableSimpleString(SimpleString.toSimpleString(selector));
+      buffer.writeString((name));
+      buffer.writeNullableString((selector));
       buffer.writeBoolean(durable);
    }
 
    public void decode(final HornetQBuffer buffer)
    {
       type = PersistedType.getType(buffer.readByte());
-      name = buffer.readSimpleString().toString();
-      SimpleString selectorStr = buffer.readNullableSimpleString();
+      name = buffer.readString().toString();
+      String selectorStr = buffer.readNullableString();
       selector = (selectorStr == null) ? null : selectorStr.toString();
       durable = buffer.readBoolean();
    }

@@ -14,7 +14,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 public class DisconnectMessage extends PacketImpl
@@ -23,13 +23,13 @@ public class DisconnectMessage extends PacketImpl
 
    // Attributes ----------------------------------------------------
 
-   private SimpleString nodeID;
+   private String nodeID;
 
    // Static --------------------------------------------------------
 
    // Constructors --------------------------------------------------
 
-   public DisconnectMessage(final SimpleString nodeID)
+   public DisconnectMessage(final String nodeID)
    {
       super(DISCONNECT);
 
@@ -43,7 +43,7 @@ public class DisconnectMessage extends PacketImpl
 
    // Public --------------------------------------------------------
 
-   public SimpleString getNodeID()
+   public String getNodeID()
    {
       return nodeID;
    }
@@ -51,13 +51,13 @@ public class DisconnectMessage extends PacketImpl
    @Override
    public void encodeRest(final HornetQBuffer buffer)
    {
-      buffer.writeNullableSimpleString(nodeID);
+      buffer.writeNullableString(nodeID);
    }
 
    @Override
    public void decodeRest(final HornetQBuffer buffer)
    {
-      nodeID = buffer.readNullableSimpleString();
+      nodeID = buffer.readNullableString();
    }
 
    @Override

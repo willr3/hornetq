@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.postoffice.Address;
 import org.hornetq.core.postoffice.impl.AddressImpl;
 import org.hornetq.tests.util.UnitTestCase;
@@ -29,8 +28,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testNoDots()
    {
-      SimpleString s1 = new SimpleString("abcde");
-      SimpleString s2 = new SimpleString("abcde");
+      String s1 = new String("abcde");
+      String s2 = new String("abcde");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Assert.assertTrue(a1.matches(a2));
@@ -39,8 +38,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testDotsSameLength2()
    {
-      SimpleString s1 = new SimpleString("a.b");
-      SimpleString s2 = new SimpleString("a.b");
+      String s1 = new String("a.b");
+      String s2 = new String("a.b");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Assert.assertTrue(a1.matches(a2));
@@ -49,8 +48,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testA()
    {
-      SimpleString s1 = new SimpleString("a.b.c");
-      SimpleString s2 = new SimpleString("a.b.c.d.e.f.g.h.i.j.k.l.m.n.*");
+      String s1 = new String("a.b.c");
+      String s2 = new String("a.b.c.d.e.f.g.h.i.j.k.l.m.n.*");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Assert.assertFalse(a1.matches(a2));
@@ -59,9 +58,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testB()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s2 = new SimpleString("a.b.x.e");
-      SimpleString s3 = new SimpleString("a.b.c.*");
+      String s1 = new String("a.b.c.d");
+      String s2 = new String("a.b.x.e");
+      String s3 = new String("a.b.c.*");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -72,9 +71,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testC()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s2 = new SimpleString("a.b.c.x");
-      SimpleString s3 = new SimpleString("a.b.*.d");
+      String s1 = new String("a.b.c.d");
+      String s2 = new String("a.b.c.x");
+      String s3 = new String("a.b.*.d");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -85,9 +84,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testD()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e");
-      SimpleString s2 = new SimpleString("a.b.c.x.e");
-      SimpleString s3 = new SimpleString("a.b.*.d.*");
+      String s1 = new String("a.b.c.d.e");
+      String s2 = new String("a.b.c.x.e");
+      String s3 = new String("a.b.*.d.*");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -98,9 +97,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testE()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("a.b.*.d.*.f");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("a.b.*.d.*.f");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -111,9 +110,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testF()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("#");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -124,9 +123,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testG()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("a.#");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("a.#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -137,9 +136,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testH()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("#.b.#");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("#.b.#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -150,9 +149,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testI()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("a.#.b.#");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("a.#.b.#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -163,9 +162,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testJ()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.x.e.f");
-      SimpleString s3 = new SimpleString("a.#.c.d.e.f");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.x.e.f");
+      String s3 = new String("a.#.c.d.e.f");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -176,9 +175,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testK()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.d.e.x");
-      SimpleString s3 = new SimpleString("a.#.c.d.e.*");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.d.e.x");
+      String s3 = new String("a.#.c.d.e.*");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -189,9 +188,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testL()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d.e.f");
-      SimpleString s2 = new SimpleString("a.b.c.d.e.x");
-      SimpleString s3 = new SimpleString("a.#.c.d.*.f");
+      String s1 = new String("a.b.c.d.e.f");
+      String s2 = new String("a.b.c.d.e.x");
+      String s3 = new String("a.#.c.d.*.f");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -202,9 +201,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testM()
    {
-      SimpleString s1 = new SimpleString("a.b.c");
-      SimpleString s2 = new SimpleString("a.b.x.e");
-      SimpleString s3 = new SimpleString("a.b.c.#");
+      String s1 = new String("a.b.c");
+      String s2 = new String("a.b.x.e");
+      String s3 = new String("a.b.c.#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -215,9 +214,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testN()
    {
-      SimpleString s1 = new SimpleString("usd.stock");
-      SimpleString s2 = new SimpleString("a.b.x.e");
-      SimpleString s3 = new SimpleString("*.stock.#");
+      String s1 = new String("usd.stock");
+      String s2 = new String("a.b.x.e");
+      String s3 = new String("*.stock.#");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -228,9 +227,9 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testO()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s2 = new SimpleString("a.b.x.e");
-      SimpleString s3 = new SimpleString("a.b.c.*");
+      String s1 = new String("a.b.c.d");
+      String s2 = new String("a.b.x.e");
+      String s3 = new String("a.b.c.*");
       Address a1 = new AddressImpl(s1);
       Address a2 = new AddressImpl(s2);
       Address w = new AddressImpl(s3);
@@ -241,8 +240,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testP()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("a.b.c#");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("a.b.c#");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));
@@ -251,8 +250,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testQ()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("#a.b.c");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("#a.b.c");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));
@@ -261,8 +260,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testR()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("#*a.b.c");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("#*a.b.c");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));
@@ -271,8 +270,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testS()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("a.b.c*");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("a.b.c*");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));
@@ -281,8 +280,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testT()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("*a.b.c");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("*a.b.c");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));
@@ -291,8 +290,8 @@ public class AddressImplTest extends UnitTestCase
    @Test
    public void testU()
    {
-      SimpleString s1 = new SimpleString("a.b.c.d");
-      SimpleString s3 = new SimpleString("*a.b.c");
+      String s1 = new String("a.b.c.d");
+      String s3 = new String("*a.b.c");
       Address a1 = new AddressImpl(s1);
       Address w = new AddressImpl(s3);
       Assert.assertFalse(a1.matches(w));

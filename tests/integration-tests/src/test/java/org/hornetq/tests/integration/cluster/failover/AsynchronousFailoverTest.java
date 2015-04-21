@@ -22,7 +22,7 @@ import org.hornetq.api.core.HornetQTransactionOutcomeUnknownException;
 import org.hornetq.api.core.HornetQTransactionRolledBackException;
 import org.hornetq.api.core.HornetQUnBlockedException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -414,7 +414,7 @@ public class AsynchronousFailoverTest extends FailoverTestBase
 
                      message.putIntProperty("counter", i);
 
-                     message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString("id:" + i +
+                     message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new String("id:" + i +
                                                                                                        ",exec:" +
                                                                                                        executionId));
 

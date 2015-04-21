@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.security.HornetQPrincipal;
 import org.hornetq.core.server.HornetQComponent;
@@ -106,9 +106,9 @@ public final class InVMAcceptor implements Acceptor
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("factory"),
-                                       new SimpleString(InVMAcceptorFactory.class.getName()));
-         props.putIntProperty(new SimpleString("id"), id);
+         props.putStringProperty(new String("factory"),
+                                       new String(InVMAcceptorFactory.class.getName()));
+         props.putIntProperty(new String("id"), id);
          Notification notification = new Notification(null, CoreNotificationType.ACCEPTOR_STARTED, props);
          notificationService.sendNotification(notification);
       }
@@ -140,9 +140,9 @@ public final class InVMAcceptor implements Acceptor
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("factory"),
-                                       new SimpleString(InVMAcceptorFactory.class.getName()));
-         props.putIntProperty(new SimpleString("id"), id);
+         props.putStringProperty(new String("factory"),
+                                       new String(InVMAcceptorFactory.class.getName()));
+         props.putIntProperty(new String("id"), id);
          Notification notification = new Notification(null, CoreNotificationType.ACCEPTOR_STOPPED, props);
          try
          {

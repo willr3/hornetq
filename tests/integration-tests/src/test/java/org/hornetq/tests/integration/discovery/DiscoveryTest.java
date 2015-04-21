@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 import org.hornetq.api.core.BroadcastEndpoint;
 import org.hornetq.api.core.BroadcastEndpointFactory;
 import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.management.CoreNotificationType;
@@ -1116,7 +1116,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.DISCOVERY_GROUP_STARTED, notif.getType());
       Assert.assertEquals(dg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getStringProperty(new String("name"))
          .toString());
 
       dg.stop();
@@ -1125,7 +1125,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.DISCOVERY_GROUP_STOPPED, notif.getType());
       Assert.assertEquals(dg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getStringProperty(new String("name"))
          .toString());
    }
 
@@ -1156,7 +1156,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.BROADCAST_GROUP_STARTED, notif.getType());
       Assert.assertEquals(bg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getStringProperty(new String("name"))
          .toString());
 
       bg.stop();
@@ -1165,7 +1165,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.BROADCAST_GROUP_STOPPED, notif.getType());
       Assert.assertEquals(bg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getStringProperty(new String("name"))
          .toString());
    }
 

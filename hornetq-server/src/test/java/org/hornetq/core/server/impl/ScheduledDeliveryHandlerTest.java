@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.paging.PagingStore;
@@ -343,7 +343,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public void forceAddress(SimpleString address)
+      public void forceAddress(String address)
       {
 
       }
@@ -553,7 +553,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public void setAddressTransient(SimpleString address)
+      public void setAddressTransient(String address)
       {
 
       }
@@ -577,13 +577,13 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return null;
       }
 
       @Override
-      public void setAddress(SimpleString address)
+      public void setAddress(String address)
       {
       }
 
@@ -671,111 +671,111 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public void putBooleanProperty(SimpleString key, boolean value)
-      {
-      }
+//      @Override
+//      public void putBooleanProperty(String key, boolean value)
+//      {
+//      }
 
       @Override
       public void putBooleanProperty(String key, boolean value)
       {
       }
 
-      @Override
-      public void putByteProperty(SimpleString key, byte value)
-      {
-      }
+//      @Override
+//      public void putByteProperty(String key, byte value)
+//      {
+//      }
 
       @Override
       public void putByteProperty(String key, byte value)
       {
       }
 
-      @Override
-      public void putBytesProperty(SimpleString key, byte[] value)
-      {
-      }
+//      @Override
+//      public void putBytesProperty(String key, byte[] value)
+//      {
+//      }
 
       @Override
       public void putBytesProperty(String key, byte[] value)
       {
       }
 
-      @Override
-      public void putShortProperty(SimpleString key, short value)
-      {
-      }
+//      @Override
+//      public void putShortProperty(String key, short value)
+//      {
+//      }
 
       @Override
       public void putShortProperty(String key, short value)
       {
       }
 
-      @Override
-      public void putIntProperty(SimpleString key, int value)
-      {
-      }
+//      @Override
+//      public void putIntProperty(String key, int value)
+//      {
+//      }
 
       @Override
       public void putIntProperty(String key, int value)
       {
       }
 
-      @Override
-      public void putLongProperty(SimpleString key, long value)
-      {
-      }
+//      @Override
+//      public void putLongProperty(String key, long value)
+//      {
+//      }
 
       @Override
       public void putLongProperty(String key, long value)
       {
       }
 
-      @Override
-      public void putFloatProperty(SimpleString key, float value)
-      {
-      }
+//      @Override
+//      public void putFloatProperty(String key, float value)
+//      {
+//      }
 
       @Override
       public void putFloatProperty(String key, float value)
       {
       }
 
-      @Override
-      public void putDoubleProperty(SimpleString key, double value)
-      {
-      }
+//      @Override
+//      public void putDoubleProperty(String key, double value)
+//      {
+//      }
 
       @Override
       public void putDoubleProperty(String key, double value)
       {
       }
 
-      @Override
-      public void putStringProperty(SimpleString key, SimpleString value)
-      {
-      }
+//      @Override
+//      public void putStringProperty(String key, String value)
+//      {
+//      }
 
       @Override
       public void putStringProperty(String key, String value)
       {
       }
 
-      @Override
-      public void putObjectProperty(SimpleString key, Object value) throws HornetQPropertyConversionException
-      {
-      }
+//      @Override
+//      public void putObjectProperty(String key, Object value) throws HornetQPropertyConversionException
+//      {
+//      }
 
       @Override
       public void putObjectProperty(String key, Object value) throws HornetQPropertyConversionException
       {
       }
 
-      @Override
-      public Object removeProperty(SimpleString key)
-      {
-         return null;
-      }
+//      @Override
+//      public Object removeProperty(String key)
+//      {
+//         return null;
+//      }
 
       @Override
       public Object removeProperty(String key)
@@ -783,11 +783,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public boolean containsProperty(SimpleString key)
-      {
-         return false;
-      }
+//      @Override
+//      public boolean containsProperty(String key)
+//      {
+//         return false;
+//      }
 
       @Override
       public boolean containsProperty(String key)
@@ -795,11 +795,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return false;
       }
 
-      @Override
-      public Boolean getBooleanProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException
@@ -807,11 +807,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Byte getByteProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Byte getByteProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Byte getByteProperty(String key) throws HornetQPropertyConversionException
@@ -819,11 +819,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Double getDoubleProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Double getDoubleProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Double getDoubleProperty(String key) throws HornetQPropertyConversionException
@@ -831,11 +831,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Integer getIntProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Integer getIntProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Integer getIntProperty(String key) throws HornetQPropertyConversionException
@@ -843,11 +843,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Long getLongProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Long getLongProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Long getLongProperty(String key) throws HornetQPropertyConversionException
@@ -855,11 +855,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Object getObjectProperty(SimpleString key)
-      {
-         return null;
-      }
+//      @Override
+//      public Object getObjectProperty(String key)
+//      {
+//         return null;
+//      }
 
       @Override
       public Object getObjectProperty(String key)
@@ -867,11 +867,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Short getShortProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Short getShortProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Short getShortProperty(String key) throws HornetQPropertyConversionException
@@ -879,11 +879,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Float getFloatProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Float getFloatProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Float getFloatProperty(String key) throws HornetQPropertyConversionException
@@ -891,11 +891,23 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public String getStringProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public String getStringProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
+
+//      @Override
+//      public String getStringProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
+
+//      @Override
+//      public String getStringProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public String getStringProperty(String key) throws HornetQPropertyConversionException
@@ -903,23 +915,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public SimpleString getSimpleStringProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
-
-      @Override
-      public SimpleString getSimpleStringProperty(String key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
-
-      @Override
-      public byte[] getBytesProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return new byte[0];
-      }
+//      @Override
+//      public byte[] getBytesProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return new byte[0];
+//      }
 
       @Override
       public byte[] getBytesProperty(String key) throws HornetQPropertyConversionException
@@ -928,7 +928,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public Set<SimpleString> getPropertyNames()
+      public Set<String> getPropertyNames()
       {
          return null;
       }
@@ -948,7 +948,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       LinkedList<MessageReference> messages = new LinkedList<MessageReference>();
 
       @Override
-      public void unproposed(SimpleString groupID)
+      public void unproposed(String groupID)
       {
 
       }
@@ -959,7 +959,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public int moveReferences(Filter filter, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+      public int moveReferences(Filter filter, String toAddress, boolean rejectDuplicates) throws Exception
       {
          return 0;
       }
@@ -970,7 +970,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getName()
+      public String getName()
       {
          return null;
       }
@@ -1267,19 +1267,19 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public boolean moveReference(long messageID, SimpleString toAddress) throws Exception
+      public boolean moveReference(long messageID, String toAddress) throws Exception
       {
          return false;
       }
 
       @Override
-      public boolean moveReference(long messageID, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+      public boolean moveReference(long messageID, String toAddress, boolean rejectDuplicates) throws Exception
       {
          return false;
       }
 
       @Override
-      public int moveReferences(Filter filter, SimpleString toAddress) throws Exception
+      public int moveReferences(Filter filter, String toAddress) throws Exception
       {
          return 0;
       }
@@ -1327,7 +1327,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getExpiryAddress()
+      public String getExpiryAddress()
       {
          return null;
       }
@@ -1381,7 +1381,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return null;
       }

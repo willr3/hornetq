@@ -64,7 +64,7 @@ public class InVMConnection implements Connection
                          final ConnectionLifeCycleListener listener,
                          final Executor executor)
    {
-      this(serverID, UUIDGenerator.getInstance().generateSimpleStringUUID().toString(), handler, listener, executor);
+      this(serverID, UUIDGenerator.getInstance().generateStringUUID().toString(), handler, listener, executor);
    }
 
    public InVMConnection(final int serverID,

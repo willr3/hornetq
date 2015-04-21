@@ -12,8 +12,6 @@
  */
 package org.hornetq.core.server.group.impl;
 
-import org.hornetq.api.core.SimpleString;
-
 /**
  * A response to a proposal
  *
@@ -23,20 +21,20 @@ public class Response
 {
    private final boolean accepted;
 
-   private final SimpleString clusterName;
+   private final String clusterName;
 
-   private final SimpleString alternativeClusterName;
+   private final String alternativeClusterName;
 
-   private final SimpleString groupId;
+   private final String groupId;
 
    private volatile long timeUsed;
 
-   public Response(final SimpleString groupId, final SimpleString clusterName)
+   public Response(final String groupId, final String clusterName)
    {
       this(groupId, clusterName, null);
    }
 
-   public Response(final SimpleString groupId, final SimpleString clusterName, final SimpleString alternativeClusterName)
+   public Response(final String groupId, final String clusterName, final String alternativeClusterName)
    {
       this.groupId = groupId;
       accepted = alternativeClusterName == null;
@@ -60,17 +58,17 @@ public class Response
       return accepted;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return clusterName;
    }
 
-   public SimpleString getAlternativeClusterName()
+   public String getAlternativeClusterName()
    {
       return alternativeClusterName;
    }
 
-   public SimpleString getChosenClusterName()
+   public String getChosenClusterName()
    {
       return alternativeClusterName != null ? alternativeClusterName : clusterName;
    }
@@ -86,7 +84,7 @@ public class Response
              alternativeClusterName;
    }
 
-   public SimpleString getGroupId()
+   public String getGroupId()
    {
       return groupId;
    }

@@ -24,7 +24,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.client.HornetQMessage;
 import org.hornetq.jms.client.HornetQTextMessage;
@@ -63,7 +62,7 @@ public class GroupingTest extends JMSTestBase
 
    protected void setProperty(Message message)
    {
-      ((HornetQMessage)message).getCoreMessage().putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, new SimpleString("foo"));
+      ((HornetQMessage)message).getCoreMessage().putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, new String("foo"));
    }
 
    protected ConnectionFactory getCF() throws Exception

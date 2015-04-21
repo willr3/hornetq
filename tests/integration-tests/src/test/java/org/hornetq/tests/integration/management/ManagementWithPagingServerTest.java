@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.management;
 import java.nio.ByteBuffer;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -53,8 +53,8 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
    @Test
    public void testListMessagesAsJSON() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session1.createQueue(address, queue, null, true);
 
@@ -98,8 +98,8 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
    @Test
    public void testListMessagesAsJSONWithFilter() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session1.createQueue(address, queue, null, true);
 
@@ -107,7 +107,7 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
 
       int num = 1000;
 
-      SimpleString key = new SimpleString("key");
+      String key = new String("key");
       long matchingValue = RandomUtil.randomLong();
       long unmatchingValue = matchingValue + 1;
       String filter = key + " =" + matchingValue;
@@ -156,8 +156,8 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
    @Test
    public void testListMessagesAsJSONWhilePagingOnGoing() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session1.createQueue(address, queue, null, true);
 
@@ -244,12 +244,12 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
 
    private class SenderThread extends Thread
    {
-      private SimpleString address;
+      private String address;
       private int num;
       private long delay;
       private volatile Exception error = null;
 
-      public SenderThread(SimpleString address, int num, long delay)
+      public SenderThread(String address, int num, long delay)
       {
          this.address = address;
          this.num = num;
@@ -302,12 +302,12 @@ public class ManagementWithPagingServerTest extends ManagementTestBase
 
    private class ReceiverThread extends Thread
    {
-      private SimpleString queue;
+      private String queue;
       private int num;
       private long delay;
       private volatile Exception error = null;
 
-      public ReceiverThread(SimpleString queue, int num, long delay)
+      public ReceiverThread(String queue, int num, long delay)
       {
          this.queue = queue;
          this.num = num;

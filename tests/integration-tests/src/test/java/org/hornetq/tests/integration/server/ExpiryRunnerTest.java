@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -49,13 +49,13 @@ public class ExpiryRunnerTest extends UnitTestCase
 
    private ClientSession clientSession;
 
-   private final SimpleString qName = new SimpleString("ExpiryRunnerTestQ");
+   private final String qName = new String("ExpiryRunnerTestQ");
 
-   private final SimpleString qName2 = new SimpleString("ExpiryRunnerTestQ2");
+   private final String qName2 = new String("ExpiryRunnerTestQ2");
 
-   private SimpleString expiryQueue;
+   private String expiryQueue;
 
-   private SimpleString expiryAddress;
+   private String expiryAddress;
    private ServerLocator locator;
 
    @Test
@@ -277,8 +277,8 @@ public class ExpiryRunnerTest extends UnitTestCase
 
       clientSession = sessionFactory.createSession(false, true, true);
       clientSession.createQueue(qName, qName, null, false);
-      expiryAddress = new SimpleString("EA");
-      expiryQueue = new SimpleString("expiryQ");
+      expiryAddress = new String("EA");
+      expiryQueue = new String("expiryQ");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setExpiryAddress(expiryAddress);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);

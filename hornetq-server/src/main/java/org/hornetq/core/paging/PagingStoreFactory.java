@@ -15,7 +15,7 @@ package org.hornetq.core.paging;
 
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.core.settings.impl.AddressSettings;
@@ -28,7 +28,7 @@ import org.hornetq.core.settings.impl.AddressSettings;
  */
 public interface PagingStoreFactory
 {
-   PagingStore newStore(SimpleString address, AddressSettings addressSettings);
+   PagingStore newStore(String address, AddressSettings addressSettings);
 
    void stop() throws InterruptedException;
 
@@ -36,6 +36,6 @@ public interface PagingStoreFactory
 
    List<PagingStore> reloadStores(HierarchicalRepository<AddressSettings> addressSettingsRepository) throws Exception;
 
-   SequentialFileFactory newFileFactory(SimpleString address) throws Exception;
+   SequentialFileFactory newFileFactory(String address) throws Exception;
 
 }

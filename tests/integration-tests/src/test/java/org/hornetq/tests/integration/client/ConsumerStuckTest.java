@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -36,7 +36,7 @@ public class ConsumerStuckTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    protected boolean isNetty()
    {

@@ -144,7 +144,7 @@ public class Redistributor implements Consumer
          return HandleStatus.BUSY;
       }
       //we shouldn't redistribute with message groups return NO_MATCH so other messages can be delivered
-      else if (reference.getMessage().getSimpleStringProperty(Message.HDR_GROUP_ID) != null)
+      else if (reference.getMessage().getStringProperty(Message.HDR_GROUP_ID) != null)
       {
          return HandleStatus.NO_MATCH;
       }

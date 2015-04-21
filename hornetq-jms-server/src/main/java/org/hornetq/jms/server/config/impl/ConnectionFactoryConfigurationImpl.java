@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
@@ -508,9 +508,9 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
    {
       persisted = true;
 
-      name = buffer.readSimpleString().toString();
+      name = buffer.readString().toString();
 
-      discoveryGroupName = BufferHelper.readNullableSimpleStringAsString(buffer);
+      discoveryGroupName = BufferHelper.readNullableStringAsString(buffer);
 
       int nConnectors = buffer.readInt();
 
@@ -520,7 +520,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
          for (int i = 0; i < nConnectors; i++)
          {
-            SimpleString str = buffer.readSimpleString();
+            String str = buffer.readString();
 
             connectorNames.add(str.toString());
          }
@@ -528,7 +528,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
       ha = buffer.readBoolean();
 
-      clientID = BufferHelper.readNullableSimpleStringAsString(buffer);
+      clientID = BufferHelper.readNullableStringAsString(buffer);
 
       clientFailureCheckPeriod = buffer.readLong();
 
@@ -560,7 +560,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
       preAcknowledge = buffer.readBoolean();
 
-      loadBalancingPolicyClassName = buffer.readSimpleString().toString();
+      loadBalancingPolicyClassName = buffer.readString().toString();
 
       transactionBatchSize = buffer.readInt();
 
@@ -586,7 +586,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
       compressLargeMessage = buffer.readBoolean();
 
-      groupID = BufferHelper.readNullableSimpleStringAsString(buffer);
+      groupID = BufferHelper.readNullableStringAsString(buffer);
 
       factoryType = JMSFactoryType.valueOf(buffer.readInt());
    }
@@ -596,9 +596,9 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
    {
       persisted = true;
 
-      BufferHelper.writeAsSimpleString(buffer, name);
+      BufferHelper.writeAsString(buffer, name);
 
-      BufferHelper.writeAsNullableSimpleString(buffer, discoveryGroupName);
+      BufferHelper.writeAsNullableString(buffer, discoveryGroupName);
 
       if (this.connectorNames == null)
       {
@@ -610,13 +610,13 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
          for (String tc : connectorNames)
          {
-            BufferHelper.writeAsSimpleString(buffer, tc);
+            BufferHelper.writeAsString(buffer, tc);
          }
       }
 
       buffer.writeBoolean(ha);
 
-      BufferHelper.writeAsNullableSimpleString(buffer, clientID);
+      BufferHelper.writeAsNullableString(buffer, clientID);
 
       buffer.writeLong(clientFailureCheckPeriod);
 
@@ -648,7 +648,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
       buffer.writeBoolean(preAcknowledge);
 
-      BufferHelper.writeAsSimpleString(buffer, loadBalancingPolicyClassName);
+      BufferHelper.writeAsString(buffer, loadBalancingPolicyClassName);
 
       buffer.writeInt(transactionBatchSize);
 
@@ -674,7 +674,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
       buffer.writeBoolean(compressLargeMessage);
 
-      BufferHelper.writeAsNullableSimpleString(buffer, groupID);
+      BufferHelper.writeAsNullableString(buffer, groupID);
 
       buffer.writeInt(factoryType.intValue());
    }
@@ -682,9 +682,9 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
    @Override
    public int getEncodeSize()
    {
-      int size = BufferHelper.sizeOfSimpleString(name) +
+      int size = BufferHelper.sizeOfString(name) +
 
-         BufferHelper.sizeOfNullableSimpleString(discoveryGroupName);
+         BufferHelper.sizeOfNullableString(discoveryGroupName);
 
       size += DataConstants.SIZE_INT;
 
@@ -692,11 +692,11 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
       {
          for (String tc : connectorNames)
          {
-            size += BufferHelper.sizeOfSimpleString(tc);
+            size += BufferHelper.sizeOfString(tc);
          }
       }
 
-      size += BufferHelper.sizeOfNullableSimpleString(clientID) +
+      size += BufferHelper.sizeOfNullableString(clientID) +
 
          DataConstants.SIZE_BOOLEAN +
          // ha
@@ -746,7 +746,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
          DataConstants.SIZE_BOOLEAN +
          // preAcknowledge
 
-         BufferHelper.sizeOfSimpleString(loadBalancingPolicyClassName) +
+         BufferHelper.sizeOfString(loadBalancingPolicyClassName) +
 
          DataConstants.SIZE_INT +
          // transactionBatchSize
@@ -784,7 +784,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
          DataConstants.SIZE_BOOLEAN +
          // compress-large-message
 
-         BufferHelper.sizeOfNullableSimpleString(groupID) +
+         BufferHelper.sizeOfNullableString(groupID) +
 
          DataConstants.SIZE_INT; // factoryType
 

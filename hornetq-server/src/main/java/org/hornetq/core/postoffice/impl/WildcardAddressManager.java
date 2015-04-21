@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.postoffice.Address;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.Bindings;
@@ -31,23 +30,23 @@ import org.hornetq.core.transaction.Transaction;
  */
 public class WildcardAddressManager extends SimpleAddressManager
 {
-   static final char SINGLE_WORD = '*';
+   static final String SINGLE_WORD = "*";
 
-   static final char ANY_WORDS = '#';
+   static final String ANY_WORDS = "#";
 
-   static final char DELIM = '.';
+   static final String DELIM = ".";
 
-   static final SimpleString SINGLE_WORD_SIMPLESTRING = new SimpleString("*");
+   static final String SINGLE_WORD_SIMPLESTRING = new String("*");
 
-   static final SimpleString ANY_WORDS_SIMPLESTRING = new SimpleString("#");
+   static final String ANY_WORDS_SIMPLESTRING = new String("#");
 
    /**
     * These are all the addresses, we use this so we can link back from the actual address to its linked wilcard addresses
     * or vice versa
     */
-   private final Map<SimpleString, Address> addresses = new ConcurrentHashMap<SimpleString, Address>();
+   private final Map<String, Address> addresses = new ConcurrentHashMap<String, Address>();
 
-   private final Map<SimpleString, Address> wildCardAddresses = new ConcurrentHashMap<SimpleString, Address>();
+   private final Map<String, Address> wildCardAddresses = new ConcurrentHashMap<String, Address>();
 
    public WildcardAddressManager(final BindingsFactory bindingsFactory)
    {
@@ -55,7 +54,7 @@ public class WildcardAddressManager extends SimpleAddressManager
    }
 
    @Override
-   public Bindings getBindingsForRoutingAddress(final SimpleString address) throws Exception
+   public Bindings getBindingsForRoutingAddress(final String address) throws Exception
    {
       Bindings bindings = super.getBindingsForRoutingAddress(address);
 
@@ -127,7 +126,7 @@ public class WildcardAddressManager extends SimpleAddressManager
     * @return true if this was the last mapping for a specific address
     */
    @Override
-   public Binding removeBinding(final SimpleString uniqueName, Transaction tx) throws Exception
+   public Binding removeBinding(final String uniqueName, Transaction tx) throws Exception
    {
       Binding binding = super.removeBinding(uniqueName, tx);
       if (binding != null)
@@ -153,7 +152,7 @@ public class WildcardAddressManager extends SimpleAddressManager
       wildCardAddresses.clear();
    }
 
-   private Address getAddress(final SimpleString address)
+   private Address getAddress(final String address)
    {
       Address add = new AddressImpl(address);
       Address actualAddress;
@@ -168,7 +167,7 @@ public class WildcardAddressManager extends SimpleAddressManager
       return actualAddress != null ? actualAddress : add;
    }
 
-   private synchronized Address addAndUpdateAddressMap(final SimpleString address)
+   private synchronized Address addAndUpdateAddressMap(final String address)
    {
       Address add = new AddressImpl(address);
       Address actualAddress;
@@ -211,7 +210,7 @@ public class WildcardAddressManager extends SimpleAddressManager
       return actualAddress;
    }
 
-   private void addAddress(final SimpleString address, final Address actualAddress)
+   private void addAddress(final String address, final Address actualAddress)
    {
       if (actualAddress.containsWildCard())
       {

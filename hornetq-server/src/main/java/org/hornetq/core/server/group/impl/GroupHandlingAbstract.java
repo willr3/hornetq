@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.Executor;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.postoffice.BindingType;
@@ -39,14 +39,14 @@ public abstract class GroupHandlingAbstract implements GroupingHandler
 
    protected final ManagementService managementService;
 
-   protected final SimpleString address;
+   protected final String address;
 
    // no need to synchronize listeners as we use a single threaded executor on all its accesses
    final Set<UnproposalListener> listeners = Collections.newSetFromMap(new WeakHashMap<UnproposalListener, Boolean>());
 
    public GroupHandlingAbstract(final Executor executor,
                                 final ManagementService managementService,
-                                final SimpleString address)
+                                final String address)
    {
       this.executor = executor;
       this.managementService = managementService;
@@ -71,7 +71,7 @@ public abstract class GroupHandlingAbstract implements GroupingHandler
       }
    }
 
-   protected void fireUnproposed(final SimpleString groupID)
+   protected void fireUnproposed(final String groupID)
    {
 
       Runnable runnable = new Runnable()
@@ -95,20 +95,20 @@ public abstract class GroupHandlingAbstract implements GroupingHandler
       }
    }
 
-   public void forceRemove(SimpleString groupid, SimpleString clusterName) throws Exception
+   public void forceRemove(String groupid, String clusterName) throws Exception
    {
       remove(groupid, clusterName);
       sendUnproposal(groupid, clusterName, 0);
    }
 
 
-   protected void sendUnproposal(SimpleString groupid, SimpleString clusterName, int distance)
+   protected void sendUnproposal(String groupid, String clusterName, int distance)
    {
       TypedProperties props = new TypedProperties();
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, groupid);
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, clusterName);
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, groupid);
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, clusterName);
       props.putIntProperty(ManagementHelper.HDR_BINDING_TYPE, BindingType.LOCAL_QUEUE_INDEX);
-      props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
+      props.putStringProperty(ManagementHelper.HDR_ADDRESS, address);
       props.putIntProperty(ManagementHelper.HDR_DISTANCE, distance);
       Notification notification = new Notification(null, CoreNotificationType.UNPROPOSAL, props);
       try

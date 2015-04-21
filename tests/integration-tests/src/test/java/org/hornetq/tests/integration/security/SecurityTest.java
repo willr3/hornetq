@@ -30,7 +30,7 @@ import java.util.Set;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQSecurityException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -506,7 +506,7 @@ public class SecurityTest extends ServiceTestBase
       cp.send(session.createMessage(false));
       session.close();
 
-      Queue binding = (Queue)server.getPostOffice().getBinding(new SimpleString(SecurityTest.queueA)).getBindable();
+      Queue binding = (Queue)server.getPostOffice().getBinding(new String(SecurityTest.queueA)).getBindable();
       Assert.assertEquals(0, binding.getMessageCount());
    }
 
@@ -885,7 +885,7 @@ public class SecurityTest extends ServiceTestBase
       cp.send(session.createMessage(false));
       session.close();
 
-      Queue binding = (Queue)server.getPostOffice().getBinding(new SimpleString(SecurityTest.queueA)).getBindable();
+      Queue binding = (Queue)server.getPostOffice().getBinding(new String(SecurityTest.queueA)).getBindable();
       Assert.assertEquals(0, binding.getMessageCount());
 
    }

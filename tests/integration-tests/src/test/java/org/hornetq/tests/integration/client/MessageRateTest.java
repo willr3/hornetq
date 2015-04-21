@@ -17,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -41,7 +41,7 @@ public class MessageRateTest extends ServiceTestBase
 
    // Constants -----------------------------------------------------
 
-   private final SimpleString ADDRESS = new SimpleString("ADDRESS");
+   private final String ADDRESS = new String("ADDRESS");
 
    private ServerLocator locator;
 

@@ -17,7 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.rest.HornetQRestLogger;
@@ -368,7 +367,7 @@ public class SubscriptionsResource implements TimeoutTask.Callback
       {
          session = sessionFactory.createSession();
 
-         ClientSession.QueueQuery query = session.queueQuery(new SimpleString(subscriptionId));
+         ClientSession.QueueQuery query = session.queueQuery(new String(subscriptionId));
          return query.isExists();
       }
       catch (HornetQException e)

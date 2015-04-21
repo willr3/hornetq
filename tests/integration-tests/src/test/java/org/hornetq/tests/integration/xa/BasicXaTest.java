@@ -21,7 +21,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -58,7 +58,7 @@ public class BasicXaTest extends ServiceTestBase
 
    private Configuration configuration;
 
-   private final SimpleString atestq = new SimpleString("BasicXaTestq");
+   private final String atestq = new String("BasicXaTestq");
 
    private ServerLocator locator;
 
@@ -614,8 +614,8 @@ public class BasicXaTest extends ServiceTestBase
    @Test
    public void testSimpleJoin() throws Exception
    {
-      SimpleString ADDRESS1 = new SimpleString("Address-1");
-      SimpleString ADDRESS2 = new SimpleString("Address-2");
+      String ADDRESS1 = new String("Address-1");
+      String ADDRESS2 = new String("Address-2");
 
       clientSession.createQueue(ADDRESS1, ADDRESS1, true);
       clientSession.createQueue(ADDRESS2, ADDRESS2, true);
@@ -691,7 +691,7 @@ public class BasicXaTest extends ServiceTestBase
       int NUMBER_OF_QUEUES = 10;
       ClientSession session = null;
 
-      SimpleString ADDRESS = new SimpleString("Address");
+      String ADDRESS = new String("Address");
 
       ClientSession newJoinSession = null;
 

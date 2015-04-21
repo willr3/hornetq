@@ -31,7 +31,7 @@ import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQInterruptedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.protocol.core.Packet;
@@ -1060,19 +1060,19 @@ public class LargeMessageControllerImpl implements LargeMessageController
       return Float.intBitsToFloat(readInt());
    }
 
-   @Override
-   public SimpleString readNullableSimpleString()
-   {
-      int b = readByte();
-      if (b == DataConstants.NULL)
-      {
-         return null;
-      }
-      else
-      {
-         return readSimpleString();
-      }
-   }
+//   @Override
+//   public String readNullableString()
+//   {
+//      int b = readByte();
+//      if (b == DataConstants.NULL)
+//      {
+//         return null;
+//      }
+//      else
+//      {
+//         return readString();
+//      }
+//   }
 
    @Override
    public String readNullableString()
@@ -1088,14 +1088,14 @@ public class LargeMessageControllerImpl implements LargeMessageController
       }
    }
 
-   @Override
-   public SimpleString readSimpleString()
-   {
-      int len = readInt();
-      byte[] data = new byte[len];
-      readBytes(data);
-      return new SimpleString(data);
-   }
+//   @Override
+//   public String readString()
+//   {
+//      int len = readInt();
+//      byte[] data = new byte[len];
+//      readBytes(data);
+//      return new String(data);
+//   }
 
    @Override
    public String readString()
@@ -1117,7 +1117,10 @@ public class LargeMessageControllerImpl implements LargeMessageController
       }
       else
       {
-         return readSimpleString().toString();
+         byte[] data = new byte[len];
+         readBytes(data);
+         return new String(data);
+         //return readString().toString();
       }
    }
 
@@ -1153,11 +1156,11 @@ public class LargeMessageControllerImpl implements LargeMessageController
 
    }
 
-   @Override
-   public void writeNullableSimpleString(final SimpleString val)
-   {
-      throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
-   }
+//   @Override
+//   public void writeNullableString(final String val)
+//   {
+//      throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
+//   }
 
    @Override
    public void writeNullableString(final String val)
@@ -1165,11 +1168,11 @@ public class LargeMessageControllerImpl implements LargeMessageController
       throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
    }
 
-   @Override
-   public void writeSimpleString(final SimpleString val)
-   {
-      throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
-   }
+//   @Override
+//   public void writeString(final String val)
+//   {
+//      throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
+//   }
 
    @Override
    public void writeString(final String val)

@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.client.HornetQQueue;
@@ -58,7 +57,7 @@ public class QueueDestinationsResource
          try
          {
 
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+            ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
             if (!query.isExists())
             {
                if (queue.getSelector() != null)
@@ -131,7 +130,7 @@ public class QueueDestinationsResource
       try
       {
 
-         SimpleString queueName = new SimpleString(name);
+         String queueName = new String(name);
          ClientSession.QueueQuery query = session.queueQuery(queueName);
          if (query.isExists())
          {
@@ -165,7 +164,7 @@ public class QueueDestinationsResource
          ClientSession session = manager.getSessionFactory().createSession(false, false, false);
          try
          {
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+            ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
             if (!query.isExists())
             {
                throw new WebApplicationException(Response.status(404).type("text/plain").entity("Queue '" + name + "' does not exist").build());

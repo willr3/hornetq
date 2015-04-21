@@ -20,7 +20,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -60,13 +60,13 @@ public class ClusterConnectionBridge extends BridgeImpl
 
    private final MessageFlowRecord flowRecord;
 
-   private final SimpleString managementAddress;
+   private final String managementAddress;
 
-   private final SimpleString managementNotificationAddress;
+   private final String managementNotificationAddress;
 
    private ClientConsumer notifConsumer;
 
-   private final SimpleString idsHeaderName;
+   private final String idsHeaderName;
 
    private final long targetNodeEventUID;
 
@@ -82,11 +82,11 @@ public class ClusterConnectionBridge extends BridgeImpl
                                   final UUID nodeUUID,
                                   final long targetNodeEventUID,
                                   final String targetNodeID,
-                                  final SimpleString name,
+                                  final String name,
                                   final Queue queue,
                                   final Executor executor,
                                   final Filter filterString,
-                                  final SimpleString forwardingAddress,
+                                  final String forwardingAddress,
                                   final ScheduledExecutorService scheduledExecutor,
                                   final Transformer transformer,
                                   final boolean useDuplicateDetection,
@@ -94,8 +94,8 @@ public class ClusterConnectionBridge extends BridgeImpl
                                   final String password,
                                   final boolean activated,
                                   final StorageManager storageManager,
-                                  final SimpleString managementAddress,
-                                  final SimpleString managementNotificationAddress,
+                                  final String managementAddress,
+                                  final String managementNotificationAddress,
                                   final MessageFlowRecord flowRecord,
                                   final TransportConfiguration connector)
    {
@@ -188,7 +188,7 @@ public class ClusterConnectionBridge extends BridgeImpl
 
       // TODO - we can optimise this
 
-      Set<SimpleString> propNames = new HashSet<SimpleString>(messageCopy.getPropertyNames());
+      Set<String> propNames = new HashSet<String>(messageCopy.getPropertyNames());
 
       byte[] queueIds = message.getBytesProperty(idsHeaderName);
 
@@ -199,7 +199,7 @@ public class ClusterConnectionBridge extends BridgeImpl
          throw new IllegalStateException("no queueIDs defined");
       }
 
-      for (SimpleString propName : propNames)
+      for (String propName : propNames)
       {
          if (propName.startsWith(MessageImpl.HDR_ROUTE_TO_IDS))
          {
@@ -253,9 +253,9 @@ public class ClusterConnectionBridge extends BridgeImpl
                         "." +
                         clusterConnection.getServer();
 
-         SimpleString notifQueueName = new SimpleString(qName);
+         String notifQueueName = new String(qName);
 
-         SimpleString filter = new SimpleString(ManagementHelper.HDR_BINDING_TYPE + "<>" +
+         String filter = new String(ManagementHelper.HDR_BINDING_TYPE + "<>" +
                                                 BindingType.DIVERT.toInt() +
                                                 " AND " +
                                                 ManagementHelper.HDR_NOTIFICATION_TYPE +

@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.IOCriticalErrorListener;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
@@ -92,7 +92,7 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
    {
    }
 
-   public synchronized PagingStore newStore(final SimpleString address, final AddressSettings settings)
+   public synchronized PagingStore newStore(final String address, final AddressSettings settings)
    {
 
       return new PagingStoreImpl(address,
@@ -108,12 +108,12 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
                                  syncNonTransactional);
    }
 
-   public synchronized SequentialFileFactory newFileFactory(final SimpleString address) throws Exception
+   public synchronized SequentialFileFactory newFileFactory(final String address) throws Exception
    {
 
       String guid = UUIDGenerator.getInstance().generateStringUUID();
 
-      SequentialFileFactory factory = newFileFactory(guid);
+      SequentialFileFactory factory = newFileFactoryGuid(guid);
 
       factory.createDirs();
 
@@ -182,9 +182,9 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
                reader.close();
             }
 
-            SimpleString address = new SimpleString(addressString);
+            String address = new String(addressString);
 
-            SequentialFileFactory factory = newFileFactory(guid);
+            SequentialFileFactory factory = newFileFactoryGuid(guid);
 
             AddressSettings settings = addressSettingsRepository.getMatch(address.toString());
 
@@ -207,7 +207,7 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
       }
    }
 
-   private SequentialFileFactory newFileFactory(final String directoryName)
+   private SequentialFileFactory newFileFactoryGuid(final String directoryName)
    {
       return new NIOSequentialFileFactory(directory + File.separatorChar + directoryName, false, critialErrorListener);
    }

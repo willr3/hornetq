@@ -16,7 +16,7 @@ package org.hornetq.core.filter.impl;
 import java.io.IOException;
 import java.io.Reader;
 
-import org.hornetq.api.core.SimpleString;
+
 
 
 /**
@@ -35,7 +35,7 @@ final class SimpleStringReader extends Reader
 
    // Attributes ----------------------------------------------------
 
-   private final SimpleString simpleString;
+   private final String simpleString;
 
    private int next = 0;
 
@@ -43,7 +43,7 @@ final class SimpleStringReader extends Reader
 
    // Constructors --------------------------------------------------
 
-   SimpleStringReader(final SimpleString simpleString)
+   SimpleStringReader(final String simpleString)
    {
       this.simpleString = simpleString;
    }

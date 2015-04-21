@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -564,7 +564,7 @@ public class HornetQMessageHandlerTest extends HornetQRATestBase
 
       HornetQActivation activation = lookupActivation(qResourceAdapter);
 
-      SimpleString tempQueueName = activation.getTopicTemporaryQueue();
+      String tempQueueName = activation.getTopicTemporaryQueue();
 
       QueueQuery query = session.queueQuery(tempQueueName);
       assertTrue(query.isExists());

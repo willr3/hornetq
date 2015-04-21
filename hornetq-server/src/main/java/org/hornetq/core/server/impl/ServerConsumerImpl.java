@@ -28,7 +28,6 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.client.impl.ClientConsumerImpl;
@@ -440,13 +439,13 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
       {
          TypedProperties props = new TypedProperties();
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
+         props.putStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
+         props.putStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
+         props.putStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING,
+         props.putStringProperty(ManagementHelper.HDR_FILTERSTRING,
                                        filter == null ? null : filter.getFilterString());
 
          props.putIntProperty(ManagementHelper.HDR_DISTANCE, binding.getDistance());
@@ -455,11 +454,11 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
 
          // HORNETQ-946
-         props.putSimpleStringProperty(ManagementHelper.HDR_USER, SimpleString.toSimpleString(session.getUsername()));
+         props.putStringProperty(ManagementHelper.HDR_USER, session.getUsername() );
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, SimpleString.toSimpleString(((ServerSessionImpl)session).getRemotingConnection().getRemoteAddress()));
+         props.putStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, (((ServerSessionImpl)session).getRemotingConnection().getRemoteAddress()));
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME, SimpleString.toSimpleString(session.getName()));
+         props.putStringProperty(ManagementHelper.HDR_SESSION_NAME, (session.getName()));
 
          Notification notification = new Notification(null, CoreNotificationType.CONSUMER_CLOSED, props);
 

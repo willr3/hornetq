@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -140,7 +140,7 @@ public class PagingLeakTest extends ServiceTestBase
       server.getAddressSettingsRepository().addMatch("#", settings);
 
 
-      final SimpleString address = new SimpleString("pgdAddress");
+      final String address = new String("pgdAddress");
 
       class Consumer extends Thread
       {

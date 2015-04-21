@@ -13,7 +13,7 @@
 
 package org.hornetq.core.client.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A ClientProducerCreditManager
@@ -24,13 +24,13 @@ import org.hornetq.api.core.SimpleString;
  */
 public interface ClientProducerCreditManager
 {
-   ClientProducerCredits getCredits(SimpleString address, boolean anon);
+   ClientProducerCredits getCredits(String address, boolean anon);
 
-   void returnCredits(SimpleString address);
+   void returnCredits(String address);
 
-   void receiveCredits(SimpleString address, int credits);
+   void receiveCredits(String address, int credits);
 
-   void receiveFailCredits(SimpleString address, int credits);
+   void receiveFailCredits(String address, int credits);
 
    void reset();
 

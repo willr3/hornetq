@@ -26,7 +26,7 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.Channel;
 import org.hornetq.core.protocol.core.CoreRemotingConnection;
 import org.hornetq.core.protocol.core.Packet;
@@ -94,7 +94,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
 
    private volatile boolean executing;
 
-   private final SimpleString nodeID;
+   private final String nodeID;
 
    private final long creationTime;
 
@@ -124,7 +124,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
                           final List<Interceptor> incomingInterceptors,
                           final List<Interceptor> outgoingInterceptors,
                           final Executor executor,
-                          final SimpleString nodeID)
+                          final String nodeID)
 
    {
       this(packetDecoder, transportConnection, -1, -1, incomingInterceptors, outgoingInterceptors, false, executor, nodeID);
@@ -138,7 +138,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
                                   final List<Interceptor> outgoingInterceptors,
                                   final boolean client,
                                   final Executor executor,
-                                  final SimpleString nodeID)
+                                  final String nodeID)
 
    {
       this.packetDecoder = packetDecoder;

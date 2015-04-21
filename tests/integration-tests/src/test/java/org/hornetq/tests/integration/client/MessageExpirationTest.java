@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -55,8 +55,8 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpiredWithoutExpiryAddress() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -80,8 +80,8 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpiredWithoutExpiryAddressWithExpiryDelayOverride() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.close();
 
@@ -116,8 +116,8 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpiredWithoutExpiryAddressWithExpiryDelayOverrideThatShouldNotBeApplied() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.close();
 
@@ -167,8 +167,8 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpirationOnServer() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -197,8 +197,8 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpirationOnClient() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -225,17 +225,17 @@ public class MessageExpirationTest extends ServiceTestBase
    @Test
    public void testMessageExpiredWithExpiryAddress() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
-      final SimpleString expiryAddress = RandomUtil.randomSimpleString();
-      SimpleString expiryQueue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomString();
+      String queue = RandomUtil.randomString();
+      final String expiryAddress = RandomUtil.randomString();
+      String expiryQueue = RandomUtil.randomString();
 
       server.getAddressSettingsRepository().addMatch(address.toString(), new AddressSettings()
       {
          private static final long serialVersionUID = -6476053400596299130L;
 
          @Override
-         public SimpleString getExpiryAddress()
+         public String getExpiryAddress()
          {
             return expiryAddress;
          }

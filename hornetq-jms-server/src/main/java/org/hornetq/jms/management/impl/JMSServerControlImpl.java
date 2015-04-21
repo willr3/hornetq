@@ -1029,7 +1029,7 @@ public class JMSServerControlImpl extends AbstractControl implements JMSServerCo
       TypedProperties prop = notification.getProperties();
 
       this.broadcaster.sendNotification(new Notification(type.toString(), this,
-            notifSeq.incrementAndGet(), prop.getSimpleStringProperty(JMSNotificationType.MESSAGE).toString()));
+            notifSeq.incrementAndGet(), prop.getStringProperty(JMSNotificationType.MESSAGE).toString()));
    }
 
 }

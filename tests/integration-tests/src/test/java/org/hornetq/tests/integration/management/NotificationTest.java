@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.management;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -60,7 +60,7 @@ public class NotificationTest extends UnitTestCase
 
    private ClientConsumer notifConsumer;
 
-   private SimpleString notifQueue;
+   private String notifQueue;
    private ServerLocator locator;
 
    // Static --------------------------------------------------------
@@ -72,8 +72,8 @@ public class NotificationTest extends UnitTestCase
    @Test
    public void testBINDING_ADDED() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       NotificationTest.flush(notifConsumer);
@@ -94,8 +94,8 @@ public class NotificationTest extends UnitTestCase
    @Test
    public void testBINDING_ADDEDWithMatchingFilter() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       System.out.println(queue);
@@ -121,8 +121,8 @@ public class NotificationTest extends UnitTestCase
    @Test
    public void testBINDING_ADDEDWithNonMatchingFilter() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       System.out.println(queue);
@@ -142,8 +142,8 @@ public class NotificationTest extends UnitTestCase
    @Test
    public void testBINDING_REMOVED() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       session.createQueue(address, queue, durable);
@@ -175,8 +175,8 @@ public class NotificationTest extends UnitTestCase
 
       mySession.start();
 
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       session.createQueue(address, queue, durable);
@@ -184,7 +184,7 @@ public class NotificationTest extends UnitTestCase
       NotificationTest.flush(notifConsumer);
 
       ClientConsumer consumer = mySession.createConsumer(queue);
-      SimpleString consumerName = SimpleString.toSimpleString(((ClientSessionInternal)mySession).getName());
+      String consumerName = (((ClientSessionInternal)mySession).getName());
 
       ClientMessage[] notifications = NotificationTest.consumeMessages(1, notifConsumer);
       Assert.assertEquals(CONSUMER_CREATED.toString(),
@@ -194,9 +194,9 @@ public class NotificationTest extends UnitTestCase
       Assert.assertEquals(address.toString(), notifications[0].getObjectProperty(ManagementHelper.HDR_ADDRESS)
          .toString());
       Assert.assertEquals(1, notifications[0].getObjectProperty(ManagementHelper.HDR_CONSUMER_COUNT));
-      Assert.assertEquals(SimpleString.toSimpleString("myUser"), notifications[0].getSimpleStringProperty(ManagementHelper.HDR_USER));
-      Assert.assertEquals(SimpleString.toSimpleString("invm:0"), notifications[0].getSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
-      Assert.assertEquals(consumerName, notifications[0].getSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME));
+      Assert.assertEquals(("myUser"), notifications[0].getStringProperty(ManagementHelper.HDR_USER));
+      Assert.assertEquals(("invm:0"), notifications[0].getStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
+      Assert.assertEquals(consumerName, notifications[0].getStringProperty(ManagementHelper.HDR_SESSION_NAME));
 
       consumer.close();
       session.deleteQueue(queue);
@@ -216,13 +216,13 @@ public class NotificationTest extends UnitTestCase
 
       mySession.start();
 
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
       boolean durable = RandomUtil.randomBoolean();
 
       mySession.createQueue(address, queue, durable);
       ClientConsumer consumer = mySession.createConsumer(queue);
-      SimpleString sessionName = SimpleString.toSimpleString(((ClientSessionInternal)mySession).getName());
+      String sessionName = (((ClientSessionInternal)mySession).getName());
 
       NotificationTest.flush(notifConsumer);
 
@@ -236,9 +236,9 @@ public class NotificationTest extends UnitTestCase
       Assert.assertEquals(address.toString(), notifications[0].getObjectProperty(ManagementHelper.HDR_ADDRESS)
          .toString());
       Assert.assertEquals(0, notifications[0].getObjectProperty(ManagementHelper.HDR_CONSUMER_COUNT));
-      Assert.assertEquals(SimpleString.toSimpleString("myUser"), notifications[0].getSimpleStringProperty(ManagementHelper.HDR_USER));
-      Assert.assertEquals(SimpleString.toSimpleString("invm:0"), notifications[0].getSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
-      Assert.assertEquals(sessionName, notifications[0].getSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME));
+      Assert.assertEquals(("myUser"), notifications[0].getStringProperty(ManagementHelper.HDR_USER));
+      Assert.assertEquals(("invm:0"), notifications[0].getStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
+      Assert.assertEquals(sessionName, notifications[0].getStringProperty(ManagementHelper.HDR_SESSION_NAME));
 
       session.deleteQueue(queue);
    }
@@ -266,7 +266,7 @@ public class NotificationTest extends UnitTestCase
       session = sf.createSession(false, true, true);
       session.start();
 
-      notifQueue = RandomUtil.randomSimpleString();
+      notifQueue = RandomUtil.randomString();
 
       session.createQueue(HornetQDefaultConfiguration.getDefaultManagementNotificationAddress(), notifQueue, null, false);
 
@@ -314,7 +314,7 @@ public class NotificationTest extends UnitTestCase
          m = consumer.receive(500);
          if (m != null)
          {
-            for (SimpleString key : m.getPropertyNames())
+            for (String key : m.getPropertyNames())
             {
                System.out.println(key + "=" + m.getObjectProperty(key));
             }
@@ -326,7 +326,7 @@ public class NotificationTest extends UnitTestCase
       m = consumer.receiveImmediate();
       if (m != null)
       {
-         for (SimpleString key : m.getPropertyNames())
+         for (String key : m.getPropertyNames())
 
          {
             System.out.println(key + "=" + m.getObjectProperty(key));

@@ -13,7 +13,7 @@
 
 package org.hornetq.core.message.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -37,7 +37,7 @@ public class MessagePropertyTest extends ServiceTestBase
    private final int numMessages = 20;
 
    private static final String ADDRESS = "aAddress123";
-   private static final SimpleString SIMPLE_STRING_KEY = new SimpleString("StringToSimpleString");
+   private static final String SIMPLE_STRING_KEY = new String("StringToString");
 
    @Override
    @Before
@@ -80,7 +80,7 @@ public class MessagePropertyTest extends ServiceTestBase
          message.putShortProperty("short", (short)i);
          message.putByteProperty("byte", (byte)i);
          message.putFloatProperty("float", floatValue(i));
-         message.putStringProperty(SIMPLE_STRING_KEY, new SimpleString(Integer.toString(i)));
+         message.putStringProperty(SIMPLE_STRING_KEY, new String(Integer.toString(i)));
          message.putBytesProperty("byte[]", byteArray(i));
          message.putObjectProperty("null-value", null);
          producer.send(message);
@@ -120,8 +120,8 @@ public class MessagePropertyTest extends ServiceTestBase
          assertEquals((short)i, message.getShortProperty("short").shortValue());
          assertEquals((byte)i, message.getByteProperty("byte").byteValue());
          assertEquals(floatValue(i), message.getFloatProperty("float").floatValue(), 0.001);
-         assertEquals(new SimpleString(Integer.toString(i)),
-                      message.getSimpleStringProperty(SIMPLE_STRING_KEY.toString()));
+         assertEquals(new String(Integer.toString(i)),
+                      message.getStringProperty(SIMPLE_STRING_KEY.toString()));
          assertEqualsByteArrays(byteArray(i), message.getBytesProperty("byte[]"));
 
          assertTrue(message.containsProperty("null-value"));

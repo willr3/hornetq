@@ -36,7 +36,7 @@ import javax.jms.MessageNotWriteableException;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.jms.HornetQJMSConstants;
@@ -65,17 +65,17 @@ public class HornetQMessage implements javax.jms.Message
 {
    // Constants -----------------------------------------------------
 
-   private static final SimpleString REPLYTO_HEADER_NAME = ClientMessageImpl.REPLYTO_HEADER_NAME;
+   private static final String REPLYTO_HEADER_NAME = ClientMessageImpl.REPLYTO_HEADER_NAME;
 
-   private static final SimpleString CORRELATIONID_HEADER_NAME = new SimpleString("JMSCorrelationID");
+   private static final String CORRELATIONID_HEADER_NAME = new String("JMSCorrelationID");
 
-   private static final SimpleString TYPE_HEADER_NAME = new SimpleString("JMSType");
+   private static final String TYPE_HEADER_NAME = new String("JMSType");
 
-   private static final SimpleString JMS = new SimpleString("JMS");
+   private static final String JMS = new String("JMS");
 
-   private static final SimpleString JMSX = new SimpleString("JMSX");
+   private static final String JMSX = new String("JMSX");
 
-   private static final SimpleString JMS_ = new SimpleString("JMS_");
+   private static final String JMS_ = new String("JMS_");
 
    private static final String JMSXDELIVERYCOUNT = "JMSXDeliveryCount";
 
@@ -113,7 +113,7 @@ public class HornetQMessage implements javax.jms.Message
          else
          {
             Object value = entry.getValue();
-            if (value instanceof SimpleString)
+            if (value instanceof String)
             {
                jmsMessage.put(entry.getKey(), value.toString());
             }
@@ -392,7 +392,7 @@ public class HornetQMessage implements javax.jms.Message
       }
       else
       {
-         message.putStringProperty(HornetQMessage.CORRELATIONID_HEADER_NAME, new SimpleString(correlationID));
+         message.putStringProperty(HornetQMessage.CORRELATIONID_HEADER_NAME, new String(correlationID));
 
          jmsCorrelationID = correlationID;
       }
@@ -419,7 +419,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       if (replyTo == null)
       {
-         SimpleString repl = message.getSimpleStringProperty(HornetQMessage.REPLYTO_HEADER_NAME);
+         String repl = message.getStringProperty(HornetQMessage.REPLYTO_HEADER_NAME);
 
          if (repl != null)
          {
@@ -456,7 +456,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       if (dest == null)
       {
-         SimpleString sdest = message.getAddress();
+         String sdest = message.getAddress();
 
          dest = sdest == null ? null : HornetQDestination.fromAddress(sdest.toString());
       }
@@ -518,7 +518,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       if (type != null)
       {
-         message.putStringProperty(HornetQMessage.TYPE_HEADER_NAME, new SimpleString(type));
+         message.putStringProperty(HornetQMessage.TYPE_HEADER_NAME, new String(type));
 
          jmsType = type;
       }
@@ -528,7 +528,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       if (jmsType == null)
       {
-         SimpleString ss = message.getSimpleStringProperty(HornetQMessage.TYPE_HEADER_NAME);
+         String ss = message.getStringProperty(HornetQMessage.TYPE_HEADER_NAME);
 
          if (ss != null)
          {
@@ -562,9 +562,9 @@ public class HornetQMessage implements javax.jms.Message
 
    public void clearProperties() throws JMSException
    {
-      List<SimpleString> toRemove = new ArrayList<SimpleString>();
+      List<String> toRemove = new ArrayList<String>();
 
-      for (SimpleString propName : message.getPropertyNames())
+      for (String propName : message.getPropertyNames())
       {
          if (!propName.startsWith(HornetQMessage.JMS) || propName.startsWith(HornetQMessage.JMSX) ||
              propName.startsWith(HornetQMessage.JMS_))
@@ -573,7 +573,7 @@ public class HornetQMessage implements javax.jms.Message
          }
       }
 
-      for (SimpleString propName : toRemove)
+      for (String propName : toRemove)
       {
          message.removeProperty(propName);
       }
@@ -588,7 +588,7 @@ public class HornetQMessage implements javax.jms.Message
 
    public boolean propertyExists(final String name) throws JMSException
    {
-      return message.containsProperty(new SimpleString(name)) || name.equals(HornetQMessage.JMSXDELIVERYCOUNT) ||
+      return message.containsProperty(new String(name)) || name.equals(HornetQMessage.JMSXDELIVERYCOUNT) ||
              HornetQMessage.JMSXGROUPID.equals(name) &&
              message.containsProperty(org.hornetq.api.core.Message.HDR_GROUP_ID);
    }
@@ -597,7 +597,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       try
       {
-         return message.getBooleanProperty(new SimpleString(name));
+         return message.getBooleanProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -609,7 +609,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       try
       {
-         return message.getByteProperty(new SimpleString(name));
+         return message.getByteProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -621,7 +621,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       try
       {
-         return message.getShortProperty(new SimpleString(name));
+         return message.getShortProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -638,7 +638,7 @@ public class HornetQMessage implements javax.jms.Message
 
       try
       {
-         return message.getIntProperty(new SimpleString(name));
+         return message.getIntProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -655,7 +655,7 @@ public class HornetQMessage implements javax.jms.Message
 
       try
       {
-         return message.getLongProperty(new SimpleString(name));
+         return message.getLongProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -667,7 +667,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       try
       {
-         return message.getFloatProperty(new SimpleString(name));
+         return message.getFloatProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -679,7 +679,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       try
       {
-         return message.getDoubleProperty(new SimpleString(name));
+         return message.getDoubleProperty(new String(name));
       }
       catch (HornetQPropertyConversionException e)
       {
@@ -702,7 +702,7 @@ public class HornetQMessage implements javax.jms.Message
          }
          else
          {
-            return message.getStringProperty(new SimpleString(name));
+            return message.getStringProperty(new String(name));
          }
       }
       catch (HornetQPropertyConversionException e)
@@ -719,9 +719,9 @@ public class HornetQMessage implements javax.jms.Message
       }
 
       Object val = message.getObjectProperty(name);
-      if (val instanceof SimpleString)
+      if (val instanceof String)
       {
-         val = ((SimpleString)val).toString();
+         val = ((String)val).toString();
       }
       return val;
    }
@@ -730,7 +730,7 @@ public class HornetQMessage implements javax.jms.Message
    {
       HashSet<String> set = new HashSet<String>();
 
-      for (SimpleString propName : message.getPropertyNames())
+      for (String propName : message.getPropertyNames())
       {
          if ((!propName.startsWith(HornetQMessage.JMS) || propName.startsWith(HornetQMessage.JMSX) ||
              propName.startsWith(HornetQMessage.JMS_)) && !propName.startsWith(HornetQConnection.CONNECTION_ID_PROPERTY_NAME))
@@ -748,43 +748,43 @@ public class HornetQMessage implements javax.jms.Message
    {
       checkProperty(name, value);
 
-      message.putBooleanProperty(new SimpleString(name), value);
+      message.putBooleanProperty(new String(name), value);
    }
 
    public void setByteProperty(final String name, final byte value) throws JMSException
    {
       checkProperty(name, value);
-      message.putByteProperty(new SimpleString(name), value);
+      message.putByteProperty(new String(name), value);
    }
 
    public void setShortProperty(final String name, final short value) throws JMSException
    {
       checkProperty(name, value);
-      message.putShortProperty(new SimpleString(name), value);
+      message.putShortProperty(new String(name), value);
    }
 
    public void setIntProperty(final String name, final int value) throws JMSException
    {
       checkProperty(name, value);
-      message.putIntProperty(new SimpleString(name), value);
+      message.putIntProperty(new String(name), value);
    }
 
    public void setLongProperty(final String name, final long value) throws JMSException
    {
       checkProperty(name, value);
-      message.putLongProperty(new SimpleString(name), value);
+      message.putLongProperty(new String(name), value);
    }
 
    public void setFloatProperty(final String name, final float value) throws JMSException
    {
       checkProperty(name, value);
-      message.putFloatProperty(new SimpleString(name), value);
+      message.putFloatProperty(new String(name), value);
    }
 
    public void setDoubleProperty(final String name, final double value) throws JMSException
    {
       checkProperty(name, value);
-      message.putDoubleProperty(new SimpleString(name), value);
+      message.putDoubleProperty(new String(name), value);
    }
 
    public void setStringProperty(final String name, final String value) throws JMSException
@@ -793,11 +793,11 @@ public class HornetQMessage implements javax.jms.Message
 
       if (HornetQMessage.JMSXGROUPID.equals(name))
       {
-         message.putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, SimpleString.toSimpleString(value));
+         message.putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, (value));
       }
       else
       {
-         message.putStringProperty(new SimpleString(name),  SimpleString.toSimpleString(value));
+         message.putStringProperty(new String(name),  (value));
       }
    }
 
@@ -827,7 +827,7 @@ public class HornetQMessage implements javax.jms.Message
 
       try
       {
-         message.putObjectProperty(new SimpleString(name), value);
+         message.putObjectProperty(new String(name), value);
       }
       catch (HornetQPropertyConversionException e)
       {

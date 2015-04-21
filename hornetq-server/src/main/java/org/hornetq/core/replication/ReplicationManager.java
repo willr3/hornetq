@@ -27,7 +27,7 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.SessionFailureListener;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.journal.SequentialFile;
@@ -210,7 +210,7 @@ public final class ReplicationManager implements HornetQComponent
     * @param storeName
     * @param pageNumber
     */
-   public void pageClosed(final SimpleString storeName, final int pageNumber)
+   public void pageClosed(final String storeName, final int pageNumber)
    {
       if (enabled)
       {
@@ -218,7 +218,7 @@ public final class ReplicationManager implements HornetQComponent
       }
    }
 
-   public void pageDeleted(final SimpleString storeName, final int pageNumber)
+   public void pageDeleted(final String storeName, final int pageNumber)
    {
       if (enabled)
       {
@@ -504,7 +504,7 @@ public final class ReplicationManager implements HornetQComponent
       }
    }
 
-   public void syncPages(SequentialFile file, long id, SimpleString queueName) throws Exception
+   public void syncPages(SequentialFile file, long id, String queueName) throws Exception
    {
       if (enabled)
          sendLargeFile(null, queueName, id, file, Long.MAX_VALUE);
@@ -520,7 +520,7 @@ public final class ReplicationManager implements HornetQComponent
     * @param maxBytesToSend maximum number of bytes to read and send from the file
     * @throws Exception
     */
-   private void sendLargeFile(JournalContent content, SimpleString pageStore, final long id, SequentialFile file,
+   private void sendLargeFile(JournalContent content, String pageStore, final long id, SequentialFile file,
                               long maxBytesToSend) throws Exception
    {
       if (!enabled)

@@ -14,7 +14,7 @@
 package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -41,7 +41,7 @@ public class SelfExpandingBufferTest extends ServiceTestBase
 
    HornetQServer service;
 
-   SimpleString ADDRESS = new SimpleString("Address");
+   String ADDRESS = new String("Address");
 
    @Test
    public void testSelfExpandingBufferNettyPersistent() throws Exception

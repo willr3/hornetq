@@ -26,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.server.Consumer;
 import org.hornetq.core.server.HandleStatus;
 import org.hornetq.core.server.MessageReference;
@@ -39,7 +38,7 @@ import org.hornetq.tests.util.UnitTestCase;
  */
 public class QueueImplTest extends UnitTestCase
 {
-   private static final SimpleString queue1 = new SimpleString("queue1");
+   private static final String queue1 = new String("queue1");
 
    private static final long TIMEOUT = 10000;
 
@@ -71,8 +70,8 @@ public class QueueImplTest extends UnitTestCase
    public void testScheduledNoConsumer() throws Exception
    {
       QueueImpl queue = new QueueImpl(1,
-                                  new SimpleString("address1"),
-                                  new SimpleString("queue1"),
+                                  new String("address1"),
+                                  new String("queue1"),
                                   null,
                                   null,
                                   false,
@@ -148,8 +147,8 @@ public class QueueImplTest extends UnitTestCase
    public void testScheduled() throws Exception
    {
       QueueImpl queue = new QueueImpl(1,
-                                  new SimpleString("address1"),
-                                  new SimpleString("queue1"),
+                                  new String("address1"),
+                                  new String("queue1"),
                                   null,
                                   null,
                                   false,
@@ -258,7 +257,7 @@ public class QueueImplTest extends UnitTestCase
          }
       };
       QueueImpl queue = new QueueImpl(1,
-                                  new SimpleString("address1"),
+                                  new String("address1"),
                                   QueueImplTest.queue1,
                                   null,
                                   null,

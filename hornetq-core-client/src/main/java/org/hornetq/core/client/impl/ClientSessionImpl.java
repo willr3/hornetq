@@ -32,7 +32,7 @@ import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -188,7 +188,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
 
    private volatile boolean mayAttemptToFailover = true;
 
-   private volatile SimpleString defaultAddress;
+   private volatile String defaultAddress;
 
    private boolean xaRetry = false;
 
@@ -296,66 +296,66 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       return channel;
    }
 
-   public void createQueue(final SimpleString address, final SimpleString queueName) throws HornetQException
+   public void createQueue(final String address, final String queueName) throws HornetQException
    {
       internalCreateQueue(address, queueName, null, false, false);
    }
 
-   public void createQueue(final SimpleString address, final SimpleString queueName, final boolean durable) throws HornetQException
+   public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
    {
       internalCreateQueue(address, queueName, null, durable, false);
    }
 
-   public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
-   {
-      createQueue(SimpleString.toSimpleString(address), SimpleString.toSimpleString(queueName), durable);
-   }
-
-   public void createQueue(final SimpleString address,
-                           final SimpleString queueName,
-                           final SimpleString filterString,
-                           final boolean durable) throws HornetQException
-   {
-      internalCreateQueue(address, queueName, filterString, durable, false);
-   }
+//   public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
+//   {
+//      createQueue((address), (queueName), durable);
+//   }
 
    public void createQueue(final String address,
                            final String queueName,
                            final String filterString,
                            final boolean durable) throws HornetQException
    {
-      createQueue(SimpleString.toSimpleString(address), SimpleString.toSimpleString(queueName), SimpleString.toSimpleString(filterString), durable);
+      internalCreateQueue(address, queueName, filterString, durable, false);
    }
 
-   public void createTemporaryQueue(final SimpleString address, final SimpleString queueName) throws HornetQException
-   {
-      internalCreateQueue(address, queueName, null, false, true);
-   }
+//   public void createQueue(final String address,
+//                           final String queueName,
+//                           final String filterString,
+//                           final boolean durable) throws HornetQException
+//   {
+//      createQueue((address), (queueName), (filterString), durable);
+//   }
+
+//   public void createTemporaryQueue(final String address, final String queueName) throws HornetQException
+//   {
+//      internalCreateQueue(address, queueName, null, false, true);
+//   }
 
    public void createTemporaryQueue(final String address, final String queueName) throws HornetQException
    {
-      internalCreateQueue(SimpleString.toSimpleString(address),
-                          SimpleString.toSimpleString(queueName),
+      internalCreateQueue((address),
+                          (queueName),
                           null,
                           false,
                           true);
    }
 
-   public void createTemporaryQueue(final SimpleString address, final SimpleString queueName, final SimpleString filter) throws HornetQException
-   {
-      internalCreateQueue(address, queueName, filter, false, true);
-   }
+//   public void createTemporaryQueue(final String address, final String queueName, final String filter) throws HornetQException
+//   {
+//      internalCreateQueue(address, queueName, filter, false, true);
+//   }
 
    public void createTemporaryQueue(final String address, final String queueName, final String filter) throws HornetQException
    {
-      internalCreateQueue(SimpleString.toSimpleString(address),
-                          SimpleString.toSimpleString(queueName),
-                          SimpleString.toSimpleString(filter),
+      internalCreateQueue((address),
+                          (queueName),
+                          (filter),
                           false,
                           true);
    }
 
-   public void deleteQueue(final SimpleString queueName) throws HornetQException
+   public void deleteQueue(final String queueName) throws HornetQException
    {
       checkClosed();
 
@@ -370,12 +370,12 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       }
    }
 
-   public void deleteQueue(final String queueName) throws HornetQException
-   {
-      deleteQueue(SimpleString.toSimpleString(queueName));
-   }
+//   public void deleteQueue(final String queueName) throws HornetQException
+//   {
+//      deleteQueue((queueName));
+//   }
 
-   public QueueQuery queueQuery(final SimpleString queueName) throws HornetQException
+   public QueueQuery queueQuery(final String queueName) throws HornetQException
    {
       checkClosed();
 
@@ -401,7 +401,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
 
    }
 
-   public BindingQuery bindingQuery(final SimpleString address) throws HornetQException
+   public BindingQuery bindingQuery(final String address) throws HornetQException
    {
       checkClosed();
 
@@ -420,54 +420,54 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       channel.send(request);
    }
 
-   public ClientConsumer createConsumer(final SimpleString queueName) throws HornetQException
+   public ClientConsumer createConsumer(final String queueName) throws HornetQException
    {
       return createConsumer(queueName, null, false);
    }
 
-   public ClientConsumer createConsumer(final String queueName) throws HornetQException
-   {
-      return createConsumer(SimpleString.toSimpleString(queueName));
-   }
+//   public ClientConsumer createConsumer(final String queueName) throws HornetQException
+//   {
+//      return createConsumer((queueName));
+//   }
 
-   public ClientConsumer createConsumer(final SimpleString queueName, final SimpleString filterString) throws HornetQException
+   public ClientConsumer createConsumer(final String queueName, final String filterString) throws HornetQException
    {
       return createConsumer(queueName, filterString, consumerWindowSize, consumerMaxRate, false);
    }
 
-   public void createQueue(final String address, final String queueName) throws HornetQException
-   {
-      createQueue(SimpleString.toSimpleString(address), SimpleString.toSimpleString(queueName));
-   }
+//   public void createQueue(final String address, final String queueName) throws HornetQException
+//   {
+//      createQueue((address), (queueName));
+//   }
 
-   public ClientConsumer createConsumer(final String queueName, final String filterString) throws HornetQException
-   {
-      return createConsumer(SimpleString.toSimpleString(queueName), SimpleString.toSimpleString(filterString));
-   }
+//   public ClientConsumer createConsumer(final String queueName, final String filterString) throws HornetQException
+//   {
+//      return createConsumer((queueName), (filterString));
+//   }
 
-   public ClientConsumer createConsumer(final SimpleString queueName,
-                                        final SimpleString filterString,
+   public ClientConsumer createConsumer(final String queueName,
+                                        final String filterString,
                                         final boolean browseOnly) throws HornetQException
    {
       return createConsumer(queueName, filterString, consumerWindowSize, consumerMaxRate, browseOnly);
    }
 
-   public ClientConsumer createConsumer(final SimpleString queueName, final boolean browseOnly) throws HornetQException
+   public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
    {
       return createConsumer(queueName, null, consumerWindowSize, consumerMaxRate, browseOnly);
    }
 
-   public ClientConsumer createConsumer(final String queueName, final String filterString, final boolean browseOnly) throws HornetQException
-   {
-      return createConsumer(SimpleString.toSimpleString(queueName),
-                            SimpleString.toSimpleString(filterString),
-                            browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName, final String filterString, final boolean browseOnly) throws HornetQException
+//   {
+//      return createConsumer((queueName),
+//                            (filterString),
+//                            browseOnly);
+//   }
 
-   public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
-   {
-      return createConsumer(SimpleString.toSimpleString(queueName), null, browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
+//   {
+//      return createConsumer((queueName), null, browseOnly);
+//   }
 
    /**
     * Note, we DO NOT currently support direct consumers (i.e. consumers where delivery occurs on
@@ -479,8 +479,8 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
     * the client during that period, so failover won't occur. If we want direct consumers we need to
     * rethink how they work.
     */
-   public ClientConsumer createConsumer(final SimpleString queueName,
-                                        final SimpleString filterString,
+   public ClientConsumer createConsumer(final String queueName,
+                                        final String filterString,
                                         final int windowSize,
                                         final int maxRate,
                                         final boolean browseOnly) throws HornetQException
@@ -488,39 +488,39 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       return internalCreateConsumer(queueName, filterString, windowSize, maxRate, browseOnly);
    }
 
-   public ClientConsumer createConsumer(final String queueName,
-                                        final String filterString,
-                                        final int windowSize,
-                                        final int maxRate,
-                                        final boolean browseOnly) throws HornetQException
-   {
-      return createConsumer(SimpleString.toSimpleString(queueName), SimpleString.toSimpleString(filterString), windowSize, maxRate, browseOnly);
-   }
+//   public ClientConsumer createConsumer(final String queueName,
+//                                        final String filterString,
+//                                        final int windowSize,
+//                                        final int maxRate,
+//                                        final boolean browseOnly) throws HornetQException
+//   {
+//      return createConsumer((queueName), (filterString), windowSize, maxRate, browseOnly);
+//   }
 
    public ClientProducer createProducer() throws HornetQException
    {
-      return createProducer((SimpleString)null);
-   }
-
-   public ClientProducer createProducer(final SimpleString address) throws HornetQException
-   {
-      return createProducer(address, producerMaxRate);
+      return createProducer((String)null);
    }
 
    public ClientProducer createProducer(final String address) throws HornetQException
    {
-      return createProducer(SimpleString.toSimpleString(address));
+      return createProducer(address, producerMaxRate);
    }
 
-   public ClientProducer createProducer(final SimpleString address, final int maxRate) throws HornetQException
+//   public ClientProducer createProducer(final String address) throws HornetQException
+//   {
+//      return createProducer((address));
+//   }
+
+   public ClientProducer createProducer(final String address, final int maxRate) throws HornetQException
    {
       return internalCreateProducer(address, maxRate);
    }
 
-   public ClientProducer createProducer(final String address, final int rate) throws HornetQException
-   {
-      return createProducer(SimpleString.toSimpleString(address), rate);
-   }
+//   public ClientProducer createProducer(final String address, final int rate) throws HornetQException
+//   {
+//      return createProducer((address), rate);
+//   }
 
    public XAResource getXAResource()
    {
@@ -1246,7 +1246,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       return sessionFactory;
    }
 
-   public void setAddress(final Message message, final SimpleString address)
+   public void setAddress(final Message message, final String address)
    {
       if (defaultAddress == null)
       {
@@ -1296,27 +1296,27 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       channel.returnBlocking();
    }
 
-   public void sendProducerCreditsMessage(final int credits, final SimpleString address)
+   public void sendProducerCreditsMessage(final int credits, final String address)
    {
       channel.send(new SessionRequestProducerCreditsMessage(credits, address));
    }
 
-   public synchronized ClientProducerCredits getCredits(final SimpleString address, final boolean anon)
+   public synchronized ClientProducerCredits getCredits(final String address, final boolean anon)
    {
       return producerCreditManager.getCredits(address, anon);
    }
 
-   public void returnCredits(final SimpleString address)
+   public void returnCredits(final String address)
    {
       producerCreditManager.returnCredits(address);
    }
 
-   public void handleReceiveProducerCredits(final SimpleString address, final int credits)
+   public void handleReceiveProducerCredits(final String address, final int credits)
    {
       producerCreditManager.receiveCredits(address, credits);
    }
 
-   public void handleReceiveProducerFailCredits(final SimpleString address, int credits)
+   public void handleReceiveProducerFailCredits(final String address, int credits)
    {
       producerCreditManager.receiveFailCredits(address, credits);
    }
@@ -1972,8 +1972,8 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
     * @return
     * @throws HornetQException
     */
-   private ClientConsumer internalCreateConsumer(final SimpleString queueName,
-                                                 final SimpleString filterString,
+   private ClientConsumer internalCreateConsumer(final String queueName,
+                                                 final String filterString,
                                                  final int windowSize,
                                                  final int maxRate,
                                                  final boolean browseOnly) throws HornetQException
@@ -2026,7 +2026,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       return consumer;
    }
 
-   private ClientProducer internalCreateProducer(final SimpleString address, final int maxRate) throws HornetQException
+   private ClientProducer internalCreateProducer(final String address, final int maxRate) throws HornetQException
    {
       checkClosed();
 
@@ -2037,7 +2037,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
                                                                autoCommitSends && blockOnNonDurableSend,
                                                                autoCommitSends && blockOnDurableSend,
                                                                autoGroup,
-                                                               groupID == null ? null : new SimpleString(groupID),
+                                                               groupID == null ? null : new String(groupID),
                                                                minLargeMessageSize,
                                                                channel);
 
@@ -2046,9 +2046,9 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
       return producer;
    }
 
-   private void internalCreateQueue(final SimpleString address,
-                                    final SimpleString queueName,
-                                    final SimpleString filterString,
+   private void internalCreateQueue(final String address,
+                                    final String queueName,
+                                    final String filterString,
                                     final boolean durable,
                                     final boolean temp) throws HornetQException
    {
@@ -2212,15 +2212,15 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
 
       private final boolean exists;
 
-      private final ArrayList<SimpleString> queueNames;
+      private final ArrayList<String> queueNames;
 
-      public BindingQueryImpl(final boolean exists, final List<SimpleString> queueNames)
+      public BindingQueryImpl(final boolean exists, final List<String> queueNames)
       {
          this.exists = exists;
-         this.queueNames = new ArrayList<SimpleString>(queueNames);
+         this.queueNames = new ArrayList<String>(queueNames);
       }
 
-      public List<SimpleString> getQueueNames()
+      public List<String> getQueueNames()
       {
          return queueNames;
       }
@@ -2240,17 +2240,17 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
 
       private final long messageCount;
 
-      private final SimpleString filterString;
+      private final String filterString;
 
       private final int consumerCount;
 
-      private final SimpleString address;
+      private final String address;
 
       public QueueQueryImpl(final boolean durable,
                             final int consumerCount,
                             final long messageCount,
-                            final SimpleString filterString,
-                            final SimpleString address,
+                            final String filterString,
+                            final String address,
                             final boolean exists)
       {
 
@@ -2262,7 +2262,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
          this.exists = exists;
       }
 
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return address;
       }
@@ -2272,7 +2272,7 @@ final class ClientSessionImpl implements ClientSessionInternal, FailureListener,
          return consumerCount;
       }
 
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
          return filterString;
       }

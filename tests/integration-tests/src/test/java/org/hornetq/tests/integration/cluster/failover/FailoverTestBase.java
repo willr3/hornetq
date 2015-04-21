@@ -21,7 +21,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
@@ -56,7 +56,7 @@ public abstract class FailoverTestBase extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   protected static final SimpleString ADDRESS = new SimpleString("FailoverTestAddress");
+   protected static final String ADDRESS = new String("FailoverTestAddress");
 
    /*
     * Used only by tests of large messages.
@@ -126,7 +126,7 @@ public abstract class FailoverTestBase extends ServiceTestBase
     *
     * @param i
     * @param message
-    * @param size
+    *
     */
    protected static void setLargeMessageBody(final int i, final ClientMessage message)
    {

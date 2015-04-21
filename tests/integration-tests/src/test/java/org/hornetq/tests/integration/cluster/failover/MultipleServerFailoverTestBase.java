@@ -24,7 +24,7 @@ package org.hornetq.tests.integration.cluster.failover;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -51,7 +51,7 @@ public abstract class MultipleServerFailoverTestBase extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   protected static final SimpleString ADDRESS = new SimpleString("jms.queues.FailoverTestAddress");
+   protected static final String ADDRESS = new String("jms.queues.FailoverTestAddress");
 
    // Attributes ----------------------------------------------------
 
@@ -260,7 +260,7 @@ public abstract class MultipleServerFailoverTestBase extends ServiceTestBase
       return addClientSession(sf.createSession(xa, autoCommitSends, autoCommitAcks));
    }
 
-   protected void waitForDistribution(SimpleString address, HornetQServer server, int messageCount) throws Exception
+   protected void waitForDistribution(String address, HornetQServer server, int messageCount) throws Exception
    {
       HornetQServerLogger.LOGGER.debug("waiting for distribution of messgaes on server " + server);
 

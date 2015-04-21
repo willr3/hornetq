@@ -16,7 +16,7 @@ package org.hornetq.tests.integration.tools;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
@@ -121,7 +121,7 @@ public class TransferMessageTest extends ClusterTestBase
          ArrayList<String> queuesToTransfer = new ArrayList<String>();
 
 //         System.out.println("bindings = " + postOffice.getAddressManager().getBindings().size());
-         for (Map.Entry<SimpleString, Binding> entry : postOffice.getAddressManager().getBindings().entrySet())
+         for (Map.Entry<String, Binding> entry : postOffice.getAddressManager().getBindings().entrySet())
          {
 //            System.out.println("entry: " + entry + " / " + entry.getValue() + " class = " + entry.getValue().getClass());
 
@@ -275,7 +275,7 @@ public class TransferMessageTest extends ClusterTestBase
          ArrayList<String> queuesToTransfer = new ArrayList<String>();
 
 //         System.out.println("bindings = " + postOffice.getAddressManager().getBindings().size());
-         for (Map.Entry<SimpleString, Binding> entry : postOffice.getAddressManager().getBindings().entrySet())
+         for (Map.Entry<String, Binding> entry : postOffice.getAddressManager().getBindings().entrySet())
          {
 //            System.out.println("entry: " + entry + " / " + entry.getValue() + " class = " + entry.getValue().getClass());
 

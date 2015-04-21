@@ -14,7 +14,6 @@
 package org.hornetq.byteman.tests;
 
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -224,9 +223,9 @@ public class OrphanedConsumerTest extends ServiceTestBase
       ClientConsumer consumer2 = session.createConsumer("queue2");
 
 
-      Queue queue1 = server.locateQueue(new SimpleString("queue1"));
+      Queue queue1 = server.locateQueue(new String("queue1"));
 
-      Queue queue2 = server.locateQueue(new SimpleString("queue2"));
+      Queue queue2 = server.locateQueue(new String("queue2"));
 
       session.start();
 

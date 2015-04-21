@@ -17,7 +17,7 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -47,7 +47,7 @@ public class PagingSyncTest extends ServiceTestBase
 
    // Static --------------------------------------------------------
 
-   static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   static final String ADDRESS = new String("SimpleAddress");
 
    @Test
    public void testOrder1() throws Throwable
@@ -102,7 +102,7 @@ public class PagingSyncTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }

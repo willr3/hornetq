@@ -25,7 +25,7 @@ import javax.management.MBeanServerFactory;
 
 import org.junit.Assert;
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.BridgeControl;
@@ -109,7 +109,7 @@ public class BridgeControlTest extends ManagementTestBase
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.BRIDGE_STOPPED, notif.getType());
       Assert.assertEquals(bridgeControl.getName(), notif.getProperties()
-                                                        .getSimpleStringProperty(new SimpleString("name"))
+                                                        .getStringProperty(new String("name"))
                                                         .toString());
 
       bridgeControl.start();
@@ -118,7 +118,7 @@ public class BridgeControlTest extends ManagementTestBase
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.BRIDGE_STARTED, notif.getType());
       Assert.assertEquals(bridgeControl.getName(), notif.getProperties()
-                                                        .getSimpleStringProperty(new SimpleString("name"))
+                                                        .getStringProperty(new String("name"))
                                                         .toString());
    }
 

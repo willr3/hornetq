@@ -23,7 +23,7 @@ import org.hornetq.api.core.BroadcastEndpoint;
 import org.hornetq.api.core.BroadcastEndpointFactory;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.server.HornetQServerLogger;
@@ -112,7 +112,7 @@ public class BroadcastGroupImpl implements BroadcastGroup, Runnable
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), new SimpleString(name));
+         props.putStringProperty(new String("name"), new String(name));
          Notification notification = new Notification(nodeManager.getNodeId().toString(), CoreNotificationType.BROADCAST_GROUP_STARTED, props);
          notificationService.sendNotification(notification);
       }
@@ -146,7 +146,7 @@ public class BroadcastGroupImpl implements BroadcastGroup, Runnable
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), new SimpleString(name));
+         props.putStringProperty(new String("name"), new String(name));
          Notification notification = new Notification(nodeManager.getNodeId().toString(), CoreNotificationType.BROADCAST_GROUP_STOPPED, props);
          try
          {

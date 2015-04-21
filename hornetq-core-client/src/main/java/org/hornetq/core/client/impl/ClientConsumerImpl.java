@@ -25,7 +25,7 @@ import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.MessageHandler;
@@ -65,7 +65,7 @@ public final class ClientConsumerImpl implements ClientConsumerInternal
 
    private static final int NUM_PRIORITIES = 10;
 
-   public static final SimpleString FORCED_DELIVERY_MESSAGE = new SimpleString("_hornetq.forced.delivery.seq");
+   public static final String FORCED_DELIVERY_MESSAGE = new String("_hornetq.forced.delivery.seq");
 
    // Attributes
    // -----------------------------------------------------------------------------------
@@ -76,9 +76,9 @@ public final class ClientConsumerImpl implements ClientConsumerInternal
 
    private final long id;
 
-   private final SimpleString filterString;
+   private final String filterString;
 
-   private final SimpleString queueName;
+   private final String queueName;
 
    private final boolean browseOnly;
 
@@ -145,8 +145,8 @@ public final class ClientConsumerImpl implements ClientConsumerInternal
 
    public ClientConsumerImpl(final ClientSessionInternal session,
                              final long id,
-                             final SimpleString queueName,
-                             final SimpleString filterString,
+                             final String queueName,
+                             final String filterString,
                              final boolean browseOnly,
                              final int clientWindowSize,
                              final int ackBatchSize,
@@ -564,12 +564,12 @@ public final class ClientConsumerImpl implements ClientConsumerInternal
       return id;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
 
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }

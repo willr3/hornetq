@@ -33,7 +33,7 @@ import java.util.Set;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.FailoverEventListener;
@@ -68,7 +68,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
 
    public static final String EXCEPTION_DISCONNECT = "DISCONNECT";
 
-   public static final SimpleString CONNECTION_ID_PROPERTY_NAME = new SimpleString("__HQ_CID");
+   public static final String CONNECTION_ID_PROPERTY_NAME = new String("__HQ_CID");
 
    // Static ---------------------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
 
    private final Set<HornetQSession> sessions = new org.hornetq.utils.ConcurrentHashSet<HornetQSession>();
 
-   private final Set<SimpleString> tempQueues = new org.hornetq.utils.ConcurrentHashSet<SimpleString>();
+   private final Set<String> tempQueues = new org.hornetq.utils.ConcurrentHashSet<String>();
 
    private volatile boolean hasNoLocal;
 
@@ -98,7 +98,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
 
    private final ClientSessionFactory sessionFactory;
 
-   private final SimpleString uid;
+   private final String uid;
 
    private final String username;
 
@@ -136,7 +136,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
 
       this.sessionFactory = sessionFactory;
 
-      uid = UUIDGenerator.getInstance().generateSimpleStringUUID();
+      uid = UUIDGenerator.getInstance().generateStringUUID();
 
       thisVersion = VersionLoader.getVersion();
 
@@ -343,7 +343,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
             {
                // Remove any temporary queues
 
-               for (SimpleString queueName : tempQueues)
+               for (String queueName : tempQueues)
                {
                   if (!initialSession.isClosed())
                   {
@@ -477,17 +477,17 @@ public class HornetQConnection implements TopicConnection, QueueConnection
       return failoverEventListener;
    }
 
-   public void addTemporaryQueue(final SimpleString queueAddress)
+   public void addTemporaryQueue(final String queueAddress)
    {
       tempQueues.add(queueAddress);
    }
 
-   public void removeTemporaryQueue(final SimpleString queueAddress)
+   public void removeTemporaryQueue(final String queueAddress)
    {
       tempQueues.remove(queueAddress);
    }
 
-   public boolean containsTemporaryQueue(final SimpleString queueAddress)
+   public boolean containsTemporaryQueue(final String queueAddress)
    {
       return tempQueues.contains(queueAddress);
    }
@@ -502,7 +502,7 @@ public class HornetQConnection implements TopicConnection, QueueConnection
       hasNoLocal = true;
    }
 
-   public SimpleString getUID()
+   public String getUID()
    {
       return uid;
    }

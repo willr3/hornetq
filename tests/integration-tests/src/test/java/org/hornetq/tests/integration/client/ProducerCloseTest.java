@@ -46,7 +46,7 @@ public class ProducerCloseTest extends ServiceTestBase
    @Test
    public void testCanNotUseAClosedProducer() throws Exception
    {
-      final ClientProducer producer = session.createProducer(RandomUtil.randomSimpleString());
+      final ClientProducer producer = session.createProducer(RandomUtil.randomString());
 
       Assert.assertFalse(producer.isClosed());
 

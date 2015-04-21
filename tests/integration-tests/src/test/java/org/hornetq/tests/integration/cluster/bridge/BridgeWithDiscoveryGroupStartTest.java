@@ -21,7 +21,7 @@ import java.util.Map;
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
@@ -158,7 +158,7 @@ public class BridgeWithDiscoveryGroupStartTest extends ServiceTestBase
 
          ClientSession session1 = sf1.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -166,7 +166,7 @@ public class BridgeWithDiscoveryGroupStartTest extends ServiceTestBase
 
          final int numMessages = 10;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {

@@ -16,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -42,9 +42,9 @@ public class SessionSendAcknowledgementHandlerTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString address = new SimpleString("address");
+   private final String address = new String("address");
 
-   private final SimpleString queueName = new SimpleString("queue");
+   private final String queueName = new String("queue");
 
    @Override
    @Before

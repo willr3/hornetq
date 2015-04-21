@@ -22,7 +22,6 @@ import javax.management.ObjectName;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
@@ -46,7 +45,7 @@ public abstract class ManagementTestBase extends ServiceTestBase
 
    // Static --------------------------------------------------------
 
-   protected static void consumeMessages(final int expected, final ClientSession session, final SimpleString queue) throws Exception
+   protected static void consumeMessages(final int expected, final ClientSession session, final String queue) throws Exception
    {
       ClientConsumer consumer = null;
       try
@@ -111,11 +110,6 @@ public abstract class ManagementTestBase extends ServiceTestBase
    }
 
    protected QueueControl createManagementControl(final String address, final String queue) throws Exception
-   {
-      return createManagementControl(SimpleString.toSimpleString(address), SimpleString.toSimpleString(queue));
-   }
-
-   protected QueueControl createManagementControl(final SimpleString address, final SimpleString queue) throws Exception
    {
       QueueControl queueControl = ManagementControlHelper.createQueueControl(address, queue, mbeanServer);
 

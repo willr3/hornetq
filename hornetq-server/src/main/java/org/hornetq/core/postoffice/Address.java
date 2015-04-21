@@ -14,17 +14,15 @@ package org.hornetq.core.postoffice;
 
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
-
 /**
  * USed to hold a hierarchical style address, delimited by a '.'.
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  */
 public interface Address
 {
-   SimpleString getAddress();
+   String getAddress();
 
-   SimpleString[] getAddressParts();
+   String[] getAddressParts();
 
    boolean containsWildCard();
 

@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -58,8 +58,8 @@ public class DurableQueueTest extends ServiceTestBase
    @Test
    public void testConsumeFromDurableQueue() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, true);
 
@@ -79,8 +79,8 @@ public class DurableQueueTest extends ServiceTestBase
    @Test
    public void testConsumeFromDurableQueueAfterServerRestart() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, true);
 
@@ -108,8 +108,8 @@ public class DurableQueueTest extends ServiceTestBase
    @Test
    public void testProduceAndConsumeFromDurableQueueAfterServerRestart() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, true);
 

@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -48,7 +48,7 @@ public class MessageGroupingConnectionFactoryTest extends UnitTestCase
 
    private ClientSession clientSession;
 
-   private final SimpleString qName = new SimpleString("MessageGroupingTestQueue");
+   private final String qName = new String("MessageGroupingTestQueue");
 
    @Test
    public void testBasicGroupingUsingConnection() throws Exception

@@ -22,7 +22,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.postoffice.BindingType;
@@ -44,9 +44,9 @@ import org.hornetq.utils.TypedProperties;
  */
 public final class RemoteGroupingHandler extends GroupHandlingAbstract
 {
-   private final SimpleString name;
+   private final String name;
 
-   private final Map<SimpleString, Response> responses = new ConcurrentHashMap<SimpleString, Response>();
+   private final Map<String, Response> responses = new ConcurrentHashMap<String, Response>();
 
    private final Lock lock = new ReentrantLock();
 
@@ -56,7 +56,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
 
    private final long groupTimeout;
 
-   private final ConcurrentMap<SimpleString, List<SimpleString>> groupMap = new ConcurrentHashMap<SimpleString, List<SimpleString>>();
+   private final ConcurrentMap<String, List<String>> groupMap = new ConcurrentHashMap<String, List<String>>();
 
    private final ConcurrentHashSet<Notification> pendingNotifications = new ConcurrentHashSet();
 
@@ -64,8 +64,8 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
 
    public RemoteGroupingHandler(final ExecutorFactory executorFactory,
                                 final ManagementService managementService,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final long timeout,
                                 final long groupTimeout)
    {
@@ -76,15 +76,15 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    public RemoteGroupingHandler(final ManagementService managementService,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final long timeout,
                                 final long groupTimeout)
    {
       this(null, managementService, name, address, timeout, groupTimeout);
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -215,24 +215,24 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       }
    }
 
-   private Notification createProposalNotification(SimpleString groupId, SimpleString clusterName)
+   private Notification createProposalNotification(String groupId, String clusterName)
    {
       TypedProperties props = new TypedProperties();
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, groupId);
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, groupId);
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, clusterName);
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, clusterName);
 
       props.putIntProperty(ManagementHelper.HDR_BINDING_TYPE, BindingType.LOCAL_QUEUE_INDEX);
 
-      props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
+      props.putStringProperty(ManagementHelper.HDR_ADDRESS, address);
 
       props.putIntProperty(ManagementHelper.HDR_DISTANCE, 0);
 
       return new Notification(null, CoreNotificationType.PROPOSAL, props);
    }
 
-   public Response getProposal(final SimpleString fullID, boolean touchTime)
+   public Response getProposal(final String fullID, boolean touchTime)
    {
       Response response = responses.get(fullID);
 
@@ -244,9 +244,9 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName) throws Exception
+   public void remove(String groupid, String clusterName) throws Exception
    {
-      List<SimpleString> groups = groupMap.get(clusterName);
+      List<String> groups = groupMap.get(clusterName);
       if (groups != null)
       {
          groups.remove(groupid);
@@ -256,7 +256,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName, int distance) throws Exception
+   public void remove(String groupid, String clusterName, int distance) throws Exception
    {
       remove(groupid, clusterName);
 
@@ -269,8 +269,8 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       {
          lock.lock();
          responses.put(response.getGroupId(), response);
-         List<SimpleString> newList = new ArrayList<SimpleString>();
-         List<SimpleString> oldList = groupMap.putIfAbsent(response.getChosenClusterName(), newList);
+         List<String> newList = new ArrayList<String>();
+         List<String> oldList = groupMap.putIfAbsent(response.getChosenClusterName(), newList);
          if (oldList != null)
          {
             newList = oldList;
@@ -289,10 +289,10 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    public Response receive(final Proposal proposal, final int distance) throws Exception
    {
       TypedProperties props = new TypedProperties();
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, proposal.getGroupId());
-      props.putSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, proposal.getClusterName());
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID, proposal.getGroupId());
+      props.putStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE, proposal.getClusterName());
       props.putIntProperty(ManagementHelper.HDR_BINDING_TYPE, BindingType.LOCAL_QUEUE_INDEX);
-      props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
+      props.putStringProperty(ManagementHelper.HDR_ADDRESS, address);
       props.putIntProperty(ManagementHelper.HDR_DISTANCE, distance);
       Notification notification = new Notification(null, CoreNotificationType.PROPOSAL, props);
       managementService.sendNotification(notification);
@@ -315,12 +315,12 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       // removing the groupid if the binding has been removed
       if (notification.getType() == CoreNotificationType.BINDING_REMOVED)
       {
-         SimpleString clusterName = notification.getProperties()
-            .getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
-         List<SimpleString> list = groupMap.remove(clusterName);
+         String clusterName = notification.getProperties()
+            .getStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         List<String> list = groupMap.remove(clusterName);
          if (list != null)
          {
-            for (SimpleString val : list)
+            for (String val : list)
             {
                if (val != null)
                {

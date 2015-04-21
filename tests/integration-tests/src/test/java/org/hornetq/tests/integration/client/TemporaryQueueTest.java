@@ -25,7 +25,7 @@ import org.hornetq.api.core.HornetQIOErrorException;
 import org.hornetq.api.core.HornetQInternalErrorException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -91,8 +91,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    @Test
    public void testConsumeFromTemporaryQueue() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -119,8 +119,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    {
       for (int i = 0; i < 1000; i++)
       {
-         SimpleString queue = RandomUtil.randomSimpleString();
-         SimpleString address = RandomUtil.randomSimpleString();
+         String queue = RandomUtil.randomString();
+         String address = RandomUtil.randomString();
          session.createTemporaryQueue(address, queue);
 
          session.close();
@@ -140,8 +140,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    @Test
    public void testPaginStoreIsRemovedWhenQueueIsDeleted() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -156,7 +156,7 @@ public class TemporaryQueueTest extends ServiceTestBase
       Assert.assertNotNull(message);
       message.acknowledge();
 
-      SimpleString[] storeNames = server.getPagingManager().getStoreNames();
+      String[] storeNames = server.getPagingManager().getStoreNames();
       assertTrue(Arrays.asList(storeNames).contains(address));
 
       consumer.close();
@@ -171,8 +171,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    @Test
    public void testConsumeFromTemporaryQueueCreatedByOtherSession() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -201,8 +201,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    @Test
    public void testDeleteTemporaryQueueAfterConnectionIsClosed() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createTemporaryQueue(address, queue);
       RemotingConnectionImpl conn = (RemotingConnectionImpl)server.getRemotingService()
@@ -340,8 +340,8 @@ public class TemporaryQueueTest extends ServiceTestBase
    @Test
    public void testDeleteTemporaryQueueAfterConnectionIsClosed_2() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createTemporaryQueue(address, queue);
       Assert.assertEquals(1, server.getConnectionCount());
@@ -518,8 +518,8 @@ public class TemporaryQueueTest extends ServiceTestBase
       session.close();
       sf.close();
 
-      final SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      final String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       // server must received at least one ping from the client to pass
       // so that the server connection TTL is configured with the client value

@@ -19,7 +19,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -86,7 +86,7 @@ public class DirectDeliverTest extends ServiceTestBase
 
       session.createQueue(foo, foo);
 
-      Binding binding = server.getPostOffice().getBinding(new SimpleString(foo));
+      Binding binding = server.getPostOffice().getBinding(new String(foo));
 
       Queue queue = (Queue)binding.getBindable();
 

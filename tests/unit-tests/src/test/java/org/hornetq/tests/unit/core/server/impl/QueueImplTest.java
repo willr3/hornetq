@@ -21,7 +21,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -81,14 +80,14 @@ public class QueueImplTest extends UnitTestCase
       super.tearDown();
    }
 
-   private static final SimpleString queue1 = new SimpleString("queue1");
+   private static final String queue1 = new String("queue1");
 
-   private static final SimpleString address1 = new SimpleString("address1");
+   private static final String address1 = new String("address1");
 
    @Test
    public void testName()
    {
-      final SimpleString name = new SimpleString("oobblle");
+      final String name = new String("oobblle");
 
       QueueImpl queue = new QueueImpl(1,
                                       QueueImplTest.address1,
@@ -219,7 +218,7 @@ public class QueueImplTest extends UnitTestCase
             return false;
          }
 
-         public SimpleString getFilterString()
+         public String getFilterString()
          {
             return null;
          }
@@ -943,13 +942,13 @@ public class QueueImplTest extends UnitTestCase
 
       MessageReference ref1 = generateReference(queue, 1);
 
-      ref1.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("banana"));
+      ref1.getMessage().putStringProperty(new String("fruit"), new String("banana"));
 
       queue.addTail(ref1);
 
       MessageReference ref2 = generateReference(queue, 2);
 
-      ref2.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("orange"));
+      ref2.getMessage().putStringProperty(new String("fruit"), new String("orange"));
 
       queue.addTail(ref2);
 
@@ -979,13 +978,13 @@ public class QueueImplTest extends UnitTestCase
 
       MessageReference ref3 = generateReference(queue, 3);
 
-      ref3.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("banana"));
+      ref3.getMessage().putStringProperty(new String("fruit"), new String("banana"));
 
       queue.addTail(ref3);
 
       MessageReference ref4 = generateReference(queue, 4);
 
-      ref4.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("orange"));
+      ref4.getMessage().putStringProperty(new String("fruit"), new String("orange"));
 
       queue.addTail(ref4);
 
@@ -1241,25 +1240,25 @@ public class QueueImplTest extends UnitTestCase
 
       MessageReference ref1 = generateReference(queue, 1);
 
-      ref1.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("banana"));
+      ref1.getMessage().putStringProperty(new String("fruit"), new String("banana"));
 
       queue.addTail(ref1);
 
       MessageReference ref2 = generateReference(queue, 2);
 
-      ref2.getMessage().putStringProperty(new SimpleString("cheese"), new SimpleString("stilton"));
+      ref2.getMessage().putStringProperty(new String("cheese"), new String("stilton"));
 
       queue.addTail(ref2);
 
       MessageReference ref3 = generateReference(queue, 3);
 
-      ref3.getMessage().putStringProperty(new SimpleString("cake"), new SimpleString("sponge"));
+      ref3.getMessage().putStringProperty(new String("cake"), new String("sponge"));
 
       queue.addTail(ref3);
 
       MessageReference ref4 = generateReference(queue, 4);
 
-      ref4.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("orange"));
+      ref4.getMessage().putStringProperty(new String("fruit"), new String("orange"));
 
       refs.add(ref4);
 
@@ -1267,13 +1266,13 @@ public class QueueImplTest extends UnitTestCase
 
       MessageReference ref5 = generateReference(queue, 5);
 
-      ref5.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("apple"));
+      ref5.getMessage().putStringProperty(new String("fruit"), new String("apple"));
 
       queue.addTail(ref5);
 
       MessageReference ref6 = generateReference(queue, 6);
 
-      ref6.getMessage().putStringProperty(new SimpleString("fruit"), new SimpleString("orange"));
+      ref6.getMessage().putStringProperty(new String("fruit"), new String("orange"));
 
       refs.add(ref6);
 
@@ -1620,7 +1619,7 @@ public class QueueImplTest extends UnitTestCase
       factory.close();
       locator.close();
 
-      Queue queue = ((LocalQueueBinding) server.getPostOffice().getBinding(new SimpleString(MY_QUEUE))).getQueue();
+      Queue queue = ((LocalQueueBinding) server.getPostOffice().getBinding(new String(MY_QUEUE))).getQueue();
       LinkedListIterator<MessageReference> totalIterator = queue.totalIterator();
 
       try

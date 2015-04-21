@@ -13,7 +13,6 @@
 
 package org.hornetq.core.server;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 
 /**
@@ -31,7 +30,7 @@ public interface Divert extends Bindable
 
    boolean isExclusive();
 
-   SimpleString getUniqueName();
+   String getUniqueName();
 
-   SimpleString getRoutingName();
+   String getRoutingName();
 }

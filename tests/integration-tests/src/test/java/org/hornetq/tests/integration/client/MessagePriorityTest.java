@@ -13,7 +13,7 @@
 
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -65,8 +65,8 @@ public class MessagePriorityTest extends UnitTestCase
    @Test
    public void testMessagePriority() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -104,8 +104,8 @@ public class MessagePriorityTest extends UnitTestCase
    @Test
    public void testMessagePriorityWithClientSidePrioritization() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -144,8 +144,8 @@ public class MessagePriorityTest extends UnitTestCase
    @Test
    public void testMessageOrderWithSamePriority() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -214,8 +214,8 @@ public class MessagePriorityTest extends UnitTestCase
    @Test
    public void testOutOfOrderAcknowledgement() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 
@@ -276,8 +276,8 @@ public class MessagePriorityTest extends UnitTestCase
    @Test
    public void testManyMessages() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomString();
+      String address = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
 

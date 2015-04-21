@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.core.config.Configuration;
@@ -131,7 +131,7 @@ public class PersistentPushTopicConsumerTest
 
          String destination = reg2.getDestination();
          ClientSession session = manager.getQueueManager().getSessionFactory().createSession(false, false, false);
-         ClientSession.QueueQuery query = session.queueQuery(new SimpleString(destination));
+         ClientSession.QueueQuery query = session.queueQuery( (destination) );
          Assert.assertFalse(query.isExists());
 
          manager.getQueueManager().getPushStore().removeAll();

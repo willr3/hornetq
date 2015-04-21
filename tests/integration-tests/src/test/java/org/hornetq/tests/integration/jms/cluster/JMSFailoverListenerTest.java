@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.FailoverEventListener;
@@ -132,7 +131,7 @@ public class JMSFailoverListenerTest extends ServiceTestBase
 
       ClientSession coreSession = ((HornetQSession)sess).getCoreSession();
 
-      SimpleString jmsQueueName = new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
+      String jmsQueueName = new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
 
       coreSession.createQueue(jmsQueueName, jmsQueueName, null, true);
 
@@ -213,7 +212,7 @@ public class JMSFailoverListenerTest extends ServiceTestBase
 
       ClientSession coreSessionLive = ((HornetQSession)sessLive).getCoreSession();
 
-      SimpleString jmsQueueName = new SimpleString(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
+      String jmsQueueName = new String(HornetQDestination.JMS_QUEUE_ADDRESS_PREFIX + "myqueue");
 
       coreSessionLive.createQueue(jmsQueueName, jmsQueueName, null, true);
 

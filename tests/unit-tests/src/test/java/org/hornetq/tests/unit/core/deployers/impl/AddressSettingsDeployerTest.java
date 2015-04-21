@@ -13,7 +13,6 @@
 
 package org.hornetq.tests.unit.core.deployers.impl;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.deployers.impl.AddressSettingsDeployer;
 import org.hornetq.core.settings.HierarchicalRepository;
@@ -69,8 +68,8 @@ public class AddressSettingsDeployerTest extends UnitTestCase
       addressSettingsDeployer.deploy(XMLUtil.stringToElement(conf));
       AddressSettings as = repository.getMatch("queues.aq");
       Assert.assertNotNull(as);
-      Assert.assertEquals(new SimpleString("DLQtest"), as.getDeadLetterAddress());
-      Assert.assertEquals(new SimpleString("ExpiryQueueTest"), as.getExpiryAddress());
+      Assert.assertEquals(new String("DLQtest"), as.getDeadLetterAddress());
+      Assert.assertEquals(new String("ExpiryQueueTest"), as.getExpiryAddress());
       Assert.assertEquals(100, as.getRedeliveryDelay());
       Assert.assertEquals(32, as.getMaxDeliveryAttempts());
       Assert.assertEquals(18238172365765L, as.getMaxSizeBytes());
@@ -101,8 +100,8 @@ public class AddressSettingsDeployerTest extends UnitTestCase
       addressSettingsDeployer.deploy(addressSettingsNode.item(0));
       AddressSettings as = repository.getMatch("queues.aq");
       Assert.assertNotNull(as);
-      Assert.assertEquals(new SimpleString("DLQtest"), as.getDeadLetterAddress());
-      Assert.assertEquals(new SimpleString("ExpiryQueueTest"), as.getExpiryAddress());
+      Assert.assertEquals(new String("DLQtest"), as.getDeadLetterAddress());
+      Assert.assertEquals(new String("ExpiryQueueTest"), as.getExpiryAddress());
       Assert.assertEquals(100, as.getRedeliveryDelay());
       Assert.assertEquals(2.0, as.getRedeliveryMultiplier(), 0.000001);
       Assert.assertEquals(12000, as.getMaxRedeliveryDelay());

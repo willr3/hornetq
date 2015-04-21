@@ -3,7 +3,7 @@ package org.hornetq.rest.test;
 import java.util.HashMap;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -55,7 +55,7 @@ public class RawAckTest
       sessionFactory = serverLocator.createSessionFactory();
       consumerSessionFactory = serverLocator.createSessionFactory();
 
-      hornetqServer.createQueue(new SimpleString("testQueue"), new SimpleString("testQueue"), null, false, false);
+      hornetqServer.createQueue(new String("testQueue"), new String("testQueue"), null, false, false);
       session = sessionFactory.createSession(true, true);
       producer = session.createProducer("testQueue");
       session.start();

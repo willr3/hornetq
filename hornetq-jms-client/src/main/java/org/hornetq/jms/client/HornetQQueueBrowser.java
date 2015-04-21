@@ -21,7 +21,7 @@ import javax.jms.Queue;
 import javax.jms.QueueBrowser;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
@@ -47,7 +47,7 @@ public final class HornetQQueueBrowser implements QueueBrowser
 
    private final HornetQQueue queue;
 
-   private SimpleString filterString;
+   private String filterString;
 
    // Constructors ---------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public final class HornetQQueueBrowser implements QueueBrowser
       this.queue = queue;
       if (messageSelector != null)
       {
-         filterString = new SimpleString(SelectorTranslator.convertToHornetQFilterString(messageSelector));
+         filterString = new String(SelectorTranslator.convertToHornetQFilterString(messageSelector));
       }
    }
 

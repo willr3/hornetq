@@ -30,7 +30,7 @@ import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.client.impl.ClientMessageImpl;
@@ -130,13 +130,13 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    private volatile boolean started = false;
 
-   private final Map<SimpleString, TempQueueCleanerUpper> tempQueueCleannerUppers = new HashMap<SimpleString, TempQueueCleanerUpper>();
+   private final Map<String, TempQueueCleanerUpper> tempQueueCleannerUppers = new HashMap<String, TempQueueCleanerUpper>();
 
    private final String name;
 
    private final HornetQServer server;
 
-   private final SimpleString managementAddress;
+   private final String managementAddress;
 
    // The current currentLargeMessage being processed
    private volatile LargeServerMessage currentLargeMessage;
@@ -145,7 +145,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    private final SessionCallback callback;
 
-   private volatile SimpleString defaultAddress;
+   private volatile String defaultAddress;
 
    private volatile int timeoutSeconds;
 
@@ -154,7 +154,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
    private final OperationContext context;
 
    // Session's usage should be by definition single threaded, hence it's not needed to use a concurrentHashMap here
-   private final Map<SimpleString, Pair<UUID, AtomicLong>> targetAddressInfos = new HashMap<SimpleString, Pair<UUID, AtomicLong>>();
+   private final Map<String, Pair<UUID, AtomicLong>> targetAddressInfos = new HashMap<String, Pair<UUID, AtomicLong>>();
 
    private final long creationTime = System.currentTimeMillis();
 
@@ -184,8 +184,8 @@ public class ServerSessionImpl implements ServerSession, FailureListener
                             final SecurityStore securityStore,
                             final ManagementService managementService,
                             final HornetQServer server,
-                            final SimpleString managementAddress,
-                            final SimpleString defaultAddress,
+                            final String managementAddress,
+                            final String defaultAddress,
                             final SessionCallback callback,
                             final OperationContext context) throws Exception
    {
@@ -355,16 +355,16 @@ public class ServerSessionImpl implements ServerSession, FailureListener
    }
 
    public void createConsumer(final long consumerID,
-                              final SimpleString queueName,
-                              final SimpleString filterString,
+                              final String queueName,
+                              final String filterString,
                               final boolean browseOnly) throws Exception
    {
       this.createConsumer(consumerID, queueName, filterString, browseOnly, true);
    }
 
    public void createConsumer(final long consumerID,
-                              final SimpleString queueName,
-                              final SimpleString filterString,
+                              final String queueName,
+                              final String filterString,
                               final boolean browseOnly,
                               final boolean supportLargeMessage) throws Exception
    {
@@ -398,11 +398,11 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       {
          TypedProperties props = new TypedProperties();
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
+         props.putStringProperty(ManagementHelper.HDR_ADDRESS, binding.getAddress());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
+         props.putStringProperty(ManagementHelper.HDR_CLUSTER_NAME, binding.getClusterName());
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
+         props.putStringProperty(ManagementHelper.HDR_ROUTING_NAME, binding.getRoutingName());
 
          props.putIntProperty(ManagementHelper.HDR_DISTANCE, binding.getDistance());
 
@@ -411,15 +411,15 @@ public class ServerSessionImpl implements ServerSession, FailureListener
          props.putIntProperty(ManagementHelper.HDR_CONSUMER_COUNT, theQueue.getConsumerCount());
 
          // HORNETQ-946
-         props.putSimpleStringProperty(ManagementHelper.HDR_USER, SimpleString.toSimpleString(username));
+         props.putStringProperty(ManagementHelper.HDR_USER, (username));
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, SimpleString.toSimpleString(this.remotingConnection.getRemoteAddress()));
+         props.putStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, (this.remotingConnection.getRemoteAddress()));
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME, SimpleString.toSimpleString(name));
+         props.putStringProperty(ManagementHelper.HDR_SESSION_NAME, (name));
 
          if (filterString != null)
          {
-            props.putSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING, filterString);
+            props.putStringProperty(ManagementHelper.HDR_FILTERSTRING, filterString);
          }
 
          Notification notification = new Notification(null, CoreNotificationType.CONSUMER_CREATED, props);
@@ -436,9 +436,9 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       }
    }
 
-   public void createQueue(final SimpleString address,
-                           final SimpleString name,
-                           final SimpleString filterString,
+   public void createQueue(final String address,
+                           final String name,
+                           final String filterString,
                            final boolean temporary,
                            final boolean durable) throws Exception
    {
@@ -486,11 +486,11 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    private static class TempQueueCleanerUpper implements CloseListener, FailureListener
    {
-      private final SimpleString bindingName;
+      private final String bindingName;
 
       private final HornetQServer server;
 
-      TempQueueCleanerUpper(final HornetQServer server, final SimpleString bindingName)
+      TempQueueCleanerUpper(final HornetQServer server, final String bindingName)
       {
          this.server = server;
 
@@ -539,7 +539,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    }
 
-   public void deleteQueue(final SimpleString queueToDelete) throws Exception
+   public void deleteQueue(final String queueToDelete) throws Exception
    {
       Binding binding = postOffice.getBinding(queueToDelete);
 
@@ -560,7 +560,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       }
    }
 
-   public QueueQueryResult executeQueueQuery(final SimpleString name) throws Exception
+   public QueueQueryResult executeQueueQuery(final String name) throws Exception
    {
       if (name == null)
       {
@@ -577,7 +577,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
          Filter filter = queue.getFilter();
 
-         SimpleString filterString = filter == null ? null : filter.getFilterString();
+         String filterString = filter == null ? null : filter.getFilterString();
 
          response = new QueueQueryResult(name,
                                          binding.getAddress(),
@@ -600,14 +600,14 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       return response;
    }
 
-   public BindingQueryResult executeBindingQuery(final SimpleString address) throws Exception
+   public BindingQueryResult executeBindingQuery(final String address) throws Exception
    {
       if (address == null)
       {
          throw HornetQMessageBundle.BUNDLE.addressIsNull();
       }
 
-      List<SimpleString> names = new ArrayList<SimpleString>();
+      List<String> names = new ArrayList<String>();
 
       // make an exception for the management address (see HORNETQ-29)
       if (address.equals(managementAddress))
@@ -1309,7 +1309,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
          message.encodeMessageIDToBuffer();
       }
 
-      SimpleString address = message.getAddress();
+      String address = message.getAddress();
 
       if (defaultAddress == null && address != null)
       {
@@ -1384,7 +1384,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       }
    }
 
-   public void requestProducerCredits(final SimpleString address, final int credits) throws Exception
+   public void requestProducerCredits(final String address, final int credits) throws Exception
    {
       PagingStore store = server.getPagingManager().getPageStore(address);
 
@@ -1447,8 +1447,8 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    public String[] getTargetAddresses()
    {
-      Map<SimpleString, Pair<UUID, AtomicLong>> copy = cloneTargetAddresses();
-      Iterator<SimpleString> iter = copy.keySet().iterator();
+      Map<String, Pair<UUID, AtomicLong>> copy = cloneTargetAddresses();
+      Iterator<String> iter = copy.keySet().iterator();
       int num = copy.keySet().size();
       String[] addresses = new String[num];
       int i = 0;
@@ -1462,7 +1462,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    public String getLastSentMessageID(String address)
    {
-      Pair<UUID, AtomicLong> value = targetAddressInfos.get(SimpleString.toSimpleString(address));
+      Pair<UUID, AtomicLong> value = targetAddressInfos.get((address));
       if (value != null)
       {
          return value.getA().toString();
@@ -1486,9 +1486,9 @@ public class ServerSessionImpl implements ServerSession, FailureListener
    @Override
    public void describeProducersInfo(JSONArray array) throws Exception
    {
-      Map<SimpleString, Pair<UUID, AtomicLong>> targetCopy = cloneTargetAddresses();
+      Map<String, Pair<UUID, AtomicLong>> targetCopy = cloneTargetAddresses();
 
-      for (Map.Entry<SimpleString, Pair<UUID, AtomicLong>> entry : targetCopy.entrySet())
+      for (Map.Entry<String, Pair<UUID, AtomicLong>> entry : targetCopy.entrySet())
       {
          JSONObject producerInfo = new JSONObject();
          producerInfo.put("connectionID", this.getConnectionID().toString());
@@ -1559,9 +1559,9 @@ public class ServerSessionImpl implements ServerSession, FailureListener
    // Private
    // ----------------------------------------------------------------------------
 
-   private Map<SimpleString, Pair<UUID, AtomicLong>> cloneTargetAddresses()
+   private Map<String, Pair<UUID, AtomicLong>> cloneTargetAddresses()
    {
-      return new HashMap<SimpleString, Pair<UUID, AtomicLong>>(targetAddressInfos);
+      return new HashMap<String, Pair<UUID, AtomicLong>>(targetAddressInfos);
    }
 
    private void setStarted(final boolean s)
@@ -1593,7 +1593,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
       ServerMessage reply = managementService.handleMessage(message);
 
-      SimpleString replyTo = message.getSimpleStringProperty(ClientMessageImpl.REPLYTO_HEADER_NAME);
+      String replyTo = message.getStringProperty(ClientMessageImpl.REPLYTO_HEADER_NAME);
 
       if (replyTo != null)
       {

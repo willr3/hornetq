@@ -49,7 +49,7 @@ import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.api.core.HornetQInternalErrorException;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.journal.EncodingSupport;
@@ -213,11 +213,11 @@ public class JournalStorageManager implements StorageManager
    private boolean journalLoaded = false;
 
    // Persisted core configuration
-   private final Map<SimpleString, PersistedRoles> mapPersistedRoles =
-      new ConcurrentHashMap<SimpleString, PersistedRoles>();
+   private final Map<String, PersistedRoles> mapPersistedRoles =
+      new ConcurrentHashMap<String, PersistedRoles>();
 
-   private final Map<SimpleString, PersistedAddressSetting> mapPersistedAddressSettings =
-      new ConcurrentHashMap<SimpleString, PersistedAddressSetting>();
+   private final Map<String, PersistedAddressSetting> mapPersistedAddressSettings =
+      new ConcurrentHashMap<String, PersistedAddressSetting>();
 
    private final Set<Long> largeMessagesToDelete = new HashSet<Long>();
 
@@ -388,7 +388,7 @@ public class JournalStorageManager implements StorageManager
 
       try
       {
-         Map<SimpleString, Collection<Integer>> pageFilesToSync;
+         Map<String, Collection<Integer>> pageFilesToSync;
          storageManagerLock.writeLock().lock();
          try
          {
@@ -554,10 +554,10 @@ public class JournalStorageManager implements StorageManager
     * @param pageFilesToSync
     * @throws Exception
     */
-   private void sendPagesToBackup(Map<SimpleString, Collection<Integer>> pageFilesToSync, PagingManager manager)
+   private void sendPagesToBackup(Map<String, Collection<Integer>> pageFilesToSync, PagingManager manager)
       throws Exception
    {
-      for (Entry<SimpleString, Collection<Integer>> entry : pageFilesToSync.entrySet())
+      for (Entry<String, Collection<Integer>> entry : pageFilesToSync.entrySet())
       {
          if (!started)
             return;
@@ -571,11 +571,11 @@ public class JournalStorageManager implements StorageManager
     * @return
     * @throws Exception
     */
-   private Map<SimpleString, Collection<Integer>> getPageInformationForSync(PagingManager pagingManager)
+   private Map<String, Collection<Integer>> getPageInformationForSync(PagingManager pagingManager)
       throws Exception
    {
-      Map<SimpleString, Collection<Integer>> info = new HashMap<SimpleString, Collection<Integer>>();
-      for (SimpleString storeName : pagingManager.getStoreNames())
+      Map<String, Collection<Integer>> info = new HashMap<String, Collection<Integer>>();
+      for (String storeName : pagingManager.getStoreNames())
       {
          PagingStore store = pagingManager.getPageStore(storeName);
          info.put(storeName, store.getCurrentIds());
@@ -684,7 +684,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    @Override
-   public void pageClosed(final SimpleString storeName, final int pageNumber)
+   public void pageClosed(final String storeName, final int pageNumber)
    {
       if (isReplicated())
       {
@@ -702,7 +702,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    @Override
-   public void pageDeleted(final SimpleString storeName, final int pageNumber)
+   public void pageDeleted(final String storeName, final int pageNumber)
    {
       if (isReplicated())
       {
@@ -1022,7 +1022,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void storeDuplicateID(final SimpleString address, final byte[] duplID, final long recordID) throws Exception
+   public void storeDuplicateID(final String address, final byte[] duplID, final long recordID) throws Exception
    {
       readLock();
       try
@@ -1348,7 +1348,7 @@ public class JournalStorageManager implements StorageManager
 
 
    public void storeDuplicateIDTransactional(final long txID,
-                                             final SimpleString address,
+                                             final String address,
                                              final byte[] duplID,
                                              final long recordID) throws Exception
    {
@@ -1366,7 +1366,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    public void updateDuplicateIDTransactional(final long txID,
-                                              final SimpleString address,
+                                              final String address,
                                               final byte[] duplID,
                                               final long recordID) throws Exception
    {
@@ -1490,7 +1490,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void deleteAddressSetting(SimpleString addressMatch) throws Exception
+   public void deleteAddressSetting(String addressMatch) throws Exception
    {
       PersistedAddressSetting oldSetting = mapPersistedAddressSettings.remove(addressMatch);
       if (oldSetting != null)
@@ -1507,7 +1507,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void deleteSecurityRoles(SimpleString addressMatch) throws Exception
+   public void deleteSecurityRoles(String addressMatch) throws Exception
    {
       PersistedRoles oldRoles = mapPersistedRoles.remove(addressMatch);
       if (oldRoles != null)
@@ -1530,7 +1530,7 @@ public class JournalStorageManager implements StorageManager
                                                     final ResourceManager resourceManager,
                                                     final Map<Long, Queue> queues,
                                                     Map<Long, QueueBindingInfo> queueInfos,
-                                                    final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                                    final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                                     final Set<Pair<Long, Long>> pendingLargeMessages,
                                                     List<PageCountPending> pendingNonTXPageCounter) throws Exception
    {
@@ -2036,7 +2036,7 @@ public class JournalStorageManager implements StorageManager
 
          if (queueInfo != null)
          {
-            SimpleString address = queueInfo.getAddress();
+            String address = queueInfo.getAddress();
             PagingStore store = pagingManager.getPageStore(address);
             subs = store.getCursorProvider().getSubscription(queueID);
             pageSubscriptions.put(queueID, subs);
@@ -2085,7 +2085,7 @@ public class JournalStorageManager implements StorageManager
 
       Filter filter = queue.getFilter();
 
-      SimpleString filterString = filter == null ? null : filter.getFilterString();
+      String filterString = filter == null ? null : filter.getFilterString();
 
       PersistentQueueBindingEncoding bindingEncoding = new PersistentQueueBindingEncoding(queue.getName(),
                                                                                           binding.getAddress(),
@@ -2645,7 +2645,7 @@ public class JournalStorageManager implements StorageManager
                                          final Map<Long, Queue> queues,
                                          final Map<Long, QueueBindingInfo> queueInfos,
                                          final List<PreparedTransactionInfo> preparedTransactions,
-                                         final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                         final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                          final Map<Long, PageSubscription> pageSubscriptions,
                                          final Set<Pair<Long, Long>> pendingLargeMessages) throws Exception
    {
@@ -3066,11 +3066,11 @@ public class JournalStorageManager implements StorageManager
    {
       public long id;
 
-      public SimpleString groupId;
+      public String groupId;
 
-      public SimpleString clusterName;
+      public String clusterName;
 
-      public GroupingEncoding(final long id, final SimpleString groupId, final SimpleString clusterName)
+      public GroupingEncoding(final long id, final String groupId, final String clusterName)
       {
          this.id = id;
          this.groupId = groupId;
@@ -3083,19 +3083,19 @@ public class JournalStorageManager implements StorageManager
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(groupId) + SimpleString.sizeofString(clusterName);
+         return  SSU.sizeof(groupId) +  SSU.sizeof(clusterName);
       }
 
       public void encode(final HornetQBuffer buffer)
       {
-         buffer.writeSimpleString(groupId);
-         buffer.writeSimpleString(clusterName);
+         buffer.writeString(groupId);
+         buffer.writeString(clusterName);
       }
 
       public void decode(final HornetQBuffer buffer)
       {
-         groupId = buffer.readSimpleString();
-         clusterName = buffer.readSimpleString();
+         groupId = buffer.readString();
+         clusterName = buffer.readString();
       }
 
       public long getId()
@@ -3108,12 +3108,12 @@ public class JournalStorageManager implements StorageManager
          this.id = id;
       }
 
-      public SimpleString getGroupId()
+      public String getGroupId()
       {
          return groupId;
       }
 
-      public SimpleString getClusterName()
+      public String getClusterName()
       {
          return clusterName;
       }
@@ -3129,11 +3129,11 @@ public class JournalStorageManager implements StorageManager
    {
       public long id;
 
-      public SimpleString name;
+      public String name;
 
-      public SimpleString address;
+      public String address;
 
-      public SimpleString filterString;
+      public String filterString;
 
       public PersistentQueueBindingEncoding()
       {
@@ -3152,9 +3152,9 @@ public class JournalStorageManager implements StorageManager
             "]";
       }
 
-      public PersistentQueueBindingEncoding(final SimpleString name,
-                                            final SimpleString address,
-                                            final SimpleString filterString)
+      public PersistentQueueBindingEncoding(final String name,
+                                            final String address,
+                                            final String filterString)
       {
          this.name = name;
          this.address = address;
@@ -3171,44 +3171,44 @@ public class JournalStorageManager implements StorageManager
          this.id = id;
       }
 
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return address;
       }
 
-      public void replaceQueueName(SimpleString newName)
+      public void replaceQueueName(String newName)
       {
          this.name = newName;
       }
 
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
          return filterString;
       }
 
-      public SimpleString getQueueName()
+      public String getQueueName()
       {
          return name;
       }
 
       public void decode(final HornetQBuffer buffer)
       {
-         name = buffer.readSimpleString();
-         address = buffer.readSimpleString();
-         filterString = buffer.readNullableSimpleString();
+         name = buffer.readString();
+         address = buffer.readString();
+         filterString = buffer.readNullableString();
       }
 
       public void encode(final HornetQBuffer buffer)
       {
-         buffer.writeSimpleString(name);
-         buffer.writeSimpleString(address);
-         buffer.writeNullableSimpleString(filterString);
+         buffer.writeString(name);
+         buffer.writeString(address);
+         buffer.writeNullableString(filterString);
       }
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(name) + SimpleString.sizeofString(address) +
-            SimpleString.sizeofNullableString(filterString);
+         return  SSU.sizeof(name) +  SSU.sizeof(address) +
+                 SSU.sizeof(filterString);
       }
    }
 
@@ -3519,11 +3519,11 @@ public class JournalStorageManager implements StorageManager
 
    public static class DuplicateIDEncoding implements EncodingSupport
    {
-      SimpleString address;
+      String address;
 
       byte[] duplID;
 
-      public DuplicateIDEncoding(final SimpleString address, final byte[] duplID)
+      public DuplicateIDEncoding(final String address, final byte[] duplID)
       {
          this.address = address;
 
@@ -3536,7 +3536,7 @@ public class JournalStorageManager implements StorageManager
 
       public void decode(final HornetQBuffer buffer)
       {
-         address = buffer.readSimpleString();
+         address = buffer.readString();
 
          int size = buffer.readInt();
 
@@ -3547,7 +3547,7 @@ public class JournalStorageManager implements StorageManager
 
       public void encode(final HornetQBuffer buffer)
       {
-         buffer.writeSimpleString(address);
+         buffer.writeString(address);
 
          buffer.writeInt(duplID.length);
 
@@ -3556,17 +3556,17 @@ public class JournalStorageManager implements StorageManager
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(address) + DataConstants.SIZE_INT + duplID.length;
+         return SSU.sizeof(address) + DataConstants.SIZE_INT + duplID.length;
       }
 
       @Override
       public String toString()
       {
-         // this would be useful when testing. Most tests on the testsuite will use a SimpleString on the duplicate ID
+         // this would be useful when testing. Most tests on the testsuite will use a String on the duplicate ID
          // and this may be useful to validate the journal on those tests
          // You may uncomment these two lines on that case and replcate the toString for the PrintData
 
-         // SimpleString simpleStr = new SimpleString(duplID);
+         // String simpleStr = new String(duplID);
          // return "DuplicateIDEncoding [address=" + address + ", duplID=" + simpleStr + "]";
 
          return "DuplicateIDEncoding [address=" + address + ", duplID=" + ByteUtil.bytesToHex(duplID, 2) + "]";

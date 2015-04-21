@@ -6,12 +6,11 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.persistence.impl.journal.JournalStorageManager.JournalContent;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
- * Message is used to sync {@link SequentialFile}s to a backup server. The {@link FileType} controls
+ * Message is used to sync { SequentialFile}s to a backup server. The {@link FileType} controls
  * which extra information is sent.
  */
 public final class ReplicationSyncFileMessage extends PacketImpl
@@ -29,7 +28,7 @@ public final class ReplicationSyncFileMessage extends PacketImpl
    private int dataSize;
    private ByteBuffer byteBuffer;
    private byte[] byteArray;
-   private SimpleString pageStoreName;
+   private String pageStoreName;
    private FileType fileType;
 
    public enum FileType
@@ -64,7 +63,7 @@ public final class ReplicationSyncFileMessage extends PacketImpl
       super(REPLICATION_SYNC_FILE);
    }
 
-   public ReplicationSyncFileMessage(JournalContent content, SimpleString storeName, long id, int size,
+   public ReplicationSyncFileMessage(JournalContent content, String storeName, long id, int size,
                                      ByteBuffer buffer)
    {
       this();
@@ -108,7 +107,7 @@ public final class ReplicationSyncFileMessage extends PacketImpl
          }
          case PAGE:
          {
-            buffer.writeSimpleString(pageStoreName);
+            buffer.writeString(pageStoreName);
             break;
          }
          case LARGE_MESSAGE:
@@ -141,7 +140,7 @@ public final class ReplicationSyncFileMessage extends PacketImpl
          }
          case PAGE:
          {
-            pageStoreName = buffer.readSimpleString();
+            pageStoreName = buffer.readString();
             fileType = FileType.PAGE;
             break;
          }
@@ -179,7 +178,7 @@ public final class ReplicationSyncFileMessage extends PacketImpl
       return fileType;
    }
 
-   public SimpleString getPageStore()
+   public String getPageStore()
    {
       return pageStoreName;
    }

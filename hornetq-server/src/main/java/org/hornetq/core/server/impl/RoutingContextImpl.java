@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.RouteContextList;
 import org.hornetq.core.server.RoutingContext;
@@ -32,7 +32,7 @@ public final class RoutingContextImpl implements RoutingContext
 {
 
    // The pair here is Durable and NonDurable
-   private final Map<SimpleString, RouteContextList> map = new HashMap<SimpleString, RouteContextList>();
+   private final Map<String, RouteContextList> map = new HashMap<String, RouteContextList>();
 
    private Transaction transaction;
 
@@ -52,7 +52,7 @@ public final class RoutingContextImpl implements RoutingContext
       queueCount = 0;
    }
 
-   public void addQueue(final SimpleString address, final Queue queue)
+   public void addQueue(final String address, final Queue queue)
    {
 
       RouteContextList listing = getContextListing(address);
@@ -69,7 +69,7 @@ public final class RoutingContextImpl implements RoutingContext
       queueCount++;
    }
 
-   public RouteContextList getContextListing(SimpleString address)
+   public RouteContextList getContextListing(String address)
    {
       RouteContextList listing = map.get(address);
       if (listing == null)
@@ -90,12 +90,12 @@ public final class RoutingContextImpl implements RoutingContext
       transaction = tx;
    }
 
-   public List<Queue> getNonDurableQueues(SimpleString address)
+   public List<Queue> getNonDurableQueues(String address)
    {
       return getContextListing(address).getNonDurableQueues();
    }
 
-   public List<Queue> getDurableQueues(SimpleString address)
+   public List<Queue> getDurableQueues(String address)
    {
       return getContextListing(address).getDurableQueues();
    }
@@ -105,7 +105,7 @@ public final class RoutingContextImpl implements RoutingContext
       return queueCount;
    }
 
-   public Map<SimpleString, RouteContextList> getContexListing()
+   public Map<String, RouteContextList> getContexListing()
    {
       return this.map;
    }

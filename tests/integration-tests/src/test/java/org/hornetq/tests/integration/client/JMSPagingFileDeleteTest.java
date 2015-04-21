@@ -21,7 +21,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.Topic;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.integration.IntegrationTestLogger;
@@ -124,7 +124,7 @@ public class JMSPagingFileDeleteTest extends JMSTestBase
             }
             System.out.println("Sent " + JMSPagingFileDeleteTest.MESSAGE_NUM + " messages.");
 
-            pagingStore = server.getPagingManager().getPageStore(new SimpleString("jms.topic.topic1"));
+            pagingStore = server.getPagingManager().getPageStore(new String("jms.topic.topic1"));
             printPageStoreInfo(pagingStore);
 
             assertTrue(pagingStore.isPaging());
@@ -185,7 +185,7 @@ public class JMSPagingFileDeleteTest extends JMSTestBase
          }
          System.out.println("Sent " + JMSPagingFileDeleteTest.MESSAGE_NUM + " messages.");
 
-         pagingStore = server.getPagingManager().getPageStore(new SimpleString("jms.topic.topic1"));
+         pagingStore = server.getPagingManager().getPageStore(new String("jms.topic.topic1"));
          printPageStoreInfo(pagingStore);
 
          assertTrue(pagingStore.isPaging());
@@ -205,7 +205,7 @@ public class JMSPagingFileDeleteTest extends JMSTestBase
             assertNotNull(message2);
          }
 
-         pagingStore = server.getPagingManager().getPageStore(new SimpleString("jms.topic.topic1"));
+         pagingStore = server.getPagingManager().getPageStore(new String("jms.topic.topic1"));
          long timeout = System.currentTimeMillis() + 5000;
          while (timeout > System.currentTimeMillis() && pagingStore.isPaging())
          {
