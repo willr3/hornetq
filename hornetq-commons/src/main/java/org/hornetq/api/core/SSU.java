@@ -3,7 +3,6 @@ package org.hornetq.api.core;
 import org.hornetq.utils.DataConstants;
 
 /**
- * Created by wreicher on 3/17/15.
  */
 public class SSU
 {
