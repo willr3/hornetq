@@ -12,12 +12,10 @@
  */
 package org.hornetq.tests.timing.util;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.ReusableLatch;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author <a href="csuconic@redhat.com">Clebert Suconic</a>

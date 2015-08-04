@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.remoting.impl.invm;
 
+import org.hornetq.api.config.HornetQDefaultConfiguration;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.api.config.HornetQDefaultConfiguration;
 
 /**
  * A TransportConstants

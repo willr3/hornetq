@@ -12,13 +12,10 @@
  */
 package org.hornetq.core.config.impl;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
-
 import org.hornetq.core.server.JournalType;
 import org.hornetq.tests.util.RandomUtil;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

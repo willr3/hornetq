@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.stress.journal;
 
-import java.io.File;
-
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.AIOSequentialFileFactory;
 import org.hornetq.core.journal.impl.JournalConstants;
+
+import java.io.File;
 
 /**
  * A NIOAllPossibilitiesCompactStressTest

@@ -12,22 +12,21 @@
  */
 package org.hornetq.spi.core.security;
 
-import java.security.Principal;
-import java.security.acl.Group;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import org.hornetq.core.security.CheckType;
+import org.hornetq.core.security.Role;
+import org.hornetq.core.server.HornetQComponent;
+import org.hornetq.core.server.HornetQServerLogger;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
-
-import org.hornetq.core.security.CheckType;
-import org.hornetq.core.security.Role;
-import org.hornetq.core.server.HornetQComponent;
-import org.hornetq.core.server.HornetQServerLogger;
+import java.security.Principal;
+import java.security.acl.Group;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * This implementation delegates to the JAAS security interfaces.

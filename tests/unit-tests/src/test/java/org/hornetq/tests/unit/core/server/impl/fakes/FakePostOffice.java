@@ -13,7 +13,6 @@
 package org.hornetq.tests.unit.core.server.impl.fakes;
 
 import org.hornetq.api.core.Pair;
-
 import org.hornetq.core.persistence.impl.nullpm.NullStorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.Bindings;

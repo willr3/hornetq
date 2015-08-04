@@ -12,13 +12,12 @@
  */
 package org.hornetq.jms.tests.tools.container;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.spi.InitialContextFactory;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * An in-VM JNDI InitialContextFactory. Lightweight JNDI implementation used for testing.

@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.junit.Test;
-
-import java.util.Set;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
@@ -25,6 +21,9 @@ import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.spi.core.security.HornetQSecurityManagerImpl;
+import org.junit.Test;
+
+import java.util.Set;
 
 /**
  * A SecurityManagementTest

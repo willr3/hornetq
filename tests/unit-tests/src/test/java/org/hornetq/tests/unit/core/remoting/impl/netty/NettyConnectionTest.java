@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.unit.core.remoting.impl.netty;
 
-import java.nio.ByteBuffer;
-import java.util.Collections;
-import java.util.Map;
-
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -29,6 +25,10 @@ import org.hornetq.spi.core.remoting.ConnectionLifeCycleListener;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.Map;
 
 /**
  * A NettyConnectionTest

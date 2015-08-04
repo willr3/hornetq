@@ -12,11 +12,11 @@
  */
 package org.hornetq.jms.bridge.impl;
 
-import javax.management.StandardMBean;
-
 import org.hornetq.jms.bridge.JMSBridge;
 import org.hornetq.jms.bridge.JMSBridgeControl;
 import org.hornetq.jms.bridge.QualityOfServiceMode;
+
+import javax.management.StandardMBean;
 
 /**
  * A JMSBridgeControlImpl

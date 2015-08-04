@@ -12,9 +12,9 @@
  */
 package org.hornetq.common.example;
 
-import javax.transaction.xa.Xid;
-
 import org.hornetq.utils.Base64;
+
+import javax.transaction.xa.Xid;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

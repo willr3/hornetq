@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.jms.server;
 
-import javax.jms.Queue;
-import javax.jms.Topic;
-import javax.naming.Context;
-import java.net.URI;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
@@ -38,6 +33,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Element;
+
+import javax.jms.Queue;
+import javax.jms.Topic;
+import javax.naming.Context;
+import java.net.URI;
 
 /**
  * A JMSServerDeployerTest

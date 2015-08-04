@@ -12,13 +12,13 @@
  */
 package org.hornetq.tests.integration.jms.server.management;
 
+import org.hornetq.api.jms.management.JMSManagementHelper;
+
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.QueueRequestor;
 import javax.jms.QueueSession;
 import javax.jms.Session;
-
-import org.hornetq.api.jms.management.JMSManagementHelper;
 
 /**
  * A MBeanUsingCoreMessage

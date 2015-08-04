@@ -12,27 +12,16 @@
  */
 package org.hornetq.tests.integration.cluster.distribution;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import junit.framework.Assert;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.CoreNotificationType;
+import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.postoffice.impl.BindingsImpl;
 import org.hornetq.core.server.group.GroupingHandler;
 import org.hornetq.core.server.group.UnproposalListener;
@@ -48,6 +37,15 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.junit.After;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -480,8 +478,8 @@ public class ClusteredGroupingTest extends ClusterTestBase
 
       assertNull("Group should have timed out", servers[0].getGroupingHandler().getProposal(("id1.queue0"), false));
 
-      sendWithProperty(0, "queues.testaddress", 1, false, Message.HDR_GROUP_ID, new SimpleString("id1"));
-      sendWithProperty(1, "queues.testaddress", 1, false, Message.HDR_GROUP_ID, new SimpleString("id1"));
+      sendWithProperty(0, "queues.testaddress", 1, false, Message.HDR_GROUP_ID, new String("id1"));
+      sendWithProperty(1, "queues.testaddress", 1, false, Message.HDR_GROUP_ID, new String("id1"));
 
 
       // Verify why this is failing... whyt it's creating a new one here????

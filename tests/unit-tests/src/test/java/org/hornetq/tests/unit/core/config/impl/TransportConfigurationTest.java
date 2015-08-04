@@ -12,12 +12,10 @@
  */
 package org.hornetq.tests.unit.core.config.impl;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * A TransportConfigurationTest

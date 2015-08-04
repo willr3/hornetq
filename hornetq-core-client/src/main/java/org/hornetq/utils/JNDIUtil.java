@@ -12,13 +12,12 @@
  */
 package org.hornetq.utils;
 
-import java.util.StringTokenizer;
-
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+import java.util.StringTokenizer;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

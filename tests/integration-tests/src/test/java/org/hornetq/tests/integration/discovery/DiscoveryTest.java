@@ -12,7 +12,11 @@
  */
 package org.hornetq.tests.integration.discovery;
 
-import org.hornetq.api.core.*;
+import org.hornetq.api.core.BroadcastEndpoint;
+import org.hornetq.api.core.BroadcastEndpointFactory;
+import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.cluster.DiscoveryEntry;
 import org.hornetq.core.cluster.DiscoveryGroup;
@@ -27,7 +31,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;

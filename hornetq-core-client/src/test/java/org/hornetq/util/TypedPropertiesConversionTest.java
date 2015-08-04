@@ -11,8 +11,8 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.util;
-import org.hornetq.api.core.HornetQPropertyConversionException;
 
+import org.hornetq.api.core.HornetQPropertyConversionException;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.utils.TypedProperties;
 import org.junit.After;

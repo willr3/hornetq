@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.stress.journal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.hornetq.core.journal.LoaderCallback;
 import org.hornetq.core.journal.PreparedTransactionInfo;
@@ -24,6 +22,9 @@ import org.hornetq.tests.unit.core.journal.impl.fakes.SimpleEncoding;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *

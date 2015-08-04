@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.client.impl;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
 import org.hornetq.core.buffers.impl.ResetLimitWrappedHornetQBuffer;
 import org.hornetq.utils.DataConstants;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * ClientLargeMessageImpl is only created when receiving large messages.

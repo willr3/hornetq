@@ -11,19 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.util;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.Iterator;
-
-import org.junit.Assert;
-
 
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.ConcurrentSet;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Iterator;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

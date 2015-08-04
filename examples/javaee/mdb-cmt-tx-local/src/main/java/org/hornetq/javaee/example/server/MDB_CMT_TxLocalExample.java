@@ -12,6 +12,8 @@
  */
 package org.hornetq.javaee.example.server;
 
+import org.jboss.ejb3.annotation.ResourceAdapter;
+
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -26,8 +28,6 @@ import javax.jms.TextMessage;
 import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
-
-import org.jboss.ejb3.annotation.ResourceAdapter;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

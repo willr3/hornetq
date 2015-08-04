@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.Pair;
@@ -28,6 +23,11 @@ import org.hornetq.tests.util.RandomUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A JMSConnectionFactoryConfigurationStorageTest

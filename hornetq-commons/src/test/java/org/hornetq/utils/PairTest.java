@@ -12,10 +12,9 @@
  */
 package org.hornetq.utils;
 
-import org.junit.Test;
-
-import org.junit.Assert;
 import org.hornetq.api.core.Pair;
+import org.junit.Assert;
+import org.junit.Test;
 
 
 public class PairTest extends Assert

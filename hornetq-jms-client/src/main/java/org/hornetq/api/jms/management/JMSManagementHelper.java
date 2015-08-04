@@ -12,11 +12,11 @@
  */
 package org.hornetq.api.jms.management;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.jms.client.HornetQMessage;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
 
 /**
  * Helper class to use JMS messages to manage HornetQ server resources.

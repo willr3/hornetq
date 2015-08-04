@@ -12,8 +12,7 @@
  */
 package org.hornetq.jms.tests;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;
@@ -22,8 +21,8 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
-
-import org.junit.Test;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A AutoAckMesageListenerTest

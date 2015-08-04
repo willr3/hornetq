@@ -11,6 +11,11 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.framework;
+
+import org.jboss.util.NestedRuntimeException;
+import org.junit.After;
+import org.junit.Before;
+
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
@@ -19,10 +24,6 @@ import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.naming.Context;
-
-import org.jboss.util.NestedRuntimeException;
-import org.junit.After;
-import org.junit.Before;
 
 /**
  * Creates convenient Point to Point JMS objects which can be needed for tests.

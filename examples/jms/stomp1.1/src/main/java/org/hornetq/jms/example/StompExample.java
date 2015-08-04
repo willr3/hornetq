@@ -12,10 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -24,8 +21,10 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * An example where a Stomp 1.1 client sends a message on a TCP socket

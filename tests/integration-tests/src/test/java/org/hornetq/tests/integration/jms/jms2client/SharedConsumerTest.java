@@ -17,7 +17,11 @@ import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.jms.*;
+import javax.jms.JMSConsumer;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
+import javax.jms.JMSRuntimeException;
+import javax.jms.Topic;
 import java.util.Random;
 
 public class SharedConsumerTest extends JMSTestBase

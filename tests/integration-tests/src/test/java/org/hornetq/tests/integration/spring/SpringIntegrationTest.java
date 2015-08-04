@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.spring;
 
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.server.embedded.EmbeddedJMS;
 import org.hornetq.tests.integration.IntegrationTestLogger;
@@ -24,6 +22,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

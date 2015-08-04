@@ -12,13 +12,13 @@
  */
 package org.objectweb.jtests.jms.conform.message.properties;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageFormatException;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PTPTestCase;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageFormatException;
 
 /**
  * Test the conversion of primitive types for the <code>javax.jms.Message</code> properties.

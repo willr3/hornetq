@@ -12,6 +12,11 @@
  */
 package org.hornetq.jms.tests.message;
 
+import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.Message;
@@ -26,12 +31,6 @@ import javax.transaction.TransactionManager;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  *

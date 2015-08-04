@@ -12,6 +12,9 @@
  */
 package org.hornetq.core.journal.impl;
 
+import org.hornetq.api.core.HornetQExceptionType;
+import org.hornetq.core.journal.impl.dataformat.JournalInternalRecord;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,9 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.core.journal.impl.dataformat.JournalInternalRecord;
 
 /**
  * A JournalTransaction

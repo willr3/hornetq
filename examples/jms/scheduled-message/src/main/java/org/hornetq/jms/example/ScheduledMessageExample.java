@@ -12,8 +12,8 @@
  */
 package org.hornetq.jms.example;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.hornetq.api.core.Message;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -23,9 +23,8 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.Message;
-import org.hornetq.common.example.HornetQExample;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple JMS scheduled delivery example that delivers a message in 5 seconds.

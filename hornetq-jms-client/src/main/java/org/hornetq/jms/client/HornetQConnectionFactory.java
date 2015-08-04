@@ -12,6 +12,15 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.core.DiscoveryGroupConfiguration;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
+import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
@@ -30,15 +39,6 @@ import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.Referenceable;
 import java.io.Serializable;
-
-import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.api.jms.JMSFactoryType;
-import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
-import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
 
 /**
  * HornetQ implementation of a JMS ConnectionFactory.

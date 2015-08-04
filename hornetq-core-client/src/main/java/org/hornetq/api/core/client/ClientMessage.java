@@ -12,11 +12,11 @@
  */
 package org.hornetq.api.core.client;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  *

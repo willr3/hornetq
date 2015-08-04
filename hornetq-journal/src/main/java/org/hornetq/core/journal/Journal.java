@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.journal;
 
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.core.journal.impl.JournalFile;
 import org.hornetq.core.server.HornetQComponent;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Most methods on the journal provide a blocking version where you select the sync mode and a non

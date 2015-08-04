@@ -12,6 +12,9 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.server.recovery.XARecoveryConfig;
+
 import javax.jms.ConnectionMetaData;
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
@@ -24,9 +27,6 @@ import javax.security.auth.Subject;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Set;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.server.recovery.XARecoveryConfig;
 
 /**
  * HornetQ ManagedConnectionFactory

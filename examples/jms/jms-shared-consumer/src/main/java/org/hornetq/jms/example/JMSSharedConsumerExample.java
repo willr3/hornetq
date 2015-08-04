@@ -12,20 +12,14 @@
  */
 package org.hornetq.jms.example;
 
-import javax.jms.CompletionListener;
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
-import javax.jms.Message;
-import javax.jms.Queue;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A JMS Example that uses shared consumers.

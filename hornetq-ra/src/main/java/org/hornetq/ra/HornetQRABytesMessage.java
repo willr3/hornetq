@@ -12,10 +12,9 @@
  */
 package org.hornetq.ra;
 
-import java.util.Arrays;
-
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
+import java.util.Arrays;
 
 
 /**

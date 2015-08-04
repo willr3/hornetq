@@ -12,16 +12,15 @@
  */
 package org.hornetq.jms.server.config.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.naming.Context;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.jms.server.config.JMSConfiguration;
 import org.hornetq.jms.server.config.JMSQueueConfiguration;
 import org.hornetq.jms.server.config.TopicConfiguration;
+
+import javax.naming.Context;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

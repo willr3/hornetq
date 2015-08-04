@@ -11,14 +11,13 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.server.management;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
 
 import org.hornetq.api.jms.management.TopicControl;
 import org.hornetq.tests.integration.management.ManagementControlHelper;
 import org.hornetq.tests.util.JMSClusteredTestBase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.Session;

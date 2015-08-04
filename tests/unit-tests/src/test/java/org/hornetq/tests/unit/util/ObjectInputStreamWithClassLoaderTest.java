@@ -12,6 +12,9 @@
  */
 package org.hornetq.tests.unit.util;
 
+import org.hornetq.tests.util.UnitTestCase;
+import org.hornetq.utils.ObjectInputStreamWithClassLoader;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -30,11 +33,6 @@ import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.junit.Assert;
-
-import org.hornetq.tests.util.UnitTestCase;
-import org.hornetq.utils.ObjectInputStreamWithClassLoader;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

@@ -12,18 +12,15 @@
  */
 package org.hornetq.tests.unit.jms.client;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import javax.jms.MessageEOFException;
-import javax.jms.MessageFormatException;
-
-import org.junit.Assert;
-
 import org.hornetq.jms.client.HornetQStreamMessage;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+
+import javax.jms.MessageEOFException;
+import javax.jms.MessageFormatException;
+import java.util.ArrayList;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

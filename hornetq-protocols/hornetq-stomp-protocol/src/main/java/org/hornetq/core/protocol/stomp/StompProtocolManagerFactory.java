@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.protocol.stomp;
 
-import java.util.List;
-
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.spi.core.protocol.ProtocolManager;
 import org.hornetq.spi.core.protocol.ProtocolManagerFactory;
+
+import java.util.List;
 
 /**
  * A StompProtocolManagerFactory

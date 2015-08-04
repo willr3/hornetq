@@ -12,6 +12,11 @@
  */
 package org.objectweb.jtests.jms.conform.session;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PubSubTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
+
 import javax.jms.InvalidDestinationException;
 import javax.jms.InvalidSelectorException;
 import javax.jms.JMSException;
@@ -19,11 +24,6 @@ import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PubSubTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
 
 /**
  * Test topic sessions

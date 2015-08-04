@@ -12,14 +12,8 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.BroadcastGroupConfiguration;
+import org.hornetq.api.core.Pair;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.management.BroadcastGroupControl;
@@ -27,8 +21,12 @@ import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.tests.util.RandomUtil;
-import org.hornetq.api.core.Pair;
 import org.hornetq.utils.json.JSONArray;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="jmesnil@redhat.com">Jeff Mesnil</a>

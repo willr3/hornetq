@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.remoting.impl.invm.TransportConstants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class TransportConfigurationUtils
 {

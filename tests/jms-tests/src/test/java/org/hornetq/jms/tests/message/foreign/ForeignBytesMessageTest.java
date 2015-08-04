@@ -12,12 +12,12 @@
  */
 package org.hornetq.jms.tests.message.foreign;
 
+import org.hornetq.jms.tests.message.SimpleJMSBytesMessage;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.Message;
-
-import org.hornetq.jms.tests.message.SimpleJMSBytesMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  *

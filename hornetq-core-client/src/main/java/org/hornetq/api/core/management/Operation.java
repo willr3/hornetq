@@ -12,13 +12,12 @@
  */
 package org.hornetq.api.core.management;
 
+import javax.management.MBeanOperationInfo;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import javax.management.MBeanOperationInfo;
 
 /**
  * Info for a MBean Operation.

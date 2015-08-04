@@ -12,6 +12,11 @@
  */
 package org.objectweb.jtests.jms.conform.message.headers;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PTPTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
+
 import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -20,11 +25,6 @@ import javax.jms.Queue;
 import javax.jms.TemporaryQueue;
 import javax.naming.Context;
 import javax.naming.NamingException;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PTPTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
 
 
 /**

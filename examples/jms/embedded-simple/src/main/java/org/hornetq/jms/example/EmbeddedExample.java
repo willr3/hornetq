@@ -12,7 +12,8 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.Date;
+import org.hornetq.common.example.HornetQExample;
+import org.hornetq.jms.server.embedded.EmbeddedJMS;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -21,9 +22,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.common.example.HornetQExample;
-import org.hornetq.jms.server.embedded.EmbeddedJMS;
+import java.util.Date;
 
 /**
  * This example demonstrates how to run a HornetQ embedded with JMS

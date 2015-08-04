@@ -12,10 +12,9 @@
  */
 package org.hornetq.ra;
 
-import java.io.Serializable;
-
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
+import java.io.Serializable;
 
 
 /**

@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
@@ -21,8 +23,6 @@ import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * A simple JMS example that shows how to use queues requestors.

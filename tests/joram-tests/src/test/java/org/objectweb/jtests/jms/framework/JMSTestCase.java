@@ -11,16 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.framework;
-import java.io.IOException;
-import java.util.Properties;
-
-import javax.jms.JMSException;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.objectweb.jtests.jms.admin.Admin;
 import org.objectweb.jtests.jms.admin.AdminFactory;
+
+import javax.jms.JMSException;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * Class extending <code>junit.framework.TestCase</code> to

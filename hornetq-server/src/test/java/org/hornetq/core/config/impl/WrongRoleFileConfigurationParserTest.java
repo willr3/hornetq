@@ -12,15 +12,15 @@
  */
 package org.hornetq.core.config.impl;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-
 import org.hornetq.core.deployers.impl.FileConfigurationParser;
 import org.hornetq.tests.logging.AssertionLoggerHandler;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A FileConfigurationParserTest

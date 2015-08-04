@@ -12,6 +12,8 @@
  */
 package org.hornetq.api.core;
 
+import org.hornetq.core.client.HornetQClientLogger;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
@@ -22,8 +24,6 @@ import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.core.client.HornetQClientLogger;
 
 
 /**

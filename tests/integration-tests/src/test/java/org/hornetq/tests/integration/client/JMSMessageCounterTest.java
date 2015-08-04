@@ -12,17 +12,17 @@
  */
 package org.hornetq.tests.integration.client;
 
+import org.hornetq.api.core.management.ResourceNames;
+import org.hornetq.api.jms.management.JMSQueueControl;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.api.core.management.ResourceNames;
-import org.hornetq.api.jms.management.JMSQueueControl;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

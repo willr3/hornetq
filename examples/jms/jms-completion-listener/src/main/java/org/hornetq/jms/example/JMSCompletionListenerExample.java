@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.CompletionListener;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
@@ -19,9 +21,6 @@ import javax.jms.JMSProducer;
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 

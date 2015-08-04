@@ -12,6 +12,10 @@
  */
 package org.hornetq.rest.queue.push;
 
+import org.hornetq.rest.HornetQRestLogger;
+import org.hornetq.rest.queue.push.xml.PushRegistration;
+import org.hornetq.rest.topic.PushTopicRegistration;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -20,10 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hornetq.rest.HornetQRestLogger;
-import org.hornetq.rest.queue.push.xml.PushRegistration;
-import org.hornetq.rest.topic.PushTopicRegistration;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

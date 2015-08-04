@@ -12,7 +12,11 @@
  */
 package org.hornetq.core.postoffice.impl;
 
-import org.hornetq.core.postoffice.*;
+import org.hornetq.core.postoffice.Address;
+import org.hornetq.core.postoffice.AddressManager;
+import org.hornetq.core.postoffice.Binding;
+import org.hornetq.core.postoffice.Bindings;
+import org.hornetq.core.postoffice.BindingsFactory;
 import org.hornetq.core.server.HornetQMessageBundle;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.transaction.Transaction;

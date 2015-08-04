@@ -12,6 +12,11 @@
  */
 package org.hornetq.tests.integration.jms.jms2client;
 
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.Message;
@@ -19,11 +24,6 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageFormatException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author Clebert Suconic

@@ -14,15 +14,15 @@
 
 package org.hornetq.tests.unit.ra;
 
-import java.beans.PropertyDescriptor;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.ra.HornetQResourceAdapter;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Test;
+
+import java.beans.PropertyDescriptor;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import static java.beans.Introspector.getBeanInfo;
 

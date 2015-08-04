@@ -12,13 +12,12 @@
  */
 package org.hornetq.jms.tests.tools.container;
 
-import java.io.Serializable;
-import java.util.Properties;
-
 import javax.naming.CompoundName;
 import javax.naming.Name;
 import javax.naming.NameParser;
 import javax.naming.NamingException;
+import java.io.Serializable;
+import java.util.Properties;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

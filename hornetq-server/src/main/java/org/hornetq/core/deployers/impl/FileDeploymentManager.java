@@ -12,6 +12,11 @@
  */
 package org.hornetq.core.deployers.impl;
 
+import org.hornetq.api.core.Pair;
+import org.hornetq.core.deployers.Deployer;
+import org.hornetq.core.deployers.DeploymentManager;
+import org.hornetq.core.server.HornetQServerLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -29,11 +34,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.Pair;
-import org.hornetq.core.deployers.Deployer;
-import org.hornetq.core.deployers.DeploymentManager;
-import org.hornetq.core.server.HornetQServerLogger;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>

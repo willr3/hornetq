@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.postoffice;
 
-import java.util.Collection;
-
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.RoutingContext;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.group.UnproposalListener;
+
+import java.util.Collection;
 
 /**
  * A Bindings

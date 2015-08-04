@@ -11,10 +11,10 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.failover;
-import org.junit.Before;
 
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.tests.integration.cluster.util.BackupSyncDelay;
+import org.junit.Before;
 
 /**
  * See {@link BackupSyncDelay} for the rationale about these 'WithDelay' tests.

@@ -12,18 +12,17 @@
  */
 package org.hornetq.core.transaction;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.transaction.xa.Xid;
-
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.impl.XidImpl;
 import org.hornetq.utils.json.JSONArray;
 import org.hornetq.utils.json.JSONObject;
+
+import javax.transaction.xa.Xid;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A TransactionDetail

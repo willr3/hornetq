@@ -15,6 +15,15 @@
  */
 package org.hornetq.tests.integration.jms.jms2client;
 
+import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
 import javax.jms.CompletionListener;
 import javax.jms.Connection;
 import javax.jms.IllegalStateRuntimeException;
@@ -30,15 +39,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class JmsProducerCompletionListenerTest extends JMSTestBase

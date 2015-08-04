@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.journal.impl;
 
+import org.hornetq.core.journal.IOAsyncTask;
+
 import java.nio.ByteBuffer;
 import java.util.List;
-
-import org.hornetq.core.journal.IOAsyncTask;
 
 /**
  * A TimedBufferObserver

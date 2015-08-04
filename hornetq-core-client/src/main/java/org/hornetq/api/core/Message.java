@@ -12,10 +12,10 @@
  */
 package org.hornetq.api.core;
 
+import org.hornetq.utils.UUID;
+
 import java.util.Map;
 import java.util.Set;
-
-import org.hornetq.utils.UUID;
 
 
 /**

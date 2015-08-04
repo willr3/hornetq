@@ -12,9 +12,6 @@
  */
 package org.hornetq.rest.queue.push;
 
-import javax.ws.rs.core.UriBuilder;
-import java.io.IOException;
-
 import org.apache.http.HttpException;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -43,6 +40,9 @@ import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
 import org.jboss.resteasy.specimpl.ResteasyUriBuilder;
+
+import javax.ws.rs.core.UriBuilder;
+import java.io.IOException;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

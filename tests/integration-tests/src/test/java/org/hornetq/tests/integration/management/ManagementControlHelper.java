@@ -12,7 +12,15 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.hornetq.api.core.management.*;
+import org.hornetq.api.core.management.AcceptorControl;
+import org.hornetq.api.core.management.AddressControl;
+import org.hornetq.api.core.management.BridgeControl;
+import org.hornetq.api.core.management.BroadcastGroupControl;
+import org.hornetq.api.core.management.ClusterConnectionControl;
+import org.hornetq.api.core.management.DivertControl;
+import org.hornetq.api.core.management.HornetQServerControl;
+import org.hornetq.api.core.management.ObjectNameBuilder;
+import org.hornetq.api.core.management.QueueControl;
 import org.hornetq.api.jms.management.ConnectionFactoryControl;
 import org.hornetq.api.jms.management.JMSQueueControl;
 import org.hornetq.api.jms.management.JMSServerControl;

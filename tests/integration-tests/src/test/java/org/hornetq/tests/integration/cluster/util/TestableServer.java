@@ -12,12 +12,12 @@
  */
 package org.hornetq.tests.integration.cluster.util;
 
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.HornetQServer;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A TestServer

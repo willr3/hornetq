@@ -11,14 +11,7 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.server.management;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.management.Notification;
-
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.ObjectNameBuilder;
 import org.hornetq.api.jms.JMSFactoryType;
@@ -33,6 +26,13 @@ import org.hornetq.jms.server.management.JMSNotificationType;
 import org.hornetq.tests.integration.management.ManagementControlHelper;
 import org.hornetq.tests.integration.management.ManagementTestBase;
 import org.hornetq.tests.unit.util.InVMNamingContext;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.management.Notification;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Connection Factory Control Test

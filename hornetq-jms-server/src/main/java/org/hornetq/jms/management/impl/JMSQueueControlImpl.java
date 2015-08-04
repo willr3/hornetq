@@ -12,11 +12,6 @@
  */
 package org.hornetq.jms.management.impl;
 
-import javax.management.MBeanInfo;
-import javax.management.StandardMBean;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.FilterConstants;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.management.MessageCounterInfo;
@@ -32,6 +27,11 @@ import org.hornetq.jms.client.SelectorTranslator;
 import org.hornetq.jms.server.JMSServerManager;
 import org.hornetq.utils.json.JSONArray;
 import org.hornetq.utils.json.JSONObject;
+
+import javax.management.MBeanInfo;
+import javax.management.StandardMBean;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

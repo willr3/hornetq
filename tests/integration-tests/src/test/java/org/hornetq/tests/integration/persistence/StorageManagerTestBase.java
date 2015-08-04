@@ -11,10 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.persistence;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
 
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.persistence.GroupingInfo;
@@ -30,6 +26,11 @@ import org.hornetq.utils.ExecutorFactory;
 import org.hornetq.utils.TimeAndCounterIDGenerator;
 import org.junit.After;
 import org.junit.Before;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 /**
  * A StorageManagerTestBase

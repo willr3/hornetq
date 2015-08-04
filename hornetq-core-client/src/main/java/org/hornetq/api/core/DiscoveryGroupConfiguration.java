@@ -12,12 +12,12 @@
  */
 package org.hornetq.api.core;
 
+import org.hornetq.utils.UUIDGenerator;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
-import org.hornetq.utils.UUIDGenerator;
 
 /**
  * This file represents how we are using Discovery.

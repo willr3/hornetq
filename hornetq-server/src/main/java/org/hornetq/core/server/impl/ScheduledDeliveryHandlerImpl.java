@@ -12,6 +12,12 @@
  */
 package org.hornetq.core.server.impl;
 
+import org.hornetq.core.filter.Filter;
+import org.hornetq.core.server.HornetQServerLogger;
+import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.Queue;
+import org.hornetq.core.server.ScheduledDeliveryHandler;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,12 +29,6 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.core.filter.Filter;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.MessageReference;
-import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.ScheduledDeliveryHandler;
 
 /**
  * Handles scheduling deliveries to a queue at the correct time.

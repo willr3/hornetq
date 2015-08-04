@@ -13,6 +13,31 @@
 
 package org.hornetq.core.protocol;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.core.protocol.core.Packet;
+import org.hornetq.core.protocol.core.impl.PacketDecoder;
+import org.hornetq.core.protocol.core.impl.PacketImpl;
+import org.hornetq.core.protocol.core.impl.wireformat.BackupRegistrationMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.BackupReplicationStartFailedMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddTXMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationCommitMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteTXMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageBeginMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageEndMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageWriteMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageEventMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageWriteMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPrepareMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationResponseMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.SessionSendLargeMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
+import org.hornetq.core.server.impl.ServerMessageImpl;
+
 import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_APPEND;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_APPEND_TX;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_COMMIT_ROLLBACK;
@@ -27,31 +52,6 @@ import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_PREPARE
 import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_RESPONSE;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_SEND;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_SEND_LARGE;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.core.protocol.core.Packet;
-import org.hornetq.core.protocol.core.impl.PacketDecoder;
-import org.hornetq.core.protocol.core.impl.PacketImpl;
-import org.hornetq.core.protocol.core.impl.wireformat.BackupRegistrationMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.BackupReplicationStartFailedMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationCommitMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageBeginMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageEndMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageEventMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPrepareMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationResponseMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.SessionSendLargeMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
-import org.hornetq.core.server.impl.ServerMessageImpl;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

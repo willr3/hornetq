@@ -13,7 +13,6 @@
 package org.hornetq.core.server.impl;
 
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.TransientQueueManager;

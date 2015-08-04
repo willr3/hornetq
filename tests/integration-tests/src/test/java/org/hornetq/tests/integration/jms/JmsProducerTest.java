@@ -25,7 +25,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.jms.*;
+import javax.jms.DeliveryMode;
+import javax.jms.JMSConsumer;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
+import javax.jms.MessageFormatRuntimeException;
+import javax.jms.Queue;
+import javax.jms.TextMessage;
 import java.util.ArrayList;
 import java.util.Random;
 

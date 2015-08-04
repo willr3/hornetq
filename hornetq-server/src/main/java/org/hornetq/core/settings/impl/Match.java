@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.settings.impl;
 
-import java.util.regex.Pattern;
-
 import org.hornetq.core.server.HornetQMessageBundle;
+
+import java.util.regex.Pattern;
 
 /**
     a Match is the holder for the match string and the object to hold against it.

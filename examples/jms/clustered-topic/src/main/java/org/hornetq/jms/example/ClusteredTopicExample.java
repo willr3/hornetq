@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -20,8 +22,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * A simple example that shows a JMS Topic clustered across two nodes of a cluster.

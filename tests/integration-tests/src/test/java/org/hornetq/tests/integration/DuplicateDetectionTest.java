@@ -12,8 +12,18 @@
  */
 package org.hornetq.tests.integration;
 
-import org.hornetq.api.core.*;
-import org.hornetq.api.core.client.*;
+import org.hornetq.api.core.HornetQDuplicateIdException;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.Message;
+import org.hornetq.api.core.SSU;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientProducer;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.postoffice.impl.PostOfficeImpl;

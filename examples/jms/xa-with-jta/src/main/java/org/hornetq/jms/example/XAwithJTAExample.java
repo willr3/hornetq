@@ -12,6 +12,9 @@
  */
 package org.hornetq.jms.example;
 
+import com.arjuna.ats.jta.TransactionManager;
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
@@ -25,10 +28,6 @@ import javax.transaction.Transaction;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import com.arjuna.ats.jta.TransactionManager;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * A simple JMS example showing the HornetQ XA support with JTA.

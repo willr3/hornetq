@@ -12,7 +12,10 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.HashMap;
+import org.hornetq.api.core.management.MessageCounterInfo;
+import org.hornetq.api.core.management.ObjectNameBuilder;
+import org.hornetq.api.jms.management.JMSQueueControl;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
@@ -29,11 +32,7 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.management.MessageCounterInfo;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.jms.management.JMSQueueControl;
-import org.hornetq.common.example.HornetQExample;
+import java.util.HashMap;
 
 /**
  * An example showing how to use message counters to have information on a queue.

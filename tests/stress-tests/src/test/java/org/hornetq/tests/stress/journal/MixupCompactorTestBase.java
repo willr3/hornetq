@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.stress.journal;
 
-import java.io.File;
-import java.io.FilenameFilter;
-
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.JournalImpl;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
@@ -25,6 +22,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.FilenameFilter;
 
 /**
  * This class will control mix up compactor between each operation of a test

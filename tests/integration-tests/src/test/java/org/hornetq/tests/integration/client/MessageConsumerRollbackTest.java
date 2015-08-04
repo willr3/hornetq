@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -31,6 +26,11 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A MessageConsumerRollbackTest

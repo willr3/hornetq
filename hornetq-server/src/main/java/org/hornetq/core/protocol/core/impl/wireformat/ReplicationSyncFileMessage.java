@@ -12,15 +12,14 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.core.persistence.impl.journal.JournalStorageManager.JournalContent;
+import org.hornetq.core.protocol.core.impl.PacketImpl;
+
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
-
-import org.hornetq.api.core.HornetQBuffer;
-
-import org.hornetq.core.persistence.impl.journal.JournalStorageManager.JournalContent;
-import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
  * Message is used to sync {@link SequentialFile}s to a backup server. The {@link FileType} controls

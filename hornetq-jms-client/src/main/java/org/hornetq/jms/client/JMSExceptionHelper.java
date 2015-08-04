@@ -12,12 +12,12 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.core.HornetQException;
+
 import javax.jms.InvalidDestinationException;
 import javax.jms.InvalidSelectorException;
 import javax.jms.JMSException;
 import javax.jms.JMSSecurityException;
-
-import org.hornetq.api.core.HornetQException;
 
 /**
  *

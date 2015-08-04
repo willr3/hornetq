@@ -12,6 +12,11 @@
  */
 package org.hornetq.ra.inflow;
 
+import org.hornetq.ra.ConnectionFactoryProperties;
+import org.hornetq.ra.HornetQRALogger;
+import org.hornetq.ra.HornetQRaUtils;
+import org.hornetq.ra.HornetQResourceAdapter;
+
 import javax.jms.Session;
 import javax.resource.ResourceException;
 import javax.resource.spi.ActivationSpec;
@@ -19,11 +24,6 @@ import javax.resource.spi.InvalidPropertyException;
 import javax.resource.spi.ResourceAdapter;
 import java.io.Serializable;
 import java.util.Hashtable;
-
-import org.hornetq.ra.ConnectionFactoryProperties;
-import org.hornetq.ra.HornetQRALogger;
-import org.hornetq.ra.HornetQRaUtils;
-import org.hornetq.ra.HornetQResourceAdapter;
 
 /**
  * The activation spec

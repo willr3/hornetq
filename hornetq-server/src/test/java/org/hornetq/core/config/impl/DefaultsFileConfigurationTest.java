@@ -12,15 +12,13 @@
  */
 package org.hornetq.core.config.impl;
 
-import org.junit.Test;
-
-import java.util.Collections;
-
-import org.junit.Assert;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.impl.JournalConstants;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Collections;
 
 /**
  *

@@ -11,19 +11,17 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.timing.core.journal.impl;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import org.junit.Assert;
 
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.journal.PreparedTransactionInfo;
 import org.hornetq.core.journal.RecordInfo;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.unit.core.journal.impl.JournalImplTestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  *

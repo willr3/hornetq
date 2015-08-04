@@ -12,6 +12,16 @@
  */
 package org.hornetq.tests.integration.jms.bridge;
 
+import org.hornetq.api.jms.HornetQJMSConstants;
+import org.hornetq.jms.bridge.ConnectionFactoryFactory;
+import org.hornetq.jms.bridge.QualityOfServiceMode;
+import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
+import org.hornetq.jms.client.HornetQMessage;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.utils.DefaultSensitiveStringCodec;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.Message;
@@ -29,16 +39,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.hornetq.api.jms.HornetQJMSConstants;
-import org.hornetq.jms.bridge.ConnectionFactoryFactory;
-import org.hornetq.jms.bridge.QualityOfServiceMode;
-import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
-import org.hornetq.jms.client.HornetQMessage;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.utils.DefaultSensitiveStringCodec;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * A JMSBridgeTest

@@ -21,8 +21,8 @@ import org.hornetq.api.core.Interceptor;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.core.protocol.core.impl.wireformat.BackupReplicationStartFailedMessage;
-import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.HornetQServer;
+import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.LiveNodeLocator;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 

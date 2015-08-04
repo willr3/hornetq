@@ -12,6 +12,11 @@
  */
 package org.hornetq.core.journal.impl;
 
+import org.hornetq.core.journal.IOAsyncTask;
+import org.hornetq.core.journal.SequentialFile;
+import org.hornetq.core.journal.SequentialFileFactory;
+import org.hornetq.journal.HornetQJournalLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -21,11 +26,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-
-import org.hornetq.core.journal.IOAsyncTask;
-import org.hornetq.core.journal.SequentialFile;
-import org.hornetq.core.journal.SequentialFileFactory;
-import org.hornetq.journal.HornetQJournalLogger;
 
 /**
  * A SyncSpeedTest

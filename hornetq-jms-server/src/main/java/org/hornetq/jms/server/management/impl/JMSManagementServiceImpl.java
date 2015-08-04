@@ -12,8 +12,6 @@
  */
 package org.hornetq.jms.server.management.impl;
 
-import javax.management.ObjectName;
-
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.api.core.management.QueueControl;
 import org.hornetq.api.core.management.ResourceNames;
@@ -36,6 +34,8 @@ import org.hornetq.jms.management.impl.JMSTopicControlImpl;
 import org.hornetq.jms.server.JMSServerManager;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.jms.server.management.JMSManagementService;
+
+import javax.management.ObjectName;
 
 /*
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.protocol.stomp;
 
+import org.hornetq.api.core.HornetQBuffer;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.hornetq.api.core.HornetQBuffer;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 

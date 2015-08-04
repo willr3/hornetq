@@ -12,17 +12,16 @@
  */
 package org.objectweb.jtests.jms.conform.message.properties;
 
-import java.util.Enumeration;
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PTPTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
 
 import javax.jms.ConnectionMetaData;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PTPTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
+import java.util.Enumeration;
 
 /**
  * Test the JMSX defined properties.

@@ -12,7 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.Date;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -22,8 +22,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.util.Date;
 
 /**
  * An example where a client will send a JMS message to a Topic.

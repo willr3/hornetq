@@ -12,8 +12,7 @@
  */
 package org.hornetq.jms.tests.message;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.jboss.util.Primitives;
 
 import javax.jms.JMSException;
 import javax.jms.MessageEOFException;
@@ -21,8 +20,8 @@ import javax.jms.MessageFormatException;
 import javax.jms.MessageNotReadableException;
 import javax.jms.MessageNotWriteableException;
 import javax.jms.StreamMessage;
-
-import org.jboss.util.Primitives;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

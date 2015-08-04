@@ -12,10 +12,6 @@
  */
 package org.hornetq.byteman.tests;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -36,6 +32,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(BMUnitRunner.class)
 public class StompInternalStateTest extends ServiceTestBase

@@ -14,13 +14,14 @@
  *
  */
 package org.hornetq.jms.tests.message;
+
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.junit.Before;
+
 import javax.jms.Connection;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.junit.Before;
 
 public abstract class MessageBodyTestCase extends HornetQServerTestCase
 {

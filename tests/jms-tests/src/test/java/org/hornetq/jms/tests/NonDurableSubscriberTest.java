@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.InvalidSelectorException;
 import javax.jms.Session;
 import javax.jms.TopicConnection;
 import javax.jms.TopicSession;
 import javax.naming.InitialContext;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  * Non-durable subscriber tests.

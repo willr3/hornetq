@@ -12,15 +12,15 @@
  */
 package org.hornetq.core.management.impl;
 
-import javax.management.MBeanOperationInfo;
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.api.core.management.ClusterConnectionControl;
 import org.hornetq.core.config.ClusterConnectionConfiguration;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.server.cluster.ClusterConnection;
 import org.hornetq.utils.json.JSONArray;
+
+import javax.management.MBeanOperationInfo;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A ClusterConnectionControl

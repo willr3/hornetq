@@ -12,6 +12,24 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.api.core.BroadcastEndpointFactoryConfiguration;
+import org.hornetq.api.core.DiscoveryGroupConfiguration;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.ra.inflow.HornetQActivation;
+import org.hornetq.ra.inflow.HornetQActivationSpec;
+import org.hornetq.ra.recovery.RecoveryManager;
+import org.hornetq.utils.SensitiveDataCodec;
+import org.jgroups.JChannel;
+
 import javax.jms.Session;
 import javax.resource.ResourceException;
 import javax.resource.spi.ActivationSpec;
@@ -31,24 +49,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.hornetq.api.core.BroadcastEndpointFactoryConfiguration;
-import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.api.jms.JMSFactoryType;
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.ra.inflow.HornetQActivation;
-import org.hornetq.ra.inflow.HornetQActivationSpec;
-import org.hornetq.ra.recovery.RecoveryManager;
-import org.hornetq.utils.SensitiveDataCodec;
-import org.jgroups.JChannel;
 
 /**
  * The resource adapter for HornetQ

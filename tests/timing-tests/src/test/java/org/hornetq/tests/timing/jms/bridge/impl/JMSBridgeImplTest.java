@@ -12,6 +12,31 @@
  */
 package org.hornetq.tests.timing.jms.bridge.impl;
 
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.management.ObjectNameBuilder;
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.api.jms.management.JMSQueueControl;
+import org.hornetq.core.config.Configuration;
+import org.hornetq.core.remoting.impl.invm.InVMAcceptorFactory;
+import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
+import org.hornetq.core.server.HornetQServers;
+import org.hornetq.jms.bridge.ConnectionFactoryFactory;
+import org.hornetq.jms.bridge.DestinationFactory;
+import org.hornetq.jms.bridge.QualityOfServiceMode;
+import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
+import org.hornetq.jms.client.HornetQJMSConnectionFactory;
+import org.hornetq.jms.server.JMSServerManager;
+import org.hornetq.jms.server.impl.JMSServerManagerImpl;
+import org.hornetq.tests.unit.UnitTestLogger;
+import org.hornetq.tests.unit.util.InVMNamingContext;
+import org.hornetq.tests.util.RandomUtil;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -37,31 +62,6 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.api.jms.JMSFactoryType;
-import org.hornetq.api.jms.management.JMSQueueControl;
-import org.hornetq.core.config.Configuration;
-import org.hornetq.core.remoting.impl.invm.InVMAcceptorFactory;
-import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
-import org.hornetq.core.server.HornetQServers;
-import org.hornetq.jms.bridge.ConnectionFactoryFactory;
-import org.hornetq.jms.bridge.DestinationFactory;
-import org.hornetq.jms.bridge.QualityOfServiceMode;
-import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
-import org.hornetq.jms.client.HornetQJMSConnectionFactory;
-import org.hornetq.jms.server.JMSServerManager;
-import org.hornetq.jms.server.impl.JMSServerManagerImpl;
-import org.hornetq.tests.unit.UnitTestLogger;
-import org.hornetq.tests.unit.util.InVMNamingContext;
-import org.hornetq.tests.util.RandomUtil;
-import org.hornetq.tests.util.UnitTestCase;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

@@ -12,11 +12,11 @@
  */
 package org.hornetq.spi.core.security;
 
-import java.util.Set;
-
 import org.hornetq.core.security.CheckType;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.server.HornetQComponent;
+
+import java.util.Set;
 
 /**
  * Use to validate whether a user has is valid to connect to the server and perform certain

@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.utils.XidCodecSupport;
+
+import javax.transaction.xa.Xid;
 
 /**
  * to be called after a failure on an XA Session

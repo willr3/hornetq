@@ -12,6 +12,10 @@
  */
 package org.hornetq.rest.queue.push;
 
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.rest.HornetQRestLogger;
+import org.hornetq.rest.queue.push.xml.PushRegistration;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,10 +31,6 @@ import javax.ws.rs.core.UriInfo;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.rest.HornetQRestLogger;
-import org.hornetq.rest.queue.push.xml.PushRegistration;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

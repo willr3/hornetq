@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.server;
 
-import java.util.List;
-
 import org.hornetq.core.transaction.Transaction;
+
+import java.util.List;
 
 /**
  *

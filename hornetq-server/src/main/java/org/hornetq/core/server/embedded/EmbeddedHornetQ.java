@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.server.embedded;
 
-import javax.management.MBeanServer;
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.FileConfiguration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.impl.HornetQServerImpl;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.spi.core.security.HornetQSecurityManagerImpl;
+
+import javax.management.MBeanServer;
 
 /**
  * Helper class to simplify bootstrap of HornetQ server.  Bootstraps from classpath-based config files.

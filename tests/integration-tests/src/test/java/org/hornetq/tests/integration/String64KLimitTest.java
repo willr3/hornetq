@@ -11,12 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import org.junit.Assert;
-
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
@@ -30,6 +24,9 @@ import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *

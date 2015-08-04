@@ -12,9 +12,9 @@
  */
 package org.hornetq.integration.jboss.tm;
 
-import javax.transaction.TransactionManager;
-
 import org.jboss.tm.TransactionManagerLocator;
+
+import javax.transaction.TransactionManager;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

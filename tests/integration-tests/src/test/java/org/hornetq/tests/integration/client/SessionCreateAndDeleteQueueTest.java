@@ -14,7 +14,6 @@ package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.postoffice.Binding;

@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.unit.core.deployers.impl;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.hornetq.core.deployers.impl.XmlDeployer;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.XMLUtil;
@@ -24,6 +20,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * tests the abstract xml deployer class

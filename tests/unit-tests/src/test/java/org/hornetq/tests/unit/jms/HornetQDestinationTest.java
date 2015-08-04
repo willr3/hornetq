@@ -12,17 +12,15 @@
  */
 package org.hornetq.tests.unit.jms;
 
+import org.hornetq.jms.client.HornetQDestination;
+import org.hornetq.tests.util.RandomUtil;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.jms.JMSRuntimeException;
 import javax.jms.Queue;
 import javax.jms.Topic;
-
-import org.junit.Assert;
-
-import org.hornetq.jms.client.HornetQDestination;
-import org.hornetq.tests.util.RandomUtil;
-import org.hornetq.tests.util.UnitTestCase;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

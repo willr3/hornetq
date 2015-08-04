@@ -11,7 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests;
-import java.util.ArrayList;
+
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.jms.client.HornetQJMSConnectionFactory;
+import org.hornetq.jms.client.HornetQQueueConnectionFactory;
+import org.hornetq.jms.client.HornetQTopicConnectionFactory;
+import org.junit.After;
+import org.junit.Before;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -21,14 +28,7 @@ import javax.jms.QueueConnection;
 import javax.jms.TopicConnection;
 import javax.jms.XAConnection;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.jms.JMSFactoryType;
-import org.hornetq.jms.client.HornetQJMSConnectionFactory;
-import org.hornetq.jms.client.HornetQQueueConnectionFactory;
-import org.hornetq.jms.client.HornetQTopicConnectionFactory;
-import org.junit.After;
-import org.junit.Before;
+import java.util.ArrayList;
 
 /**
  * @deprecated this infrastructure should not be used for new code. New tests should go into

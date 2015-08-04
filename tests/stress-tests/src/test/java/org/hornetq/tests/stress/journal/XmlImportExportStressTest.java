@@ -18,12 +18,11 @@ import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.ServerLocator;
-import org.junit.Test;
-
-import org.hornetq.tools.XmlDataExporter;
-import org.hornetq.tools.XmlDataImporter;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.hornetq.tools.XmlDataExporter;
+import org.hornetq.tools.XmlDataImporter;
+import org.junit.Test;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

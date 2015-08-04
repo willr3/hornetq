@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.management.impl;
 
-import javax.management.MBeanOperationInfo;
-
 import org.hornetq.api.core.management.DivertControl;
 import org.hornetq.core.config.DivertConfiguration;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.server.Divert;
+
+import javax.management.MBeanOperationInfo;
 
 /**
  * A DivertControl

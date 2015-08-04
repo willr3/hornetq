@@ -12,16 +12,15 @@
  */
 package org.hornetq.core.management.impl;
 
+import org.hornetq.api.core.management.Operation;
+import org.hornetq.api.core.management.Parameter;
+
+import javax.management.MBeanOperationInfo;
+import javax.management.MBeanParameterInfo;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.MBeanOperationInfo;
-import javax.management.MBeanParameterInfo;
-
-import org.hornetq.api.core.management.Operation;
-import org.hornetq.api.core.management.Parameter;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

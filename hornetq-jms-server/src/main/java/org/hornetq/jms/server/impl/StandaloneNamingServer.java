@@ -13,15 +13,15 @@
 
 package org.hornetq.jms.server.impl;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import org.hornetq.core.server.ActivateCallback;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.jnp.server.Main;
 import org.jnp.server.NamingBeanImpl;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * This server class is only used in the standalone mode, its used to control the life cycle of the Naming Server to allow

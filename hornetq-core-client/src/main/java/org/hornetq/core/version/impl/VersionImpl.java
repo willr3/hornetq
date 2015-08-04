@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.version.impl;
 
+import org.hornetq.core.version.Version;
+
 import java.io.Serializable;
 import java.util.Arrays;
-
-import org.hornetq.core.version.Version;
 
 /**
  * A VersionImpl

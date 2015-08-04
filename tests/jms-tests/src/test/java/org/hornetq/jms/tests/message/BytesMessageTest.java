@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.tests.message;
 
-import javax.jms.BytesMessage;
-import javax.jms.JMSException;
-import javax.jms.Message;
-
 import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.After;
 import org.junit.Before;
+
+import javax.jms.BytesMessage;
+import javax.jms.JMSException;
+import javax.jms.Message;
 
 /**
  * A test that sends/receives bytes messages to the JMS provider and verifies their integrity.

@@ -12,7 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.ArrayList;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -26,8 +26,7 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.util.ArrayList;
 
 /**
  * A simple JMS example that shows the delivery order of messages with priorities.

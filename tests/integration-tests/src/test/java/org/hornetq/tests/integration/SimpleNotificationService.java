@@ -12,12 +12,12 @@
  */
 package org.hornetq.tests.integration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.core.server.management.Notification;
 import org.hornetq.core.server.management.NotificationListener;
 import org.hornetq.core.server.management.NotificationService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A SimpleNotificationService

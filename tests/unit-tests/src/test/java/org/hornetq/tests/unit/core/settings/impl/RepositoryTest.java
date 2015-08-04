@@ -11,22 +11,20 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.settings.impl;
-import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
-import org.junit.Before;
 
+import org.hornetq.core.security.Role;
+import org.hornetq.core.settings.HierarchicalRepository;
+import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
+import org.hornetq.core.settings.Mergeable;
+import org.hornetq.core.settings.impl.HierarchicalObjectRepository;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.junit.Assert;
-
-import org.hornetq.core.security.Role;
-import org.hornetq.core.settings.HierarchicalRepository;
-import org.hornetq.core.settings.Mergeable;
-import org.hornetq.core.settings.impl.HierarchicalObjectRepository;
-import org.hornetq.tests.util.UnitTestCase;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>

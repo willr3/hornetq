@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.utils.MemorySize;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Implementation of a MessageReference

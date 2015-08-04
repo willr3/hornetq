@@ -12,7 +12,7 @@
  */
 package org.hornetq.javaee.example;
 
-import java.util.Date;
+import org.hornetq.javaee.example.server.XARecoveryExampleService;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -21,8 +21,7 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.javaee.example.server.XARecoveryExampleService;
+import java.util.Date;
 
 /**
  * An example which invokes an EJB. The EJB will be involved in a

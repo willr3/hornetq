@@ -12,10 +12,7 @@
  */
 package org.hornetq.jms.tests.tools.container;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import org.jboss.util.naming.Util;
 
 import javax.naming.Context;
 import javax.naming.Name;
@@ -24,8 +21,10 @@ import javax.naming.RefAddr;
 import javax.naming.Reference;
 import javax.naming.StringRefAddr;
 import javax.naming.spi.ObjectFactory;
-
-import org.jboss.util.naming.Util;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * used by the default context when running in embedded local configuration

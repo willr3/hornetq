@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.unit.core.deployers.impl;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.deployers.impl.SecurityDeployer;
 import org.hornetq.core.security.Role;
@@ -26,6 +23,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>

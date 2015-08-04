@@ -15,10 +15,10 @@
  */
 package org.hornetq.api.core.client;
 
-import java.io.Serializable;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.spi.core.protocol.RemotingConnection;
+
+import java.io.Serializable;
 
 /**
  * A member of the topology.

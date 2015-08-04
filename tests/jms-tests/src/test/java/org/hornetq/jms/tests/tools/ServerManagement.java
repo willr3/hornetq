@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.tests.tools;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-
 import org.hornetq.jms.tests.JmsTestLogger;
 import org.hornetq.jms.tests.tools.container.InVMInitialContextFactory;
 import org.hornetq.jms.tests.tools.container.LocalTestServer;
 import org.hornetq.jms.tests.tools.container.Server;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Collection of static methods to use to start/stop and interact with the in-memory JMS server. It

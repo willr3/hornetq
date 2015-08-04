@@ -11,15 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.reattach;
-import org.junit.Before;
-import org.junit.After;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.client.ClientSession;
@@ -32,6 +23,14 @@ import org.hornetq.core.remoting.impl.invm.InVMConnector;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A MultiThreadFailoverSupport

@@ -19,8 +19,6 @@ import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
 import org.hornetq.jms.bridge.impl.JNDIConnectionFactoryFactory;
 import org.hornetq.jms.bridge.impl.JNDIDestinationFactory;
 
-import java.util.Hashtable;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -30,6 +28,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
+import java.util.Hashtable;
 
 /**
  * An example which sends a message to a source topic and consume from a target queue.

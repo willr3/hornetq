@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.libaio;
 
-import java.nio.ByteBuffer;
-
 import org.hornetq.api.core.HornetQException;
+
+import java.nio.ByteBuffer;
 
 /**
  * @author Clebert Suconic

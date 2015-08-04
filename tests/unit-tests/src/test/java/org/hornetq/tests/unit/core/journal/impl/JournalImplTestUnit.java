@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.unit.core.journal.impl;
 
-import java.nio.ByteBuffer;
-import java.util.List;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQIOErrorException;
 import org.hornetq.core.journal.EncodingSupport;
@@ -27,6 +24,9 @@ import org.hornetq.tests.util.RandomUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.util.List;
 
 /**
  * A JournalImplTestBase

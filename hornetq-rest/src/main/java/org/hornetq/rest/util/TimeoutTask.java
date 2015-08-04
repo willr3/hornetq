@@ -12,14 +12,14 @@
  */
 package org.hornetq.rest.util;
 
+import org.hornetq.rest.HornetQRestLogger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.hornetq.rest.HornetQRestLogger;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

@@ -12,11 +12,10 @@
  */
 package org.hornetq.jms.bridge.impl;
 
-import java.util.Hashtable;
+import org.hornetq.jms.bridge.DestinationFactory;
 
 import javax.jms.Destination;
-
-import org.hornetq.jms.bridge.DestinationFactory;
+import java.util.Hashtable;
 
 
 /**

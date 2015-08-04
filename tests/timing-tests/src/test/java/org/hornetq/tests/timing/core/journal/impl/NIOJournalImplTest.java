@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.timing.core.journal.impl;
 
-import java.io.File;
-
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
 import org.hornetq.tests.unit.UnitTestLogger;
+
+import java.io.File;
 
 /**
  *

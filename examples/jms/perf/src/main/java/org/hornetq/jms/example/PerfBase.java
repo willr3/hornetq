@@ -12,6 +12,21 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.utils.TokenBucketLimiter;
+import org.hornetq.utils.TokenBucketLimiterImpl;
+
+import javax.jms.BytesMessage;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.naming.InitialContext;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
@@ -19,12 +34,6 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
-
-import javax.jms.*;
-import javax.naming.InitialContext;
-
-import org.hornetq.utils.TokenBucketLimiter;
-import org.hornetq.utils.TokenBucketLimiterImpl;
 
 /**
  *

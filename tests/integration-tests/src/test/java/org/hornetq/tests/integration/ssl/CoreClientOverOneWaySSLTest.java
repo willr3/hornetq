@@ -12,8 +12,18 @@
  */
 package org.hornetq.tests.integration.ssl;
 
-import org.hornetq.api.core.*;
-import org.hornetq.api.core.client.*;
+import org.hornetq.api.core.HornetQConnectionTimedOutException;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQNotConnectedException;
+import org.hornetq.api.core.Message;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientProducer;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
 import org.hornetq.core.remoting.impl.ssl.SSLSupport;

@@ -12,6 +12,11 @@
  */
 package org.hornetq.rest.queue;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.rest.HornetQRestLogger;
+import org.hornetq.rest.util.TimeoutTask;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -27,11 +32,6 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.rest.HornetQRestLogger;
-import org.hornetq.rest.util.TimeoutTask;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

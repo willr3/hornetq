@@ -12,13 +12,13 @@
  */
 package org.hornetq.core.config;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.server.HornetQMessageBundle;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A ClusterConnectionConfiguration

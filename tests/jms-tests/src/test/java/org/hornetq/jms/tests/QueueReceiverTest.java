@@ -12,15 +12,15 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.QueueConnection;
 import javax.jms.QueueReceiver;
 import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  *

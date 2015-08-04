@@ -12,14 +12,12 @@
  */
 package org.hornetq.tests.unit.util;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.core.server.impl.MessageReferenceImpl;
 import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.utils.MemorySize;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * A MemorySizeTest

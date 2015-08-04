@@ -12,6 +12,10 @@
  */
 package org.hornetq.core.messagecounter.impl;
 
+import org.hornetq.api.config.HornetQDefaultConfiguration;
+import org.hornetq.core.messagecounter.MessageCounter;
+import org.hornetq.core.messagecounter.MessageCounterManager;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,10 +24,6 @@ import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.core.messagecounter.MessageCounter;
-import org.hornetq.core.messagecounter.MessageCounterManager;
 
 /**
  *

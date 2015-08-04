@@ -12,11 +12,10 @@
  */
 package org.hornetq.ra;
 
-import java.util.Set;
-
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
+import java.util.Set;
 
 
 /**

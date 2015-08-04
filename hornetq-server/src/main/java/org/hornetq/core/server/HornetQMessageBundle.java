@@ -30,7 +30,6 @@ import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.HornetQQueueExistsException;
 import org.hornetq.api.core.HornetQSecurityException;
 import org.hornetq.api.core.HornetQSessionCreationException;
-
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
 import org.hornetq.core.security.CheckType;

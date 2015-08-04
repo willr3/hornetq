@@ -12,13 +12,13 @@
  */
 package org.hornetq.tests.integration.cluster;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.core.server.impl.InVMNodeManager;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hornetq.tests.integration.cluster.NodeManagerAction.AWAIT_LIVE;
 import static org.hornetq.tests.integration.cluster.NodeManagerAction.CRASH_LIVE;

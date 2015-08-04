@@ -11,11 +11,13 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.stress;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.JmsTestLogger;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -26,13 +28,11 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.Context;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.JmsTestLogger;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * In order for this test to run, you will need to edit /etc/security/limits.conf and change your max sockets to something bigger than 1024

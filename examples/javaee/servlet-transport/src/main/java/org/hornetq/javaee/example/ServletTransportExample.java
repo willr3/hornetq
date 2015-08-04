@@ -21,7 +21,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-
 import java.util.Properties;
 
 /**

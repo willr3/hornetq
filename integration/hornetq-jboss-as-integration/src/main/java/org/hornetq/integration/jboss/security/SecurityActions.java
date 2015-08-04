@@ -12,16 +12,15 @@
  */
 package org.hornetq.integration.jboss.security;
 
-import java.security.AccessController;
-import java.security.Principal;
-import java.security.PrivilegedAction;
-
-import javax.security.auth.Subject;
-
 import org.hornetq.integration.jboss.HornetQJBossLogger;
 import org.jboss.security.SecurityContext;
 import org.jboss.security.SecurityContextAssociation;
 import org.jboss.security.SecurityContextFactory;
+
+import javax.security.auth.Subject;
+import java.security.AccessController;
+import java.security.Principal;
+import java.security.PrivilegedAction;
 
 /** A collection of privileged actions for this package
  * @author Scott.Stark@jboss.org

@@ -12,6 +12,13 @@
  */
 package org.hornetq.jms.tests.stress;
 
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -25,13 +32,6 @@ import javax.jms.Topic;
 import javax.naming.InitialContext;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * Create 500 connections each with a consumer, consuming from a topic

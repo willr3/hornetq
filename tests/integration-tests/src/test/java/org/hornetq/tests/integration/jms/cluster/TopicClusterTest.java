@@ -12,6 +12,11 @@
  */
 package org.hornetq.tests.integration.jms.cluster;
 
+import org.hornetq.tests.util.JMSClusteredTestBase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.MessageConsumer;
@@ -19,11 +24,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
-
-import org.hornetq.tests.util.JMSClusteredTestBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * A TopicClusterTest

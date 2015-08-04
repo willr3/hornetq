@@ -12,18 +12,17 @@
  */
 package org.hornetq.tests.performance.sends;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
 import javax.jms.Connection;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.Queue;
 import javax.jms.Session;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
  * @author clebertsuconic

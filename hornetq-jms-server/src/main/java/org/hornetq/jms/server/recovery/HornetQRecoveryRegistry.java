@@ -12,16 +12,16 @@
  */
 package org.hornetq.jms.server.recovery;
 
+import org.hornetq.api.core.Pair;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.jms.server.HornetQJMSServerLogger;
+import org.jboss.tm.XAResourceRecovery;
+
 import javax.transaction.xa.XAResource;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.jms.server.HornetQJMSServerLogger;
-import org.jboss.tm.XAResourceRecovery;
 
 /**
  * <p>This class is used by the Resource Adapter to register RecoveryDiscovery, which is based on the {@link XARecoveryConfig}</p>

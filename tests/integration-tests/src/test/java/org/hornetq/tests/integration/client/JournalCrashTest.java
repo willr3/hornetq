@@ -12,11 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -33,6 +29,9 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.hornetq.tests.util.SpawnedVMSupport;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A JournalCrashTest

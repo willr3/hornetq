@@ -14,7 +14,6 @@ package org.hornetq.core.client.impl;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.core.protocol.core.Channel;

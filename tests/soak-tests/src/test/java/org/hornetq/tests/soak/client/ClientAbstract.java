@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.soak.client;
 
-import javax.transaction.xa.XAResource;
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.core.transaction.impl.XidImpl;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.utils.UUIDGenerator;
+
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
 
 /**
  * WARNING: This is not a sample on how you should handle XA. You are supposed to use a

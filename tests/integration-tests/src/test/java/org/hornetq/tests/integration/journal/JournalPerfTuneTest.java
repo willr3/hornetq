@@ -11,9 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.journal;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.journal.EncodingSupport;
@@ -31,6 +28,10 @@ import org.hornetq.utils.DataConstants;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A JournalPerfTuneTest

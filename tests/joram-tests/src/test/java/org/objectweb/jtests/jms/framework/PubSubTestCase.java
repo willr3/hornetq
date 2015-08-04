@@ -11,6 +11,11 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.framework;
+
+import org.jboss.util.NestedRuntimeException;
+import org.junit.After;
+import org.junit.Before;
+
 import javax.jms.Session;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
@@ -19,10 +24,6 @@ import javax.jms.TopicPublisher;
 import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
 import javax.naming.Context;
-
-import org.jboss.util.NestedRuntimeException;
-import org.junit.After;
-import org.junit.Before;
 
 /**
  * Creates convenient JMS Publish/Subscribe objects which can be needed for tests.

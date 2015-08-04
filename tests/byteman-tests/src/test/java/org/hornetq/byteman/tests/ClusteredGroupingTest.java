@@ -12,14 +12,10 @@
  */
 package org.hornetq.byteman.tests;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Message;
-
-import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.CoreNotificationType;
+import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.group.impl.GroupingHandlerConfiguration;
 import org.hornetq.core.server.group.impl.Response;
@@ -32,6 +28,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

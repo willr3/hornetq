@@ -11,17 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.connection;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import javax.jms.Connection;
-import javax.jms.JMSException;
-import javax.jms.Queue;
-import javax.jms.Session;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
@@ -36,6 +25,15 @@ import org.hornetq.jms.client.HornetQSession;
 import org.hornetq.jms.client.HornetQTemporaryTopic;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.tests.util.JMSTestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.JMSException;
+import javax.jms.Queue;
+import javax.jms.Session;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>

@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.security;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-
 import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.integration.IntegrationTestLogger;
@@ -24,6 +20,10 @@ import org.hornetq.tests.util.SpawnedVMSupport;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * A NettySecurityClientTest

@@ -12,14 +12,12 @@
  */
 package org.hornetq.tests.unit.core.server.cluster.impl;
 
-import org.junit.Test;
-
-
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.cluster.impl.RemoteQueueBindingImpl;
 import org.hornetq.tests.unit.core.postoffice.impl.FakeQueue;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
 
 /**
  * A RemoteQueueBindImplTest

@@ -12,10 +12,10 @@
  */
 package org.jboss.resteasy.messaging.test;
 
+import org.hornetq.rest.util.LinkStrategy;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.spi.Link;
-import org.hornetq.rest.util.LinkStrategy;
 import org.junit.Assert;
 import org.junit.Test;
 

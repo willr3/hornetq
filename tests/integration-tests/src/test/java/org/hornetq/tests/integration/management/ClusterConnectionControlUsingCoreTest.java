@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -24,6 +22,8 @@ import org.hornetq.api.core.management.ResourceNames;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.After;
 import org.junit.Before;
+
+import java.util.Map;
 
 /**
  * A ClusterConnectionControlUsingCoreTest

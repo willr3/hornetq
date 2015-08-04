@@ -13,8 +13,8 @@
 package org.hornetq.rest.integration;
 
 import org.hornetq.core.server.embedded.EmbeddedHornetQ;
-import org.jboss.resteasy.plugins.server.tjws.TJWSEmbeddedJaxrsServer;
 import org.hornetq.rest.MessageServiceManager;
+import org.jboss.resteasy.plugins.server.tjws.TJWSEmbeddedJaxrsServer;
 import org.jboss.resteasy.test.TestPortProvider;
 
 /**

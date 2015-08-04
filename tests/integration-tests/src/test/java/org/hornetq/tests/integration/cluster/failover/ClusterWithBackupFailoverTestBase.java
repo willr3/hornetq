@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import java.util.HashSet;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.integration.IntegrationTestLogger;
@@ -22,6 +20,8 @@ import org.hornetq.tests.integration.cluster.util.SameProcessHornetQServer;
 import org.hornetq.tests.integration.cluster.util.TestableServer;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashSet;
 
 /**
  * A ClusterWithBackupFailoverTest

@@ -11,12 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.stress.remote;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
@@ -33,6 +27,11 @@ import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:clebert.suconic@jboss.com">Clebert Suconic</a>

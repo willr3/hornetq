@@ -12,10 +12,10 @@
  */
 package org.hornetq.jms.tests.message;
 
-import javax.jms.Message;
-
 import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.Test;
+
+import javax.jms.Message;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>

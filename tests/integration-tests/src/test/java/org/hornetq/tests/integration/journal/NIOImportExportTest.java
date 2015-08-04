@@ -11,17 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.journal;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.io.File;
 
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
 import org.hornetq.tests.unit.core.journal.impl.JournalImplTestBase;
 import org.hornetq.tests.unit.core.journal.impl.fakes.SimpleEncoding;
+import org.junit.After;
+import org.junit.Test;
+
+import java.io.File;
 
 /**
  * A NIOImportExportTest

@@ -12,13 +12,13 @@
  */
 package org.hornetq.core.paging.cursor.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.hornetq.core.paging.PagedMessage;
 import org.hornetq.core.paging.cursor.LivePageCache;
 import org.hornetq.core.paging.impl.Page;
 import org.hornetq.core.server.LargeServerMessage;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This is the same as PageCache, however this is for the page that's being currently written.

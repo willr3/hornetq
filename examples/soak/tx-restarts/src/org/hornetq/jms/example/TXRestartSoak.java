@@ -12,8 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
@@ -22,8 +21,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  *

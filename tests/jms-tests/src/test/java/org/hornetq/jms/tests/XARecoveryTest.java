@@ -12,6 +12,13 @@
  */
 package org.hornetq.jms.tests;
 
+import com.arjuna.ats.arjuna.common.Uid;
+import com.arjuna.ats.jta.xa.XidImple;
+import org.hornetq.core.transaction.impl.XidImpl;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
@@ -22,13 +29,6 @@ import javax.jms.XAConnection;
 import javax.jms.XASession;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import com.arjuna.ats.arjuna.common.Uid;
-import com.arjuna.ats.jta.xa.XidImple;
-import org.hornetq.core.transaction.impl.XidImpl;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Ignore;
-import org.junit.Test;
 
 /**
  * A XARecoveryTest

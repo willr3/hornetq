@@ -12,6 +12,11 @@
  */
 package org.hornetq.api.core;
 
+import org.jgroups.JChannel;
+import org.jgroups.Message;
+import org.jgroups.ReceiverAdapter;
+import org.jgroups.conf.PlainConfigurator;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +25,6 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-
-import org.jgroups.JChannel;
-import org.jgroups.Message;
-import org.jgroups.ReceiverAdapter;
-import org.jgroups.conf.PlainConfigurator;
 
 /**
  * The configuration for creating broadcasting/discovery groups using JGroups channels

@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.asyncio.impl;
 
+import org.hornetq.core.libaio.Native;
+
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
-
-import org.hornetq.core.libaio.Native;
 
 /**
  * A HornetQFileLock

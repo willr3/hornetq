@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.paging.impl;
 
+import org.hornetq.api.core.HornetQExceptionType;
+import org.hornetq.core.paging.PagingStore;
+import org.hornetq.core.persistence.OperationContext;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.core.paging.PagingStore;
-import org.hornetq.core.persistence.OperationContext;
 
 /**
  * This will batch multiple calls waiting to perform a sync in a single call.

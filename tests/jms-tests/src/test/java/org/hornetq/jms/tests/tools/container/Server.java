@@ -12,15 +12,15 @@
  */
 package org.hornetq.jms.tests.tools.container;
 
+import org.hornetq.core.security.Role;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.jms.server.JMSServerManager;
+
 import javax.naming.InitialContext;
 import java.rmi.Remote;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import org.hornetq.core.security.Role;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.jms.server.JMSServerManager;
 
 /**
  * The remote interface exposed by TestServer.

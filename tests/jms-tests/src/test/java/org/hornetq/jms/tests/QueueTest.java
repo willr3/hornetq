@@ -12,6 +12,9 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -21,9 +24,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

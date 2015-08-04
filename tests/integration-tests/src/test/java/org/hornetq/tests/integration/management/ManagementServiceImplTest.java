@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
-
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.QueueControl;
@@ -33,6 +28,8 @@ import org.hornetq.tests.integration.server.FakeStorageManager;
 import org.hornetq.tests.unit.core.postoffice.impl.FakeQueue;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /*
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

@@ -11,22 +11,9 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.management;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import static org.hornetq.api.core.management.CoreNotificationType.SECURITY_AUTHENTICATION_VIOLATION;
-import static org.hornetq.api.core.management.CoreNotificationType.SECURITY_PERMISSION_VIOLATION;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import org.junit.Assert;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -44,6 +31,16 @@ import org.hornetq.core.server.HornetQServers;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.hornetq.api.core.management.CoreNotificationType.SECURITY_AUTHENTICATION_VIOLATION;
+import static org.hornetq.api.core.management.CoreNotificationType.SECURITY_PERMISSION_VIOLATION;
 
 /**
  * A SecurityNotificationTest

@@ -11,10 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.connection;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
@@ -22,6 +18,9 @@ import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.tests.util.JMSTestBase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.net.InetAddress;
 import java.util.ArrayList;

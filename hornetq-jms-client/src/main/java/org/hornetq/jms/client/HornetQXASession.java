@@ -12,10 +12,10 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.core.client.ClientSession;
+
 import javax.jms.XAQueueSession;
 import javax.jms.XATopicSession;
-
-import org.hornetq.api.core.client.ClientSession;
 
 /**
  * A HornetQXASession

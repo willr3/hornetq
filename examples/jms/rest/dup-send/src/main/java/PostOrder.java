@@ -10,17 +10,10 @@
  * implied.  See the License for the specific language governing
  * permissions and limitations under the License.
  */
-import org.hornetq.jms.client.HornetQDestination;
+
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.spi.Link;
-
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.Session;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

@@ -12,6 +12,18 @@
  */
 package org.hornetq.tests.integration.stomp.v12;
 
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.integration.stomp.util.ClientStompFrame;
+import org.hornetq.tests.integration.stomp.util.StompClientConnection;
+import org.hornetq.tests.integration.stomp.util.StompClientConnectionFactory;
+import org.hornetq.tests.integration.stomp.util.StompClientConnectionV11;
+import org.hornetq.tests.integration.stomp.util.StompClientConnectionV12;
+import org.hornetq.tests.integration.stomp.v11.StompV11TestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
@@ -26,18 +38,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.integration.stomp.util.ClientStompFrame;
-import org.hornetq.tests.integration.stomp.util.StompClientConnection;
-import org.hornetq.tests.integration.stomp.util.StompClientConnectionFactory;
-import org.hornetq.tests.integration.stomp.util.StompClientConnectionV11;
-import org.hornetq.tests.integration.stomp.util.StompClientConnectionV12;
-import org.hornetq.tests.integration.stomp.v11.StompV11TestBase;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Testing Stomp version 1.2 functionalities

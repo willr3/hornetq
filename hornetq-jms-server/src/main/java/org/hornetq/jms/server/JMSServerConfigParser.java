@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.server;
 
-import java.io.InputStream;
-
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.jms.server.config.JMSConfiguration;
 import org.hornetq.jms.server.config.JMSQueueConfiguration;
 import org.hornetq.jms.server.config.TopicConfiguration;
 import org.w3c.dom.Node;
+
+import java.io.InputStream;
 
 /**
  * A JMSServerConfigParser

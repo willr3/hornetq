@@ -11,16 +11,13 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.core.list;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import org.junit.Assert;
-
 
 import org.hornetq.utils.LinkedListIterator;
 import org.hornetq.utils.PriorityLinkedListImpl;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author <a href="tim.fox@jboss.com>Tim Fox</a>

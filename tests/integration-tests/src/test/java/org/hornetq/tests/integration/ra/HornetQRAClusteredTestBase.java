@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import java.util.HashMap;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.ConfigurationImpl;
@@ -22,6 +20,8 @@ import org.hornetq.core.server.HornetQServers;
 import org.hornetq.jms.server.impl.JMSServerManagerImpl;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Before;
+
+import java.util.HashMap;
 
 public class HornetQRAClusteredTestBase extends HornetQRATestBase
 {

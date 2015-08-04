@@ -12,6 +12,12 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
@@ -20,12 +26,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.StreamMessage;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * A MessageTest

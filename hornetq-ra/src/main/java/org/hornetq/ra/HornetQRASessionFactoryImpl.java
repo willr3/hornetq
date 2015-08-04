@@ -12,6 +12,10 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.api.jms.HornetQJMSConstants;
+import org.hornetq.jms.client.HornetQConnectionForContext;
+import org.hornetq.jms.client.HornetQConnectionForContextImpl;
+
 import javax.jms.ConnectionConsumer;
 import javax.jms.ConnectionMetaData;
 import javax.jms.Destination;
@@ -40,10 +44,6 @@ import javax.transaction.TransactionManager;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import org.hornetq.api.jms.HornetQJMSConstants;
-import org.hornetq.jms.client.HornetQConnectionForContext;
-import org.hornetq.jms.client.HornetQConnectionForContextImpl;
 
 /**
  * Implements the JMS Connection API and produces {@link HornetQRASession} objects.

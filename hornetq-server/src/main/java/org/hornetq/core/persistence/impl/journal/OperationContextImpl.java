@@ -12,13 +12,6 @@
  */
 package org.hornetq.core.persistence.impl.journal;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.core.journal.IOAsyncTask;
@@ -26,6 +19,13 @@ import org.hornetq.core.journal.impl.SimpleWaitIOCallback;
 import org.hornetq.core.persistence.OperationContext;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.utils.ExecutorFactory;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *

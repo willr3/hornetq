@@ -12,11 +12,11 @@
  */
 package org.objectweb.jtests.jms.conform.connection;
 
-import javax.jms.JMSException;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PubSubTestCase;
+
+import javax.jms.JMSException;
 // FIXME include in TestSuite @RunWith(Suite.class)@Suite.SuiteClasses(...)
 
 /**

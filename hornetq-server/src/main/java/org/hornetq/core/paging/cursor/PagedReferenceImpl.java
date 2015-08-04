@@ -12,15 +12,15 @@
  */
 package org.hornetq.core.paging.cursor;
 
-import java.lang.ref.WeakReference;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.Message;
 import org.hornetq.core.paging.PagedMessage;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.ServerMessage;
+
+import java.lang.ref.WeakReference;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A InternalReference

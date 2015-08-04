@@ -12,6 +12,9 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.api.core.Message;
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -21,9 +24,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.TransactionRolledBackException;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.Message;
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * A simple example that demonstrates failover of the JMS connection from one node to another

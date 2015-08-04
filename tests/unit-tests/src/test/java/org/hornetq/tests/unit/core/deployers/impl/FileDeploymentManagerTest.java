@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.unit.core.deployers.impl;
 
-import java.io.File;
-import java.net.URI;
-import java.util.Map;
-
 import org.hornetq.api.core.Pair;
 import org.hornetq.core.deployers.Deployer;
 import org.hornetq.core.deployers.impl.FileDeploymentManager;
@@ -24,6 +20,10 @@ import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.File;
+import java.net.URI;
+import java.util.Map;
 
 /**
  * A FileDeploymentManagerTest

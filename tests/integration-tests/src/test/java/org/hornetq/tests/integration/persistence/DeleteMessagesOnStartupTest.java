@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.persistence.GroupingInfo;
 import org.hornetq.core.persistence.QueueBindingInfo;
@@ -27,6 +23,9 @@ import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.tests.unit.core.postoffice.impl.FakeQueue;
 import org.hornetq.tests.unit.core.server.impl.fakes.FakePostOffice;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A DeleteMessagesOnStartupTest

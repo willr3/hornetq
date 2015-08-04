@@ -25,15 +25,6 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
-
-import org.jboss.ejb3.annotation.ResourceAdapter;
-
-import java.util.Calendar;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

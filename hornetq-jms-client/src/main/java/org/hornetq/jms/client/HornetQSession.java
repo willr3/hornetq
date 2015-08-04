@@ -12,11 +12,16 @@
  */
 package org.hornetq.jms.client;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQQueueExistsException;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientProducer;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSession.BindingQuery;
+import org.hornetq.api.core.client.ClientSession.QueueQuery;
+import org.hornetq.core.filter.impl.FilterParser;
+import org.hornetq.core.filter.impl.Identifier;
+import org.hornetq.core.filter.impl.ParseException;
 
 import javax.jms.BytesMessage;
 import javax.jms.Destination;
@@ -45,18 +50,11 @@ import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
 import javax.jms.TransactionInProgressException;
 import javax.transaction.xa.XAResource;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQQueueExistsException;
-
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSession.BindingQuery;
-import org.hornetq.api.core.client.ClientSession.QueueQuery;
-import org.hornetq.core.filter.impl.FilterParser;
-import org.hornetq.core.filter.impl.Identifier;
-import org.hornetq.core.filter.impl.ParseException;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * HornetQ implementation of a JMS Session.

@@ -12,11 +12,10 @@
  */
 package org.hornetq.core.transaction;
 
-import java.util.List;
+import org.hornetq.api.core.HornetQException;
 
 import javax.transaction.xa.Xid;
-
-import org.hornetq.api.core.HornetQException;
+import java.util.List;
 
 /**
  * A HornetQ internal transaction

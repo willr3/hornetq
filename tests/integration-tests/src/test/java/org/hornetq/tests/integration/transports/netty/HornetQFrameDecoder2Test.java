@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.transports.netty;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -25,6 +21,10 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * A HornetQFrameDecoder2Test

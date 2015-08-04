@@ -12,6 +12,21 @@
  */
 package org.hornetq.jms.tests;
 
+import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
+import org.hornetq.core.security.Role;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.jms.server.JMSServerManager;
+import org.hornetq.jms.tests.tools.ServerManagement;
+import org.hornetq.jms.tests.tools.container.Server;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -32,21 +47,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
-import org.hornetq.core.security.Role;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.jms.server.JMSServerManager;
-import org.hornetq.jms.tests.tools.ServerManagement;
-import org.hornetq.jms.tests.tools.container.Server;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 /**
  * @author <a href="mailto:adrian@jboss.org">Adrian Brock</a>

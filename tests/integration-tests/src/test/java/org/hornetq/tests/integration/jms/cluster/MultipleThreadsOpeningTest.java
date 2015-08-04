@@ -12,16 +12,16 @@
  */
 package org.hornetq.tests.integration.jms.cluster;
 
-import javax.jms.Connection;
-import javax.jms.Session;
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
 import org.hornetq.tests.util.JMSClusteredTestBase;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.Session;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A MultipleThreadsOpeningTest

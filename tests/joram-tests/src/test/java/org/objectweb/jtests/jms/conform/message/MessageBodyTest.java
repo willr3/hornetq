@@ -11,15 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.conform.message;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageNotWriteableException;
-import javax.jms.TextMessage;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PTPTestCase;
 import org.objectweb.jtests.jms.framework.TestConfig;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageNotWriteableException;
+import javax.jms.TextMessage;
 
 /**
  * Tests on message body.

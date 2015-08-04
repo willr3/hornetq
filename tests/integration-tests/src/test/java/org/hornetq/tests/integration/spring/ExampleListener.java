@@ -12,12 +12,12 @@
  */
 package org.hornetq.tests.integration.spring;
 
+import org.hornetq.utils.ReusableLatch;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
-
-import org.hornetq.utils.ReusableLatch;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

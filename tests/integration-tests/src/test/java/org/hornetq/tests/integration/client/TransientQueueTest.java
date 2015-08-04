@@ -13,7 +13,6 @@
 package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQInvalidTransientQueueUseException;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;

@@ -11,6 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.stress;
+
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.JmsTestLogger;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -22,14 +31,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.JmsTestLogger;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * Send messages to a topic with selector1, consumer them with multiple consumers and relay them

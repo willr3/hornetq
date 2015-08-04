@@ -12,14 +12,13 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.utils.XidCodecSupport;
+
+import javax.transaction.xa.Xid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>

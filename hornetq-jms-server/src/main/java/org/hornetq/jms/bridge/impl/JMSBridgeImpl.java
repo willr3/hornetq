@@ -12,6 +12,28 @@
  */
 package org.hornetq.jms.bridge.impl;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQInterruptedException;
+import org.hornetq.api.core.client.FailoverEventListener;
+import org.hornetq.api.core.client.FailoverEventType;
+import org.hornetq.api.jms.HornetQJMSConstants;
+import org.hornetq.jms.bridge.ConnectionFactoryFactory;
+import org.hornetq.jms.bridge.DestinationFactory;
+import org.hornetq.jms.bridge.JMSBridge;
+import org.hornetq.jms.bridge.JMSBridgeControl;
+import org.hornetq.jms.bridge.QualityOfServiceMode;
+import org.hornetq.jms.client.HornetQConnection;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.client.HornetQMessage;
+import org.hornetq.jms.server.HornetQJMSServerBundle;
+import org.hornetq.jms.server.HornetQJMSServerLogger;
+import org.hornetq.jms.server.recovery.HornetQRegistryBase;
+import org.hornetq.jms.server.recovery.XARecoveryConfig;
+import org.hornetq.utils.ClassloadingUtil;
+import org.hornetq.utils.DefaultSensitiveStringCodec;
+import org.hornetq.utils.PasswordMaskingUtil;
+import org.hornetq.utils.SensitiveDataCodec;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -44,28 +66,6 @@ import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQInterruptedException;
-import org.hornetq.api.core.client.FailoverEventListener;
-import org.hornetq.api.core.client.FailoverEventType;
-import org.hornetq.api.jms.HornetQJMSConstants;
-import org.hornetq.jms.bridge.ConnectionFactoryFactory;
-import org.hornetq.jms.bridge.DestinationFactory;
-import org.hornetq.jms.bridge.JMSBridge;
-import org.hornetq.jms.bridge.JMSBridgeControl;
-import org.hornetq.jms.bridge.QualityOfServiceMode;
-import org.hornetq.jms.client.HornetQConnection;
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.client.HornetQMessage;
-import org.hornetq.jms.server.HornetQJMSServerBundle;
-import org.hornetq.jms.server.HornetQJMSServerLogger;
-import org.hornetq.jms.server.recovery.HornetQRegistryBase;
-import org.hornetq.jms.server.recovery.XARecoveryConfig;
-import org.hornetq.utils.ClassloadingUtil;
-import org.hornetq.utils.DefaultSensitiveStringCodec;
-import org.hornetq.utils.PasswordMaskingUtil;
-import org.hornetq.utils.SensitiveDataCodec;
 
 /**
  * A JMSBridge

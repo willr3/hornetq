@@ -12,6 +12,10 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.api.jms.management.JMSManagementHelper;
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
@@ -23,10 +27,6 @@ import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.api.jms.management.JMSManagementHelper;
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * An example that shows how to manage HornetQ using JMS messages.

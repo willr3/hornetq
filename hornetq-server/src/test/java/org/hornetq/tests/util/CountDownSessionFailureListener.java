@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.util;
 
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.SessionFailureListener;
+
+import java.util.concurrent.CountDownLatch;
 
 public final class CountDownSessionFailureListener implements SessionFailureListener
 {

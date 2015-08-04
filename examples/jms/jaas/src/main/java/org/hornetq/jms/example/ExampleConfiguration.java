@@ -12,10 +12,9 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.Map;
-
 import javax.security.auth.login.AppConfigurationEntry;
 import javax.security.auth.login.Configuration;
+import java.util.Map;
 
 /**
  * A ExampleConfiguration

@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.stress.journal;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -25,6 +22,9 @@ import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Simulates the journal being updated, compacted cleared up,

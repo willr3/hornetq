@@ -12,16 +12,16 @@
  */
 package org.objectweb.jtests.jms.conform.topic;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PubSubTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TemporaryTopic;
 import javax.jms.TextMessage;
 import javax.jms.TopicSubscriber;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PubSubTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
 
 /**
  * Test the <code>javax.jms.TemporaryTopic</code> features.

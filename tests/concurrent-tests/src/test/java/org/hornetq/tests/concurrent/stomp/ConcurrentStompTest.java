@@ -12,6 +12,11 @@
  */
 package org.hornetq.tests.concurrent.stomp;
 
+import org.hornetq.core.protocol.stomp.Stomp;
+import org.hornetq.tests.integration.stomp.StompTestBase;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,11 +25,6 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.core.protocol.stomp.Stomp;
-import org.hornetq.tests.integration.stomp.StompTestBase;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class ConcurrentStompTest extends StompTestBase
 {

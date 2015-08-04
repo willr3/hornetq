@@ -12,6 +12,11 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.InvalidClientIDException;
@@ -26,11 +31,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * A ConnectionTest

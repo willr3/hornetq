@@ -41,8 +41,12 @@ import org.hornetq.utils.TypedProperties;
 import org.hornetq.utils.UUIDGenerator;
 
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;

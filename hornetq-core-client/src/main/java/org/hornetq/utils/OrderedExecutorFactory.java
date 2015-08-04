@@ -12,11 +12,11 @@
  */
 package org.hornetq.utils;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Executor;
-
 import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.core.client.HornetQClientLogger;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executor;
 
 
 /**

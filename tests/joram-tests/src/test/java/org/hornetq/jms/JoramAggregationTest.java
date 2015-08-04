@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms;
-import java.io.IOException;
-import java.util.Properties;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -41,6 +39,9 @@ import org.objectweb.jtests.jms.conform.session.TopicSessionTest;
 import org.objectweb.jtests.jms.conform.session.UnifiedSessionTest;
 import org.objectweb.jtests.jms.conform.topic.TemporaryTopicTest;
 import org.objectweb.jtests.jms.framework.JMSTestCase;
+
+import java.io.IOException;
+import java.util.Properties;
 
 @RunWith(Suite.class)
 @SuiteClasses({

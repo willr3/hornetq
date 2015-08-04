@@ -15,8 +15,6 @@
  */
 package org.hornetq.core.persistence.impl.journal;
 
-import java.nio.ByteBuffer;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.persistence.StorageManager;
@@ -24,6 +22,8 @@ import org.hornetq.core.persistence.StorageManager.LargeMessageExtension;
 import org.hornetq.core.replication.ReplicatedLargeMessage;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.LargeServerMessage;
+
+import java.nio.ByteBuffer;
 
 public final class LargeServerMessageInSync implements ReplicatedLargeMessage
 {

@@ -12,6 +12,10 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
+import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
+
 import javax.jms.Connection;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -29,10 +33,6 @@ import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
-import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
 
 /**
  * The connection factory

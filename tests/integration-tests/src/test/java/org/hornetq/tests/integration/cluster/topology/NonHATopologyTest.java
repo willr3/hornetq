@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.topology;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.core.client.impl.ServerLocatorInternal;
@@ -27,6 +23,9 @@ import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  * I have added this test to help validate if the connectors from Recovery will be

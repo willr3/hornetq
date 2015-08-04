@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -20,8 +22,6 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * This example demonstrates how a message consumer can be limited to consumer messages at a maximum rate

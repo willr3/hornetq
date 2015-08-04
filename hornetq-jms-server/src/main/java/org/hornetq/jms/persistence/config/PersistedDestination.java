@@ -13,7 +13,6 @@
 package org.hornetq.jms.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.utils.BufferHelper;
 import org.hornetq.utils.DataConstants;

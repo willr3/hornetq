@@ -14,7 +14,12 @@ package org.hornetq.tests.unit.core.postoffice.impl;
 
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
-import org.hornetq.core.server.*;
+import org.hornetq.core.server.Consumer;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.Queue;
+import org.hornetq.core.server.RoutingContext;
+import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.utils.LinkedListIterator;
 import org.hornetq.utils.ReferenceCounter;

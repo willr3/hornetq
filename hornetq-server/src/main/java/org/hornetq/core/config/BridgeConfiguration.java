@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.config;
 
+import org.hornetq.api.core.client.HornetQClient;
+
 import java.io.Serializable;
 import java.util.List;
-
-import org.hornetq.api.core.client.HornetQClient;
 
 /**
  * A BridgeConfiguration

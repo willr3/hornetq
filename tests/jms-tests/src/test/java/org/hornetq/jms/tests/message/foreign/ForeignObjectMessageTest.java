@@ -11,15 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.message.foreign;
-import org.junit.Before;
+
+import org.hornetq.jms.tests.message.SimpleJMSObjectMessage;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.After;
+import org.junit.Before;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.ObjectMessage;
-
-import org.hornetq.jms.tests.message.SimpleJMSObjectMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * Tests the delivery/receipt of a foreign object message

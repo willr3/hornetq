@@ -13,7 +13,6 @@
 package org.hornetq.core.postoffice;
 
 import org.hornetq.api.core.Pair;
-
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;

@@ -12,17 +12,17 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
-import javax.jms.Connection;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
-
 import org.hornetq.api.jms.management.TopicControl;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.tests.integration.management.ManagementControlHelper;
 import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
 
 /**
  * A MessageTest

@@ -12,6 +12,9 @@
  */
 package org.hornetq.core.journal.impl;
 
+import org.hornetq.core.journal.RecordInfo;
+import org.hornetq.utils.Base64;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,9 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.core.journal.RecordInfo;
-import org.hornetq.utils.Base64;
 
 /**
  * Use this class to import the journal data from a listed file. You can use it as a main class or

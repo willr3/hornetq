@@ -12,9 +12,8 @@
  */
 package org.hornetq.jms.server.config;
 
-import java.util.List;
-
 import javax.naming.Context;
+import java.util.List;
 
 /**
  * A JMSConfiguration

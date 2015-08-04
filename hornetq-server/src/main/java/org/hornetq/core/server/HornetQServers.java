@@ -12,14 +12,13 @@
  */
 package org.hornetq.core.server;
 
-import java.lang.management.ManagementFactory;
-
-import javax.management.MBeanServer;
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.impl.HornetQServerImpl;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.spi.core.security.HornetQSecurityManagerImpl;
+
+import javax.management.MBeanServer;
+import java.lang.management.ManagementFactory;
 
 /**
  * HornetQServers is a factory class for instantiating HornetQServer instances.

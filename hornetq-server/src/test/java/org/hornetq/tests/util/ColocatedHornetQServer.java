@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.util;
 
-import javax.management.MBeanServer;
-import java.util.Map;
-import java.util.Set;
-
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.FileConfiguration;
@@ -26,6 +22,10 @@ import org.hornetq.core.server.impl.AIOFileLockNodeManager;
 import org.hornetq.core.server.impl.FileLockNodeManager;
 import org.hornetq.core.server.impl.HornetQServerImpl;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
+
+import javax.management.MBeanServer;
+import java.util.Map;
+import java.util.Set;
 
 
 public class ColocatedHornetQServer extends HornetQServerImpl

@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Message;
@@ -22,8 +24,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * This examples demonstrates the use of HornetQ "Diverts" to transparently divert or copy messages

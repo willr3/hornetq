@@ -11,7 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests;
-import java.util.Enumeration;
+
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.InvalidDestinationException;
@@ -22,14 +29,7 @@ import javax.jms.Queue;
 import javax.jms.QueueBrowser;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.Enumeration;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>

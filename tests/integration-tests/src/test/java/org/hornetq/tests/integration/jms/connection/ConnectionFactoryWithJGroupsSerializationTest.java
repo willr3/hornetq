@@ -12,15 +12,6 @@
  */
 package org.hornetq.tests.integration.jms.connection;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
-import javax.jms.Queue;
-
 import org.hornetq.api.core.BroadcastEndpointFactoryConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
@@ -32,6 +23,14 @@ import org.jgroups.conf.PlainConfigurator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.Queue;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class ConnectionFactoryWithJGroupsSerializationTest extends JMSTestBase
 {

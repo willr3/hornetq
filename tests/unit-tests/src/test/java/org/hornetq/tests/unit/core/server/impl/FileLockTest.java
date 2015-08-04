@@ -11,16 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.server.impl;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import java.io.File;
 
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.server.impl.AIOFileLockNodeManager;
 import org.hornetq.core.server.impl.FileLockNodeManager;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
 
 /**
  * A FileLockTest

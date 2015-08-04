@@ -12,18 +12,17 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import org.hornetq.core.postoffice.Binding;
-import org.hornetq.core.server.Queue;
-import org.junit.Test;
-
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.core.postoffice.Binding;
+import org.hornetq.core.server.Queue;
 import org.hornetq.core.transaction.impl.XidImpl;
 import org.hornetq.ra.HornetQResourceAdapter;
 import org.hornetq.ra.inflow.HornetQActivationSpec;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.UUIDGenerator;
+import org.junit.Test;
 
 import javax.jms.Message;
 import javax.resource.ResourceException;

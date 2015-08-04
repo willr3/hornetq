@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.integration.journal;
 
-import java.io.File;
-
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.AIOSequentialFileFactory;
 import org.junit.BeforeClass;
+
+import java.io.File;
 
 /**
  * A AIOImportExportTest

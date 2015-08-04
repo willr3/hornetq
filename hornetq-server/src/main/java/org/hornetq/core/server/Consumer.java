@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.server;
 
-import java.util.List;
-
 import org.hornetq.core.filter.Filter;
+
+import java.util.List;
 
 /**
  *

@@ -11,13 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.jms.Connection;
-import javax.jms.DeliveryMode;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
 
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.jms.JMSFactoryType;
@@ -25,6 +18,13 @@ import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.DeliveryMode;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Safeguards for previously detected TCK failures.

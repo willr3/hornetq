@@ -12,6 +12,13 @@
  */
 package org.hornetq.tests.unit.core.journal.impl;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.core.journal.IOAsyncTask;
+import org.hornetq.core.journal.impl.TimedBuffer;
+import org.hornetq.core.journal.impl.TimedBufferObserver;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
@@ -20,15 +27,6 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.core.journal.IOAsyncTask;
-import org.hornetq.core.journal.impl.TimedBuffer;
-import org.hornetq.core.journal.impl.TimedBufferObserver;
-import org.hornetq.tests.util.UnitTestCase;
 
 /**
  * A TimedBufferTest

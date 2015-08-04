@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.integration.stomp.v11;
 
-import java.nio.charset.StandardCharsets;
-
 import org.hornetq.tests.integration.stomp.util.ClientStompFrame;
 import org.hornetq.tests.integration.stomp.util.StompClientConnection;
 import org.hornetq.tests.integration.stomp.util.StompClientConnectionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.nio.charset.StandardCharsets;
 
 /*
  * Some Stomp tests against server with persistence enabled are put here.

@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.journal;
 
-import java.nio.ByteBuffer;
-
 import org.hornetq.core.journal.RecordInfo;
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
@@ -22,6 +20,8 @@ import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
 import org.hornetq.tests.unit.core.journal.impl.JournalImplTestBase;
 import org.hornetq.utils.DataConstants;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
 
 /**
  * A OldFormatTest

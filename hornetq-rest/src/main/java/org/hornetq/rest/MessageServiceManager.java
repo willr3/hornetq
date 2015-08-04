@@ -12,16 +12,6 @@
  */
 package org.hornetq.rest;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import javax.xml.bind.JAXBContext;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.ServerLocator;
@@ -37,6 +27,15 @@ import org.hornetq.rest.util.LinkStrategy;
 import org.hornetq.rest.util.TimeoutTask;
 import org.hornetq.spi.core.naming.BindingRegistry;
 import org.hornetq.utils.XMLUtil;
+
+import javax.xml.bind.JAXBContext;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

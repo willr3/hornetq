@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.config.impl;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-
 import org.hornetq.core.deployers.impl.FileConfigurationParser;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.utils.XMLUtil;
 import org.w3c.dom.Element;
+
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 
 /**
  * A {@code FileConfiguration} reads configuration values from a file.

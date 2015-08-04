@@ -19,7 +19,14 @@ import org.hornetq.api.core.client.MessageHandler;
 import org.hornetq.api.jms.HornetQJMSConstants;
 
 import javax.jms.IllegalStateException;
-import javax.jms.*;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.Queue;
+import javax.jms.QueueReceiver;
+import javax.jms.Session;
+import javax.jms.Topic;
+import javax.jms.TopicSubscriber;
 
 /**
  * HornetQ implementation of a JMS MessageConsumer.

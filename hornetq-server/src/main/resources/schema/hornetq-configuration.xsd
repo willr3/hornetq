@@ -111,7 +111,7 @@
                      maxOccurs="1" minOccurs="0">
           <xsd:annotation hq:linkend="management.core.configuration"
                           hq:field_name="DEFAULT_MANAGEMENT_ADDRESS"
-                          hq:type="SimpleString">
+                          hq:type="String">
             <xsd:documentation>
               the name of the management address to send management messages to. It is prefixed with
               "jms.queue" so that JMS clients can send messages to it.
@@ -123,7 +123,7 @@
                      maxOccurs="1" minOccurs="0">
           <xsd:annotation hq:linkend="management.notifications.core.configuration"
                           hq:field_name="DEFAULT_MANAGEMENT_NOTIFICATION_ADDRESS"
-                          hq:type="SimpleString">
+                          hq:type="String">
             <xsd:documentation>the name of the address that consumers bind to receive management
             notifications
             </xsd:documentation>

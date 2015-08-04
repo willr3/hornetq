@@ -12,7 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.Enumeration;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -25,8 +25,7 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.Topic;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.util.Enumeration;
 
 /**
  * An example that shows how to receive management notifications using JMS messages.

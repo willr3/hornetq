@@ -12,11 +12,10 @@
  */
 package org.hornetq.core.paging;
 
-import java.util.Map;
-
-
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
+
+import java.util.Map;
 
 /**
  * <PRE>

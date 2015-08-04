@@ -11,20 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.connection;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.lang.ref.WeakReference;
-import java.util.Iterator;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import javax.jms.Connection;
-import javax.jms.Session;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -34,6 +20,17 @@ import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.tests.util.JMSTestBase;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.Session;
+import java.lang.ref.WeakReference;
+import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  *

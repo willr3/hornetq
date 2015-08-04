@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.unit.core.remoting.impl.netty;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executors;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
@@ -29,6 +25,10 @@ import org.hornetq.spi.core.remoting.ConnectionLifeCycleListener;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Executors;
 
 /**
  * A NettyAcceptorFactoryTest

@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.TransportConfiguration;
@@ -32,6 +27,10 @@ import org.hornetq.core.remoting.impl.invm.InVMConnection;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.TransportConfigurationUtils;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A FailoverOnFlowControlTest

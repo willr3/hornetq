@@ -11,14 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.common.example;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Properties;
-import java.util.logging.Logger;
-
-import javax.jms.Connection;
-import javax.jms.JMSException;
-import javax.naming.InitialContext;
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
@@ -27,6 +19,14 @@ import org.hornetq.core.client.impl.DelegatingSession;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
 import org.hornetq.jms.client.HornetQConnection;
 import org.hornetq.jms.client.HornetQConnectionFactory;
+
+import javax.jms.Connection;
+import javax.jms.JMSException;
+import javax.naming.InitialContext;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Base class for HornetQ examples.

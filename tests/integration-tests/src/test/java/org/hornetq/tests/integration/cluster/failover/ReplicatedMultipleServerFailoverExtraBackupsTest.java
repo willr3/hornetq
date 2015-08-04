@@ -13,9 +13,6 @@
 
 package org.hornetq.tests.integration.cluster.failover;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -25,6 +22,9 @@ import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.tests.integration.cluster.util.TestableServer;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

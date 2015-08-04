@@ -12,14 +12,6 @@
  */
 package org.hornetq.rest.test;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.Session;
-import java.io.Serializable;
-
 import org.hornetq.rest.HttpHeaderProperty;
 import org.hornetq.rest.integration.EmbeddedRestHornetQJMS;
 import org.hornetq.spi.core.naming.BindingRegistry;
@@ -31,6 +23,14 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
+import java.io.Serializable;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

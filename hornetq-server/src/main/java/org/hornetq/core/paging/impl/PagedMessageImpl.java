@@ -12,8 +12,6 @@
  */
 package org.hornetq.core.paging.impl;
 
-import java.util.Arrays;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.core.paging.PagedMessage;
@@ -22,6 +20,8 @@ import org.hornetq.core.server.LargeServerMessage;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.utils.DataConstants;
+
+import java.util.Arrays;
 
 /**
  * This class represents a paged message

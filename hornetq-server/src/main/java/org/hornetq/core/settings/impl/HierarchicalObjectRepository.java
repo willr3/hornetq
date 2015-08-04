@@ -12,6 +12,11 @@
  */
 package org.hornetq.core.settings.impl;
 
+import org.hornetq.core.server.HornetQServerLogger;
+import org.hornetq.core.settings.HierarchicalRepository;
+import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
+import org.hornetq.core.settings.Mergeable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,11 +30,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.settings.HierarchicalRepository;
-import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
-import org.hornetq.core.settings.Mergeable;
 
 /**
  * allows objects to be mapped against a regex pattern and held in order in a list

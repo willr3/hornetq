@@ -15,12 +15,12 @@
  */
 package org.hornetq.tests.util;
 
-import javax.management.MBeanServer;
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.core.server.impl.HornetQServerImpl;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
+
+import javax.management.MBeanServer;
 
 public final class InVMNodeManagerServer extends HornetQServerImpl
 {

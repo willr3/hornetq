@@ -12,11 +12,6 @@
  */
 package org.hornetq.jms.soak.example;
 
-import java.util.Hashtable;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -28,6 +23,10 @@ import javax.jms.MessageListener;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.Hashtable;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 public class SoakReceiver
 {

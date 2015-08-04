@@ -12,19 +12,6 @@
  */
 package org.hornetq.jms.tests.tools.container;
 
-import java.io.File;
-import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.management.MBeanServerInvocationHandler;
-import javax.management.ObjectName;
-import javax.naming.InitialContext;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.ObjectNameBuilder;
@@ -39,6 +26,18 @@ import org.hornetq.integration.bootstrap.HornetQBootstrapServer;
 import org.hornetq.jms.server.JMSServerManager;
 import org.hornetq.jms.tests.JmsTestLogger;
 import org.jboss.kernel.plugins.config.property.PropertyKernelConfig;
+
+import javax.management.MBeanServerInvocationHandler;
+import javax.management.ObjectName;
+import javax.naming.InitialContext;
+import java.io.File;
+import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

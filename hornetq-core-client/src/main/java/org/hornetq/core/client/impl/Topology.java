@@ -12,6 +12,11 @@
  */
 package org.hornetq.core.client.impl;
 
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.ClusterTopologyListener;
+import org.hornetq.core.client.HornetQClientLogger;
+import org.hornetq.spi.core.remoting.Connector;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,11 +27,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
-
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClusterTopologyListener;
-import org.hornetq.core.client.HornetQClientLogger;
-import org.hornetq.spi.core.remoting.Connector;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

@@ -12,7 +12,7 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.Enumeration;
+import org.hornetq.common.example.HornetQExample;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -23,8 +23,7 @@ import javax.jms.QueueBrowser;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
+import java.util.Enumeration;
 
 /**
  * This example shows how to configure and use a <em>Last-Value</em> queues.

@@ -12,17 +12,6 @@
  */
 package org.hornetq.rest.test;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.Session;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
-
 import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.client.HornetQJMSConnectionFactory;
 import org.hornetq.rest.HttpHeaderProperty;
@@ -35,6 +24,17 @@ import org.jboss.resteasy.spi.Link;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 

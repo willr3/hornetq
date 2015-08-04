@@ -12,13 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientProducer;
@@ -27,6 +20,11 @@ import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.client.impl.ClientSessionFactoryInternal;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A NettyFailoverTest

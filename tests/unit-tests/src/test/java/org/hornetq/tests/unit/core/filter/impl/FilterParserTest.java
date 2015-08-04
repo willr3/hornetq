@@ -11,22 +11,19 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.filter.impl;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Assert;
-
 
 import org.hornetq.core.filter.impl.FilterParser;
 import org.hornetq.core.filter.impl.Identifier;
 import org.hornetq.core.filter.impl.Operator;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  Tests of the JavaCC LL(1) parser for the HornetQ filters

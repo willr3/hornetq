@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -22,6 +19,9 @@ import org.hornetq.core.security.Role;
 import org.hornetq.core.server.impl.InVMNodeManager;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.tests.integration.cluster.util.TestableServer;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A SecurityFailoverTest

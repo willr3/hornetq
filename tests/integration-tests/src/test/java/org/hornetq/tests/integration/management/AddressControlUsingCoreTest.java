@@ -11,18 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.management;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import static org.hornetq.tests.util.RandomUtil.randomString;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import org.junit.Assert;
-
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
@@ -36,6 +24,15 @@ import org.hornetq.core.security.CheckType;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.RandomUtil;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.hornetq.tests.util.RandomUtil.randomString;
 
 /**
  *

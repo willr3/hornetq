@@ -31,19 +31,9 @@ package org.hornetq.core.server;
  * so an INFO message would be 101000 to 101999
  */
 
-import java.io.File;
-import java.net.SocketAddress;
-import java.net.URI;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-
-import javax.transaction.xa.Xid;
-
 import io.netty.channel.Channel;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Pair;
-
 import org.hornetq.core.client.impl.ServerLocatorInternal;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.IOAsyncTask;
@@ -68,6 +58,14 @@ import org.jboss.logging.Logger;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 import org.w3c.dom.Node;
+
+import javax.transaction.xa.Xid;
+import java.io.File;
+import java.net.SocketAddress;
+import java.net.URI;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 @MessageLogger(projectCode = "HQ")
 public interface HornetQServerLogger extends BasicLogger

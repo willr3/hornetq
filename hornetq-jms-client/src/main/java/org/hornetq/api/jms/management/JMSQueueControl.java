@@ -12,12 +12,11 @@
  */
 package org.hornetq.api.jms.management;
 
-import java.util.Map;
-
-import javax.management.MBeanOperationInfo;
-
 import org.hornetq.api.core.management.Operation;
 import org.hornetq.api.core.management.Parameter;
+
+import javax.management.MBeanOperationInfo;
+import java.util.Map;
 
 /**
  * A JMSQueueControl is used to manage a JMS queue.

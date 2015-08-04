@@ -12,10 +12,9 @@
  */
 package org.hornetq.ra;
 
-import java.io.Serializable;
-
 import javax.jms.Queue;
 import javax.jms.Topic;
+import java.io.Serializable;
 
 
 /**

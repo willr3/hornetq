@@ -12,13 +12,12 @@
  */
 package org.hornetq.jms.client;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import org.hornetq.core.version.Version;
 
 import javax.jms.ConnectionMetaData;
 import javax.jms.JMSException;
-
-import org.hornetq.core.version.Version;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * HornetQ implementation of a JMS ConnectionMetaData.

@@ -12,8 +12,7 @@
  */
 package org.hornetq.jms.tests.stress;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.hornetq.jms.tests.JmsTestLogger;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionConsumer;
@@ -25,8 +24,8 @@ import javax.jms.MessageListener;
 import javax.jms.ServerSession;
 import javax.jms.ServerSessionPool;
 import javax.jms.Session;
-
-import org.hornetq.jms.tests.JmsTestLogger;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Receives messages from a destination for stress testing

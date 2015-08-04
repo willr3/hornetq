@@ -12,12 +12,12 @@
  */
 package org.hornetq.jms.tests.message.foreign;
 
+import org.hornetq.jms.tests.message.SimpleJMSTextMessage;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-
-import org.hornetq.jms.tests.message.SimpleJMSTextMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * Tests the delivery/receipt of a foreign text message

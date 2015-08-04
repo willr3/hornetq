@@ -12,17 +12,15 @@
  */
 package org.hornetq.tests.unit.jms.referenceable;
 
-import org.junit.Test;
-
-import javax.naming.Reference;
-
-import org.junit.Assert;
-
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.referenceable.DestinationObjectFactory;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+
+import javax.naming.Reference;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

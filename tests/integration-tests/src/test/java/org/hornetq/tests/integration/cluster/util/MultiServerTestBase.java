@@ -11,10 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.util;
-import org.junit.Before;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.hornetq.api.core.Pair;
 import org.hornetq.api.core.TransportConfiguration;
@@ -27,6 +23,10 @@ import org.hornetq.core.server.HornetQServers;
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.core.server.impl.InVMNodeManager;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Before;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Clebert Suconic

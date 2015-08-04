@@ -11,16 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.timing.util;
-import org.junit.After;
-
-import org.junit.Test;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.UTF8Util;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  *

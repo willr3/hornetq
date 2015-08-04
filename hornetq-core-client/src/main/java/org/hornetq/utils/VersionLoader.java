@@ -12,6 +12,10 @@
  */
 package org.hornetq.utils;
 
+import org.hornetq.core.client.HornetQClientLogger;
+import org.hornetq.core.version.Version;
+import org.hornetq.core.version.impl.VersionImpl;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -24,10 +28,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
-
-import org.hornetq.core.client.HornetQClientLogger;
-import org.hornetq.core.version.Version;
-import org.hornetq.core.version.impl.VersionImpl;
 
 /**
  * This loads the version info in from a version.properties file.

@@ -12,10 +12,8 @@
  */
 package org.hornetq.jms.example;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.logging.Logger;
+import org.hornetq.core.transaction.impl.XidImpl;
+import org.hornetq.utils.UUIDGenerator;
 
 import javax.jms.XAConnection;
 import javax.jms.XAConnectionFactory;
@@ -23,9 +21,10 @@ import javax.jms.XASession;
 import javax.naming.InitialContext;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import org.hornetq.core.transaction.impl.XidImpl;
-import org.hornetq.utils.UUIDGenerator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * WARNING: This is not a sample on how you should handle XA.

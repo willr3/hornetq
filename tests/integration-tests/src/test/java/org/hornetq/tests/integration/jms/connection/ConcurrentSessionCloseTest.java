@@ -11,21 +11,19 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.connection;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.jms.Connection;
-import javax.jms.Session;
 
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.tests.util.JMSTestBase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.Session;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  *

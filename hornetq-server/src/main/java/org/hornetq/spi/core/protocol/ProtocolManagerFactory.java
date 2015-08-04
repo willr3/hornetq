@@ -12,10 +12,10 @@
  */
 package org.hornetq.spi.core.protocol;
 
-import java.util.List;
-
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.core.server.HornetQServer;
+
+import java.util.List;
 
 /**
  * A ProtocolManagerFactory

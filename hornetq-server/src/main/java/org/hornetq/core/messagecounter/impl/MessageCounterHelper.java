@@ -12,15 +12,15 @@
  */
 package org.hornetq.core.messagecounter.impl;
 
+import org.hornetq.api.core.management.DayCounterInfo;
+import org.hornetq.core.messagecounter.MessageCounter;
+import org.hornetq.core.messagecounter.MessageCounter.DayCounter;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.hornetq.api.core.management.DayCounterInfo;
-import org.hornetq.core.messagecounter.MessageCounter;
-import org.hornetq.core.messagecounter.MessageCounter.DayCounter;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

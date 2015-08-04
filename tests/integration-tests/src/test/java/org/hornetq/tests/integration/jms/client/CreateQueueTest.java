@@ -12,16 +12,16 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.jms.client.HornetQDestination;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Test;
+
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.Topic;
-
-import org.hornetq.jms.client.HornetQDestination;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Test;
 
 /**
  * A CreateQueueTest

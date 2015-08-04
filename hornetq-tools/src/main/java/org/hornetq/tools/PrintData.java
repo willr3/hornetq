@@ -13,10 +13,10 @@
 
 package org.hornetq.tools;
 
-import java.io.File;
-
 import org.hornetq.core.persistence.impl.journal.DescribeJournal;
 import org.hornetq.core.server.impl.FileLockNodeManager;
+
+import java.io.File;
 
 /**
  * Writes a human-readable interpretation of the contents of a HornetQ {@link org.hornetq.core.journal.Journal}.

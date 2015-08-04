@@ -13,9 +13,6 @@
 
 package org.hornetq.core.protocol;
 
-import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_LARGE_MSG;
-import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_MSG;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.client.impl.ClientLargeMessageImpl;
 import org.hornetq.core.client.impl.ClientMessageImpl;
@@ -23,6 +20,9 @@ import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.PacketDecoder;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveClientLargeMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveMessage;
+
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_LARGE_MSG;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_MSG;
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  *         10/12/12

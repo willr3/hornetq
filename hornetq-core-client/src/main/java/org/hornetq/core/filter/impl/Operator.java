@@ -23,6 +23,7 @@
 package org.hornetq.core.filter.impl;
 
 
+import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 
 import java.util.HashSet;

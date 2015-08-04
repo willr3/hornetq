@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.bridge;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.remoting.impl.invm.InVMConnector;
@@ -24,6 +21,9 @@ import org.hornetq.core.server.NodeManager;
 import org.hornetq.tests.util.InVMNodeManagerServer;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.After;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A BridgeTestBase

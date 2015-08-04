@@ -12,6 +12,10 @@
  */
 package org.hornetq.jms.tests.message;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.MapMessage;
 import javax.jms.MessageEOFException;
@@ -24,10 +28,6 @@ import javax.jms.TextMessage;
 import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.HashSet;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * A MessageBodyTest

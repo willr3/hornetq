@@ -12,9 +12,10 @@
  */
 package org.hornetq.jms.example;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
+import org.hornetq.api.core.management.ObjectNameBuilder;
+import org.hornetq.common.example.DummyXid;
+import org.hornetq.common.example.HornetQExample;
+import org.hornetq.utils.UUIDGenerator;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -35,11 +36,9 @@ import javax.management.remote.JMXServiceURL;
 import javax.naming.InitialContext;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.common.example.DummyXid;
-import org.hornetq.common.example.HornetQExample;
-import org.hornetq.utils.UUIDGenerator;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple JMS example showing how to administer un-finished transactions.

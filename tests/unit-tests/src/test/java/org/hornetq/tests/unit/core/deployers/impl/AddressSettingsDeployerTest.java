@@ -11,12 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.deployers.impl;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import org.junit.Assert;
-
 
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.deployers.impl.AddressSettingsDeployer;
@@ -26,6 +20,9 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.core.settings.impl.HierarchicalObjectRepository;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.XMLUtil;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 

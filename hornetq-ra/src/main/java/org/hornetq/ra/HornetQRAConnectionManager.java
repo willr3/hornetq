@@ -12,13 +12,13 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.utils.ConcurrentHashSet;
+
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
 import javax.resource.spi.ConnectionRequestInfo;
 import javax.resource.spi.ManagedConnection;
 import javax.resource.spi.ManagedConnectionFactory;
-
-import org.hornetq.utils.ConcurrentHashSet;
 
 
 /**

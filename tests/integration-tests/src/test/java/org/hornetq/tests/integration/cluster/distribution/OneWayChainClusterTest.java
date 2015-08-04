@@ -11,14 +11,13 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.distribution;
-import org.junit.Before;
-
-import org.junit.Test;
 
 import org.hornetq.core.server.cluster.ClusterConnection;
 import org.hornetq.core.server.cluster.MessageFlowRecord;
 import org.hornetq.core.server.cluster.impl.ClusterConnectionImpl;
 import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Map;
 import java.util.Set;

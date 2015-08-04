@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.management.impl;
 
-import javax.management.MBeanOperationInfo;
-
 import org.hornetq.api.core.management.BridgeControl;
 import org.hornetq.core.config.BridgeConfiguration;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.server.cluster.Bridge;
+
+import javax.management.MBeanOperationInfo;
 
 /**
  * A BridgeControl

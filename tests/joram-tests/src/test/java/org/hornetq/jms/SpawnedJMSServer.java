@@ -12,12 +12,6 @@
  */
 package org.hornetq.jms;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Hashtable;
-
-import javax.naming.InitialContext;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.ConfigurationImpl;
@@ -29,6 +23,11 @@ import org.hornetq.jms.server.JMSServerManager;
 import org.hornetq.jms.server.impl.JMSServerManagerImpl;
 import org.jnp.server.Main;
 import org.jnp.server.NamingBeanImpl;
+
+import javax.naming.InitialContext;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Hashtable;
 
 /**
  * A SpawnedServer

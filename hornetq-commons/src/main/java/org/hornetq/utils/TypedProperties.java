@@ -17,10 +17,25 @@ import org.hornetq.api.core.HornetQPropertyConversionException;
 import org.hornetq.api.core.SSU;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import static org.hornetq.utils.DataConstants.*;
+import static org.hornetq.utils.DataConstants.BOOLEAN;
+import static org.hornetq.utils.DataConstants.BYTE;
+import static org.hornetq.utils.DataConstants.BYTES;
+import static org.hornetq.utils.DataConstants.CHAR;
+import static org.hornetq.utils.DataConstants.DOUBLE;
+import static org.hornetq.utils.DataConstants.FLOAT;
+import static org.hornetq.utils.DataConstants.INT;
+import static org.hornetq.utils.DataConstants.LONG;
+import static org.hornetq.utils.DataConstants.NULL;
+import static org.hornetq.utils.DataConstants.SHORT;
+import static org.hornetq.utils.DataConstants.STRING;
+
 
 /**
  * Property Value Conversion.

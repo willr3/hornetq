@@ -12,11 +12,7 @@
  */
 package org.hornetq.tests.stress.journal;
 
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -31,6 +27,9 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A MultiThreadConsumerStressTest

@@ -12,10 +12,10 @@
  */
 package org.hornetq.tests.integration.journal;
 
-import java.io.File;
-
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
+
+import java.io.File;
 
 /**
  * A NIOBufferedJournalCompactTest

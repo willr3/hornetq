@@ -12,6 +12,10 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -21,10 +25,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import java.util.concurrent.CountDownLatch;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Assert;
-import org.junit.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 

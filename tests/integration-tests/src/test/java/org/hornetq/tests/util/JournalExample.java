@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.util;
 
-import java.util.ArrayList;
-
 import org.hornetq.core.journal.PreparedTransactionInfo;
 import org.hornetq.core.journal.RecordInfo;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.AIOSequentialFileFactory;
 import org.hornetq.core.journal.impl.JournalImpl;
 import org.hornetq.utils.TimeAndCounterIDGenerator;
+
+import java.util.ArrayList;
 
 /**
  * A JournalExample: Just an example on how to use the Journal Directly

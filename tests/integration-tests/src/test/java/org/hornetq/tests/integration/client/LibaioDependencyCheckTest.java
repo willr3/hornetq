@@ -12,10 +12,9 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.junit.Test;
-
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
 
 /**
  * This tests is placed in duplication here to validate that the libaio module is properly loaded on this

@@ -12,15 +12,12 @@
  */
 package org.hornetq.tests.util;
 
+import org.hornetq.api.core.SimpleString;
+import org.hornetq.utils.DataConstants;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
-
-import org.junit.Assert;
-
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.utils.DataConstants;
 
 /**
  *

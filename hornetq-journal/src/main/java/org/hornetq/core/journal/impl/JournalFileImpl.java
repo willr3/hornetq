@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.journal.impl;
 
+import org.hornetq.core.journal.SequentialFile;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.core.journal.SequentialFile;
 
 /**
  *

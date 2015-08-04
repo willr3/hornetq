@@ -12,6 +12,12 @@
  */
 package org.hornetq.rest;
 
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.rest.util.HttpMessageHelper;
+import org.jboss.resteasy.core.Headers;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.util.GenericType;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Providers;
@@ -21,12 +27,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Type;
-
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.rest.util.HttpMessageHelper;
-import org.jboss.resteasy.core.Headers;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.jboss.resteasy.util.GenericType;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

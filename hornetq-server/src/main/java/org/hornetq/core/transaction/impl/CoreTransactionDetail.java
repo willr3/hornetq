@@ -12,14 +12,13 @@
  */
 package org.hornetq.core.transaction.impl;
 
-import java.util.Map;
-
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.Message;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.TransactionDetail;
+
+import javax.transaction.xa.Xid;
+import java.util.Map;
 
 /**
  * A CoreTransactionDetail

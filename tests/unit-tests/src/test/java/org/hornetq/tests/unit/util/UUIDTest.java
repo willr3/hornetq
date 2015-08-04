@@ -12,16 +12,14 @@
  */
 package org.hornetq.tests.unit.util;
 
+import org.hornetq.tests.util.UnitTestCase;
+import org.hornetq.utils.UUID;
+import org.hornetq.utils.UUIDGenerator;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import org.junit.Assert;
-
-import org.hornetq.tests.util.UnitTestCase;
-import org.hornetq.utils.UUID;
-import org.hornetq.utils.UUIDGenerator;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.remoting.impl.netty;
 
-import java.util.Map;
-
 import io.netty.channel.Channel;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.buffers.impl.ChannelBufferWrapper;
 import org.hornetq.spi.core.remoting.ConnectionLifeCycleListener;
+
+import java.util.Map;
 
 /**
  * @author <a href="mailto:nmaurer@redhat.com">Norman Maurer</a>

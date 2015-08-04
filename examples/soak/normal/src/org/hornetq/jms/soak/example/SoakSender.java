@@ -12,9 +12,8 @@
  */
 package org.hornetq.jms.soak.example;
 
-import java.util.Hashtable;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
+import org.hornetq.utils.TokenBucketLimiter;
+import org.hornetq.utils.TokenBucketLimiterImpl;
 
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
@@ -27,9 +26,9 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
-import org.hornetq.utils.TokenBucketLimiter;
-import org.hornetq.utils.TokenBucketLimiterImpl;
+import java.util.Hashtable;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 public class SoakSender
 {

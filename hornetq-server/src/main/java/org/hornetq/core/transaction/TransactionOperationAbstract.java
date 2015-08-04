@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.transaction;
 
+import org.hornetq.core.server.MessageReference;
+
 import java.util.Collections;
 import java.util.List;
-
-import org.hornetq.core.server.MessageReference;
 
 /**
  * Just a helper, when you don't want to implement all the methods on a transaction operation.

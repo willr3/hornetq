@@ -15,10 +15,10 @@
  */
 package org.hornetq.tests.util;
 
-import java.util.Set;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
+
+import java.util.Set;
 
 public final class ReplicatedBackupUtils
 {

@@ -19,7 +19,10 @@ import org.hornetq.utils.UUIDGenerator;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
-import static org.hornetq.core.server.impl.InVMNodeManager.State.*;
+import static org.hornetq.core.server.impl.InVMNodeManager.State.FAILING_BACK;
+import static org.hornetq.core.server.impl.InVMNodeManager.State.LIVE;
+import static org.hornetq.core.server.impl.InVMNodeManager.State.NOT_STARTED;
+import static org.hornetq.core.server.impl.InVMNodeManager.State.PAUSED;
 
 /**
  * NodeManager used to run multiple servers in the same VM.

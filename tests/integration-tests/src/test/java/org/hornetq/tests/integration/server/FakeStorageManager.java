@@ -12,11 +12,11 @@
  */
 package org.hornetq.tests.integration.server;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.core.persistence.impl.nullpm.NullStorageManager;
 import org.hornetq.core.server.ServerMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

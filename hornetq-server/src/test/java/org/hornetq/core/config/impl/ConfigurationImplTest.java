@@ -11,24 +11,21 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.core.config.impl;
-import org.junit.Before;
 
+import org.hornetq.api.config.HornetQDefaultConfiguration;
+import org.hornetq.core.config.Configuration;
+import org.hornetq.core.journal.impl.JournalConstants;
+import org.hornetq.core.server.JournalType;
+import org.hornetq.tests.util.RandomUtil;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import org.junit.Assert;
-
-import org.hornetq.api.config.HornetQDefaultConfiguration;
-
-import org.hornetq.core.config.Configuration;
-import org.hornetq.core.journal.impl.JournalConstants;
-import org.hornetq.core.server.JournalType;
-import org.hornetq.tests.util.RandomUtil;
-import org.hornetq.tests.util.UnitTestCase;
 
 /**
  *

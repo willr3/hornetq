@@ -12,11 +12,6 @@
  */
 package org.hornetq.jms.server;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.naming.Context;
-
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.server.HornetQComponent;
@@ -25,6 +20,10 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.spi.core.naming.BindingRegistry;
+
+import javax.naming.Context;
+import java.util.List;
+import java.util.Set;
 
 /**
  * The JMS Management interface.

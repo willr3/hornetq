@@ -12,12 +12,11 @@
  */
 package org.hornetq.core.transaction;
 
-import java.util.List;
-import java.util.Map;
+import org.hornetq.core.server.HornetQComponent;
 
 import javax.transaction.xa.Xid;
-
-import org.hornetq.core.server.HornetQComponent;
+import java.util.List;
+import java.util.Map;
 
 /**
  *

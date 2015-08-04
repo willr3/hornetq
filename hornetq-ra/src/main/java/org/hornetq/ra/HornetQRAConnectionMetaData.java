@@ -12,10 +12,9 @@
  */
 package org.hornetq.ra;
 
+import javax.jms.ConnectionMetaData;
 import java.util.Enumeration;
 import java.util.Vector;
-
-import javax.jms.ConnectionMetaData;
 
 
 /**

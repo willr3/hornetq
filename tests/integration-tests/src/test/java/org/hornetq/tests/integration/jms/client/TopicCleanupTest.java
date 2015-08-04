@@ -21,7 +21,12 @@ import org.hornetq.core.server.impl.QueueImpl;
 import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Test;
 
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
 
 /**
  * This test will simulate a situation where the Topics used to have an extra queue on startup.

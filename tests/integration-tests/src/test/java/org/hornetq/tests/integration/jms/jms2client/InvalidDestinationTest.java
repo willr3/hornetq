@@ -12,6 +12,10 @@
  */
 package org.hornetq.tests.integration.jms.jms2client;
 
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.InvalidDestinationException;
@@ -25,10 +29,6 @@ import javax.jms.TextMessage;
 import javax.jms.Topic;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Before;
-import org.junit.Test;
 
 public class InvalidDestinationTest extends JMSTestBase
 {

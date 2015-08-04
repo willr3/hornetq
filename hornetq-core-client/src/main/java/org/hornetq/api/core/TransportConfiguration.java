@@ -12,13 +12,13 @@
  */
 package org.hornetq.api.core;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
 import org.hornetq.utils.UUIDGenerator;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A TransportConfiguration is used by a client to specify connections to a server and its backup if

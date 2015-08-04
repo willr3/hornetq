@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.config;
 
-import java.io.Serializable;
-
 import org.hornetq.utils.UUIDGenerator;
+
+import java.io.Serializable;
 
 /**
  * A DivertConfiguration

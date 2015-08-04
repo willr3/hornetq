@@ -13,8 +13,6 @@
 
 package org.hornetq.jms.server;
 
-import javax.management.ObjectName;
-
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.jms.server.recovery.XARecoveryConfig;
 import org.jboss.logging.BasicLogger;
@@ -24,6 +22,8 @@ import org.jboss.logging.Logger;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 import org.w3c.dom.Node;
+
+import javax.management.ObjectName;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

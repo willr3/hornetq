@@ -12,10 +12,10 @@
  */
 package org.hornetq.jms.server.config;
 
-import java.util.List;
-
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.journal.EncodingSupport;
+
+import java.util.List;
 
 /**
  * A ConnectionFactoryConfiguration for {@link ConnectionFactory} objects.

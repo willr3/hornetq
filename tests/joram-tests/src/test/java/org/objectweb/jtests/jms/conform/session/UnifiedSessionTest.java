@@ -11,13 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.conform.session;
-import javax.jms.JMSException;
-import javax.jms.QueueConnection;
-import javax.jms.QueueSession;
-import javax.jms.ServerSessionPool;
-import javax.jms.Session;
-import javax.jms.TopicConnection;
-import javax.jms.TopicSession;
 
 import org.jboss.util.NestedRuntimeException;
 import org.junit.After;
@@ -25,6 +18,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.UnifiedTestCase;
+
+import javax.jms.JMSException;
+import javax.jms.QueueConnection;
+import javax.jms.QueueSession;
+import javax.jms.ServerSessionPool;
+import javax.jms.Session;
+import javax.jms.TopicConnection;
+import javax.jms.TopicSession;
 
 /**
  * Test unified JMS 1.1 sessions.

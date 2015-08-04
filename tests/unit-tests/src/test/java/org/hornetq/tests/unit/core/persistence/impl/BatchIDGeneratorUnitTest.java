@@ -11,7 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.persistence.impl;
-import java.util.ArrayList;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
@@ -27,6 +26,8 @@ import org.hornetq.core.persistence.impl.nullpm.NullStorageManager;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  * A BatchIDGeneratorUnitTest

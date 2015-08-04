@@ -13,18 +13,18 @@
 
 package org.hornetq.core.server.impl;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.Pair;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.TopologyMember;
+import org.hornetq.core.server.LiveNodeLocator;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.TopologyMember;
-import org.hornetq.core.server.LiveNodeLocator;
 
 /**
  * This implementation looks for any available live node, once tried with no success it is marked as

@@ -12,6 +12,16 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.client.HornetQDestination;
+import org.hornetq.jms.client.HornetQJMSConnectionFactory;
+import org.hornetq.jms.client.HornetQQueue;
+import org.hornetq.jms.client.HornetQTopic;
+import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
+import org.hornetq.jms.referenceable.DestinationObjectFactory;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -22,16 +32,6 @@ import javax.jms.TextMessage;
 import javax.naming.Reference;
 import javax.naming.Referenceable;
 import java.io.Serializable;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.client.HornetQDestination;
-import org.hornetq.jms.client.HornetQJMSConnectionFactory;
-import org.hornetq.jms.client.HornetQQueue;
-import org.hornetq.jms.client.HornetQTopic;
-import org.hornetq.jms.referenceable.ConnectionFactoryObjectFactory;
-import org.hornetq.jms.referenceable.DestinationObjectFactory;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  * A ReferenceableTest.

@@ -12,9 +12,9 @@
  */
 package org.hornetq.jms.bridge.impl;
 
-import java.util.Hashtable;
-
 import org.hornetq.jms.bridge.ConnectionFactoryFactory;
+
+import java.util.Hashtable;
 
 
 /**

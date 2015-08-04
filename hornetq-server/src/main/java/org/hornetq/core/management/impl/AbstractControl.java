@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.management.impl;
 
+import org.hornetq.core.persistence.StorageManager;
+
 import javax.management.MBeanInfo;
 import javax.management.MBeanOperationInfo;
 import javax.management.NotCompliantMBeanException;
 import javax.management.StandardMBean;
-
-import org.hornetq.core.persistence.StorageManager;
 
 /**
  * A AbstractControl

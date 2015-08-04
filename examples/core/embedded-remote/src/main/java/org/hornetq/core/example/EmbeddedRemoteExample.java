@@ -12,10 +12,6 @@
  */
 package org.hornetq.core.example;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -25,6 +21,10 @@ import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *

@@ -12,13 +12,13 @@
  */
 package org.hornetq.core.protocol.core.impl;
 
-import java.util.List;
-
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.spi.core.protocol.ProtocolManager;
 import org.hornetq.spi.core.protocol.ProtocolManagerFactory;
+
+import java.util.List;
 
 /**
  * A CoreProtocolManagerFactory

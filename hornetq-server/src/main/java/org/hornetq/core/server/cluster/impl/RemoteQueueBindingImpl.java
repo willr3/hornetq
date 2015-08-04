@@ -16,12 +16,19 @@ import org.hornetq.core.filter.Filter;
 import org.hornetq.core.filter.impl.FilterImpl;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.postoffice.BindingType;
-import org.hornetq.core.server.*;
+import org.hornetq.core.server.Bindable;
+import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.Queue;
+import org.hornetq.core.server.RoutingContext;
+import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.RemoteQueueBinding;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A RemoteQueueBindingImpl

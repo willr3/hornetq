@@ -12,14 +12,6 @@
  */
 package org.hornetq.core.protocol.stomp;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
@@ -37,6 +29,14 @@ import org.hornetq.spi.core.remoting.Acceptor;
 import org.hornetq.spi.core.remoting.Connection;
 import org.hornetq.utils.ConfigurationHelper;
 import org.hornetq.utils.VersionLoader;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 

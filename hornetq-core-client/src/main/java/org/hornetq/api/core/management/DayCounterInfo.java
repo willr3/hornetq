@@ -12,11 +12,11 @@
  */
 package org.hornetq.api.core.management;
 
-import java.util.Arrays;
-
 import org.hornetq.utils.json.JSONArray;
 import org.hornetq.utils.json.JSONException;
 import org.hornetq.utils.json.JSONObject;
+
+import java.util.Arrays;
 
 /**
  * Helper class to create Java Objects from the

@@ -12,16 +12,14 @@
  */
 package org.hornetq.tests.unit.microcontainer;
 
-import org.junit.Test;
-
-import java.util.Properties;
-
-import org.junit.Assert;
-
 import org.hornetq.integration.bootstrap.HornetQBootstrapServer;
 import org.hornetq.tests.util.UnitTestCase;
 import org.jboss.kernel.plugins.config.property.PropertyKernelConfig;
 import org.jboss.kernel.spi.deployment.KernelDeployment;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Properties;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>

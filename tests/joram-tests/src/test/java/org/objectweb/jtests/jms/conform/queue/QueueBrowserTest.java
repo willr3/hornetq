@@ -11,12 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.conform.queue;
-import java.util.Enumeration;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.QueueBrowser;
-import javax.jms.TextMessage;
 
 import org.jboss.util.NestedRuntimeException;
 import org.junit.After;
@@ -25,6 +19,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PTPTestCase;
 import org.objectweb.jtests.jms.framework.TestConfig;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.QueueBrowser;
+import javax.jms.TextMessage;
+import java.util.Enumeration;
 
 /**
  * Test the <code>javax.jms.QueueBrowser</code> features.

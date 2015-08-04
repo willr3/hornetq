@@ -12,16 +12,13 @@
  */
 package org.hornetq.util;
 
-import org.junit.Test;
-
-import java.util.concurrent.CountDownLatch;
-
-import org.junit.Assert;
-
-
 import org.hornetq.tests.CoreUnitTestCase;
 import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.TimeAndCounterIDGenerator;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A TimeAndCounterIDGeneratorTest

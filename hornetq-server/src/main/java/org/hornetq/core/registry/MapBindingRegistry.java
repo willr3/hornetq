@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.registry;
 
+import org.hornetq.spi.core.naming.BindingRegistry;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-import org.hornetq.spi.core.naming.BindingRegistry;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

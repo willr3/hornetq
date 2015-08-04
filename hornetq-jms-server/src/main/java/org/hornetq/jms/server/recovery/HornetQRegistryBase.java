@@ -12,9 +12,9 @@
  */
 package org.hornetq.jms.server.recovery;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.jboss.tm.XAResourceRecoveryRegistry;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * This class is a base class for the integration layer where

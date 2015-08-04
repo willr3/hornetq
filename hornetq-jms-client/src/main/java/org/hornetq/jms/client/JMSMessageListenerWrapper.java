@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.MessageListener;
-import javax.jms.Session;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.MessageHandler;
 import org.hornetq.api.jms.HornetQJMSConstants;
+
+import javax.jms.MessageListener;
+import javax.jms.Session;
 
 /**
  *

@@ -12,9 +12,6 @@
  */
 package org.hornetq.core.replication;
 
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.journal.IOCompletion;
 import org.hornetq.core.journal.Journal;
@@ -28,6 +25,9 @@ import org.hornetq.core.journal.impl.JournalFile;
 import org.hornetq.core.journal.impl.dataformat.ByteArrayEncoding;
 import org.hornetq.core.persistence.OperationContext;
 import org.hornetq.core.replication.ReplicationManager.ADD_OPERATION_TYPE;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Used by the {@link JournalStorageManager} to replicate journal calls.

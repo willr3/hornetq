@@ -12,15 +12,15 @@
  */
 package org.hornetq.spi.core.security;
 
+import org.hornetq.core.security.CheckType;
+import org.hornetq.core.security.Role;
+import org.hornetq.core.server.HornetQMessageBundle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.hornetq.core.security.CheckType;
-import org.hornetq.core.security.Role;
-import org.hornetq.core.server.HornetQMessageBundle;
 
 /**
  * A basic implementation of the HornetQSecurityManager. This can be used within an appserver and be deployed by

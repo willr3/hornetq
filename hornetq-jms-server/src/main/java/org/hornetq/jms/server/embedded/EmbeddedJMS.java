@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.server.embedded;
 
-import javax.naming.Context;
-
 import org.hornetq.core.registry.JndiBindingRegistry;
 import org.hornetq.core.registry.MapBindingRegistry;
 import org.hornetq.core.server.embedded.EmbeddedHornetQ;
 import org.hornetq.jms.server.config.JMSConfiguration;
 import org.hornetq.jms.server.impl.JMSServerManagerImpl;
 import org.hornetq.spi.core.naming.BindingRegistry;
+
+import javax.naming.Context;
 
 /**
  * Simple bootstrap class that parses hornetq config files (server and jms and security) and starts

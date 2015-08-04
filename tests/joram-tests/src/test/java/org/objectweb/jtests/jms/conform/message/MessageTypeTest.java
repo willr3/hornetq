@@ -12,8 +12,10 @@
  */
 package org.objectweb.jtests.jms.conform.message;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PTPTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
 
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
@@ -22,11 +24,8 @@ import javax.jms.Message;
 import javax.jms.ObjectMessage;
 import javax.jms.StreamMessage;
 import javax.jms.TextMessage;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PTPTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * Test the different types of messages provided by JMS.

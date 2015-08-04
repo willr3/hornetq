@@ -12,9 +12,9 @@
  */
 package org.hornetq.jms.bridge;
 
-import javax.transaction.TransactionManager;
-
 import org.hornetq.core.server.HornetQComponent;
+
+import javax.transaction.TransactionManager;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>

@@ -12,7 +12,11 @@
  */
 package org.hornetq.core.client.impl;
 
-import org.hornetq.api.core.*;
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQInterruptedException;
+import org.hornetq.api.core.Message;
 import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.message.BodyEncoder;

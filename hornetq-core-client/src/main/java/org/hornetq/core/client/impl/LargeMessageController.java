@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.client.impl;
 
-import java.io.OutputStream;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
+
+import java.io.OutputStream;
 
 /**
  * A LargeMessageBufferInternal

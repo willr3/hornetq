@@ -12,13 +12,13 @@
  */
 package org.hornetq.core.deployers.impl;
 
-import java.util.Set;
-
 import org.hornetq.api.core.Pair;
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.settings.HierarchicalRepository;
 import org.w3c.dom.Node;
+
+import java.util.Set;
 
 /**
  * Deploys the security settings into a security repository and adds them to the security store.

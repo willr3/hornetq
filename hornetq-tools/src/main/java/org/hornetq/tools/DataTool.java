@@ -13,13 +13,13 @@
 
 package org.hornetq.tools;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.JournalImpl;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
+
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @author Clebert Suconic

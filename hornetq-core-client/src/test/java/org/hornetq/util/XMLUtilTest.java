@@ -12,12 +12,10 @@
  */
 package org.hornetq.util;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.tests.util.SilentTestCase;
 import org.hornetq.utils.XMLUtil;
+import org.junit.Assert;
+import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

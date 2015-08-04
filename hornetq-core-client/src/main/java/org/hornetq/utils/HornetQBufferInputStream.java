@@ -12,10 +12,10 @@
  */
 package org.hornetq.utils;
 
+import org.hornetq.api.core.HornetQBuffer;
+
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.hornetq.api.core.HornetQBuffer;
 
 /**
  * Used to send large messages

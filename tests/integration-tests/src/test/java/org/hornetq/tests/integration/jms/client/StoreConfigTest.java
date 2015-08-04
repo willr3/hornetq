@@ -12,10 +12,10 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.jms.server.config.impl.ConnectionFactoryConfigurationImpl;
+import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -25,10 +25,8 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.naming.NamingException;
-
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.jms.server.config.impl.ConnectionFactoryConfigurationImpl;
-import org.hornetq.tests.util.JMSTestBase;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A CreateCFTest

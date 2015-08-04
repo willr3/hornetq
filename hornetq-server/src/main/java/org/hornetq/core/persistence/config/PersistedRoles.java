@@ -13,7 +13,6 @@
 package org.hornetq.core.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-
 import org.hornetq.api.core.SSU;
 import org.hornetq.core.journal.EncodingSupport;
 

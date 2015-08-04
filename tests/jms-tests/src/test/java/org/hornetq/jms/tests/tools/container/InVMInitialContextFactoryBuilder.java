@@ -14,11 +14,10 @@ package org.hornetq.jms.tests.tools.container;
 
 import org.hornetq.jms.tests.JmsTestLogger;
 
-import java.util.Hashtable;
-
 import javax.naming.NamingException;
 import javax.naming.spi.InitialContextFactory;
 import javax.naming.spi.InitialContextFactoryBuilder;
+import java.util.Hashtable;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

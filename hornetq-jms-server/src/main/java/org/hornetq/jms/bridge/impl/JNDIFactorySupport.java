@@ -12,9 +12,8 @@
  */
 package org.hornetq.jms.bridge.impl;
 
-import java.util.Hashtable;
-
 import javax.naming.InitialContext;
+import java.util.Hashtable;
 
 /**
  *

@@ -12,9 +12,8 @@
  */
 package org.hornetq.tests.unit.jms.referenceable;
 
-import org.junit.Test;
-
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

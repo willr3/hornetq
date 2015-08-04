@@ -12,12 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.HornetQBuffer;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -32,6 +27,8 @@ import org.hornetq.core.server.HornetQServers;
 import org.hornetq.jms.client.HornetQTextMessage;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class CoreClientTest extends ServiceTestBase
 {

@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.deployers;
 
-import java.net.URI;
-
 import org.hornetq.core.server.HornetQComponent;
+
+import java.net.URI;
 
 /**
  * abstract class that helps with deployment of messaging components.

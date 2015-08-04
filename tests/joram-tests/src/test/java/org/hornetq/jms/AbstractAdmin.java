@@ -12,11 +12,11 @@
  */
 package org.hornetq.jms;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import org.jboss.util.NotImplementedException;
 import org.objectweb.jtests.jms.admin.Admin;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 /**
  * AbstractAdmin.

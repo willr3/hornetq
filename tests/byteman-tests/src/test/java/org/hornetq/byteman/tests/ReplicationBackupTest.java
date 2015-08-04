@@ -13,8 +13,6 @@
 
 package org.hornetq.byteman.tests;
 
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
@@ -27,6 +25,8 @@ import org.jboss.byteman.contrib.bmunit.BMRules;
 import org.jboss.byteman.contrib.bmunit.BMUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.CountDownLatch;
 
 @RunWith(BMUnitRunner.class)
 public class ReplicationBackupTest extends ServiceTestBase

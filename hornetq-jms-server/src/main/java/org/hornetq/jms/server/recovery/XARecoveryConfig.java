@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.server.recovery;
 
-import java.util.Arrays;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.jms.client.HornetQConnectionFactory;
+
+import java.util.Arrays;
 
 /**
  *

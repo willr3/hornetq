@@ -13,8 +13,6 @@
 
 package org.hornetq.core.protocol.proton;
 
-import java.util.Map;
-
 import org.apache.qpid.proton.amqp.DescribedType;
 import org.apache.qpid.proton.amqp.Symbol;
 import org.apache.qpid.proton.amqp.messaging.Accepted;
@@ -26,12 +24,13 @@ import org.apache.qpid.proton.amqp.transport.SenderSettleMode;
 import org.apache.qpid.proton.engine.Delivery;
 import org.apache.qpid.proton.engine.Sender;
 import org.apache.qpid.proton.jms.EncodedMessage;
-
 import org.hornetq.core.client.impl.ClientConsumerImpl;
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPException;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.QueueQueryResult;
 import org.hornetq.core.server.ServerMessage;
+
+import java.util.Map;
 
 /**
  * A this is a wrapper around a HornetQ ServerConsumer for handling outgoing messages and incoming acks via a Proton Sender

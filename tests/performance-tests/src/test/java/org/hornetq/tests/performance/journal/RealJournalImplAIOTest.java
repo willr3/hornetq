@@ -11,13 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.performance.journal;
-import java.io.File;
 
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.AIOSequentialFileFactory;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.junit.Before;
 import org.junit.BeforeClass;
+
+import java.io.File;
 
 /**
  *

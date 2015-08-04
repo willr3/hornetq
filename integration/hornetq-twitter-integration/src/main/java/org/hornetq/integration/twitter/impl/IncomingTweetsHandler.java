@@ -21,7 +21,13 @@ import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.integration.twitter.TwitterConstants;
 import org.hornetq.twitter.HornetQTwitterLogger;
 import org.hornetq.utils.ConfigurationHelper;
-import twitter4j.*;
+import twitter4j.GeoLocation;
+import twitter4j.Paging;
+import twitter4j.Place;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
 import twitter4j.http.AccessToken;
 
 import java.util.Map;

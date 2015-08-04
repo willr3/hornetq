@@ -13,15 +13,15 @@
 package org.hornetq.tests;
 
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.core.client.HornetQClientLogger;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public abstract class CoreUnitTestCase extends Assert
 {

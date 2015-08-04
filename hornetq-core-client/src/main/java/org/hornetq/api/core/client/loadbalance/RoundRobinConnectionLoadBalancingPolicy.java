@@ -12,9 +12,9 @@
  */
 package org.hornetq.api.core.client.loadbalance;
 
-import java.io.Serializable;
-
 import org.hornetq.utils.Random;
+
+import java.io.Serializable;
 
 /**
  * RoundRobinConnectionLoadBalancingPolicy corresponds to a round-robin load-balancing policy.

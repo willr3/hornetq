@@ -12,9 +12,9 @@
  */
 package org.hornetq.utils;
 
-import java.lang.ref.SoftReference;
-
 import org.hornetq.api.core.HornetQBuffer;
+
+import java.lang.ref.SoftReference;
 
 /**
  *

@@ -18,7 +18,14 @@ import org.jboss.ejb3.annotation.ResourceAdapter;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

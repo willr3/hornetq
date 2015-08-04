@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.server.impl;
 
+import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.FileLock;
-
-import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 
 /**
  * This is using the HornetQ Libaio Native to perform calls to flock on a Linux system. At the

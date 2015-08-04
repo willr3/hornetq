@@ -12,12 +12,12 @@
  */
 package org.objectweb.jtests.jms.conform.message;
 
-import javax.jms.DeliveryMode;
-import javax.jms.Message;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.JMSTestCase;
+
+import javax.jms.DeliveryMode;
+import javax.jms.Message;
 // FIXME include in TestSuite @RunWith(Suite.class)@Suite.SuiteClasses(...)
 
 /**

@@ -12,9 +12,9 @@
  */
 package org.objectweb.jtests.jms.admin;
 
-import java.util.Properties;
-
 import org.jboss.util.NestedRuntimeException;
+
+import java.util.Properties;
 
 public class AdminFactory
 {

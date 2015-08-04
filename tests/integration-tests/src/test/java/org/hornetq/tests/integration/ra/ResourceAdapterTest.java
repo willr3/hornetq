@@ -12,17 +12,6 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import javax.jms.Connection;
-import javax.resource.ResourceException;
-import javax.resource.spi.endpoint.MessageEndpoint;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
@@ -43,6 +32,17 @@ import org.hornetq.tests.unit.ra.MessageEndpointFactory;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.DefaultSensitiveStringCodec;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.resource.ResourceException;
+import javax.resource.spi.endpoint.MessageEndpoint;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

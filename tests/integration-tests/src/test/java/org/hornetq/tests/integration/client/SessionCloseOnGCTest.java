@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.lang.ref.WeakReference;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.ServerLocator;
@@ -24,6 +22,8 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.lang.ref.WeakReference;
 
 /**
  * A SessionCloseOnGCTest

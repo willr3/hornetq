@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.remoting.impl.netty;
 
+import io.netty.util.Version;
+import org.hornetq.api.config.HornetQDefaultConfiguration;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import io.netty.util.Version;
-import org.hornetq.api.config.HornetQDefaultConfiguration;
 
 /**
  * A TransportConstants

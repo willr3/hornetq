@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.unit.ra;
 
-import javax.jms.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
@@ -38,6 +33,11 @@ import org.hornetq.ra.inflow.HornetQActivationSpec;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A ResourceAdapterTest

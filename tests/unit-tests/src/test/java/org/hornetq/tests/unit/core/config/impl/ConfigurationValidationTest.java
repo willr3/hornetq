@@ -12,13 +12,11 @@
  */
 package org.hornetq.tests.unit.core.config.impl;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.core.config.impl.FileConfiguration;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.XMLUtil;
+import org.junit.Assert;
+import org.junit.Test;
 import org.w3c.dom.Element;
 
 /**

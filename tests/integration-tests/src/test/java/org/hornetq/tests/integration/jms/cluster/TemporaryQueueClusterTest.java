@@ -11,9 +11,10 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.cluster;
-import org.junit.Before;
-import org.junit.After;
 
+import org.hornetq.tests.util.JMSClusteredTestBase;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.jms.Connection;
@@ -22,8 +23,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.tests.util.JMSClusteredTestBase;
 
 /**
  * A TopicClusterTest

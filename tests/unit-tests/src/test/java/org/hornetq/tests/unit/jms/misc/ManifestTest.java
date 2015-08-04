@@ -12,24 +12,21 @@
  */
 package org.hornetq.tests.unit.jms.misc;
 
-import org.junit.Test;
-
-import java.io.File;
-import java.util.Properties;
-import java.util.jar.Attributes;
-import java.util.jar.JarFile;
-import java.util.jar.Manifest;
-
-import javax.jms.Connection;
-import javax.jms.ConnectionMetaData;
-
-import org.junit.Assert;
-
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.jms.client.HornetQConnectionMetaData;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionMetaData;
+import java.io.File;
+import java.util.Properties;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>

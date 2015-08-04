@@ -11,16 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.message;
-import org.junit.Before;
-import org.junit.After;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * A test that sends/receives text messages to the JMS provider and verifies their integrity.

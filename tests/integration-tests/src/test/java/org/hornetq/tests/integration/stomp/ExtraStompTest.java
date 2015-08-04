@@ -12,14 +12,6 @@
  */
 package org.hornetq.tests.integration.stomp;
 
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.QueueBrowser;
-import javax.jms.TextMessage;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.config.Configuration;
@@ -46,6 +38,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.QueueBrowser;
+import javax.jms.TextMessage;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExtraStompTest extends StompTestBase
 {

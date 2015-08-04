@@ -11,13 +11,12 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.clientcrash;
-import org.junit.Before;
-
-import org.junit.Assert;
 
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Assert;
+import org.junit.Before;
 
 /**
  * A ClientTestBase

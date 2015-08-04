@@ -12,13 +12,13 @@
  */
 package org.objectweb.jtests.jms.conform.selector;
 
-import javax.jms.DeliveryMode;
-import javax.jms.TextMessage;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PTPTestCase;
 import org.objectweb.jtests.jms.framework.TestConfig;
+
+import javax.jms.DeliveryMode;
+import javax.jms.TextMessage;
 
 /**
  * Test the message selector features of JMS

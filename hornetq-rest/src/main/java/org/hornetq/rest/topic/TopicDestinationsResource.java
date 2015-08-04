@@ -25,7 +25,11 @@ import org.hornetq.rest.queue.PostMessageDupsOk;
 import org.hornetq.rest.queue.PostMessageNoDups;
 import org.w3c.dom.Document;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;

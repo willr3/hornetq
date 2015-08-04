@@ -12,6 +12,9 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.JMSTestBase;
+import org.hornetq.tests.util.RandomUtil;
 import org.junit.Test;
 
 import javax.jms.Connection;
@@ -23,10 +26,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.jms.TopicSubscriber;
-
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.JMSTestBase;
-import org.hornetq.tests.util.RandomUtil;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

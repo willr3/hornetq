@@ -12,6 +12,12 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.spi.core.security.JAASSecurityManager;
+
+import javax.security.auth.Subject;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.login.LoginException;
+import javax.security.auth.spi.LoginModule;
 import java.security.Principal;
 import java.security.acl.Group;
 import java.util.Collections;
@@ -20,13 +26,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.login.LoginException;
-import javax.security.auth.spi.LoginModule;
-
-import org.hornetq.spi.core.security.JAASSecurityManager;
 
 /**
  * A ExampleLoginModule

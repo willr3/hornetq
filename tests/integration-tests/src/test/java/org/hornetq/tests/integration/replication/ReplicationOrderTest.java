@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.replication;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -27,6 +23,8 @@ import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.tests.integration.cluster.failover.FailoverTestBase;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.TransportConfigurationUtils;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * A ReplicationOrderTest

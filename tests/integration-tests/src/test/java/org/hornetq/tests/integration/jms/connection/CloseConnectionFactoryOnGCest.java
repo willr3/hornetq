@@ -12,16 +12,15 @@
  */
 package org.hornetq.tests.integration.jms.connection;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.jms.Connection;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.client.impl.ServerLocatorImpl;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.tests.util.JMSTestBase;
+
+import javax.jms.Connection;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *

@@ -12,6 +12,12 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.api.core.Message;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.SendAcknowledgementHandler;
+import org.hornetq.common.example.HornetQExample;
+import org.hornetq.jms.client.HornetQSession;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -19,12 +25,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.SendAcknowledgementHandler;
-import org.hornetq.common.example.HornetQExample;
-import org.hornetq.jms.client.HornetQSession;
 
 /**
  *

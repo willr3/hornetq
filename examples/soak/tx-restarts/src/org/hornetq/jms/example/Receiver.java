@@ -12,15 +12,14 @@
  */
 package org.hornetq.jms.example;
 
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import org.hornetq.utils.ReusableLatch;
 
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.Queue;
-
-import org.hornetq.utils.ReusableLatch;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A Receiver

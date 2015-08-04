@@ -12,12 +12,11 @@
  */
 package org.hornetq.core.transaction.impl;
 
-import java.io.Serializable;
-import java.util.Arrays;
+import org.hornetq.utils.Base64;
 
 import javax.transaction.xa.Xid;
-
-import org.hornetq.utils.Base64;
+import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *

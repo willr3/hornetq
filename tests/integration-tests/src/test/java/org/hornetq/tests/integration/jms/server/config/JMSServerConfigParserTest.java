@@ -12,11 +12,6 @@
  */
 package org.hornetq.tests.integration.jms.server.config;
 
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.net.URL;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.jms.server.JMSServerConfigParser;
@@ -26,6 +21,10 @@ import org.hornetq.jms.server.config.JMSQueueConfiguration;
 import org.hornetq.jms.server.config.TopicConfiguration;
 import org.hornetq.jms.server.impl.JMSServerConfigParserImpl;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Test;
+
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * A JMSServerConfigParserTest

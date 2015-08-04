@@ -14,14 +14,16 @@
 package org.hornetq.javaee.example.server2;
 
 
-
 import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.ra.HornetQRAConnectionFactoryImpl;
 
 import javax.annotation.Resource;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
 
 /**
  * A Stateless Bean that will connect to a remote JBM.

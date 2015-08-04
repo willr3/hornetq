@@ -33,13 +33,13 @@
 */
 package org.hornetq.core.messagecounter;
 
+import org.hornetq.core.server.Queue;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import org.hornetq.core.server.Queue;
 
 /**
  * This class stores message count informations for a given queue

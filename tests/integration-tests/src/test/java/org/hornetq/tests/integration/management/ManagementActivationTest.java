@@ -12,13 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.jms.Topic;
-import javax.naming.NameNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.jms.server.config.impl.ConnectionFactoryConfigurationImpl;
@@ -29,6 +22,13 @@ import org.hornetq.tests.util.TransportConfigurationUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.Queue;
+import javax.jms.Topic;
+import javax.naming.NameNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Validates if a JMS management operations will wait until the server is activated.  If the server is not active

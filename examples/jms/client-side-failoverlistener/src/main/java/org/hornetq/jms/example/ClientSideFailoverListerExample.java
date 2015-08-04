@@ -12,6 +12,11 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.api.core.client.FailoverEventListener;
+import org.hornetq.api.core.client.FailoverEventType;
+import org.hornetq.common.example.HornetQExample;
+import org.hornetq.jms.client.HornetQConnection;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -20,11 +25,6 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.core.client.FailoverEventListener;
-import org.hornetq.api.core.client.FailoverEventType;
-import org.hornetq.common.example.HornetQExample;
-import org.hornetq.jms.client.HornetQConnection;
 
 /**
  * This example demonstrates how you can listen on failover event on the client side

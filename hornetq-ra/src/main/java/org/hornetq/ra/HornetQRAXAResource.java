@@ -12,12 +12,12 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.core.client.impl.ClientSessionInternal;
+
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.core.client.impl.ClientSessionInternal;
 
 /**
  * HornetQXAResource.

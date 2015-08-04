@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.persistence.impl.journal;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.IDGenerator;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * An ID generator that allocates a batch of IDs of size {@link #checkpointSize} and records the ID

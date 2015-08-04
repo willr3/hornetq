@@ -11,15 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.stress;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.Topic;
-import javax.jms.XASession;
 
 import org.hornetq.jms.tests.HornetQServerTestCase;
 import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.After;
 import org.junit.BeforeClass;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.Topic;
+import javax.jms.XASession;
 
 /**
  *

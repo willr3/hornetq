@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.protocol.core;
 
-import java.util.concurrent.locks.Lock;
-
 import org.hornetq.api.core.HornetQException;
+
+import java.util.concurrent.locks.Lock;
 
 /**
  * A channel is a way of interleaving data meant for different endpoints over the same {@link org.hornetq.core.protocol.core.CoreRemotingConnection}.

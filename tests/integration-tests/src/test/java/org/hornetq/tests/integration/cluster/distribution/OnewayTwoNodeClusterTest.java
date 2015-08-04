@@ -11,14 +11,12 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.distribution;
+
 import org.hornetq.core.server.HornetQServer;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 
 /**

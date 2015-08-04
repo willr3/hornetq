@@ -12,13 +12,12 @@
  */
 package org.hornetq.integration.jboss.security;
 
+import org.jboss.security.SecurityAssociation;
+
+import javax.security.auth.Subject;
 import java.security.AccessController;
 import java.security.Principal;
 import java.security.PrivilegedAction;
-
-import javax.security.auth.Subject;
-
-import org.jboss.security.SecurityAssociation;
 
 /** A collection of privileged actions for this package
  * @author Scott.Stark@jboss.org

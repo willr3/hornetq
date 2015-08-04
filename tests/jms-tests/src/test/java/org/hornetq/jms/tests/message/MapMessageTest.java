@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.tests.message;
 
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-
 import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.JMSException;
+import javax.jms.MapMessage;
+import javax.jms.Message;
 
 /**
  * A test that sends/receives map messages to the JMS provider and verifies their integrity.

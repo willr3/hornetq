@@ -12,13 +12,6 @@
  */
 package org.hornetq.core.journal.impl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQUnsupportedPacketException;
 import org.hornetq.core.journal.EncodingSupport;
@@ -37,6 +30,13 @@ import org.hornetq.core.journal.impl.dataformat.JournalCompleteRecordTX.TX_RECOR
 import org.hornetq.core.journal.impl.dataformat.JournalDeleteRecord;
 import org.hornetq.core.journal.impl.dataformat.JournalDeleteRecordTX;
 import org.hornetq.core.journal.impl.dataformat.JournalInternalRecord;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Journal used at a replicating backup server during the synchronization of data with the 'live'

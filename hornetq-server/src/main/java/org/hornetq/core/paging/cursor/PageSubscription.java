@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.paging.cursor;
 
-import java.util.concurrent.Executor;
-
 import org.hornetq.core.paging.PagedMessage;
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.paging.impl.Page;
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.utils.LinkedListIterator;
+
+import java.util.concurrent.Executor;
 
 /**
  * A PageCursor

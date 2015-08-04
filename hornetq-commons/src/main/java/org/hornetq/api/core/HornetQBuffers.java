@@ -13,10 +13,10 @@
 
 package org.hornetq.api.core;
 
-import java.nio.ByteBuffer;
-
 import io.netty.buffer.Unpooled;
 import org.hornetq.core.buffers.impl.ChannelBufferWrapper;
+
+import java.nio.ByteBuffer;
 
 /**
  * Factory class to create instances of {@link HornetQBuffer}.

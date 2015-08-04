@@ -12,15 +12,15 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.QueueConnection;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.Topic;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Test;
 
 /**
  * A SessionTest

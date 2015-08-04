@@ -12,9 +12,6 @@
  */
 package org.hornetq.api.jms;
 
-import javax.jms.Queue;
-import javax.jms.Topic;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.jms.client.HornetQConnectionFactory;
@@ -25,6 +22,9 @@ import org.hornetq.jms.client.HornetQTopicConnectionFactory;
 import org.hornetq.jms.client.HornetQXAConnectionFactory;
 import org.hornetq.jms.client.HornetQXAQueueConnectionFactory;
 import org.hornetq.jms.client.HornetQXATopicConnectionFactory;
+
+import javax.jms.Queue;
+import javax.jms.Topic;
 
 /**
  * A utility class for creating HornetQ client-side JMS managed resources.

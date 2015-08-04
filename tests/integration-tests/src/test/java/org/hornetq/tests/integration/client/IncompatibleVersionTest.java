@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQIncompatibleClientServerException;
 import org.hornetq.api.core.TransportConfiguration;
@@ -42,6 +38,10 @@ import org.hornetq.utils.VersionLoader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Properties;
 
 import static org.hornetq.tests.util.RandomUtil.randomString;
 

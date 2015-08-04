@@ -11,13 +11,12 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.distribution;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
 
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * A SymmetricClusterTest

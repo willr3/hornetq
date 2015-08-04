@@ -12,8 +12,6 @@
  */
 package org.hornetq.tests.integration.jms.bridge;
 
-import javax.transaction.TransactionManager;
-
 import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.jms.bridge.ConnectionFactoryFactory;
@@ -22,6 +20,8 @@ import org.hornetq.jms.bridge.QualityOfServiceMode;
 import org.hornetq.jms.bridge.impl.JMSBridgeImpl;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.transaction.TransactionManager;
 
 /**
  * A JMSBridgeClusteredTest

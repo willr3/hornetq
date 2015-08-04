@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.cluster.bridge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -27,6 +24,9 @@ import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.cluster.impl.BridgeImpl;
 import org.hornetq.tests.integration.cluster.util.MultiServerTestBase;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Clebert Suconic

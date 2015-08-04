@@ -12,6 +12,8 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.core.client.ClientSessionFactory;
+
 import javax.jms.JMSException;
 import javax.jms.Session;
 import javax.jms.XAQueueConnection;
@@ -19,8 +21,6 @@ import javax.jms.XAQueueSession;
 import javax.jms.XASession;
 import javax.jms.XATopicConnection;
 import javax.jms.XATopicSession;
-
-import org.hornetq.api.core.client.ClientSessionFactory;
 
 /**
  * HornetQ implementation of a JMS XAConnection.

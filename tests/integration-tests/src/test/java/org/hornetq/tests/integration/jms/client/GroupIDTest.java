@@ -12,15 +12,14 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
-import org.junit.Test;
-
-import javax.jms.ConnectionFactory;
-import javax.jms.Message;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.jms.client.HornetQJMSConnectionFactory;
+import org.junit.Test;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.Message;
 
 /**
  * A GroupIDTest

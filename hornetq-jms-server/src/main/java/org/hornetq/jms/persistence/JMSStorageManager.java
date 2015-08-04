@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.persistence;
 
-import java.util.List;
-
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.jms.persistence.config.PersistedConnectionFactory;
 import org.hornetq.jms.persistence.config.PersistedDestination;
 import org.hornetq.jms.persistence.config.PersistedJNDI;
 import org.hornetq.jms.persistence.config.PersistedType;
+
+import java.util.List;
 
 /**
  * A JMSPersistence

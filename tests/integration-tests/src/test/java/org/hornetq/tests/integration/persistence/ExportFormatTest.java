@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import org.junit.Test;
-
-import java.io.StringReader;
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -26,6 +22,9 @@ import org.hornetq.core.journal.impl.ExportJournal;
 import org.hornetq.core.journal.impl.ImportJournal;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Test;
+
+import java.io.StringReader;
 
 /**
  * A ExportFormatTest

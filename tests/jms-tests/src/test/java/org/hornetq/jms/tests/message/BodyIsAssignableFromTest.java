@@ -12,6 +12,9 @@
  */
 package org.hornetq.jms.tests.message;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
@@ -23,9 +26,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class BodyIsAssignableFromTest extends MessageBodyTestCase
 {

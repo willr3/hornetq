@@ -35,8 +35,8 @@ public class AddressImpl implements Address
    public AddressImpl(final String address)
    {
       this.address = address;
-      addressParts = address.split(""+WildcardAddressManager.DELIM);
-      containsWildCard = address.contains(""+WildcardAddressManager.SINGLE_WORD) || address.contains(""+WildcardAddressManager.ANY_WORDS);
+      addressParts = address.split("" + WildcardAddressManager.DELIM);
+      containsWildCard = address.contains("" + WildcardAddressManager.SINGLE_WORD) || address.contains("" + WildcardAddressManager.ANY_WORDS);
    }
 
    public String getAddress()

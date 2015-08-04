@@ -12,11 +12,7 @@
  */
 package org.hornetq.tests.integration.management;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -38,6 +34,9 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.hornetq.tests.util.RandomUtil.randomString;
 

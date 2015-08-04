@@ -13,7 +13,6 @@
 package org.hornetq.core.client.impl;
 
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 

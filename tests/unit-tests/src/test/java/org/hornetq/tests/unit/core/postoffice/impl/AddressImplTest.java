@@ -12,14 +12,11 @@
  */
 package org.hornetq.tests.unit.core.postoffice.impl;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
-
 import org.hornetq.core.postoffice.Address;
 import org.hornetq.core.postoffice.impl.AddressImpl;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

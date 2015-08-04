@@ -11,7 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.rest.test;
-import java.lang.reflect.Field;
 
 import org.hornetq.rest.MessageServiceManager;
 import org.hornetq.rest.util.LinkHeaderLinkStrategy;
@@ -22,6 +21,8 @@ import org.jboss.resteasy.client.core.BaseClientResponse;
 import org.jboss.resteasy.spi.Link;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+
+import java.lang.reflect.Field;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

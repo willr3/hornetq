@@ -15,10 +15,26 @@ package org.hornetq.jms.client;
 import org.hornetq.api.core.HornetQPropertyConversionException;
 import org.hornetq.utils.TypedProperties;
 
-import javax.jms.*;
+import javax.jms.BytesMessage;
+import javax.jms.CompletionListener;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.JMSProducer;
+import javax.jms.JMSRuntimeException;
+import javax.jms.MapMessage;
+import javax.jms.Message;
+import javax.jms.MessageFormatRuntimeException;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.TextMessage;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * NOTE: this class forwards {@link #setDisableMessageID(boolean)} and

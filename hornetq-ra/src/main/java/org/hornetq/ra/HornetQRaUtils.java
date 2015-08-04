@@ -12,6 +12,8 @@
  */
 package org.hornetq.ra;
 
+import org.jgroups.JChannel;
+
 import javax.naming.Context;
 import javax.transaction.TransactionManager;
 import java.lang.reflect.Method;
@@ -22,8 +24,6 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-
-import org.jgroups.JChannel;
 
 /**
  * Various utility functions

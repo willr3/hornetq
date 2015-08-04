@@ -11,7 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.journal;
-import java.io.File;
 
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.journal.SequentialFileFactory;
@@ -21,6 +20,8 @@ import org.hornetq.tests.unit.core.journal.impl.JournalImplTestUnit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+
+import java.io.File;
 
 /**
  *

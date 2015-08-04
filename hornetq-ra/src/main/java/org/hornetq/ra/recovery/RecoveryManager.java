@@ -13,16 +13,16 @@
 
 package org.hornetq.ra.recovery;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.Set;
-
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.server.recovery.HornetQRegistryBase;
 import org.hornetq.jms.server.recovery.XARecoveryConfig;
 import org.hornetq.ra.HornetQRALogger;
 import org.hornetq.utils.ClassloadingUtil;
 import org.hornetq.utils.ConcurrentHashSet;
+
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

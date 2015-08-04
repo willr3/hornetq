@@ -14,7 +14,6 @@ package org.hornetq.core.filter.impl;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInvalidFilterExpressionException;
-
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;

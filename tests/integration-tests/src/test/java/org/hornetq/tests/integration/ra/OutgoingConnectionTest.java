@@ -12,6 +12,25 @@
  */
 package org.hornetq.tests.integration.ra;
 
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
+import org.hornetq.core.security.Role;
+import org.hornetq.core.transaction.impl.XidImpl;
+import org.hornetq.ra.HornetQRAConnectionFactory;
+import org.hornetq.ra.HornetQRAConnectionFactoryImpl;
+import org.hornetq.ra.HornetQRAConnectionManager;
+import org.hornetq.ra.HornetQRAManagedConnectionFactory;
+import org.hornetq.ra.HornetQRASession;
+import org.hornetq.ra.HornetQResourceAdapter;
+import org.hornetq.utils.UUIDGenerator;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -34,25 +53,6 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.core.remoting.impl.invm.InVMConnectorFactory;
-import org.hornetq.core.security.Role;
-import org.hornetq.core.transaction.impl.XidImpl;
-import org.hornetq.ra.HornetQRAConnectionFactory;
-import org.hornetq.ra.HornetQRAConnectionFactoryImpl;
-import org.hornetq.ra.HornetQRAConnectionManager;
-import org.hornetq.ra.HornetQRAManagedConnectionFactory;
-import org.hornetq.ra.HornetQRASession;
-import org.hornetq.ra.HornetQResourceAdapter;
-import org.hornetq.utils.UUIDGenerator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

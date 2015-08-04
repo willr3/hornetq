@@ -12,6 +12,10 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.jms.client.HornetQConnection;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.client.HornetQXAConnection;
+
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 import javax.jms.ResourceAllocationException;
@@ -41,10 +45,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.hornetq.jms.client.HornetQConnection;
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.client.HornetQXAConnection;
 
 /**
  * The managed connection

@@ -12,8 +12,17 @@
  */
 package org.hornetq.tests.integration.cluster.reattach;
 
-import org.hornetq.api.core.*;
-import org.hornetq.api.core.client.*;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQExceptionType;
+import org.hornetq.api.core.HornetQNotConnectedException;
+import org.hornetq.api.core.HornetQObjectClosedException;
+import org.hornetq.api.core.Interceptor;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientProducer;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.SessionFailureListener;
 import org.hornetq.core.client.impl.ClientSessionFactoryInternal;
 import org.hornetq.core.client.impl.ClientSessionInternal;
 import org.hornetq.core.protocol.core.Packet;

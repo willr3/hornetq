@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.unit.core.server.impl.fakes;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.Consumer;
 import org.hornetq.core.server.HandleStatus;
 import org.hornetq.core.server.MessageReference;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *

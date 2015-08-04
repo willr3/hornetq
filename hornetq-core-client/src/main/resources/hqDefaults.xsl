@@ -98,7 +98,7 @@
 <xsl:template name="quote-default-value">
   <xsl:choose>
     <xsl:when test="xsd:annotation/@hq:type='SimpleString'">
-      <xsl:value-of select="concat( 'new SimpleString(&#34;', @default, '&#34;)')"/>
+      <xsl:value-of select="concat( 'new String(&#34;', @default, '&#34;)')"/>
     </xsl:when>
     <xsl:when test="@type='xsd:string'">
       <xsl:value-of select="concat( '&#34;', @default, '&#34;')"/>

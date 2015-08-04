@@ -12,6 +12,10 @@
  */
 package org.hornetq.util;
 
+import org.hornetq.utils.DeflaterReader;
+import org.hornetq.utils.InflaterReader;
+import org.hornetq.utils.InflaterWriter;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -20,12 +24,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.zip.Deflater;
-
-import org.junit.Assert;
-
-import org.hornetq.utils.DeflaterReader;
-import org.hornetq.utils.InflaterReader;
-import org.hornetq.utils.InflaterWriter;
 
 /**
  * A CompressionUtilTest

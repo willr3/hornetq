@@ -11,9 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.cluster.distribution;
-import org.junit.Before;
-
-import org.junit.Test;
 
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -21,6 +18,8 @@ import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.core.message.impl.MessageImpl;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ClusterHeadersRemovedTest extends ClusterTestBase
 {

@@ -12,6 +12,9 @@
  */
 package org.hornetq.tests.util;
 
+import org.hornetq.tests.unit.UnitTestLogger;
+import org.junit.Assert;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,9 +26,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
-
-import org.hornetq.tests.unit.UnitTestLogger;
-import org.junit.Assert;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 

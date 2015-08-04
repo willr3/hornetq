@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.client.impl.ClientMessageImpl;
@@ -22,6 +19,9 @@ import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.RandomUtil;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A ManagementHelperTest

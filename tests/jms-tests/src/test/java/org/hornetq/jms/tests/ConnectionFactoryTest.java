@@ -12,8 +12,11 @@
  */
 package org.hornetq.jms.tests;
 
-import java.util.ArrayList;
-import java.util.Random;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -34,12 +37,8 @@ import javax.jms.XAQueueConnection;
 import javax.jms.XAQueueConnectionFactory;
 import javax.jms.XATopicConnection;
 import javax.jms.XATopicConnectionFactory;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

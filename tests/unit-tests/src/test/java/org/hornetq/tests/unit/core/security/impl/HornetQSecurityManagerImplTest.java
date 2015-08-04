@@ -11,19 +11,17 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.security.impl;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.HashSet;
-
-import org.junit.Assert;
 
 import org.hornetq.core.security.CheckType;
 import org.hornetq.core.security.Role;
 import org.hornetq.spi.core.security.HornetQSecurityManagerImpl;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashSet;
 
 /**
  * tests HornetQSecurityManagerImpl

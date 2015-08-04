@@ -12,16 +12,15 @@
  */
 package org.hornetq.core.filter.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.FilterConstants;
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.HornetQMessageBundle;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.ServerMessage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
 * This class implements a HornetQ filter

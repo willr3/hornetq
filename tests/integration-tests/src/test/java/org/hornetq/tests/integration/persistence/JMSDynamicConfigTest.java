@@ -12,16 +12,14 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import javax.naming.NamingException;
-
 import org.hornetq.core.persistence.impl.journal.OperationContextImpl;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.jms.server.config.impl.ConnectionFactoryConfigurationImpl;
 import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Test;
+
+import javax.naming.NamingException;
+import java.util.ArrayList;
 
 /**
  * A JMSDynamicConfigTest

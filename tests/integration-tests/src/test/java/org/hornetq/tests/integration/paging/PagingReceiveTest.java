@@ -13,8 +13,6 @@
 package org.hornetq.tests.integration.paging;
 
 import junit.framework.Assert;
-
-
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;

@@ -12,10 +12,6 @@
  */
 package org.hornetq.core.server.cluster.impl;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.Executor;
-
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
 import org.hornetq.core.filter.Filter;
@@ -32,6 +28,10 @@ import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.impl.TransactionImpl;
 import org.hornetq.utils.ReusableLatch;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.Executor;
 
 /**
  * A Redistributor

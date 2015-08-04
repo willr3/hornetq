@@ -12,10 +12,14 @@
  */
 package org.hornetq.tests.integration.jms.divert;
 
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.HornetQClient;
+import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.core.config.Configuration;
+import org.hornetq.core.config.DivertConfiguration;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.jms.Connection;
 import javax.jms.MessageConsumer;
@@ -23,15 +27,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.jms.JMSFactoryType;
-import org.hornetq.core.config.Configuration;
-import org.hornetq.core.config.DivertConfiguration;
-import org.hornetq.tests.util.JMSTestBase;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A DivertAndACKClientTest

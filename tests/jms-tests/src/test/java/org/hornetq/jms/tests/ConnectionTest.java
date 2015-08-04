@@ -12,6 +12,10 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionMetaData;
 import javax.jms.ExceptionListener;
@@ -21,10 +25,6 @@ import javax.jms.QueueConnectionFactory;
 import javax.jms.ServerSessionPool;
 import javax.jms.Session;
 import javax.jms.TopicConnection;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Connection tests. Contains all connection tests, except tests relating to closing a connection,

@@ -12,12 +12,12 @@
  */
 package org.hornetq.jms.tests.message.foreign;
 
+import org.hornetq.jms.tests.message.SimpleJMSMapMessage;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import javax.jms.Message;
-
-import org.hornetq.jms.tests.message.SimpleJMSMapMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * Tests the delivery/receipt of a foreign map message

@@ -12,10 +12,9 @@
  */
 package org.hornetq.tests.asyncio;
 
-import org.junit.Test;
-
-import org.junit.Assert;
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * A LibaioDependencyCheckTest

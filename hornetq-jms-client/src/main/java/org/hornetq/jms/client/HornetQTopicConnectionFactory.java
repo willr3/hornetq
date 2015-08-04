@@ -12,12 +12,12 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.TopicConnectionFactory;
-
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.api.jms.JMSFactoryType;
+
+import javax.jms.TopicConnectionFactory;
 
 /**
  * A class that represents a TopicConnectionFactory.

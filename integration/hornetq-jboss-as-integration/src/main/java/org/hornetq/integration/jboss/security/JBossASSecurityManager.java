@@ -12,15 +12,6 @@
  */
 package org.hornetq.integration.jboss.security;
 
-import java.security.AccessController;
-import java.security.Principal;
-import java.security.PrivilegedAction;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.naming.InitialContext;
-import javax.security.auth.Subject;
-
 import org.hornetq.core.security.CheckType;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.server.HornetQComponent;
@@ -31,6 +22,14 @@ import org.jboss.security.RealmMapping;
 import org.jboss.security.SecurityContext;
 import org.jboss.security.SecurityContextAssociation;
 import org.jboss.security.SimplePrincipal;
+
+import javax.naming.InitialContext;
+import javax.security.auth.Subject;
+import java.security.AccessController;
+import java.security.Principal;
+import java.security.PrivilegedAction;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This implementation delegates to the JBoss AS security interfaces (which in turn use JAAS)

@@ -12,7 +12,6 @@
  */
 package org.hornetq.javaee.example.server;
 
-import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.ejb.TransactionAttribute;
@@ -23,12 +22,6 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
-
-import org.jboss.ejb3.annotation.ResourceAdapter;
-
 import java.util.Calendar;
 
 /**

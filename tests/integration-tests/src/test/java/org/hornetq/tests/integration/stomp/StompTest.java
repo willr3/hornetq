@@ -12,6 +12,11 @@
  */
 package org.hornetq.tests.integration.stomp;
 
+import org.hornetq.core.protocol.stomp.Stomp;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.DeliveryMode;
 import javax.jms.Message;
@@ -25,11 +30,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.hornetq.core.protocol.stomp.Stomp;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class StompTest extends StompTestBase
 {

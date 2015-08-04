@@ -12,7 +12,12 @@
  */
 package org.hornetq.core.message.impl;
 
-import org.hornetq.api.core.*;
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQPropertyConversionException;
+import org.hornetq.api.core.Message;
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.buffers.impl.ResetLimitWrappedHornetQBuffer;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.protocol.core.impl.PacketImpl;

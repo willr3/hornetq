@@ -12,12 +12,12 @@
  */
 package org.objectweb.jtests.jms.conform.selector;
 
-import javax.jms.InvalidSelectorException;
-import javax.jms.JMSException;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.objectweb.jtests.jms.framework.PTPTestCase;
+
+import javax.jms.InvalidSelectorException;
+import javax.jms.JMSException;
 
 /**
  * Test the syntax of of message selector of JMS

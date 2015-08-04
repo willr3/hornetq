@@ -12,13 +12,13 @@
  */
 package org.hornetq.spi.core.remoting;
 
+import org.hornetq.core.server.cluster.ClusterConnection;
+import org.hornetq.spi.core.protocol.ProtocolManager;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
-
-import org.hornetq.core.server.cluster.ClusterConnection;
-import org.hornetq.spi.core.protocol.ProtocolManager;
 
 /**
  * A factory for creating acceptors.

@@ -11,11 +11,11 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.client;
+
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Before;
-
 import org.junit.Test;
-
-import java.util.concurrent.CountDownLatch;
 
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
@@ -28,9 +28,7 @@ import javax.jms.Topic;
 import javax.jms.TopicSubscriber;
 import javax.naming.Context;
 import javax.naming.NamingException;
-
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.JMSTestBase;
+import java.util.concurrent.CountDownLatch;
 
 /**
  *

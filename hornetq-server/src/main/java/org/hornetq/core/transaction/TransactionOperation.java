@@ -12,9 +12,9 @@
  */
 package org.hornetq.core.transaction;
 
-import java.util.List;
-
 import org.hornetq.core.server.MessageReference;
+
+import java.util.List;
 
 /**
  *

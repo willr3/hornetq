@@ -12,15 +12,13 @@
  */
 package org.hornetq.tests.integration.stomp;
 
+import org.hornetq.core.protocol.stomp.Stomp;
+import org.hornetq.jms.server.JMSServerManager;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
-
-import org.junit.Assert;
-
-import org.hornetq.core.protocol.stomp.Stomp;
-import org.hornetq.jms.server.JMSServerManager;
 
 /**
  * A StompConnectionCleanupTest

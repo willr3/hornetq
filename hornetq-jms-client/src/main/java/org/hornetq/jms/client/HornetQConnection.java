@@ -12,6 +12,20 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQExceptionType;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.FailoverEventListener;
+import org.hornetq.api.core.client.FailoverEventType;
+import org.hornetq.api.core.client.SessionFailureListener;
+import org.hornetq.api.jms.HornetQJMSConstants;
+import org.hornetq.core.client.impl.ClientSessionInternal;
+import org.hornetq.core.version.Version;
+import org.hornetq.utils.ConcurrentHashSet;
+import org.hornetq.utils.UUIDGenerator;
+import org.hornetq.utils.VersionLoader;
+
 import javax.jms.ConnectionConsumer;
 import javax.jms.ConnectionMetaData;
 import javax.jms.Destination;
@@ -31,21 +45,6 @@ import javax.jms.TopicSession;
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.FailoverEventListener;
-import org.hornetq.api.core.client.FailoverEventType;
-import org.hornetq.api.core.client.SessionFailureListener;
-import org.hornetq.api.jms.HornetQJMSConstants;
-import org.hornetq.core.client.impl.ClientSessionInternal;
-import org.hornetq.core.version.Version;
-import org.hornetq.utils.ConcurrentHashSet;
-import org.hornetq.utils.UUIDGenerator;
-import org.hornetq.utils.VersionLoader;
 
 /**
  * HornetQ implementation of a JMS Connection.

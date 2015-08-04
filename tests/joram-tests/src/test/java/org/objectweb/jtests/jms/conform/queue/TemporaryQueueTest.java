@@ -12,16 +12,16 @@
  */
 package org.objectweb.jtests.jms.conform.queue;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PTPTestCase;
+import org.objectweb.jtests.jms.framework.TestConfig;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.QueueReceiver;
 import javax.jms.TemporaryQueue;
 import javax.jms.TextMessage;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PTPTestCase;
-import org.objectweb.jtests.jms.framework.TestConfig;
 
 /**
  * Test the <code>javax.jms.TemporaryQueue</code> features.

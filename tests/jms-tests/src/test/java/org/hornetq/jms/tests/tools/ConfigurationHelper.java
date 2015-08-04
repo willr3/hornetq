@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.tests.tools;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Hashtable;
-
 import org.hornetq.core.config.Configuration;
 import org.jboss.kernel.spi.dependency.KernelControllerContext;
 import org.jboss.kernel.spi.dependency.KernelControllerContextAware;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * This is class is used in test environments. it will intercept the creation of the configuration and change certain

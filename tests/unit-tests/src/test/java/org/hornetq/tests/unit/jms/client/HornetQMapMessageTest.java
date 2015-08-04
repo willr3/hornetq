@@ -11,7 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.jms.client;
-import javax.jms.MessageFormatException;
 
 import org.hornetq.jms.client.HornetQMapMessage;
 import org.hornetq.tests.util.RandomUtil;
@@ -19,6 +18,8 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.MessageFormatException;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

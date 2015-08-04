@@ -12,6 +12,8 @@
  */
 package org.hornetq.javaee.example;
 
+import org.hornetq.javaee.example.server.SendMessageService;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.MessageConsumer;
@@ -20,9 +22,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-
-import org.hornetq.javaee.example.server.SendMessageService;
-
 import java.util.Properties;
 
 /**

@@ -12,6 +12,10 @@
  */
 package org.hornetq.tests.integration.jms.client;
 
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Test;
+
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -24,10 +28,6 @@ import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Test;
 
 /**
  * @author Clebert Suconic

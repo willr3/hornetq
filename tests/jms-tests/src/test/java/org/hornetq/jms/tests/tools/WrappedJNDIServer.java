@@ -12,10 +12,10 @@
  */
 package org.hornetq.jms.tests.tools;
 
-import java.net.UnknownHostException;
-
 import org.jnp.server.Main;
 import org.jnp.server.NamingBean;
+
+import java.net.UnknownHostException;
 
 /**
  * A WrappedJNDIServer

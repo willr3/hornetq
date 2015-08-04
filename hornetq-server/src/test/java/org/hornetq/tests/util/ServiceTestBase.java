@@ -12,20 +12,8 @@
  */
 package org.hornetq.tests.util;
 
-import javax.management.MBeanServer;
-import java.io.File;
-import java.lang.management.ManagementFactory;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Pair;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -70,6 +58,17 @@ import org.hornetq.utils.UUIDGenerator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+
+import javax.management.MBeanServer;
+import java.io.File;
+import java.lang.management.ManagementFactory;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Base class with basic utilities on starting up a basic server

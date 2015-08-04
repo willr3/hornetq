@@ -20,8 +20,24 @@ import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.utils.UUID;
 import org.hornetq.utils.UUIDGenerator;
 
-import javax.jms.*;
+import javax.jms.BytesMessage;
+import javax.jms.CompletionListener;
+import javax.jms.DeliveryMode;
+import javax.jms.Destination;
 import javax.jms.IllegalStateException;
+import javax.jms.InvalidDestinationException;
+import javax.jms.JMSException;
+import javax.jms.MapMessage;
+import javax.jms.Message;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Queue;
+import javax.jms.QueueSender;
+import javax.jms.StreamMessage;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicPublisher;
+
 /**
  * HornetQ implementation of a JMS MessageProducer.
  *

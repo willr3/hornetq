@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 import javax.naming.InitialContext;
-
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * A simple JMS Queue example that creates a producer and consumer on a queue and sends then receives a message.

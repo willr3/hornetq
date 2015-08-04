@@ -12,9 +12,8 @@
  */
 package org.hornetq.tests.unit.core.paging.impl;
 
-import org.junit.Test;
-
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
 
 /**
  * A PagePositionTest

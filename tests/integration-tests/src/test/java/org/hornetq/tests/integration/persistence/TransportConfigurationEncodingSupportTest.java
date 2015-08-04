@@ -12,23 +12,21 @@
  */
 package org.hornetq.tests.integration.persistence;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.api.core.Pair;
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
+import org.hornetq.core.remoting.impl.netty.TransportConstants;
+import org.hornetq.jms.server.config.impl.TransportConfigurationEncodingSupport;
+import org.hornetq.tests.util.RandomUtil;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
-import org.hornetq.core.remoting.impl.netty.TransportConstants;
-import org.hornetq.jms.server.config.impl.TransportConfigurationEncodingSupport;
-import org.hornetq.tests.util.RandomUtil;
-import org.hornetq.api.core.Pair;
-
-import org.junit.Assert;
 
 /**
  * A TransportConfigurationEncodingSupportTest

@@ -11,17 +11,6 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.util;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.nio.ByteBuffer;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
@@ -30,6 +19,15 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.Random;
 import org.hornetq.utils.UTF8Util;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * A UTF8Test

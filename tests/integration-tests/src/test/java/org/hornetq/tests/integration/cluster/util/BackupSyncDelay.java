@@ -15,8 +15,6 @@
  */
 package org.hornetq.tests.integration.cluster.util;
 
-import java.util.concurrent.locks.Lock;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.core.protocol.core.Channel;
@@ -30,6 +28,8 @@ import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessag
 import org.hornetq.core.replication.ReplicationEndpoint;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.spi.core.protocol.RemotingConnection;
+
+import java.util.concurrent.locks.Lock;
 
 /**
  * An interceptor to keep a replicated backup server from reaching "up-to-date" status.

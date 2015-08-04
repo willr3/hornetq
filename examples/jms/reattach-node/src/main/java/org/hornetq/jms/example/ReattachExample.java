@@ -12,6 +12,10 @@
  */
 package org.hornetq.jms.example;
 
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.api.jms.management.JMSManagementHelper;
+import org.hornetq.common.example.HornetQExample;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Message;
@@ -21,10 +25,6 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.api.jms.management.JMSManagementHelper;
-import org.hornetq.common.example.HornetQExample;
 
 /**
  * This examples demonstrates a connection created to a server. Failure of the network connection is then simulated

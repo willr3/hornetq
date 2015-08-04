@@ -12,11 +12,11 @@
  */
 package org.hornetq.api.core.management;
 
-import java.text.DateFormat;
-import java.util.Date;
-
 import org.hornetq.core.messagecounter.MessageCounter;
 import org.hornetq.utils.json.JSONObject;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Helper class to create Java Objects from the

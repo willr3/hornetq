@@ -13,14 +13,6 @@
 
 package org.hornetq.tests.integration.jms.client;
 
-import javax.jms.Connection;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;
@@ -34,6 +26,14 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.Connection;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.management.MBeanServer;
+import javax.management.MBeanServerFactory;
 
 /**
  * test Written to replicate https://issues.jboss.org/browse/HORNETQ-1312

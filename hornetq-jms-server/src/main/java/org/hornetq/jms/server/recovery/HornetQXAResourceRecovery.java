@@ -12,13 +12,13 @@
  */
 package org.hornetq.jms.server.recovery;
 
-import javax.transaction.xa.XAResource;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.arjuna.ats.jta.recovery.XAResourceRecovery;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.jms.server.HornetQJMSServerLogger;
+
+import javax.transaction.xa.XAResource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A XAResourceRecovery instance that can be used to recover any JMS provider.

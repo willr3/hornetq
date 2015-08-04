@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.stomp;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.CoreQueueConfiguration;
@@ -32,6 +29,9 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class StompWebSocketTest extends UnitTestCase
 {

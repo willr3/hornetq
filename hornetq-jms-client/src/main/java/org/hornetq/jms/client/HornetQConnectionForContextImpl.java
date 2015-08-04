@@ -15,15 +15,15 @@
  */
 package org.hornetq.jms.client;
 
+import org.hornetq.api.jms.HornetQJMSConstants;
+import org.hornetq.utils.ReferenceCounter;
+import org.hornetq.utils.ReferenceCounterUtil;
+
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.JMSRuntimeException;
 import javax.jms.Session;
 import javax.jms.XAJMSContext;
-
-import org.hornetq.api.jms.HornetQJMSConstants;
-import org.hornetq.utils.ReferenceCounter;
-import org.hornetq.utils.ReferenceCounterUtil;
 
 public abstract class HornetQConnectionForContextImpl implements HornetQConnectionForContext
 {

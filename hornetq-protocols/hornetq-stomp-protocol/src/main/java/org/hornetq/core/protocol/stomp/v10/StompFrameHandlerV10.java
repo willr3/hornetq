@@ -12,8 +12,6 @@
  */
 package org.hornetq.core.protocol.stomp.v10;
 
-import java.util.Map;
-
 import org.hornetq.core.protocol.stomp.FrameEventListener;
 import org.hornetq.core.protocol.stomp.HornetQStompException;
 import org.hornetq.core.protocol.stomp.Stomp;
@@ -22,6 +20,8 @@ import org.hornetq.core.protocol.stomp.StompDecoder;
 import org.hornetq.core.protocol.stomp.StompFrame;
 import org.hornetq.core.protocol.stomp.VersionedStompFrameHandler;
 import org.hornetq.core.server.HornetQServerLogger;
+
+import java.util.Map;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 

@@ -12,11 +12,11 @@
  */
 package org.hornetq.jms;
 
-import javax.naming.Context;
-import javax.naming.NamingException;
-
 import org.jboss.logging.Logger;
 import org.objectweb.jtests.jms.admin.Admin;
+
+import javax.naming.Context;
+import javax.naming.NamingException;
 
 /**
  * GenericAdmin.

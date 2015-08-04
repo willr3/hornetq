@@ -15,6 +15,11 @@
  */
 package org.hornetq.tests.integration.jms.jms2client;
 
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.BytesMessage;
 import javax.jms.CompletionListener;
 import javax.jms.DeliveryMode;
@@ -38,11 +43,6 @@ import java.io.DataInputStream;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 public class JmsContextTest extends JMSTestBase
 {

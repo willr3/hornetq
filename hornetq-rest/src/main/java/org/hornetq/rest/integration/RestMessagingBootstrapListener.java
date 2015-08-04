@@ -12,12 +12,12 @@
  */
 package org.hornetq.rest.integration;
 
+import org.hornetq.rest.MessageServiceManager;
+import org.jboss.resteasy.spi.Registry;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.hornetq.rest.MessageServiceManager;
-import org.jboss.resteasy.spi.Registry;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

@@ -12,9 +12,9 @@
  */
 package org.hornetq.api.core.management;
 
-import javax.management.ObjectName;
-
 import org.hornetq.api.config.HornetQDefaultConfiguration;
+
+import javax.management.ObjectName;
 
 
 /**

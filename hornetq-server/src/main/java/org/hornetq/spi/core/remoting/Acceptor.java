@@ -12,12 +12,12 @@
  */
 package org.hornetq.spi.core.remoting;
 
-import java.util.Map;
-
 import org.hornetq.core.security.HornetQPrincipal;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.cluster.ClusterConnection;
 import org.hornetq.core.server.management.NotificationService;
+
+import java.util.Map;
 
 /**
  * An Acceptor is used by the RemotingService to allow clients to connect. It should take care of

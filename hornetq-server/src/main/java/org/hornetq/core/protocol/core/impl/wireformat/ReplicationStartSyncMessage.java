@@ -12,14 +12,14 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
-import java.security.InvalidParameterException;
-import java.util.Arrays;
-import java.util.List;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.journal.impl.JournalFile;
 import org.hornetq.core.persistence.impl.journal.JournalStorageManager.JournalContent;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
+
+import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This message may signal start or end of the replication synchronization.

@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.unit.util;
 
-import java.util.Properties;
-import java.util.StringTokenizer;
-
 import org.hornetq.core.version.Version;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.VersionLoader;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Properties;
+import java.util.StringTokenizer;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

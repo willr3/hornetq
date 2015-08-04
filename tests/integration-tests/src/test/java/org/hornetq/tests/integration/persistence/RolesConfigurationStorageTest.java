@@ -11,16 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.persistence;
-import org.junit.Before;
 
+import org.hornetq.core.persistence.config.PersistedRoles;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-import org.hornetq.core.persistence.config.PersistedRoles;
 
 /**
  * A ConfigurationStorageTest

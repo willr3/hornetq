@@ -12,11 +12,10 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import org.junit.Test;
-
 import org.hornetq.ra.HornetQResourceAdapter;
 import org.hornetq.ra.inflow.HornetQActivationSpec;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Test;
 
 /**
  * A HornetQActivationTest

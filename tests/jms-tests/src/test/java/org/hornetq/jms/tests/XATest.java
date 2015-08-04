@@ -11,8 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
+import org.hornetq.core.client.impl.ClientSessionInternal;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.jboss.tm.TxUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -31,15 +37,8 @@ import javax.transaction.TransactionManager;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-
-import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple;
-
-import org.hornetq.core.client.impl.ClientSessionInternal;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.jboss.tm.TxUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *

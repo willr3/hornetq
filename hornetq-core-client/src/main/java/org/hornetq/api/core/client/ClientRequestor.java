@@ -12,10 +12,9 @@
  */
 package org.hornetq.api.core.client;
 
-import java.util.UUID;
-
-
 import org.hornetq.core.client.impl.ClientMessageImpl;
+
+import java.util.UUID;
 
 /**
  * The ClientRequestor class helps making requests.

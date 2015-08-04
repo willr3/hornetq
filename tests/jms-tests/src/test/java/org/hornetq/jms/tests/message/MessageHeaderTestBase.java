@@ -11,8 +11,17 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.message;
-import java.util.Arrays;
-import java.util.Enumeration;
+
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.jms.client.HornetQBytesMessage;
+import org.hornetq.jms.client.HornetQMapMessage;
+import org.hornetq.jms.client.HornetQMessage;
+import org.hornetq.jms.client.HornetQObjectMessage;
+import org.hornetq.jms.client.HornetQStreamMessage;
+import org.hornetq.jms.client.HornetQTextMessage;
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Before;
 
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
@@ -27,17 +36,8 @@ import javax.jms.ObjectMessage;
 import javax.jms.Session;
 import javax.jms.StreamMessage;
 import javax.jms.TextMessage;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.jms.client.HornetQBytesMessage;
-import org.hornetq.jms.client.HornetQMapMessage;
-import org.hornetq.jms.client.HornetQMessage;
-import org.hornetq.jms.client.HornetQObjectMessage;
-import org.hornetq.jms.client.HornetQStreamMessage;
-import org.hornetq.jms.client.HornetQTextMessage;
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Before;
+import java.util.Arrays;
+import java.util.Enumeration;
 
 /**
  *

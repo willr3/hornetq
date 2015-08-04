@@ -12,10 +12,9 @@
  */
 package org.hornetq.jms.example;
 
-import javax.jms.*;
-import javax.naming.InitialContext;
-
 import org.hornetq.common.example.HornetQExample;
+
+import javax.naming.InitialContext;
 
 /**
  * A simple JMS example that shows how AutoCloseable is used by JMS 2 resources.

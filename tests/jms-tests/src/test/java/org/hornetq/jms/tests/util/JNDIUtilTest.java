@@ -11,15 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.util;
-import org.junit.Before;
 
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.utils.JNDIUtil;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.naming.InitialContext;
 import javax.naming.NameNotFoundException;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.utils.JNDIUtil;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

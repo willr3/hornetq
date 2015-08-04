@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
-import java.util.Arrays;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
+
+import java.util.Arrays;
 
 /**
  * A ReplicationLargeMessageWriteMessage

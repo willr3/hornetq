@@ -13,11 +13,11 @@
 
 package org.hornetq.api.core;
 
+import org.hornetq.utils.DataConstants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hornetq.utils.DataConstants;
 
 /**
  * A simple String class that can store all characters, and stores as simple {@code byte[]}, this

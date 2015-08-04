@@ -12,9 +12,9 @@
  */
 package org.hornetq.jms.tests.message;
 
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.Test;
-
-import java.io.Serializable;
 
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
@@ -22,9 +22,7 @@ import javax.jms.TopicConnection;
 import javax.jms.TopicPublisher;
 import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import java.io.Serializable;
 
 /**
  *

@@ -11,12 +11,7 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.deployers.impl;
-import org.junit.Before;
-import org.junit.After;
 
-import org.junit.Test;
-
-import org.junit.Assert;
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.deployers.impl.BasicUserCredentialsDeployer;
 import org.hornetq.core.security.CheckType;
@@ -25,6 +20,10 @@ import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.DefaultSensitiveStringCodec;
 import org.hornetq.utils.XMLUtil;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 

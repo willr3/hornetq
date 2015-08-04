@@ -12,11 +12,11 @@
  */
 package org.hornetq.rest.topic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.rest.queue.push.FilePushStore;
 import org.hornetq.rest.queue.push.xml.PushRegistration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

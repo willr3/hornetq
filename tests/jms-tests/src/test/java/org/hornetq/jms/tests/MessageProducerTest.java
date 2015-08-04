@@ -12,6 +12,12 @@
  */
 package org.hornetq.jms.tests;
 
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.jms.tests.message.SimpleJMSMessage;
+import org.hornetq.jms.tests.message.SimpleJMSTextMessage;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
 import javax.jms.CompletionListener;
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -26,12 +32,6 @@ import javax.jms.TextMessage;
 import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.jms.tests.message.SimpleJMSMessage;
-import org.hornetq.jms.tests.message.SimpleJMSTextMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>

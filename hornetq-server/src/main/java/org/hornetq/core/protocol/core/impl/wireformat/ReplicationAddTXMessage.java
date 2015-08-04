@@ -12,12 +12,12 @@
  */
 package org.hornetq.core.protocol.core.impl.wireformat;
 
-import java.util.Arrays;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.core.replication.ReplicationManager.ADD_OPERATION_TYPE;
+
+import java.util.Arrays;
 
 /**
  * A ReplicationAddMessage

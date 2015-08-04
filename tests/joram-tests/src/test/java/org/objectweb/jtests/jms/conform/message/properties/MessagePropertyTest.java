@@ -12,17 +12,16 @@
  */
 package org.objectweb.jtests.jms.conform.message.properties;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import org.junit.Assert;
+import org.junit.Test;
+import org.objectweb.jtests.jms.framework.PTPTestCase;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageFormatException;
 import javax.jms.TextMessage;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.objectweb.jtests.jms.framework.PTPTestCase;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * Test the <code>javax.jms.Message</code> properties.

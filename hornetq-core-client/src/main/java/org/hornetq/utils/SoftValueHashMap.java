@@ -12,6 +12,8 @@
  */
 package org.hornetq.utils;
 
+import org.hornetq.core.client.HornetQClientLogger;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -23,8 +25,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.hornetq.core.client.HornetQClientLogger;
 
 /**
  * A SoftValueHashMap

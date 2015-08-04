@@ -11,6 +11,13 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.jms.tests.stress;
+
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -19,12 +26,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.InitialContext;
-
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * A stress test written to investigate http://jira.jboss.org/jira/browse/JBMESSAGING-362

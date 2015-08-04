@@ -16,8 +16,13 @@ import org.hornetq.core.filter.Filter;
 import org.hornetq.core.filter.impl.FilterImpl;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
-import org.hornetq.core.server.*;
+import org.hornetq.core.server.ConnectorService;
+import org.hornetq.core.server.Consumer;
+import org.hornetq.core.server.HandleStatus;
+import org.hornetq.core.server.HornetQServerLogger;
+import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;
+import org.hornetq.core.server.ServerMessage;
 import org.hornetq.utils.ConfigurationHelper;
 import org.jboss.aerogear.unifiedpush.JavaSender;
 import org.jboss.aerogear.unifiedpush.SenderClient;
@@ -26,7 +31,11 @@ import org.jboss.aerogear.unifiedpush.message.UnifiedMessage;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 

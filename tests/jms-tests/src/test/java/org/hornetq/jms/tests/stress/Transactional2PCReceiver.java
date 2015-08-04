@@ -12,14 +12,14 @@
  */
 package org.hornetq.jms.tests.stress;
 
+import org.hornetq.core.transaction.impl.XidImpl;
+import org.hornetq.jms.tests.JmsTestLogger;
+import org.hornetq.utils.UUIDGenerator;
+
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.XASession;
 import javax.transaction.xa.XAResource;
-
-import org.hornetq.core.transaction.impl.XidImpl;
-import org.hornetq.jms.tests.JmsTestLogger;
-import org.hornetq.utils.UUIDGenerator;
 
 /**
  *

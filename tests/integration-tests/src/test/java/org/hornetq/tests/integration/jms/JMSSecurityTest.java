@@ -12,15 +12,15 @@
  */
 package org.hornetq.tests.integration.jms;
 
+import org.hornetq.tests.util.JMSTestBase;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.jms.JMSContext;
 import javax.jms.JMSSecurityException;
 import javax.jms.JMSSecurityRuntimeException;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
-
-import org.hornetq.tests.util.JMSTestBase;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author Clebert Suconic

@@ -12,14 +12,13 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import org.junit.Test;
-
-import java.util.HashMap;
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.core.settings.impl.AddressSettings;
+import org.junit.Test;
+
+import java.util.HashMap;
 
 public class ReplicatedPagedFailoverTest extends ReplicatedFailoverTest
 {

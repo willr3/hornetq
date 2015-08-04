@@ -12,13 +12,12 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import org.junit.Test;
-
-import java.util.List;
-
 import org.hornetq.jms.persistence.config.PersistedDestination;
 import org.hornetq.jms.persistence.config.PersistedJNDI;
 import org.hornetq.jms.persistence.config.PersistedType;
+import org.junit.Test;
+
+import java.util.List;
 
 /**
  * A JMSStorageManagerTest

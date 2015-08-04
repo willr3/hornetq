@@ -12,6 +12,13 @@
  */
 package org.hornetq.jms.tests.selector;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.tests.HornetQServerTestCase;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -23,13 +30,6 @@ import javax.jms.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.tests.HornetQServerTestCase;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.hornetq.tests.util.UnitTestCase;
-import org.junit.Assert;
-import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

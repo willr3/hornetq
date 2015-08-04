@@ -11,6 +11,11 @@
  * permissions and limitations under the License.
  */
 package org.objectweb.jtests.jms.framework;
+
+import org.jboss.util.NestedRuntimeException;
+import org.junit.After;
+import org.junit.Before;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -22,10 +27,6 @@ import javax.jms.Session;
 import javax.jms.Topic;
 import javax.jms.TopicConnectionFactory;
 import javax.naming.Context;
-
-import org.jboss.util.NestedRuntimeException;
-import org.junit.After;
-import org.junit.Before;
 
 /**
  * Creates convenient Unified JMS 1.1 objects which can be needed for tests.

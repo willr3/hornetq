@@ -12,16 +12,10 @@
  */
 package org.hornetq.core.client.impl;
 
-import java.io.DataInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-
 import io.netty.buffer.ByteBuf;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
 import org.hornetq.utils.DataConstants;
@@ -29,6 +23,11 @@ import org.hornetq.utils.HornetQBufferInputStream;
 import org.hornetq.utils.InflaterReader;
 import org.hornetq.utils.InflaterWriter;
 import org.hornetq.utils.UTF8Util;
+
+import java.io.DataInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * @author <a href="mailto:clebert.suconic@jboss.org">Clebert Suconic</a>

@@ -22,7 +22,12 @@ import org.jboss.logging.MessageBundle;
 import org.jboss.logging.Messages;
 
 import javax.jms.IllegalStateException;
-import javax.jms.*;
+import javax.jms.IllegalStateRuntimeException;
+import javax.jms.InvalidDestinationException;
+import javax.jms.JMSException;
+import javax.jms.JMSRuntimeException;
+import javax.jms.MessageNotReadableException;
+import javax.jms.MessageNotWriteableException;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>

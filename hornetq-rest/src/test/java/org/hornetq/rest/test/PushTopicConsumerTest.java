@@ -12,10 +12,6 @@
  */
 package org.hornetq.rest.test;
 
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.rest.queue.QueueDeployment;
 import org.hornetq.rest.queue.push.HornetQPushStrategy;
 import org.hornetq.rest.queue.push.xml.XmlLink;
@@ -27,6 +23,10 @@ import org.jboss.resteasy.spi.Link;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.jboss.resteasy.test.TestPortProvider.generateURL;
 

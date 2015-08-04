@@ -12,11 +12,6 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.ConnectorServiceConfiguration;
 import org.hornetq.core.persistence.StorageManager;
@@ -26,6 +21,11 @@ import org.hornetq.core.server.ConnectorServiceFactory;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.utils.ConfigurationHelper;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * ConnectorsService will pool some resource for updates, e.g. Twitter, then the changes are picked

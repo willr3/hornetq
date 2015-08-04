@@ -12,12 +12,10 @@
  */
 package org.hornetq.tests.unit.jms.client;
 
-import org.junit.Test;
-
-import org.junit.Assert;
-
 import org.hornetq.jms.client.SelectorTranslator;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  *

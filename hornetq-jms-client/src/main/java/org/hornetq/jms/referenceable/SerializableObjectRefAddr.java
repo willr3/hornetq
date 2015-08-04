@@ -12,14 +12,13 @@
  */
 package org.hornetq.jms.referenceable;
 
+import javax.naming.NamingException;
+import javax.naming.RefAddr;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import javax.naming.NamingException;
-import javax.naming.RefAddr;
 
 /**
  *

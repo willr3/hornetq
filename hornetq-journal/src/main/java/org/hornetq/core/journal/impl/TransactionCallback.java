@@ -12,10 +12,10 @@
  */
 package org.hornetq.core.journal.impl;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.core.journal.IOAsyncTask;
 import org.hornetq.utils.ReusableLatch;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A TransactionCallback

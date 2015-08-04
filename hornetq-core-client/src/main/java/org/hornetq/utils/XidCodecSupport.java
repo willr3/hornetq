@@ -12,10 +12,10 @@
  */
 package org.hornetq.utils;
 
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.core.transaction.impl.XidImpl;
+
+import javax.transaction.xa.Xid;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

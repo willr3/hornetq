@@ -11,15 +11,14 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.journal.impl;
-import org.junit.Before;
-
-import java.nio.ByteBuffer;
-
-import org.junit.Assert;
 
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Before;
+
+import java.nio.ByteBuffer;
 
 /**
  *

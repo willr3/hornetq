@@ -12,6 +12,16 @@
  */
 package org.hornetq.tests.unit.core.security.impl;
 
+import org.hornetq.core.security.CheckType;
+import org.hornetq.core.security.Role;
+import org.hornetq.spi.core.security.JAASSecurityManager;
+import org.hornetq.tests.util.UnitTestCase;
+import org.jboss.security.SimpleGroup;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -29,16 +39,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import org.hornetq.core.security.CheckType;
-import org.hornetq.core.security.Role;
-import org.hornetq.spi.core.security.JAASSecurityManager;
-import org.hornetq.tests.util.UnitTestCase;
-import org.jboss.security.SimpleGroup;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * tests the JAASSecurityManager

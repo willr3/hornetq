@@ -12,9 +12,6 @@
  */
 package org.hornetq.jms.tests.message.foreign;
 
-import javax.jms.Message;
-import javax.jms.TextMessage;
-
 import org.hornetq.api.jms.HornetQJMSConstants;
 import org.hornetq.jms.tests.message.MessageTestBase;
 import org.hornetq.jms.tests.message.SimpleJMSMessage;
@@ -24,6 +21,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.Message;
+import javax.jms.TextMessage;
 
 /**
  * Tests the delivery/receipt of a foreign message

@@ -12,10 +12,6 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.junit.Test;
-
-import java.util.Map;
-
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -24,6 +20,9 @@ import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.api.core.management.AcceptorControl;
 import org.hornetq.api.core.management.ResourceNames;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
+
+import java.util.Map;
 
 /**
  * A AcceptorControlUsingCoreTest

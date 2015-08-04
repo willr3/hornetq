@@ -13,7 +13,6 @@
 package org.hornetq.rest.topic;
 
 import org.hornetq.api.core.HornetQException;
-
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.rest.HornetQRestLogger;

@@ -12,12 +12,11 @@
  */
 package org.hornetq.jms.tests.message;
 
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.Test;
 
 import javax.jms.Message;
 import javax.jms.TemporaryQueue;
-
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  *

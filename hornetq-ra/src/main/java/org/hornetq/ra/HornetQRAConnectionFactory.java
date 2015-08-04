@@ -12,13 +12,13 @@
  */
 package org.hornetq.ra;
 
+import org.hornetq.jms.client.HornetQConnectionFactory;
+
 import javax.jms.XAQueueConnectionFactory;
 import javax.jms.XATopicConnectionFactory;
 import javax.resource.Referenceable;
 import javax.resource.ResourceException;
 import java.io.Serializable;
-
-import org.hornetq.jms.client.HornetQConnectionFactory;
 
 /**
  * An aggregate interface for the JMS connection factories

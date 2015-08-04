@@ -12,11 +12,11 @@
  */
 package org.hornetq.core.journal.impl;
 
-import java.lang.ref.WeakReference;
-import java.nio.ByteBuffer;
-
 import org.hornetq.core.journal.IOCriticalErrorListener;
 import org.hornetq.core.journal.SequentialFile;
+
+import java.lang.ref.WeakReference;
+import java.nio.ByteBuffer;
 
 /**
  *

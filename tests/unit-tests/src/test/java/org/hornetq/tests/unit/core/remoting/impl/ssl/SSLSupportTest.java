@@ -12,14 +12,14 @@
  */
 package org.hornetq.tests.unit.core.remoting.impl.ssl;
 
-import java.io.File;
-import java.net.URL;
-
 import org.hornetq.core.remoting.impl.ssl.SSLSupport;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.net.URL;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>

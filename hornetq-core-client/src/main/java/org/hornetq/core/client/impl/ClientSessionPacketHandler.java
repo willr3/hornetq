@@ -12,12 +12,7 @@
  */
 package org.hornetq.core.client.impl;
 
-import static org.hornetq.core.protocol.core.impl.PacketImpl.DISCONNECT_CONSUMER;
-import static org.hornetq.core.protocol.core.impl.PacketImpl.EXCEPTION;
-import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_CONTINUATION;
-import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_LARGE_MSG;
-import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_MSG;
-
+import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.protocol.core.Channel;
 import org.hornetq.core.protocol.core.ChannelHandler;
 import org.hornetq.core.protocol.core.Packet;
@@ -29,7 +24,12 @@ import org.hornetq.core.protocol.core.impl.wireformat.SessionProducerCreditsMess
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveLargeMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveMessage;
-import org.hornetq.core.client.HornetQClientLogger;
+
+import static org.hornetq.core.protocol.core.impl.PacketImpl.DISCONNECT_CONSUMER;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.EXCEPTION;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_CONTINUATION;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_LARGE_MSG;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_RECEIVE_MSG;
 
 /**
  *
