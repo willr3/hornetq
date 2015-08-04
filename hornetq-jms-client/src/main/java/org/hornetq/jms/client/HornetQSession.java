@@ -48,7 +48,7 @@ import javax.transaction.xa.XAResource;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQQueueExistsException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -78,7 +78,7 @@ public class HornetQSession implements QueueSession, TopicSession
 
    public static final int TYPE_TOPIC_SESSION = 2;
 
-   private static SimpleString REJECTING_FILTER = new SimpleString("_HQX=-1");
+   private static String REJECTING_FILTER = new String("_HQX=-1");
 
    private final HornetQConnection connection;
 
@@ -609,16 +609,16 @@ public class HornetQSession implements QueueSession, TopicSession
 
          selectorString = "".equals(selectorString) ? null : selectorString;
 
-         SimpleString coreFilterString = null;
+         String coreFilterString = null;
 
          if (selectorString != null)
          {
-            coreFilterString = new SimpleString(SelectorTranslator.convertToHornetQFilterString(selectorString));
+            coreFilterString = new String(SelectorTranslator.convertToHornetQFilterString(selectorString));
          }
 
          ClientConsumer consumer;
 
-         SimpleString autoDeleteQueueName = null;
+         String autoDeleteQueueName = null;
 
          BindingQuery response = session.bindingQuery(dest.getSimpleAddress());
 
@@ -627,14 +627,14 @@ public class HornetQSession implements QueueSession, TopicSession
             throw HornetQJMSClientBundle.BUNDLE.destinationDoesNotExist(dest.getSimpleAddress());
          }
 
-         SimpleString queueName;
+         String queueName;
 
          if (dest.isTemporary() && durability == ConsumerDurability.DURABLE)
          {
             throw new InvalidDestinationException("Cannot create a durable subscription on a temporary topic");
          }
 
-         queueName = new SimpleString(HornetQDestination.createQueueNameForDurableSubscription(durability == ConsumerDurability.DURABLE, connection.getClientID(),
+         queueName = new String(HornetQDestination.createQueueNameForDurableSubscription(durability == ConsumerDurability.DURABLE, connection.getClientID(),
                                                                                                subscriptionName));
 
          if (durability == ConsumerDurability.DURABLE)
@@ -711,16 +711,16 @@ public class HornetQSession implements QueueSession, TopicSession
             }
          }
 
-         SimpleString coreFilterString = null;
+         String coreFilterString = null;
 
          if (selectorString != null)
          {
-            coreFilterString = new SimpleString(SelectorTranslator.convertToHornetQFilterString(selectorString));
+            coreFilterString = new String(SelectorTranslator.convertToHornetQFilterString(selectorString));
          }
 
          ClientConsumer consumer;
 
-         SimpleString autoDeleteQueueName = null;
+         String autoDeleteQueueName = null;
 
          if (dest.isQueue())
          {
@@ -746,7 +746,7 @@ public class HornetQSession implements QueueSession, TopicSession
 
             connection.addKnownDestination(dest.getSimpleAddress());
 
-            SimpleString queueName;
+            String queueName;
 
             if (subscriptionName == null)
             {
@@ -754,7 +754,7 @@ public class HornetQSession implements QueueSession, TopicSession
                   throw new RuntimeException("Subscription name cannot be null for durable topic consumer");
                // Non durable sub
 
-               queueName = new SimpleString(UUID.randomUUID().toString());
+               queueName = new String(UUID.randomUUID().toString());
 
                session.createTemporaryQueue(dest.getSimpleAddress(), queueName, coreFilterString);
 
@@ -777,7 +777,7 @@ public class HornetQSession implements QueueSession, TopicSession
                   throw new InvalidDestinationException("Cannot create a durable subscription on a temporary topic");
                }
 
-               queueName = new SimpleString(HornetQDestination.createQueueNameForDurableSubscription(true, connection.getClientID(),
+               queueName = new String(HornetQDestination.createQueueNameForDurableSubscription(true, connection.getClientID(),
                                                                                                      subscriptionName));
 
                QueueQuery subResponse = session.queueQuery(queueName);
@@ -803,7 +803,7 @@ public class HornetQSession implements QueueSession, TopicSession
                   // unsubscribing (deleting) the old
                   // one and creating a new one.
 
-                  SimpleString oldFilterString = subResponse.getFilterString();
+                  String oldFilterString = subResponse.getFilterString();
 
                   boolean selectorChanged = coreFilterString == null && oldFilterString != null ||
                                             oldFilterString == null &&
@@ -812,7 +812,7 @@ public class HornetQSession implements QueueSession, TopicSession
                                             coreFilterString != null &&
                                             !oldFilterString.equals(coreFilterString);
 
-                  SimpleString oldTopicName = subResponse.getAddress();
+                  String oldTopicName = subResponse.getAddress();
 
                   boolean topicChanged = !oldTopicName.equals(dest.getSimpleAddress());
 
@@ -883,12 +883,12 @@ public class HornetQSession implements QueueSession, TopicSession
       {
          if (filterString != null)
          {
-            new FilterParser().parse(new SimpleString(filterString.trim()), new HashMap<SimpleString, Identifier>());
+            new FilterParser().parse(new String(filterString.trim()), new HashMap<String, Identifier>());
          }
       }
       catch (ParseException e)
       {
-         throw JMSExceptionHelper.convertFromHornetQException(HornetQJMSClientBundle.BUNDLE.invalidFilter(e, new SimpleString(filterString)));
+         throw JMSExceptionHelper.convertFromHornetQException(HornetQJMSClientBundle.BUNDLE.invalidFilter(e, new String(filterString)));
       }
 
       HornetQDestination jbq = (HornetQDestination)queue;
@@ -900,7 +900,7 @@ public class HornetQSession implements QueueSession, TopicSession
 
       try
       {
-         BindingQuery message = session.bindingQuery(new SimpleString(jbq.getAddress()));
+         BindingQuery message = session.bindingQuery(new String(jbq.getAddress()));
          if (!message.isExists())
          {
             throw new InvalidDestinationException(jbq.getAddress() + " does not exist");
@@ -927,7 +927,7 @@ public class HornetQSession implements QueueSession, TopicSession
       {
          HornetQTemporaryQueue queue = HornetQDestination.createTemporaryQueue(this);
 
-         SimpleString simpleAddress = queue.getSimpleAddress();
+         String simpleAddress = queue.getSimpleAddress();
 
          session.createTemporaryQueue(simpleAddress, simpleAddress);
 
@@ -953,7 +953,7 @@ public class HornetQSession implements QueueSession, TopicSession
       {
          HornetQTemporaryTopic topic = HornetQDestination.createTemporaryTopic(this);
 
-         SimpleString simpleAddress = topic.getSimpleAddress();
+         String simpleAddress = topic.getSimpleAddress();
 
          // We create a dummy subscription on the topic, that never receives messages - this is so we can perform JMS
          // checks when routing messages to a topic that
@@ -980,7 +980,7 @@ public class HornetQSession implements QueueSession, TopicSession
          throw new IllegalStateException("Cannot unsubscribe using a QueueSession");
       }
 
-      SimpleString queueName = new SimpleString(HornetQDestination.createQueueNameForDurableSubscription(true, connection.getClientID(),
+      String queueName = new String(HornetQDestination.createQueueNameForDurableSubscription(true, connection.getClientID(),
                                                                                                          name));
 
       try
@@ -1118,7 +1118,7 @@ public class HornetQSession implements QueueSession, TopicSession
                                             " since it has subscribers");
          }
 
-         SimpleString address = tempTopic.getSimpleAddress();
+         String address = tempTopic.getSimpleAddress();
 
          session.deleteQueue(address);
 
@@ -1152,7 +1152,7 @@ public class HornetQSession implements QueueSession, TopicSession
                                             " since it has subscribers");
          }
 
-         SimpleString address = tempQueue.getSimpleAddress();
+         String address = tempQueue.getSimpleAddress();
 
          session.deleteQueue(address);
 
@@ -1195,7 +1195,7 @@ public class HornetQSession implements QueueSession, TopicSession
 
    // Package protected ---------------------------------------------
 
-   void deleteQueue(final SimpleString queueName) throws JMSException
+   void deleteQueue(final String queueName) throws JMSException
    {
       if (!session.isClosed())
       {

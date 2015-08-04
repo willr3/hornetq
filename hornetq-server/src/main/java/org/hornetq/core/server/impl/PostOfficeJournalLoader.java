@@ -12,17 +12,8 @@
  */
 package org.hornetq.core.server.impl;
 
-import javax.transaction.xa.Xid;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.filter.impl.FilterImpl;
@@ -42,18 +33,18 @@ import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.DuplicateIDCache;
 import org.hornetq.core.postoffice.PostOffice;
 import org.hornetq.core.postoffice.impl.LocalQueueBinding;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.MessageReference;
-import org.hornetq.core.server.NodeManager;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.QueueFactory;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.group.GroupingHandler;
 import org.hornetq.core.server.group.impl.GroupBinding;
 import org.hornetq.core.server.management.ManagementService;
 import org.hornetq.core.transaction.ResourceManager;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.impl.TransactionImpl;
+
+import javax.transaction.xa.Xid;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PostOfficeJournalLoader implements JournalLoader
 {
@@ -130,7 +121,7 @@ public class PostOfficeJournalLoader implements JournalLoader
             else
             {
 
-               SimpleString newName = queueBindingInfo.getQueueName().concat("-" + (duplicateID++));
+               String newName = queueBindingInfo.getQueueName().concat("-" + (duplicateID++));
                HornetQServerLogger.LOGGER.queueDuplicatedRenaming(queueBindingInfo.getQueueName().toString(), newName.toString());
                queueBindingInfo.replaceQueueName(newName);
             }
@@ -255,11 +246,11 @@ public class PostOfficeJournalLoader implements JournalLoader
    }
 
    @Override
-   public void handleDuplicateIds(Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception
+   public void handleDuplicateIds(Map<String, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception
    {
-      for (Map.Entry<SimpleString, List<Pair<byte[], Long>>> entry : duplicateIDMap.entrySet())
+      for (Map.Entry<String, List<Pair<byte[], Long>>> entry : duplicateIDMap.entrySet())
       {
-         SimpleString address = entry.getKey();
+         String address = entry.getKey();
 
          DuplicateIDCache cache = postOffice.getDuplicateIDCache(address);
 
@@ -346,9 +337,9 @@ public class PostOfficeJournalLoader implements JournalLoader
 
       Transaction txRecoverCounter = new TransactionImpl(storageManager);
 
-      Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = generateMapsOnPendingCount(queues, pendingNonTXPageCounter, txRecoverCounter);
+      Map<String, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = generateMapsOnPendingCount(queues, pendingNonTXPageCounter, txRecoverCounter);
 
-      for (SimpleString address : perAddressMap.keySet())
+      for (String address : perAddressMap.keySet())
       {
          PagingStore store = pagingManager.getPageStore(address);
          Map<Long, Map<Long, List<PageCountPending>>> perPageMap = perAddressMap.get(address);
@@ -447,11 +438,11 @@ public class PostOfficeJournalLoader implements JournalLoader
     * @return
     * @throws Exception
     */
-   private Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>>
+   private Map<String, Map<Long, Map<Long, List<PageCountPending>>>>
    generateMapsOnPendingCount(Map<Long, Queue> queues, List<PageCountPending>
       pendingNonTXPageCounter, Transaction txRecoverCounter) throws Exception
    {
-      Map<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = new HashMap<SimpleString, Map<Long, Map<Long, List<PageCountPending>>>>();
+      Map<String, Map<Long, Map<Long, List<PageCountPending>>>> perAddressMap = new HashMap<String, Map<Long, Map<Long, List<PageCountPending>>>>();
       for (PageCountPending pgCount : pendingNonTXPageCounter)
       {
          long queueID = pgCount.getQueueID();
@@ -470,7 +461,7 @@ public class PostOfficeJournalLoader implements JournalLoader
          }
 
          // Level 1 on the structure, per address
-         SimpleString address = queue.getAddress();
+         String address = queue.getAddress();
 
          Map<Long, Map<Long, List<PageCountPending>>> perPageMap = perAddressMap.get(address);
 

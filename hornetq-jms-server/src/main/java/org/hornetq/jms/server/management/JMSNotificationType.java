@@ -12,7 +12,7 @@
  */
 package org.hornetq.jms.server.management;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.NotificationType;
 
 public enum JMSNotificationType implements NotificationType
@@ -24,7 +24,7 @@ public enum JMSNotificationType implements NotificationType
    CONNECTION_FACTORY_CREATED(4),
    CONNECTION_FACTORY_DESTROYED(5);
 
-   public static final SimpleString MESSAGE = new SimpleString("message");
+   public static final String MESSAGE = new String("message");
 
    private int type;
 

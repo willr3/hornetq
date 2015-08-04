@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.postoffice.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.BindingType;
 import org.hornetq.core.postoffice.QueueBinding;
@@ -27,17 +27,17 @@ import org.hornetq.core.server.ServerMessage;
  */
 public class LocalQueueBinding implements QueueBinding
 {
-   private final SimpleString address;
+   private final String address;
 
    private final Queue queue;
 
    private final Filter filter;
 
-   private final SimpleString name;
+   private final String name;
 
-   private final SimpleString clusterName;
+   private final String clusterName;
 
-   public LocalQueueBinding(final SimpleString address, final Queue queue, final SimpleString nodeID)
+   public LocalQueueBinding(final String address, final Queue queue, final String nodeID)
    {
       this.address = address;
 
@@ -60,7 +60,7 @@ public class LocalQueueBinding implements QueueBinding
       return filter;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -75,17 +75,17 @@ public class LocalQueueBinding implements QueueBinding
       return queue;
    }
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return name;
    }
 
-   public SimpleString getUniqueName()
+   public String getUniqueName()
    {
       return name;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return clusterName;
    }
@@ -108,7 +108,7 @@ public class LocalQueueBinding implements QueueBinding
    }
 
    @Override
-   public void unproposed(SimpleString groupID)
+   public void unproposed(String groupID)
    {
       queue.unproposed(groupID);
    }

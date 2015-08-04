@@ -12,16 +12,7 @@
  */
 package org.hornetq.tests.soak.client;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.DivertConfiguration;
 import org.hornetq.core.server.HornetQServer;
@@ -30,6 +21,10 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A ClientSoakTest
@@ -43,11 +38,11 @@ public class ClientSoakTest extends ServiceTestBase
 
    // Attributes ----------------------------------------------------
 
-   private static final SimpleString ADDRESS = new SimpleString("ADD");
+   private static final String ADDRESS = new String("ADD");
 
-   private static final SimpleString DIVERTED_AD1 = ClientSoakTest.ADDRESS.concat("-1");
+   private static final String DIVERTED_AD1 = ClientSoakTest.ADDRESS.concat("-1");
 
-   private static final SimpleString DIVERTED_AD2 = ClientSoakTest.ADDRESS.concat("-2");
+   private static final String DIVERTED_AD2 = ClientSoakTest.ADDRESS.concat("-2");
 
    private static final boolean IS_NETTY = true;
 

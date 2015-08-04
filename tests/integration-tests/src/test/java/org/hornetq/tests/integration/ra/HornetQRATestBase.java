@@ -12,27 +12,6 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.resource.ResourceException;
-import javax.resource.spi.ActivationSpec;
-import javax.resource.spi.BootstrapContext;
-import javax.resource.spi.UnavailableException;
-import javax.resource.spi.XATerminator;
-import javax.resource.spi.endpoint.MessageEndpoint;
-import javax.resource.spi.endpoint.MessageEndpointFactory;
-import javax.resource.spi.work.ExecutionContext;
-import javax.resource.spi.work.Work;
-import javax.resource.spi.work.WorkException;
-import javax.resource.spi.work.WorkListener;
-import javax.resource.spi.work.WorkManager;
-import javax.transaction.xa.XAResource;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.Timer;
-import java.util.concurrent.CountDownLatch;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.jms.client.HornetQMessage;
@@ -42,6 +21,22 @@ import org.hornetq.tests.util.JMSTestBase;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.After;
 import org.junit.Before;
+
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.resource.ResourceException;
+import javax.resource.spi.ActivationSpec;
+import javax.resource.spi.BootstrapContext;
+import javax.resource.spi.UnavailableException;
+import javax.resource.spi.XATerminator;
+import javax.resource.spi.endpoint.MessageEndpoint;
+import javax.resource.spi.endpoint.MessageEndpointFactory;
+import javax.resource.spi.work.*;
+import javax.transaction.xa.XAResource;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Timer;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -54,7 +49,7 @@ public abstract class HornetQRATestBase extends JMSTestBase
    protected static final String MDBQUEUE = "mdbQueue";
    protected static final String DLQ = "dlqQueue";
    protected static final String MDBQUEUEPREFIXED = "jms.queue.mdbQueue";
-   protected static final SimpleString MDBQUEUEPREFIXEDSIMPLE = new SimpleString("jms.queue.mdbQueue");
+   protected static final String MDBQUEUEPREFIXEDSIMPLE = new String("jms.queue.mdbQueue");
 
    @Override
    @Before
@@ -70,7 +65,7 @@ public abstract class HornetQRATestBase extends JMSTestBase
    protected void setupDLQ(int maxDeliveries)
    {
       AddressSettings settings = new AddressSettings();
-      settings.setDeadLetterAddress(SimpleString.toSimpleString("jms.queue." + DLQ));
+      settings.setDeadLetterAddress(("jms.queue." + DLQ));
       settings.setMaxDeliveryAttempts(maxDeliveries);
       server.getAddressSettingsRepository().addMatch("#", settings);
    }

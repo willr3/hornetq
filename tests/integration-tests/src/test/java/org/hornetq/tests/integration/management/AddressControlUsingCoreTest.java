@@ -23,7 +23,7 @@ import java.util.Set;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -65,8 +65,8 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
    @Test
    public void testGetAddress() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, false);
 
@@ -80,9 +80,9 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
    @Test
    public void testGetQueueNames() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString anotherQueue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String anotherQueue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, true);
 
@@ -107,8 +107,8 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
    @Test
    public void testGetBindingNames() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
       String divertName = RandomUtil.randomString();
 
       session.createQueue(address, queue, false);
@@ -133,8 +133,8 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
    @Test
    public void testGetRoles() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
       Role role = new Role(RandomUtil.randomString(),
                            RandomUtil.randomBoolean(),
                            RandomUtil.randomBoolean(),
@@ -198,7 +198,7 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
       session.start();
    }
 
-   protected CoreMessagingProxy createProxy(final SimpleString address) throws Exception
+   protected CoreMessagingProxy createProxy(final String address) throws Exception
    {
       CoreMessagingProxy proxy = new CoreMessagingProxy(session, ResourceNames.CORE_ADDRESS + address);
 
@@ -214,7 +214,7 @@ public class AddressControlUsingCoreTest extends ManagementTestBase
       super.tearDown();
    }
 
-   protected AddressControl createManagementControl(final SimpleString address) throws Exception
+   protected AddressControl createManagementControl(final String address) throws Exception
    {
       return ManagementControlHelper.createAddressControl(address, mbeanServer);
    }

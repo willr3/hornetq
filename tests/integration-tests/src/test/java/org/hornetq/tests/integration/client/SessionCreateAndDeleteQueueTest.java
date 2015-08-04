@@ -14,7 +14,7 @@ package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.postoffice.Binding;
@@ -34,9 +34,9 @@ public class SessionCreateAndDeleteQueueTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString address = new SimpleString("address");
+   private final String address = new String("address");
 
-   private final SimpleString queueName = new SimpleString("queue");
+   private final String queueName = new String("queue");
 
    private ServerLocator locator;
 
@@ -93,7 +93,7 @@ public class SessionCreateAndDeleteQueueTest extends ServiceTestBase
    public void testcreateWithFilter() throws Exception
    {
       ClientSession session = createSessionFactory(locator).createSession(false, true, true);
-      SimpleString filterString = new SimpleString("x=y");
+      String filterString = new String("x=y");
       session.createQueue(address, queueName, filterString, false);
       Binding binding = server.getPostOffice().getBinding(queueName);
       Queue q = (Queue) binding.getBindable();
@@ -109,7 +109,7 @@ public class SessionCreateAndDeleteQueueTest extends ServiceTestBase
       addressSettings.setLastValueQueue(true);
       server.getAddressSettingsRepository().addMatch(address.toString(), addressSettings);
       ClientSession session = createSessionFactory(locator).createSession(false, true, true);
-      SimpleString filterString = new SimpleString("x=y");
+      String filterString = new String("x=y");
       session.createQueue(address, queueName, filterString, false);
       Binding binding = server.getPostOffice().getBinding(queueName);
       Assert.assertTrue(binding.getBindable() instanceof LastValueQueue);

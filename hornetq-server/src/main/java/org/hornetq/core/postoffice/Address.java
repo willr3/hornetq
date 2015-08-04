@@ -14,7 +14,7 @@ package org.hornetq.core.postoffice;
 
 import java.util.List;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * USed to hold a hierarchical style address, delimited by a '.'.
@@ -22,9 +22,9 @@ import org.hornetq.api.core.SimpleString;
  */
 public interface Address
 {
-   SimpleString getAddress();
+   String getAddress();
 
-   SimpleString[] getAddressParts();
+   String[] getAddressParts();
 
    boolean containsWildCard();
 

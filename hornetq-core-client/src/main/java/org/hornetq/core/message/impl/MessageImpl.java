@@ -12,23 +12,18 @@
  */
 package org.hornetq.core.message.impl;
 
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.*;
 import org.hornetq.core.buffers.impl.ResetLimitWrappedHornetQBuffer;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.TypedProperties;
 import org.hornetq.utils.UUID;
+
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A concrete implementation of a message
@@ -43,10 +38,10 @@ import org.hornetq.utils.UUID;
  */
 public abstract class MessageImpl implements MessageInternal
 {
-   public static final SimpleString HDR_ROUTE_TO_IDS = new SimpleString("_HQ_ROUTE_TO");
+   public static final String HDR_ROUTE_TO_IDS = new String("_HQ_ROUTE_TO");
 
    // used by the bridges to set duplicates
-   public static final SimpleString HDR_BRIDGE_DUPLICATE_ID = new SimpleString("_HQ_BRIDGE_DUP");
+   public static final String HDR_BRIDGE_DUPLICATE_ID = new String("_HQ_BRIDGE_DUP");
 
    public static final int BUFFER_HEADER_SPACE = PacketImpl.PACKET_HEADERS_SIZE;
 
@@ -54,7 +49,7 @@ public abstract class MessageImpl implements MessageInternal
 
    protected long messageID;
 
-   protected SimpleString address;
+   protected String address;
 
    protected byte type;
 
@@ -190,7 +185,7 @@ public abstract class MessageImpl implements MessageInternal
       return DataConstants.SIZE_LONG + // Message ID
          DataConstants.SIZE_BYTE + // user id null?
          (userID == null ? 0 : 16) +
-             /* address */SimpleString.sizeofNullableString(address) +
+             /* address */SSU.sizeof(address) +
          DataConstants./* Type */SIZE_BYTE +
          DataConstants./* Durable */SIZE_BOOLEAN +
          DataConstants./* Expiration */SIZE_LONG +
@@ -302,7 +297,7 @@ public abstract class MessageImpl implements MessageInternal
     * this doesn't need to be synchronized as setAddress is protecting the buffer,
     * not the address
     */
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -312,7 +307,7 @@ public abstract class MessageImpl implements MessageInternal
     * This synchronization can probably be removed since setAddress is always called from a single thread.
     * However I will keep it as it's harmless and it's been well tested
     */
-   public Message setAddress(final SimpleString address)
+   public Message setAddress(final String address)
    {
       // This is protecting the buffer
       synchronized (this)
@@ -423,7 +418,7 @@ public abstract class MessageImpl implements MessageInternal
       map.put("expiration", expiration);
       map.put("timestamp", timestamp);
       map.put("priority", priority);
-      for (SimpleString propName : properties.getPropertyNames())
+      for (String propName : properties.getPropertyNames())
       {
          map.put(propName.toString(), properties.getProperty(propName));
       }
@@ -527,7 +522,7 @@ public abstract class MessageImpl implements MessageInternal
       }
    }
 
-   public void setAddressTransient(final SimpleString address)
+   public void setAddressTransient(final String address)
    {
       this.address = address;
    }
@@ -536,7 +531,7 @@ public abstract class MessageImpl implements MessageInternal
    // Properties
    // ---------------------------------------------------------------------------------------
 
-   public Message putBooleanProperty(final SimpleString key, final boolean value)
+   public Message putBooleanProperty(final String key, final boolean value)
    {
       properties.putBooleanProperty(key, value);
 
@@ -545,7 +540,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putByteProperty(final SimpleString key, final byte value)
+   public Message putByteProperty(final String key, final byte value)
    {
       properties.putByteProperty(key, value);
 
@@ -554,7 +549,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putBytesProperty(final SimpleString key, final byte[] value)
+   public Message putBytesProperty(final String key, final byte[] value)
    {
       properties.putBytesProperty(key, value);
 
@@ -564,7 +559,7 @@ public abstract class MessageImpl implements MessageInternal
    }
 
    @Override
-   public Message putCharProperty(SimpleString key, char value)
+   public Message putCharProperty(String key, char value)
    {
       properties.putCharProperty(key, value);
       bufferValid = false;
@@ -572,16 +567,16 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   @Override
-   public Message putCharProperty(String key, char value)
-   {
-      properties.putCharProperty(new SimpleString(key), value);
-      bufferValid = false;
+//   @Override
+//   public Message putCharProperty(String key, char value)
+//   {
+//      properties.putCharProperty(new String(key), value);
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      return this;
-   }
-
-   public Message putShortProperty(final SimpleString key, final short value)
+   public Message putShortProperty(final String key, final short value)
    {
       properties.putShortProperty(key, value);
       bufferValid = false;
@@ -589,7 +584,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putIntProperty(final SimpleString key, final int value)
+   public Message putIntProperty(final String key, final int value)
    {
       properties.putIntProperty(key, value);
       bufferValid = false;
@@ -597,7 +592,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putLongProperty(final SimpleString key, final long value)
+   public Message putLongProperty(final String key, final long value)
    {
       properties.putLongProperty(key, value);
       bufferValid = false;
@@ -605,7 +600,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putFloatProperty(final SimpleString key, final float value)
+   public Message putFloatProperty(final String key, final float value)
    {
       properties.putFloatProperty(key, value);
 
@@ -614,7 +609,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putDoubleProperty(final SimpleString key, final double value)
+   public Message putDoubleProperty(final String key, final double value)
    {
       properties.putDoubleProperty(key, value);
 
@@ -623,7 +618,7 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putStringProperty(final SimpleString key, final SimpleString value)
+   public Message putStringProperty(final String key, final String value)
    {
       properties.putSimpleStringProperty(key, value);
 
@@ -632,103 +627,103 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Message putObjectProperty(final SimpleString key, final Object value) throws HornetQPropertyConversionException
-   {
-      TypedProperties.setObjectProperty(key, value, properties);
-      bufferValid = false;
-
-      return this;
-   }
+//   public Message putObjectProperty(final String key, final Object value) throws HornetQPropertyConversionException
+//   {
+//      TypedProperties.setObjectProperty(key, value, properties);
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
    public Message putObjectProperty(final String key, final Object value) throws HornetQPropertyConversionException
    {
-      putObjectProperty(new SimpleString(key), value);
+      putObjectProperty(new String(key), value);
 
       bufferValid = false;
 
       return this;
    }
 
-   public Message putBooleanProperty(final String key, final boolean value)
-   {
-      properties.putBooleanProperty(new SimpleString(key), value);
+//   public Message putBooleanProperty(final String key, final boolean value)
+//   {
+//      properties.putBooleanProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      bufferValid = false;
+//   public Message putByteProperty(final String key, final byte value)
+//   {
+//      properties.putByteProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      return this;
-   }
+//   public Message putBytesProperty(final String key, final byte[] value)
+//   {
+//      properties.putBytesProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-   public Message putByteProperty(final String key, final byte value)
-   {
-      properties.putByteProperty(new SimpleString(key), value);
+//   public Message putShortProperty(final String key, final short value)
+//   {
+//      properties.putShortProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      bufferValid = false;
+//   public Message putIntProperty(final String key, final int value)
+//   {
+//      properties.putIntProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      return this;
-   }
+//   public Message putLongProperty(final String key, final long value)
+//   {
+//      properties.putLongProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-   public Message putBytesProperty(final String key, final byte[] value)
-   {
-      properties.putBytesProperty(new SimpleString(key), value);
+//   public Message putFloatProperty(final String key, final float value)
+//   {
+//      properties.putFloatProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      bufferValid = false;
+//   public Message putDoubleProperty(final String key, final double value)
+//   {
+//      properties.putDoubleProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
-      return this;
-   }
-
-   public Message putShortProperty(final String key, final short value)
-   {
-      properties.putShortProperty(new SimpleString(key), value);
-
-      bufferValid = false;
-
-      return this;
-   }
-
-   public Message putIntProperty(final String key, final int value)
-   {
-      properties.putIntProperty(new SimpleString(key), value);
-
-      bufferValid = false;
-
-      return this;
-   }
-
-   public Message putLongProperty(final String key, final long value)
-   {
-      properties.putLongProperty(new SimpleString(key), value);
-
-      bufferValid = false;
-
-      return this;
-   }
-
-   public Message putFloatProperty(final String key, final float value)
-   {
-      properties.putFloatProperty(new SimpleString(key), value);
-
-      bufferValid = false;
-
-      return this;
-   }
-
-   public Message putDoubleProperty(final String key, final double value)
-   {
-      properties.putDoubleProperty(new SimpleString(key), value);
-
-      bufferValid = false;
-
-      return this;
-   }
-
-   public Message putStringProperty(final String key, final String value)
-   {
-      properties.putSimpleStringProperty(new SimpleString(key), SimpleString.toSimpleString(value));
-
-      bufferValid = false;
-
-      return this;
-   }
+//   public Message putStringProperty(final String key, final String value)
+//   {
+//      properties.putSimpleStringProperty(new String(key), value);
+//
+//      bufferValid = false;
+//
+//      return this;
+//   }
 
    public Message putTypedProperties(final TypedProperties otherProps)
    {
@@ -739,94 +734,94 @@ public abstract class MessageImpl implements MessageInternal
       return this;
    }
 
-   public Object getObjectProperty(final SimpleString key)
+   public Object getObjectProperty(final String key)
    {
       return properties.getProperty(key);
    }
 
-   public Boolean getBooleanProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Boolean getBooleanProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getBooleanProperty(key);
    }
 
-   public Boolean getBooleanProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getBooleanProperty(new SimpleString(key));
-   }
+//   public Boolean getBooleanProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getBooleanProperty(new String(key));
+//   }
 
-   public Byte getByteProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Byte getByteProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getByteProperty(key);
    }
 
-   public Byte getByteProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getByteProperty(new SimpleString(key));
-   }
+//   public Byte getByteProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getByteProperty(new String(key));
+//   }
 
-   public byte[] getBytesProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public byte[] getBytesProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getBytesProperty(key);
    }
 
-   public byte[] getBytesProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return getBytesProperty(new SimpleString(key));
-   }
+//   public byte[] getBytesProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return getBytesProperty(new String(key));
+//   }
 
-   public Double getDoubleProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Double getDoubleProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getDoubleProperty(key);
    }
 
-   public Double getDoubleProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getDoubleProperty(new SimpleString(key));
-   }
+//   public Double getDoubleProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getDoubleProperty(new String(key));
+//   }
 
-   public Integer getIntProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Integer getIntProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getIntProperty(key);
    }
 
-   public Integer getIntProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getIntProperty(new SimpleString(key));
-   }
+//   public Integer getIntProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getIntProperty(new String(key));
+//   }
 
-   public Long getLongProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Long getLongProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getLongProperty(key);
    }
 
-   public Long getLongProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getLongProperty(new SimpleString(key));
-   }
+//   public Long getLongProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getLongProperty(new String(key));
+//   }
 
-   public Short getShortProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Short getShortProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getShortProperty(key);
    }
 
-   public Short getShortProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getShortProperty(new SimpleString(key));
-   }
+//   public Short getShortProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getShortProperty(new String(key));
+//   }
 
-   public Float getFloatProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public Float getFloatProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getFloatProperty(key);
    }
 
-   public Float getFloatProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getFloatProperty(new SimpleString(key));
-   }
+//   public Float getFloatProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getFloatProperty(new String(key));
+//   }
 
-   public String getStringProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public String getStringProperty(final String key) throws HornetQPropertyConversionException
    {
-      SimpleString str = getSimpleStringProperty(key);
+      String str = getSimpleStringProperty(key);
 
       if (str == null)
       {
@@ -838,51 +833,51 @@ public abstract class MessageImpl implements MessageInternal
       }
    }
 
-   public String getStringProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return getStringProperty(new SimpleString(key));
-   }
+//   public String getStringProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return getStringProperty(new String(key));
+//   }
 
-   public SimpleString getSimpleStringProperty(final SimpleString key) throws HornetQPropertyConversionException
+   public String getSimpleStringProperty(final String key) throws HornetQPropertyConversionException
    {
       return properties.getSimpleStringProperty(key);
    }
 
-   public SimpleString getSimpleStringProperty(final String key) throws HornetQPropertyConversionException
-   {
-      return properties.getSimpleStringProperty(new SimpleString(key));
-   }
+//   public String getSimpleStringProperty(final String key) throws HornetQPropertyConversionException
+//   {
+//      return properties.getSimpleStringProperty(new String(key));
+//   }
 
-   public Object getObjectProperty(final String key)
-   {
-      return properties.getProperty(new SimpleString(key));
-   }
+//   public Object getObjectProperty(final String key)
+//   {
+//      return properties.getProperty(new String(key));
+//   }
 
-   public Object removeProperty(final SimpleString key)
+   public Object removeProperty(final String key)
    {
       bufferValid = false;
 
       return properties.removeProperty(key);
    }
 
-   public Object removeProperty(final String key)
-   {
-      bufferValid = false;
+//   public Object removeProperty(final String key)
+//   {
+//      bufferValid = false;
+//
+//      return properties.removeProperty(new String(key));
+//   }
 
-      return properties.removeProperty(new SimpleString(key));
-   }
-
-   public boolean containsProperty(final SimpleString key)
+   public boolean containsProperty(final String key)
    {
       return properties.containsProperty(key);
    }
 
-   public boolean containsProperty(final String key)
-   {
-      return properties.containsProperty(new SimpleString(key));
-   }
+//   public boolean containsProperty(final String key)
+//   {
+//      return properties.containsProperty(new String(key));
+//   }
 
-   public Set<SimpleString> getPropertyNames()
+   public Set<String> getPropertyNames()
    {
       return properties.getPropertyNames();
    }

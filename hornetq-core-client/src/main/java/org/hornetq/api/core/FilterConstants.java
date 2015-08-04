@@ -22,47 +22,47 @@ public final class FilterConstants
    /**
     * Name of the HornetQ UserID header.
     */
-   public static final SimpleString HORNETQ_USERID = new SimpleString("HQUserID");
+   public static final String HORNETQ_USERID = new String("HQUserID");
 
    /**
     * Name of the HornetQ Message expiration header.
     */
-   public static final SimpleString HORNETQ_EXPIRATION = new SimpleString("HQExpiration");
+   public static final String HORNETQ_EXPIRATION = new String("HQExpiration");
 
    /**
     * Name of the HornetQ Message durable header.
     */
-   public static final SimpleString HORNETQ_DURABLE = new SimpleString("HQDurable");
+   public static final String HORNETQ_DURABLE = new String("HQDurable");
 
    /**
     * Value for the Durable header when the message is non-durable.
     */
-   public static final SimpleString NON_DURABLE = new SimpleString("NON_DURABLE");
+   public static final String NON_DURABLE = new String("NON_DURABLE");
 
    /**
     * Value for the Durable header when the message is durable.
     */
-   public static final SimpleString DURABLE = new SimpleString("DURABLE");
+   public static final String DURABLE = new String("DURABLE");
 
    /**
     * Name of the HornetQ Message timestamp header.
     */
-   public static final SimpleString HORNETQ_TIMESTAMP = new SimpleString("HQTimestamp");
+   public static final String HORNETQ_TIMESTAMP = new String("HQTimestamp");
 
    /**
     * Name of the HornetQ Message priority header.
     */
-   public static final SimpleString HORNETQ_PRIORITY = new SimpleString("HQPriority");
+   public static final String HORNETQ_PRIORITY = new String("HQPriority");
 
    /**
     * Name of the HornetQ Message size header.
     */
-   public static final SimpleString HORNETQ_SIZE = new SimpleString("HQSize");
+   public static final String HORNETQ_SIZE = new String("HQSize");
 
    /**
     * All HornetQ headers are prepended by this prefix.
     */
-   public static final SimpleString HORNETQ_PREFIX = new SimpleString("HQ");
+   public static final String HORNETQ_PREFIX = new String("HQ");
 
    private FilterConstants()
    {

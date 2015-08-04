@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A ProducerCreditManager
@@ -27,9 +27,9 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
 {
    public static final int MAX_UNREFERENCED_CREDITS_CACHE_SIZE = 1000;
 
-   private final Map<SimpleString, ClientProducerCredits> producerCredits = new LinkedHashMap<SimpleString, ClientProducerCredits>();
+   private final Map<String, ClientProducerCredits> producerCredits = new LinkedHashMap<String, ClientProducerCredits>();
 
-   private final Map<SimpleString, ClientProducerCredits> unReferencedCredits = new LinkedHashMap<SimpleString, ClientProducerCredits>();
+   private final Map<String, ClientProducerCredits> unReferencedCredits = new LinkedHashMap<String, ClientProducerCredits>();
 
    private final ClientSessionInternal session;
 
@@ -42,7 +42,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       this.windowSize = windowSize;
    }
 
-   public synchronized ClientProducerCredits getCredits(final SimpleString address, final boolean anon)
+   public synchronized ClientProducerCredits getCredits(final String address, final boolean anon)
    {
       if (windowSize == -1)
       {
@@ -91,7 +91,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       }
    }
 
-   public synchronized void returnCredits(final SimpleString address)
+   public synchronized void returnCredits(final String address)
    {
       ClientProducerCredits credits = producerCredits.get(address);
 
@@ -101,7 +101,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       }
    }
 
-   public synchronized void receiveCredits(final SimpleString address, final int credits)
+   public synchronized void receiveCredits(final String address, final int credits)
    {
       ClientProducerCredits cr = producerCredits.get(address);
 
@@ -111,7 +111,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       }
    }
 
-   public synchronized void receiveFailCredits(final SimpleString address, int credits)
+   public synchronized void receiveFailCredits(final String address, int credits)
    {
       ClientProducerCredits cr = producerCredits.get(address);
 
@@ -153,7 +153,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       return unReferencedCredits.size();
    }
 
-   private void addToUnReferencedCache(final SimpleString address, final ClientProducerCredits credits)
+   private void addToUnReferencedCache(final String address, final ClientProducerCredits credits)
    {
       unReferencedCredits.put(address, credits);
 
@@ -161,9 +161,9 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       {
          // Remove the oldest entry
 
-         Iterator<Map.Entry<SimpleString, ClientProducerCredits>> iter = unReferencedCredits.entrySet().iterator();
+         Iterator<Map.Entry<String, ClientProducerCredits>> iter = unReferencedCredits.entrySet().iterator();
 
-         Map.Entry<SimpleString, ClientProducerCredits> oldest = iter.next();
+         Map.Entry<String, ClientProducerCredits> oldest = iter.next();
 
          iter.remove();
 
@@ -171,7 +171,7 @@ public class ClientProducerCreditManagerImpl implements ClientProducerCreditMana
       }
    }
 
-   private void removeEntry(final SimpleString address, final ClientProducerCredits credits)
+   private void removeEntry(final String address, final ClientProducerCredits credits)
    {
       producerCredits.remove(address);
 

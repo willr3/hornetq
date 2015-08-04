@@ -14,7 +14,7 @@ package org.hornetq.api.core.client;
 
 import java.util.UUID;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.impl.ClientMessageImpl;
 
 /**
@@ -37,7 +37,7 @@ public final class ClientRequestor
 
    private final ClientConsumer replyConsumer;
 
-   private final SimpleString replyQueue;
+   private final String replyQueue;
 
    /**
     * Constructor for the ClientRequestor.
@@ -48,23 +48,23 @@ public final class ClientRequestor
     * @param requestAddress the address to send request messages to
     * @throws Exception
     */
-   public ClientRequestor(final ClientSession session, final SimpleString requestAddress) throws Exception
+   public ClientRequestor(final ClientSession session, final String requestAddress) throws Exception
    {
       queueSession = session;
 
       requestProducer = queueSession.createProducer(requestAddress);
-      replyQueue = new SimpleString(requestAddress + "." + UUID.randomUUID().toString());
+      replyQueue = new String(requestAddress + "." + UUID.randomUUID().toString());
       queueSession.createTemporaryQueue(replyQueue, replyQueue);
       replyConsumer = queueSession.createConsumer(replyQueue);
    }
 
    /**
-    * @see ClientRequestor#ClientRequestor(ClientSession, SimpleString)
+    * @see ClientRequestor#ClientRequestor(ClientSession, String)
     */
-   public ClientRequestor(final ClientSession session, final String requestAddress) throws Exception
-   {
-      this(session, SimpleString.toSimpleString(requestAddress));
-   }
+//   public ClientRequestor(final ClientSession session, final String requestAddress) throws Exception
+//   {
+//      this(session, SS.toSimpleString(requestAddress));
+//   }
 
    /**
     * Sends a message to the request address and wait indefinitely for a reply.

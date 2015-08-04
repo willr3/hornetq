@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.server.cluster;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.Consumer;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.Queue;
@@ -31,11 +31,11 @@ import org.hornetq.spi.core.protocol.RemotingConnection;
  */
 public interface Bridge extends Consumer, HornetQComponent
 {
-   SimpleString getName();
+   String getName();
 
    Queue getQueue();
 
-   SimpleString getForwardingAddress();
+   String getForwardingAddress();
 
    void flushExecutor();
 

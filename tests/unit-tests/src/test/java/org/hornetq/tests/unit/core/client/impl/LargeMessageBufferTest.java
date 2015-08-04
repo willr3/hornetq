@@ -12,23 +12,9 @@
  */
 package org.hornetq.tests.unit.core.client.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.MessageHandler;
 import org.hornetq.core.client.impl.ClientConsumerInternal;
@@ -46,6 +32,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A LargeMessageBufferUnitTest
@@ -868,7 +859,7 @@ public class LargeMessageBufferTest extends UnitTestCase
          return 0;
       }
 
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
 
          return null;
@@ -880,7 +871,7 @@ public class LargeMessageBufferTest extends UnitTestCase
          return 0;
       }
 
-      public SimpleString getQueueName()
+      public String getQueueName()
       {
 
          return null;

@@ -13,7 +13,7 @@
 package org.hornetq.core.client.impl;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 
@@ -35,7 +35,7 @@ public class ClientProducerCreditsImpl implements ClientProducerCredits
 
    private boolean blocked;
 
-   private final SimpleString address;
+   private final String address;
 
    private final ClientSessionInternal session;
 
@@ -48,7 +48,7 @@ public class ClientProducerCreditsImpl implements ClientProducerCredits
    private boolean serverRespondedWithFail;
 
    public ClientProducerCreditsImpl(final ClientSessionInternal session,
-                                    final SimpleString address,
+                                    final String address,
                                     final int windowSize)
    {
       this.session = session;

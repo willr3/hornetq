@@ -11,21 +11,18 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.management;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.management.QueueControl;
-import org.junit.Before;
+import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
 import javax.management.ObjectName;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.tests.util.ServiceTestBase;
 
 /**
  * A ManagementTestBase
@@ -45,7 +42,7 @@ public abstract class ManagementTestBase extends ServiceTestBase
 
    // Static --------------------------------------------------------
 
-   protected static void consumeMessages(final int expected, final ClientSession session, final SimpleString queue) throws Exception
+   protected static void consumeMessages(final int expected, final ClientSession session, final String queue) throws Exception
    {
       ClientConsumer consumer = null;
       try
@@ -109,12 +106,12 @@ public abstract class ManagementTestBase extends ServiceTestBase
       Assert.assertTrue("no resource for " + on, mbeanServer.isRegistered(on));
    }
 
-   protected QueueControl createManagementControl(final String address, final String queue) throws Exception
-   {
-      return createManagementControl(SimpleString.toSimpleString(address), SimpleString.toSimpleString(queue));
-   }
+//   protected QueueControl createManagementControl(final String address, final String queue) throws Exception
+//   {
+//      return createManagementControl((address), (queue));
+//   }
 
-   protected QueueControl createManagementControl(final SimpleString address, final SimpleString queue) throws Exception
+   protected QueueControl createManagementControl(final String address, final String queue) throws Exception
    {
       QueueControl queueControl = ManagementControlHelper.createQueueControl(address, queue, mbeanServer);
 

@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClusterTopologyListener;
@@ -85,9 +85,9 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
    private final ManagementService managementService;
 
-   private final SimpleString name;
+   private final String name;
 
-   private final SimpleString address;
+   private final String address;
 
    private final long clientFailureCheckPeriod;
 
@@ -166,8 +166,8 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
     */
    public ClusterConnectionImpl(final ClusterManager manager, final TransportConfiguration[] staticTranspConfigs,
                                 final TransportConfiguration connector,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final int minLargeMessageSize,
                                 final long clientFailureCheckPeriod,
                                 final long connectionTTL,
@@ -278,8 +278,8 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
    public ClusterConnectionImpl(final ClusterManager manager,
                                 DiscoveryGroupConfiguration dg,
                                 final TransportConfiguration connector,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final int minLargeMessageSize,
                                 final long clientFailureCheckPeriod,
                                 final long connectionTTL,
@@ -437,7 +437,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
       if (managementService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), name);
+         props.putSimpleStringProperty(new String("name"), name);
          Notification notification = new Notification(nodeManager.getNodeId().toString(),
                                                       CoreNotificationType.CLUSTER_CONNECTION_STOPPED,
                                                       props);
@@ -543,7 +543,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
       return started;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -651,7 +651,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
       if (managementService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), name);
+         props.putSimpleStringProperty(new String("name"), name);
          Notification notification = new Notification(nodeManager.getNodeId().toString(),
                                                       CoreNotificationType.CLUSTER_CONNECTION_STARTED,
                                                       props);
@@ -768,7 +768,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
                // New node - create a new flow record
 
-               final SimpleString queueName = new SimpleString("sf." + name + "." + nodeID);
+               final String queueName = new String("sf." + name + "." + nodeID);
 
                Binding queueBinding = postOffice.getBinding(queueName);
 
@@ -819,7 +819,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
    private void createNewRecord(final long eventUID,
                                 final String targetNodeID,
                                 final TransportConfiguration connector,
-                                final SimpleString queueName,
+                                final String queueName,
                                 final Queue queue,
                                 final boolean start) throws Exception
    {
@@ -942,13 +942,13 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
       private final ServerLocatorInternal targetLocator;
 
-      private final SimpleString queueName;
+      private final String queueName;
 
       private boolean disconnected = false;
 
       private final Queue queue;
 
-      private final Map<SimpleString, RemoteQueueBinding> bindings = new HashMap<SimpleString, RemoteQueueBinding>();
+      private final Map<String, RemoteQueueBinding> bindings = new HashMap<String, RemoteQueueBinding>();
 
       private volatile boolean isClosed = false;
 
@@ -958,7 +958,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
                                    final long eventUID,
                                    final String targetNodeID,
                                    final TransportConfiguration connector,
-                                   final SimpleString queueName,
+                                   final String queueName,
                                    final Queue queue)
       {
          this.targetLocator = targetLocator;
@@ -1026,7 +1026,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
       /**
        * @return the queueName
        */
-      public SimpleString getQueueName()
+      public String getQueueName()
       {
          return queueName;
       }
@@ -1140,7 +1140,7 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
       {
          // TODO - optimised this by just passing int in header - but filter needs to be extended to support IN with
          // a list of integers
-         SimpleString type = message.getSimpleStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE);
+         String type = message.getSimpleStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE);
 
          CoreNotificationType ntype = CoreNotificationType.valueOf(type.toString());
 
@@ -1203,9 +1203,9 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
             throw new IllegalStateException("proposal type is null");
          }
 
-         SimpleString type = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
+         String type = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
 
-         SimpleString val = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
+         String val = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
 
          Integer hops = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
 
@@ -1232,9 +1232,9 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
             throw new IllegalStateException("proposal type is null");
          }
 
-         SimpleString groupId = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
+         String groupId = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
 
-         SimpleString clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
+         String clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
 
          Integer hops = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
 
@@ -1258,9 +1258,9 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
             throw new IllegalStateException("proposal type is null");
          }
 
-         SimpleString type = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
-         SimpleString val = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
-         SimpleString alt = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_ALT_VALUE);
+         String type = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_GROUP_ID);
+         String val = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_VALUE);
+         String alt = message.getSimpleStringProperty(ManagementHelper.HDR_PROPOSAL_ALT_VALUE);
          Integer hops = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
          Response response = new Response(type, val, alt);
 
@@ -1315,13 +1315,13 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
          Integer distance = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
 
-         SimpleString queueAddress = message.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+         String queueAddress = message.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
 
-         SimpleString clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
-         SimpleString routingName = message.getSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME);
+         String routingName = message.getSimpleStringProperty(ManagementHelper.HDR_ROUTING_NAME);
 
-         SimpleString filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+         String filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
          Long queueID = message.getLongProperty(ManagementHelper.HDR_BINDING_ID);
 
@@ -1378,12 +1378,12 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
             throw new IllegalStateException("clusterName is null");
          }
 
-         SimpleString clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
          removeBinding(clusterName);
       }
 
-      private synchronized void removeBinding(final SimpleString clusterName) throws Exception
+      private synchronized void removeBinding(final String clusterName) throws Exception
       {
          RemoteQueueBinding binding = bindings.remove(clusterName);
 
@@ -1413,11 +1413,11 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
          Integer distance = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
 
-         SimpleString clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
          message.putIntProperty(ManagementHelper.HDR_DISTANCE, distance + 1);
 
-         SimpleString filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+         String filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
          RemoteQueueBinding binding = bindings.get(clusterName);
 
@@ -1473,11 +1473,11 @@ public final class ClusterConnectionImpl implements ClusterConnection, AfterConn
 
          Integer distance = message.getIntProperty(ManagementHelper.HDR_DISTANCE);
 
-         SimpleString clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
+         String clusterName = message.getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
 
          message.putIntProperty(ManagementHelper.HDR_DISTANCE, distance + 1);
 
-         SimpleString filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
+         String filterString = message.getSimpleStringProperty(ManagementHelper.HDR_FILTERSTRING);
 
          RemoteQueueBinding binding = bindings.get(clusterName);
 

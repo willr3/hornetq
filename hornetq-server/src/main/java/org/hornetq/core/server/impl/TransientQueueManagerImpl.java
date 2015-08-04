@@ -13,7 +13,7 @@
 package org.hornetq.core.server.impl;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.TransientQueueManager;
@@ -25,7 +25,7 @@ import org.hornetq.utils.ReferenceCounterUtil;
 
 public class TransientQueueManagerImpl implements TransientQueueManager
 {
-   private final SimpleString queueName;
+   private final String queueName;
 
    private final HornetQServer server;
 
@@ -58,7 +58,7 @@ public class TransientQueueManagerImpl implements TransientQueueManager
 
    private final ReferenceCounterUtil referenceCounterUtil = new ReferenceCounterUtil(runnable);
 
-   public TransientQueueManagerImpl(HornetQServer server, SimpleString queueName)
+   public TransientQueueManagerImpl(HornetQServer server, String queueName)
    {
       this.server = server;
 
@@ -78,7 +78,7 @@ public class TransientQueueManagerImpl implements TransientQueueManager
    }
 
    @Override
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }

@@ -12,19 +12,18 @@
  */
 package org.hornetq.core.postoffice.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.DuplicateIDCache;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.TransactionOperationAbstract;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A DuplicateIDCacheImpl
@@ -40,7 +39,7 @@ public class DuplicateIDCacheImpl implements DuplicateIDCache
    // ByteHolder, position
    private final Map<ByteArrayHolder, Integer> cache = new ConcurrentHashMap<ByteArrayHolder, Integer>();
 
-   private final SimpleString address;
+   private final String address;
 
    // Note - deliberately typed as ArrayList since we want to ensure fast indexed
    // based array access
@@ -54,7 +53,7 @@ public class DuplicateIDCacheImpl implements DuplicateIDCache
 
    private final boolean persist;
 
-   public DuplicateIDCacheImpl(final SimpleString address,
+   public DuplicateIDCacheImpl(final String address,
                                final int size,
                                final StorageManager storageManager,
                                final boolean persist)

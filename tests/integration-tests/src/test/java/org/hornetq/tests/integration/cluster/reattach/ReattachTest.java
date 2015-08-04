@@ -12,23 +12,8 @@
  */
 package org.hornetq.tests.integration.cluster.reattach;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.HornetQObjectClosedException;
-import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.api.core.client.SessionFailureListener;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientSessionFactoryInternal;
 import org.hornetq.core.client.impl.ClientSessionInternal;
 import org.hornetq.core.protocol.core.Packet;
@@ -45,6 +30,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * A ReattachTest
  *
@@ -56,7 +46,7 @@ public class ReattachTest extends ServiceTestBase
 {
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
-   private static final SimpleString ADDRESS = new SimpleString("FailoverTestAddress");
+   private static final String ADDRESS = new String("FailoverTestAddress");
    private HornetQServer service;
    private ServerLocator locator;
 
@@ -97,7 +87,7 @@ public class ReattachTest extends ServiceTestBase
                                                           0,
                                                           System.currentTimeMillis(),
                                                           (byte) 1);
-            message.putIntProperty(new SimpleString("count"), i);
+            message.putIntProperty(new String("count"), i);
             message.getBodyBuffer().writeString("aardvarks");
             producer.send(message);
          }
@@ -118,7 +108,7 @@ public class ReattachTest extends ServiceTestBase
 
             Assert.assertEquals("aardvarks", message.getBodyBuffer().readString());
 
-            Assert.assertEquals(i, message.getObjectProperty(new SimpleString("count")));
+            Assert.assertEquals(i, message.getObjectProperty(new String("count")));
 
             message.acknowledge();
          }
@@ -199,7 +189,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeBytes(new byte[5000]);
          producer.send(message);
       }
@@ -243,7 +233,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -354,7 +344,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -449,7 +439,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -827,7 +817,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -895,7 +885,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -988,7 +978,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }
@@ -1014,7 +1004,7 @@ public class ReattachTest extends ServiceTestBase
 
          Assert.assertEquals("aardvarks", message.getBodyBuffer().readString());
 
-         Assert.assertEquals(i, message.getObjectProperty(new SimpleString("count")));
+         Assert.assertEquals(i, message.getObjectProperty(new String("count")));
 
          message.acknowledge();
       }
@@ -1067,7 +1057,7 @@ public class ReattachTest extends ServiceTestBase
                                                        0,
                                                        System.currentTimeMillis(),
                                                        (byte) 1);
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          message.getBodyBuffer().writeString("aardvarks");
          producer.send(message);
       }

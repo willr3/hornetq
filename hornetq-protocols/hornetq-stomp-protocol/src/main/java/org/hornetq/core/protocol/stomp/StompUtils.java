@@ -12,16 +12,15 @@
  */
 package org.hornetq.core.protocol.stomp;
 
+import org.hornetq.api.core.Message;
+import org.hornetq.core.client.impl.ClientMessageImpl;
+import org.hornetq.core.message.impl.MessageInternal;
+import org.hornetq.core.server.impl.ServerMessageImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.core.client.impl.ClientMessageImpl;
-import org.hornetq.core.message.impl.MessageInternal;
-import org.hornetq.core.server.impl.ServerMessageImpl;
 
 /**
  * A StompUtils
@@ -63,12 +62,12 @@ public class StompUtils
       String groupID = headers.remove("JMSXGroupID");
       if (groupID != null)
       {
-         msg.putStringProperty(Message.HDR_GROUP_ID, SimpleString.toSimpleString(groupID));
+         msg.putStringProperty(Message.HDR_GROUP_ID, (groupID));
       }
       Object replyTo = headers.remove(Stomp.Headers.Send.REPLY_TO);
       if (replyTo != null)
       {
-         msg.putStringProperty(ClientMessageImpl.REPLYTO_HEADER_NAME, SimpleString.toSimpleString((String) replyTo));
+         msg.putStringProperty(ClientMessageImpl.REPLYTO_HEADER_NAME, ((String) replyTo));
       }
       String expiration = headers.remove(Stomp.Headers.Send.EXPIRATION_TIME);
       if (expiration != null)
@@ -110,8 +109,8 @@ public class StompUtils
       }
 
       // now let's add all the message headers
-      Set<SimpleString> names = message.getPropertyNames();
-      for (SimpleString name : names)
+      Set<String> names = message.getPropertyNames();
+      for (String name : names)
       {
          String value = name.toString();
          if (name.equals(ClientMessageImpl.REPLYTO_HEADER_NAME) ||

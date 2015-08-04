@@ -12,17 +12,7 @@
  */
 package org.hornetq.ra.inflow;
 
-import javax.jms.MessageListener;
-import javax.resource.ResourceException;
-import javax.resource.spi.endpoint.MessageEndpoint;
-import javax.resource.spi.endpoint.MessageEndpointFactory;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
-import javax.transaction.xa.XAResource;
-import java.util.UUID;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession.QueueQuery;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -33,6 +23,15 @@ import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.client.HornetQMessage;
 import org.hornetq.ra.HornetQRALogger;
 import org.hornetq.utils.FutureLatch;
+
+import javax.jms.MessageListener;
+import javax.resource.ResourceException;
+import javax.resource.spi.endpoint.MessageEndpoint;
+import javax.resource.spi.endpoint.MessageEndpointFactory;
+import javax.transaction.Transaction;
+import javax.transaction.TransactionManager;
+import javax.transaction.xa.XAResource;
+import java.util.UUID;
 
 /**
  * The message handler
@@ -98,13 +97,13 @@ public class HornetQMessageHandler implements MessageHandler
       String selector = spec.getMessageSelector();
 
       // Create the message consumer
-      SimpleString selectorString = selector == null || selector.trim().equals("") ? null : new SimpleString(selector);
+      String selectorString = selector == null || selector.trim().equals("") ? null : new String(selector);
       if (activation.isTopic() && spec.isSubscriptionDurable())
       {
          String subscriptionName = spec.getSubscriptionName();
          String clientID = spec.getClientID();
 
-         SimpleString queueName = new SimpleString(HornetQDestination.createQueueNameForDurableSubscription(true, clientID,
+         String queueName = new String(HornetQDestination.createQueueNameForDurableSubscription(true, clientID,
                                                                                                             subscriptionName));
 
          QueueQuery subResponse = session.queueQuery(queueName);
@@ -131,7 +130,7 @@ public class HornetQMessageHandler implements MessageHandler
                }
             }
 
-            SimpleString oldFilterString = subResponse.getFilterString();
+            String oldFilterString = subResponse.getFilterString();
 
             boolean selectorChanged = selector == null && oldFilterString != null ||
                oldFilterString == null &&
@@ -139,7 +138,7 @@ public class HornetQMessageHandler implements MessageHandler
                (oldFilterString != null && selector != null && !oldFilterString.toString()
                   .equals(selector));
 
-            SimpleString oldTopicName = subResponse.getAddress();
+            String oldTopicName = subResponse.getAddress();
 
             boolean topicChanged = !oldTopicName.equals(activation.getAddress());
 
@@ -156,12 +155,12 @@ public class HornetQMessageHandler implements MessageHandler
       }
       else
       {
-         SimpleString tempQueueName;
+         String tempQueueName;
          if (activation.isTopic())
          {
             if (activation.getTopicTemporaryQueue() == null)
             {
-               tempQueueName = new SimpleString(UUID.randomUUID().toString());
+               tempQueueName = new String(UUID.randomUUID().toString());
                session.createTemporaryQueue(activation.getAddress(), tempQueueName, selectorString);
                activation.setTopicTemporaryQueue(tempQueueName);
             }
@@ -251,7 +250,7 @@ public class HornetQMessageHandler implements MessageHandler
          if (activation.getTopicTemporaryQueue() != null)
          {
             // We need to delete temporary topics when the activation is stopped or messages will build up on the server
-            SimpleString tmpQueue = activation.getTopicTemporaryQueue();
+            String tmpQueue = activation.getTopicTemporaryQueue();
             QueueQuery subResponse = session.queueQuery(tmpQueue);
             if (subResponse.getConsumerCount() == 0)
             {

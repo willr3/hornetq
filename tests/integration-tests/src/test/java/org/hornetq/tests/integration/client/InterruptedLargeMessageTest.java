@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -496,8 +496,8 @@ public class InterruptedLargeMessageTest extends LargeMessageTestBase
       {
 
          public NoPostACKQueue(long id,
-                               SimpleString address,
-                               SimpleString name,
+                               String address,
+                               String name,
                                Filter filter,
                                PageSubscription pageSubscription,
                                boolean durable,
@@ -556,8 +556,8 @@ public class InterruptedLargeMessageTest extends LargeMessageTestBase
          }
 
          public Queue createQueue(long persistenceID,
-                                  SimpleString address,
-                                  SimpleString name,
+                                  String address,
+                                  String name,
                                   Filter filter,
                                   PageSubscription pageSubscription,
                                   boolean durable,

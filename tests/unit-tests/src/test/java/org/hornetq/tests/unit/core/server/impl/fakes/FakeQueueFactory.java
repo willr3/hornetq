@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.postoffice.PostOffice;
@@ -40,8 +40,8 @@ public class FakeQueueFactory implements QueueFactory
    private PostOffice postOffice;
 
    public Queue createQueue(final long persistenceID,
-                            final SimpleString address,
-                            final SimpleString name,
+                            final String address,
+                            final String name,
                             final Filter filter,
                             final PageSubscription subscription,
                             final boolean durable,

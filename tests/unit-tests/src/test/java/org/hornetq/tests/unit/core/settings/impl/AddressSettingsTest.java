@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.unit.core.settings.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.settings.impl.AddressFullMessagePolicy;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.UnitTestCase;
@@ -50,8 +50,8 @@ public class AddressSettingsTest extends UnitTestCase
    {
       AddressSettings addressSettings = new AddressSettings();
       AddressSettings addressSettingsToMerge = new AddressSettings();
-      SimpleString DLQ = new SimpleString("testDLQ");
-      SimpleString exp = new SimpleString("testExpiryQueue");
+      String DLQ = new String("testDLQ");
+      String exp = new String("testExpiryQueue");
       addressSettingsToMerge.setDeadLetterAddress(DLQ);
       addressSettingsToMerge.setExpiryAddress(exp);
       addressSettingsToMerge.setMaxDeliveryAttempts(1000);
@@ -76,8 +76,8 @@ public class AddressSettingsTest extends UnitTestCase
    {
       AddressSettings addressSettings = new AddressSettings();
       AddressSettings addressSettingsToMerge = new AddressSettings();
-      SimpleString DLQ = new SimpleString("testDLQ");
-      SimpleString exp = new SimpleString("testExpiryQueue");
+      String DLQ = new String("testDLQ");
+      String exp = new String("testExpiryQueue");
       addressSettingsToMerge.setDeadLetterAddress(DLQ);
       addressSettingsToMerge.setExpiryAddress(exp);
       addressSettingsToMerge.setMaxDeliveryAttempts(1000);
@@ -87,7 +87,7 @@ public class AddressSettingsTest extends UnitTestCase
       addressSettings.merge(addressSettingsToMerge);
 
       AddressSettings addressSettingsToMerge2 = new AddressSettings();
-      SimpleString exp2 = new SimpleString("testExpiryQueue2");
+      String exp2 = new String("testExpiryQueue2");
       addressSettingsToMerge2.setExpiryAddress(exp2);
       addressSettingsToMerge2.setMaxSizeBytes(2001);
       addressSettingsToMerge2.setRedeliveryDelay(2003);
@@ -109,8 +109,8 @@ public class AddressSettingsTest extends UnitTestCase
    {
       AddressSettings addressSettings = new AddressSettings();
       AddressSettings addressSettingsToMerge = new AddressSettings();
-      SimpleString DLQ = new SimpleString("testDLQ");
-      SimpleString exp = new SimpleString("testExpiryQueue");
+      String DLQ = new String("testDLQ");
+      String exp = new String("testExpiryQueue");
       addressSettingsToMerge.setDeadLetterAddress(DLQ);
       addressSettingsToMerge.setExpiryAddress(exp);
       addressSettingsToMerge.setMaxSizeBytes(1001);
@@ -120,8 +120,8 @@ public class AddressSettingsTest extends UnitTestCase
       addressSettings.merge(addressSettingsToMerge);
 
       AddressSettings addressSettingsToMerge2 = new AddressSettings();
-      SimpleString exp2 = new SimpleString("testExpiryQueue2");
-      SimpleString DLQ2 = new SimpleString("testDlq2");
+      String exp2 = new String("testExpiryQueue2");
+      String DLQ2 = new String("testDlq2");
       addressSettingsToMerge2.setExpiryAddress(exp2);
       addressSettingsToMerge2.setDeadLetterAddress(DLQ2);
       addressSettingsToMerge2.setMaxDeliveryAttempts(2000);

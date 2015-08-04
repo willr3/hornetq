@@ -12,33 +12,23 @@
  */
 package org.hornetq.integration.aerogear;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.filter.impl.FilterImpl;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
-import org.hornetq.core.server.ConnectorService;
-import org.hornetq.core.server.Consumer;
-import org.hornetq.core.server.HandleStatus;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.utils.ConfigurationHelper;
 import org.jboss.aerogear.unifiedpush.JavaSender;
 import org.jboss.aerogear.unifiedpush.SenderClient;
 import org.jboss.aerogear.unifiedpush.message.MessageResponseCallback;
 import org.jboss.aerogear.unifiedpush.message.UnifiedMessage;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class AeroGearConnectorService implements ConnectorService, Consumer, MessageResponseCallback
 {
@@ -147,7 +137,7 @@ public class AeroGearConnectorService implements ConnectorService, Consumer, Mes
          throw HornetQAeroGearBundle.BUNDLE.masterSecretNull();
       }
 
-      Binding b = postOffice.getBinding(new SimpleString(queueName));
+      Binding b = postOffice.getBinding(new String(queueName));
       if (b == null)
       {
          throw HornetQAeroGearBundle.BUNDLE.noQueue(connectorName, queueName);
@@ -258,9 +248,9 @@ public class AeroGearConnectorService implements ConnectorService, Consumer, Mes
          builder.deviceType(Arrays.asList(deviceTypes));
       }
 
-      Set<SimpleString> propertyNames = message.getPropertyNames();
+      Set<String> propertyNames = message.getPropertyNames();
 
-      for (SimpleString propertyName : propertyNames)
+      for (String propertyName : propertyNames)
       {
          if (propertyName.toString().startsWith("AEROGEAR_") && !AeroGearConstants.ALLOWABLE_PROPERTIES.contains(propertyName))
          {

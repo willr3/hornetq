@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -25,9 +25,9 @@ import org.hornetq.core.protocol.core.impl.PacketImpl;
  */
 public class SessionBindingQueryMessage extends PacketImpl
 {
-   private SimpleString address;
+   private String address;
 
-   public SessionBindingQueryMessage(final SimpleString address)
+   public SessionBindingQueryMessage(final String address)
    {
       super(SESS_BINDINGQUERY);
 
@@ -39,7 +39,7 @@ public class SessionBindingQueryMessage extends PacketImpl
       super(SESS_BINDINGQUERY);
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }

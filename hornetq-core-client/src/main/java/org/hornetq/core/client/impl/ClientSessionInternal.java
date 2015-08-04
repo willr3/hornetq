@@ -14,7 +14,7 @@ package org.hornetq.core.client.impl;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.core.protocol.core.Channel;
@@ -81,19 +81,19 @@ public interface ClientSessionInternal extends ClientSession
 
    void forceDelivery(long consumerID, long sequence) throws HornetQException;
 
-   void sendProducerCreditsMessage(int credits, SimpleString address);
+   void sendProducerCreditsMessage(int credits, String address);
 
-   ClientProducerCredits getCredits(SimpleString address, boolean anon);
+   ClientProducerCredits getCredits(String address, boolean anon);
 
-   void returnCredits(SimpleString address);
+   void returnCredits(String address);
 
-   void handleReceiveProducerCredits(SimpleString address, int credits);
+   void handleReceiveProducerCredits(String address, int credits);
 
-   void handleReceiveProducerFailCredits(SimpleString address, int credits);
+   void handleReceiveProducerFailCredits(String address, int credits);
 
    ClientProducerCreditManager getProducerCreditManager();
 
-   void setAddress(Message message, SimpleString address);
+   void setAddress(Message message, String address);
 
    void setPacketSize(int packetSize);
 

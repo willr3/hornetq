@@ -12,21 +12,7 @@
  */
 package org.hornetq.rest.queue;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import java.net.URI;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.jms.client.HornetQDestination;
 import org.hornetq.jms.client.HornetQQueue;
@@ -37,6 +23,15 @@ import org.hornetq.rest.queue.push.PushConsumerResource;
 import org.hornetq.rest.queue.push.xml.PushRegistration;
 import org.hornetq.rest.util.Constants;
 import org.w3c.dom.Document;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -69,7 +64,7 @@ public class QueueDestinationsResource
          try
          {
 
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+            ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
             if (!query.isExists())
             {
                if (queue.getSelector() != null)
@@ -129,7 +124,7 @@ public class QueueDestinationsResource
          ClientSession session = manager.getSessionFactory().createSession(false, false, false);
          try
          {
-            ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+            ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
             if (!query.isExists())
             {
                throw new WebApplicationException(Response.status(404).type("text/plain").entity("Queue '" + name + "' does not exist").build());

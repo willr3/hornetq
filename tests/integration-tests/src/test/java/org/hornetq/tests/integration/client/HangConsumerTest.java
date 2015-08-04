@@ -11,32 +11,9 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.client;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.lang.management.ManagementFactory;
-import java.util.LinkedList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
-import javax.management.MBeanServer;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.journal.RecordInfo;
@@ -68,6 +45,15 @@ import org.hornetq.spi.core.security.HornetQSecurityManagerImpl;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.hornetq.utils.ExecutorFactory;
 import org.hornetq.utils.ReusableLatch;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.management.MBeanServer;
+import java.lang.management.ManagementFactory;
+import java.util.LinkedList;
+import java.util.concurrent.*;
 
 /**
  * This test will simulate a consumer hanging on the delivery packet due to unbehaved clients
@@ -79,7 +65,7 @@ public class HangConsumerTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private Queue queue;
 
@@ -233,8 +219,8 @@ public class HangConsumerTest extends ServiceTestBase
           * @param executor
           */
          public MyQueueWithBlocking(final long id,
-                                    final SimpleString address,
-                                    final SimpleString name,
+                                    final String address,
+                                    final String name,
                                     final Filter filter,
                                     final PageSubscription pageSubscription,
                                     final boolean durable,
@@ -281,8 +267,8 @@ public class HangConsumerTest extends ServiceTestBase
 
          @Override
          public Queue createQueue(final long persistenceID,
-                                  final SimpleString address,
-                                  final SimpleString name,
+                                  final String address,
+                                  final String name,
                                   final Filter filter,
                                   final PageSubscription pageSubscription,
                                   final boolean durable,
@@ -467,9 +453,9 @@ public class HangConsumerTest extends ServiceTestBase
    {
       for (int i = 0; i < 5; i++)
       {
-         if (server.locateQueue(SimpleString.toSimpleString("jms.topic.tt")) == null)
+         if (server.locateQueue(("jms.topic.tt")) == null)
          {
-            server.createQueue(SimpleString.toSimpleString("jms.topic.tt"), SimpleString.toSimpleString("jms.topic.tt"), SimpleString.toSimpleString(HornetQServerImpl.GENERIC_IGNORED_FILTER), true, false);
+            server.createQueue(("jms.topic.tt"), ("jms.topic.tt"), (HornetQServerImpl.GENERIC_IGNORED_FILTER), true, false);
          }
 
          server.stop();
@@ -523,15 +509,15 @@ public class HangConsumerTest extends ServiceTestBase
       }
 
       /* (non-Javadoc)
-       * @see org.hornetq.spi.core.protocol.SessionCallback#sendProducerCreditsMessage(int, org.hornetq.api.core.SimpleString)
+       * @see org.hornetq.spi.core.protocol.SessionCallback#sendProducerCreditsMessage(int, org.hornetq.api.core.String)
        */
       @Override
-      public void sendProducerCreditsMessage(int credits, SimpleString address)
+      public void sendProducerCreditsMessage(int credits, String address)
       {
          targetCallback.sendProducerCreditsMessage(credits, address);
       }
 
-      public void sendProducerCreditsFailMessage(int credits, SimpleString address)
+      public void sendProducerCreditsFailMessage(int credits, String address)
       {
          targetCallback.sendProducerCreditsFailMessage(credits, address);
       }
@@ -651,7 +637,7 @@ public class HangConsumerTest extends ServiceTestBase
             this,
             getConfiguration().getManagementAddress(),
             defaultAddress == null ? null
-               : new SimpleString(defaultAddress),
+               : new String(defaultAddress),
             new MyCallback(callback),
             context);
       }

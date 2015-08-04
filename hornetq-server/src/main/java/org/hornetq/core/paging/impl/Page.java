@@ -12,15 +12,8 @@
  */
 package org.hornetq.core.paging.impl;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.paging.PagedMessage;
@@ -32,6 +25,12 @@ import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.LargeServerMessage;
 import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.DataConstants;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author <a href="mailto:clebert.suconic@jboss.com">Clebert Suconic</a>
@@ -69,14 +68,14 @@ public final class Page implements Comparable<Page>
 
    private final StorageManager storageManager;
 
-   private final SimpleString storeName;
+   private final String storeName;
 
    /**
     * A list of subscriptions containing pending counters (with non tx adds) on this page
     */
    private Set<PageSubscriptionCounter> pendingCounters;
 
-   public Page(final SimpleString storeName,
+   public Page(final String storeName,
                final StorageManager storageManager,
                final SequentialFileFactory factory,
                final SequentialFile file,

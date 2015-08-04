@@ -37,7 +37,7 @@ import javax.management.NotificationListener;
 import javax.transaction.xa.Xid;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.AddressControl;
@@ -613,9 +613,9 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         server.deployQueue(new SimpleString(address),
-               new SimpleString(name),
-               new SimpleString(filterString),
+         server.deployQueue(new String(address),
+               new String(name),
+               new String(filterString),
                true,
                false);
       }
@@ -629,12 +629,12 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
    {
       checkStarted();
 
-      SimpleString filter = filterStr == null ? null : new SimpleString(filterStr);
+      String filter = filterStr == null ? null : new String(filterStr);
       clearIO();
       try
       {
 
-         server.deployQueue(new SimpleString(address), new SimpleString(name), filter, durable, false);
+         server.deployQueue(new String(address), new String(name), filter, durable, false);
       }
       finally
       {
@@ -649,7 +649,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         server.createQueue(new SimpleString(address), new SimpleString(name), null, true, false);
+         server.createQueue(new String(address), new String(name), null, true, false);
       }
       finally
       {
@@ -664,7 +664,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         server.createQueue(new SimpleString(address), new SimpleString(name), null, durable, false);
+         server.createQueue(new String(address), new String(name), null, durable, false);
       }
       finally
       {
@@ -679,13 +679,13 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         SimpleString filter = null;
+         String filter = null;
          if (filterStr != null && !filterStr.trim().equals(""))
          {
-            filter = new SimpleString(filterStr);
+            filter = new String(filterStr);
          }
 
-         server.createQueue(new SimpleString(address), new SimpleString(name), filter, durable, false);
+         server.createQueue(new String(address), new String(name), filter, durable, false);
       }
       finally
       {
@@ -746,7 +746,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         SimpleString queueName = new SimpleString(name);
+         String queueName = new String(name);
 
          server.destroyQueue(queueName, null, true);
       }
@@ -1273,7 +1273,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         for (Binding binding : postOffice.getMatchingBindings(SimpleString.toSimpleString(address)).getBindings())
+         for (Binding binding : postOffice.getMatchingBindings(address).getBindings())
          {
             if (binding instanceof LocalQueueBinding)
             {
@@ -1518,7 +1518,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       try
       {
          server.getSecurityRepository().removeMatch(addressMatch);
-         storageManager.deleteSecurityRoles(new SimpleString(addressMatch));
+         storageManager.deleteSecurityRoles(new String(addressMatch));
       }
       finally
       {
@@ -1655,8 +1655,8 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       }
 
       AddressSettings addressSettings = new AddressSettings();
-      addressSettings.setDeadLetterAddress(DLA == null ? null : new SimpleString(DLA));
-      addressSettings.setExpiryAddress(expiryAddress == null ? null : new SimpleString(expiryAddress));
+      addressSettings.setDeadLetterAddress(DLA == null ? null : new String(DLA));
+      addressSettings.setExpiryAddress(expiryAddress == null ? null : new String(expiryAddress));
       addressSettings.setExpiryDelay(expiryDelay);
       addressSettings.setLastValueQueue(lastValueQueue);
       addressSettings.setMaxDeliveryAttempts(deliveryAttempts);
@@ -1704,7 +1704,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       }
       server.getAddressSettingsRepository().addMatch(address, addressSettings);
 
-      storageManager.storeAddressSetting(new PersistedAddressSetting(new SimpleString(address), addressSettings));
+      storageManager.storeAddressSetting(new PersistedAddressSetting(new String(address), addressSettings));
    }
 
    public void removeAddressSettings(final String addressMatch) throws Exception
@@ -1712,7 +1712,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       checkStarted();
 
       server.getAddressSettingsRepository().removeMatch(addressMatch);
-      storageManager.deleteAddressSetting(new SimpleString(addressMatch));
+      storageManager.deleteAddressSetting(new String(addressMatch));
    }
 
    public void sendQueueInfoToQueue(final String queueName, final String address) throws Exception
@@ -1722,7 +1722,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         postOffice.sendQueueInfoToQueue(new SimpleString(queueName), new SimpleString(address));
+         postOffice.sendQueueInfoToQueue(new String(queueName), new String(address));
 
          GroupingHandler handler = server.getGroupingHandler();
          if (handler != null)
@@ -1796,7 +1796,7 @@ public class HornetQServerControlImpl extends AbstractControl implements HornetQ
       clearIO();
       try
       {
-         server.destroyDivert(SimpleString.toSimpleString(name));
+         server.destroyDivert(name);
       }
       finally
       {

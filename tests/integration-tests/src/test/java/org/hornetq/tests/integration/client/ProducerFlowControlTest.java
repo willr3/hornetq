@@ -12,22 +12,8 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.hornetq.api.core.HornetQObjectClosedException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientProducerCreditManagerImpl;
 import org.hornetq.core.client.impl.ClientProducerCredits;
 import org.hornetq.core.client.impl.ClientProducerInternal;
@@ -43,6 +29,13 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * A ProducerFlowControlTest
@@ -222,7 +215,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
                                 final int minLargeMessageSize,
                                 final boolean realFiles) throws Exception
    {
-      final SimpleString address = new SimpleString("testaddress");
+      final String address = new String("testaddress");
 
       server = createServer(realFiles, isNetty());
 
@@ -254,7 +247,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
 
       for (int i = 0; i < numConsumers; i++)
       {
-         session.createQueue(address, new SimpleString(queueName + i), null, false);
+         session.createQueue(address, new String(queueName + i), null, false);
       }
 
       final byte[] bytes = RandomUtil.randomBytes(messageSize);
@@ -307,7 +300,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
       {
          handlers[i] = new MyHandler();
 
-         ClientConsumer consumer = session.createConsumer(new SimpleString(queueName + i));
+         ClientConsumer consumer = session.createConsumer(new String(queueName + i));
 
          consumer.setMessageHandler(handlers[i]);
       }
@@ -365,7 +358,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
    @Test
    public void testClosingSessionUnblocksBlockedProducer() throws Exception
    {
-      final SimpleString address = new SimpleString("testaddress");
+      final String address = new String("testaddress");
 
       server = createServer(false, isNetty());
 
@@ -386,7 +379,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
       sf = createSessionFactory(locator);
       session = sf.createSession(false, true, true, true);
 
-      final SimpleString queueName = new SimpleString("testqueue");
+      final String queueName = new String("testqueue");
 
       session.createQueue(address, queueName, null, false);
 
@@ -440,7 +433,7 @@ public class ProducerFlowControlTest extends ServiceTestBase
    @Test
    public void testFlowControlMessageNotRouted() throws Exception
    {
-      final SimpleString address = new SimpleString("testaddress");
+      final String address = new String("testaddress");
 
       server = createServer(false, isNetty());
 

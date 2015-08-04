@@ -13,7 +13,7 @@
 package org.hornetq.tests.integration.client;
 
 import org.hornetq.api.core.HornetQInvalidTransientQueueUseException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -35,8 +35,8 @@ public class TransientQueueTest extends SingleServerTestBase
    @Test
    public void testSimpleTransientQueue() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createSharedQueue(address, queue, false);
       Assert.assertEquals(1, server.getConnectionCount());
@@ -57,8 +57,8 @@ public class TransientQueueTest extends SingleServerTestBase
    @Test
    public void testMultipleConsumers() throws Exception
    {
-      SimpleString queue = SimpleString.toSimpleString("queue");
-      SimpleString address = SimpleString.toSimpleString("address");
+      String queue = "queue";
+      String address = "address";
 
       session.createSharedQueue(address, queue, false);
       Assert.assertEquals(1, server.getConnectionCount());
@@ -145,12 +145,12 @@ public class TransientQueueTest extends SingleServerTestBase
    @Test
    public void testQueueDifferentConfigs() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
 
       server.locateQueue(queue);
-      SimpleString address2 = RandomUtil.randomSimpleString();
+      String address2 = RandomUtil.randomSimpleString();
 
       session.createSharedQueue(address, queue, false);
       Assert.assertEquals(1, server.getConnectionCount());
@@ -182,7 +182,7 @@ public class TransientQueueTest extends SingleServerTestBase
       try
       {
          // There's already a queue with that name, we are supposed to throw an exception
-         session2.createSharedQueue(address, queue, SimpleString.toSimpleString("a=1"), false);
+         session2.createSharedQueue(address, queue, ("a=1"), false);
       }
       catch (HornetQInvalidTransientQueueUseException e)
       {
@@ -197,14 +197,14 @@ public class TransientQueueTest extends SingleServerTestBase
       assertNull(server.locateQueue(queue));
 
 
-      session.createSharedQueue(address, queue, SimpleString.toSimpleString("q=1"), false);
+      session.createSharedQueue(address, queue, ("q=1"), false);
 
       exHappened = false;
 
       try
       {
          // There's already a queue with that name, we are supposed to throw an exception
-         session2.createSharedQueue(address, queue, SimpleString.toSimpleString("q=2"), false);
+         session2.createSharedQueue(address, queue, ("q=2"), false);
       }
       catch (HornetQInvalidTransientQueueUseException e)
       {

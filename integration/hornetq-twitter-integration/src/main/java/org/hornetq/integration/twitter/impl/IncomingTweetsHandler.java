@@ -12,12 +12,6 @@
  */
 package org.hornetq.integration.twitter.impl;
 
-import java.util.Map;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
@@ -27,14 +21,13 @@ import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.integration.twitter.TwitterConstants;
 import org.hornetq.twitter.HornetQTwitterLogger;
 import org.hornetq.utils.ConfigurationHelper;
-import twitter4j.GeoLocation;
-import twitter4j.Paging;
-import twitter4j.Place;
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.http.AccessToken;
+
+import java.util.Map;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * IncomingTweetsHandler consumes from twitter and forwards to the
@@ -98,7 +91,7 @@ public class IncomingTweetsHandler implements ConnectorService
 
    public void start() throws Exception
    {
-      Binding b = postOffice.getBinding(new SimpleString(queueName));
+      Binding b = postOffice.getBinding(new String(queueName));
       if (b == null)
       {
          throw new Exception(connectorName + ": queue " + queueName + " not found");
@@ -163,7 +156,7 @@ public class IncomingTweetsHandler implements ConnectorService
 
          ServerMessage msg = new ServerMessageImpl(this.storageManager.generateUniqueID(),
                                                    TwitterConstants.INITIAL_MESSAGE_BUFFER_SIZE);
-         msg.setAddress(new SimpleString(this.queueName));
+         msg.setAddress(new String(this.queueName));
          msg.setDurable(true);
          msg.encodeMessageIDToBuffer();
 

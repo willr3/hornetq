@@ -12,56 +12,8 @@
  */
 package org.hornetq.tests.util;
 
-import javax.naming.Context;
-import javax.transaction.xa.XAException;
-import javax.transaction.xa.Xid;
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.lang.ref.Reference;
-import java.lang.ref.WeakReference;
-import java.net.ServerSocket;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.client.impl.ClientSessionFactoryImpl;
 import org.hornetq.core.client.impl.ServerLocatorImpl;
@@ -88,14 +40,8 @@ import org.hornetq.core.remoting.impl.invm.InVMRegistry;
 import org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory;
 import org.hornetq.core.remoting.impl.netty.NettyConnector;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
-import org.hornetq.core.server.HornetQComponent;
-import org.hornetq.core.server.HornetQMessageBundle;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.JournalType;
-import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.ClusterConnection;
 import org.hornetq.core.server.cluster.ClusterManager;
 import org.hornetq.core.server.impl.ServerMessageImpl;
@@ -109,6 +55,24 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import org.junit.rules.TestName;
+
+import javax.naming.Context;
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.Xid;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.io.*;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.net.ServerSocket;
+import java.nio.ByteBuffer;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Helper base class for our unit tests.
@@ -1575,7 +1539,7 @@ public abstract class UnitTestCase extends CoreUnitTestCase
 
       message.getBodyBuffer().writeString(UUID.randomUUID().toString());
 
-      message.setAddress(new SimpleString("foo"));
+      message.setAddress(new String("foo"));
 
       return message;
    }
@@ -1643,7 +1607,7 @@ public abstract class UnitTestCase extends CoreUnitTestCase
    {
       ArrayList<QueueBinding> bindingsFound = new ArrayList<QueueBinding>();
 
-      Bindings bindings = postOffice.getBindingsForAddress(new SimpleString(address));
+      Bindings bindings = postOffice.getBindingsForAddress(new String(address));
 
       for (Binding binding : bindings.getBindings())
       {

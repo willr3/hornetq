@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.server.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.PostOffice;
@@ -35,11 +35,11 @@ public class DivertImpl implements Divert
 {
    private final PostOffice postOffice;
 
-   private final SimpleString forwardAddress;
+   private final String forwardAddress;
 
-   private final SimpleString uniqueName;
+   private final String uniqueName;
 
-   private final SimpleString routingName;
+   private final String routingName;
 
    private final boolean exclusive;
 
@@ -49,9 +49,9 @@ public class DivertImpl implements Divert
 
    private final StorageManager storageManager;
 
-   public DivertImpl(final SimpleString forwardAddress,
-                     final SimpleString uniqueName,
-                     final SimpleString routingName,
+   public DivertImpl(final String forwardAddress,
+                     final String uniqueName,
+                     final String routingName,
                      final boolean exclusive,
                      final Filter filter,
                      final Transformer transformer,
@@ -107,12 +107,12 @@ public class DivertImpl implements Divert
       postOffice.route(copy, context.getTransaction(), false);
    }
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return routingName;
    }
 
-   public SimpleString getUniqueName()
+   public String getUniqueName()
    {
       return uniqueName;
    }

@@ -12,14 +12,13 @@
  */
 package org.hornetq.core.message.impl;
 
-import java.io.InputStream;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.utils.TypedProperties;
+
+import java.io.InputStream;
 
 /**
  * A MessageInternal
@@ -60,7 +59,7 @@ public interface MessageInternal extends Message
 
    InputStream getBodyInputStream();
 
-   void setAddressTransient(SimpleString address);
+   void setAddressTransient(String address);
 
    TypedProperties getTypedProperties();
 }

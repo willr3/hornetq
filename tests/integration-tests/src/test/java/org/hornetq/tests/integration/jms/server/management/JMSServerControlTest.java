@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQObjectClosedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.AddressControl;
@@ -226,7 +226,7 @@ public class JMSServerControlTest extends ManagementTestBase
       // assertEquals(((HornetQDestination)queue).get);
       Assert.assertEquals(queueName, queue.getQueueName());
       Assert.assertEquals(selector, server.getPostOffice()
-         .getBinding(new SimpleString("jms.queue." + queueName))
+         .getBinding(new String("jms.queue." + queueName))
          .getFilter()
          .getFilterString()
          .toString());
@@ -235,7 +235,7 @@ public class JMSServerControlTest extends ManagementTestBase
       queue = (Queue) o;
       Assert.assertEquals(queueName, queue.getQueueName());
       Assert.assertEquals(selector, server.getPostOffice()
-         .getBinding(new SimpleString("jms.queue." + queueName))
+         .getBinding(new String("jms.queue." + queueName))
          .getFilter()
          .getFilterString()
          .toString());
@@ -244,7 +244,7 @@ public class JMSServerControlTest extends ManagementTestBase
       queue = (Queue) o;
       Assert.assertEquals(queueName, queue.getQueueName());
       Assert.assertEquals(selector, server.getPostOffice()
-         .getBinding(new SimpleString("jms.queue." + queueName))
+         .getBinding(new String("jms.queue." + queueName))
          .getFilter()
          .getFilterString()
          .toString());
@@ -274,7 +274,7 @@ public class JMSServerControlTest extends ManagementTestBase
       Queue queue = (Queue) o;
       Assert.assertEquals(queueName, queue.getQueueName());
       QueueBinding queueBinding = (QueueBinding) server.getPostOffice()
-         .getBinding(new SimpleString("jms.queue." + queueName));
+         .getBinding(new String("jms.queue." + queueName));
       assertFalse(queueBinding.getQueue().isDurable());
       checkResource(ObjectNameBuilder.DEFAULT.getJMSQueueObjectName(queueName));
 

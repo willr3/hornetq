@@ -12,26 +12,17 @@
  */
 package org.hornetq.tests.integration.management;
 
+import org.hornetq.api.core.management.*;
+import org.hornetq.api.jms.management.ConnectionFactoryControl;
+import org.hornetq.api.jms.management.JMSQueueControl;
+import org.hornetq.api.jms.management.JMSServerControl;
+import org.hornetq.api.jms.management.TopicControl;
+
 import javax.jms.Queue;
 import javax.jms.Topic;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.management.AcceptorControl;
-import org.hornetq.api.core.management.AddressControl;
-import org.hornetq.api.core.management.BridgeControl;
-import org.hornetq.api.core.management.BroadcastGroupControl;
-import org.hornetq.api.core.management.ClusterConnectionControl;
-import org.hornetq.api.core.management.DivertControl;
-import org.hornetq.api.core.management.HornetQServerControl;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.core.management.QueueControl;
-import org.hornetq.api.jms.management.ConnectionFactoryControl;
-import org.hornetq.api.jms.management.JMSQueueControl;
-import org.hornetq.api.jms.management.JMSServerControl;
-import org.hornetq.api.jms.management.TopicControl;
 
 /**
  * A ManagementControlHelper
@@ -91,8 +82,8 @@ public class ManagementControlHelper
                                                                        mbeanServer);
    }
 
-   public static QueueControl createQueueControl(final SimpleString address,
-                                                 final SimpleString name,
+   public static QueueControl createQueueControl(final String address,
+                                                 final String name,
                                                  final MBeanServer mbeanServer) throws Exception
    {
       return (QueueControl)ManagementControlHelper.createProxy(ObjectNameBuilder.DEFAULT.getQueueObjectName(address,
@@ -101,7 +92,7 @@ public class ManagementControlHelper
                                                                mbeanServer);
    }
 
-   public static AddressControl createAddressControl(final SimpleString address, final MBeanServer mbeanServer) throws Exception
+   public static AddressControl createAddressControl(final String address, final MBeanServer mbeanServer) throws Exception
    {
       return (AddressControl)ManagementControlHelper.createProxy(ObjectNameBuilder.DEFAULT.getAddressObjectName(address),
                                                                  AddressControl.class,

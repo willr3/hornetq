@@ -12,44 +12,30 @@
  */
 package org.hornetq.tests.integration.persistence;
 
+import org.hornetq.api.core.Message;
 import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.*;
 import org.hornetq.api.jms.JMSFactoryType;
+import org.hornetq.core.persistence.impl.journal.JournalStorageManager;
+import org.hornetq.core.persistence.impl.journal.LargeServerMessageImpl;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.server.JMSServerManager;
 import org.hornetq.jms.server.impl.JMSServerManagerImpl;
 import org.hornetq.tests.unit.util.InVMContext;
+import org.hornetq.tests.util.ServiceTestBase;
+import org.hornetq.tools.XmlDataConstants;
+import org.hornetq.tools.XmlDataExporter;
+import org.hornetq.tools.XmlDataImporter;
+import org.hornetq.utils.UUIDGenerator;
 import org.junit.Test;
 
+import javax.jms.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
-
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.core.persistence.impl.journal.JournalStorageManager;
-import org.hornetq.core.persistence.impl.journal.LargeServerMessageImpl;
-import org.hornetq.tools.XmlDataConstants;
-import org.hornetq.tools.XmlDataExporter;
-import org.hornetq.tools.XmlDataImporter;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.settings.impl.AddressSettings;
-import org.hornetq.tests.util.ServiceTestBase;
-import org.hornetq.utils.UUIDGenerator;
-
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
 
 /**
  * A test of the XML export/import functionality
@@ -101,8 +87,8 @@ public class XmlImportExportTest extends ServiceTestBase
          msg.putStringProperty("myNullStringProperty", null);
          msg.putStringProperty("myNonAsciiStringProperty", international.toString());
          msg.putStringProperty("mySpecialCharacters", special);
-         msg.putStringProperty(new SimpleString("mySimpleStringProperty"), new SimpleString("mySimpleStringPropertyValue_" + i));
-         msg.putStringProperty(new SimpleString("myNullSimpleStringProperty"), null);
+         msg.putStringProperty(new String("mySimpleStringProperty"), new String("mySimpleStringPropertyValue_" + i));
+         msg.putStringProperty(new String("myNullSimpleStringProperty"), null);
          producer.send(msg);
       }
 
@@ -151,8 +137,8 @@ public class XmlImportExportTest extends ServiceTestBase
          assertEquals(null, msg.getStringProperty("myNullStringProperty"));
          assertEquals(international.toString(), msg.getStringProperty("myNonAsciiStringProperty"));
          assertEquals(special, msg.getStringProperty("mySpecialCharacters"));
-         assertEquals(new SimpleString("mySimpleStringPropertyValue_" + i), msg.getSimpleStringProperty(new SimpleString("mySimpleStringProperty")));
-         assertEquals(null, msg.getSimpleStringProperty(new SimpleString("myNullSimpleStringProperty")));
+         assertEquals(new String("mySimpleStringPropertyValue_" + i), msg.getSimpleStringProperty(new String("mySimpleStringProperty")));
+         assertEquals(null, msg.getSimpleStringProperty(new String("myNullSimpleStringProperty")));
       }
    }
 
@@ -310,12 +296,12 @@ public class XmlImportExportTest extends ServiceTestBase
       XmlDataImporter xmlDataImporter = new XmlDataImporter(xmlInputStream, session);
       xmlDataImporter.processXml();
 
-      ClientSession.QueueQuery queueQuery = session.queueQuery(new SimpleString("queueName1"));
+      ClientSession.QueueQuery queueQuery = session.queueQuery(new String("queueName1"));
 
       assertEquals("addressName1", queueQuery.getAddress().toString());
       assertNull(queueQuery.getFilterString());
 
-      queueQuery = session.queueQuery(new SimpleString("queueName2"));
+      queueQuery = session.queueQuery(new String("queueName2"));
 
       assertEquals("addressName1", queueQuery.getAddress().toString());
       assertEquals("bob", queueQuery.getFilterString().toString());

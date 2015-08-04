@@ -12,21 +12,10 @@
  */
 package org.hornetq.core.protocol.stomp;
 
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.Executor;
-
 import io.netty.channel.ChannelPipeline;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
@@ -50,6 +39,11 @@ import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.TypedProperties;
 import org.hornetq.utils.UUIDGenerator;
+
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.Executor;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 
@@ -472,7 +466,7 @@ class StompProtocolManager implements ProtocolManager, NotificationListener
                return;
             }
 
-            SimpleString address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+            String address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
 
             destinations.add(address.toString());
 
@@ -480,7 +474,7 @@ class StompProtocolManager implements ProtocolManager, NotificationListener
          }
          case BINDING_REMOVED:
          {
-            SimpleString address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
+            String address = props.getSimpleStringProperty(ManagementHelper.HDR_ADDRESS);
             destinations.remove(address.toString());
             break;
          }

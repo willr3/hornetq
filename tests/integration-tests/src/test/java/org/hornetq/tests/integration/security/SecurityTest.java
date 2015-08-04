@@ -12,6 +12,23 @@
  */
 package org.hornetq.tests.integration.security;
 
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQSecurityException;
+import org.hornetq.api.core.client.*;
+import org.hornetq.core.config.Configuration;
+import org.hornetq.core.security.Role;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.core.server.Queue;
+import org.hornetq.core.settings.HierarchicalRepository;
+import org.hornetq.spi.core.security.HornetQSecurityManager;
+import org.hornetq.spi.core.security.JAASSecurityManager;
+import org.hornetq.tests.util.CreateMessage;
+import org.hornetq.tests.util.ServiceTestBase;
+import org.jboss.security.SimpleGroup;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -27,29 +44,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQSecurityException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.core.config.Configuration;
-import org.hornetq.core.security.Role;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.server.Queue;
-import org.hornetq.core.settings.HierarchicalRepository;
-import org.hornetq.spi.core.security.HornetQSecurityManager;
-import org.hornetq.spi.core.security.JAASSecurityManager;
-import org.hornetq.tests.util.CreateMessage;
-import org.hornetq.tests.util.ServiceTestBase;
-import org.jboss.security.SimpleGroup;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -506,7 +500,7 @@ public class SecurityTest extends ServiceTestBase
       cp.send(session.createMessage(false));
       session.close();
 
-      Queue binding = (Queue) server.getPostOffice().getBinding(new SimpleString(SecurityTest.queueA)).getBindable();
+      Queue binding = (Queue) server.getPostOffice().getBinding(new String(SecurityTest.queueA)).getBindable();
       Assert.assertEquals(0, binding.getMessageCount());
    }
 
@@ -885,7 +879,7 @@ public class SecurityTest extends ServiceTestBase
       cp.send(session.createMessage(false));
       session.close();
 
-      Queue binding = (Queue) server.getPostOffice().getBinding(new SimpleString(SecurityTest.queueA)).getBindable();
+      Queue binding = (Queue) server.getPostOffice().getBinding(new String(SecurityTest.queueA)).getBindable();
       Assert.assertEquals(0, binding.getMessageCount());
 
    }

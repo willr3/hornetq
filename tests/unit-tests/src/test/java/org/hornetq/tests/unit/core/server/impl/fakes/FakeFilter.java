@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.unit.core.server.impl.fakes;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.server.ServerMessage;
 
@@ -44,11 +44,11 @@ public class FakeFilter implements Filter
    {
       if (headerName != null)
       {
-         Object value = message.getObjectProperty(new SimpleString(headerName));
+         Object value = message.getObjectProperty(new String(headerName));
 
-         if (value instanceof SimpleString)
+         if (value instanceof String)
          {
-            value = ((SimpleString)value).toString();
+            value = ((String)value).toString();
          }
 
          if (value != null && headerValue.equals(value))
@@ -62,7 +62,7 @@ public class FakeFilter implements Filter
       return true;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return null;
    }

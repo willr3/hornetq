@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.server.group;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.group.impl.GroupBinding;
 import org.hornetq.core.server.group.impl.Proposal;
@@ -27,7 +27,7 @@ public interface GroupingHandler extends NotificationListener, HornetQComponent
    // this method should maintain a WeakHash list, no need to remove the elements
    void addListener(UnproposalListener listener);
 
-   SimpleString getName();
+   String getName();
 
    void resendPending() throws Exception;
 
@@ -41,7 +41,7 @@ public interface GroupingHandler extends NotificationListener, HornetQComponent
 
    void addGroupBinding(GroupBinding groupBinding);
 
-   Response getProposal(SimpleString fullID, boolean touchTime);
+   Response getProposal(String fullID, boolean touchTime);
 
    void awaitBindings() throws Exception;
 
@@ -49,9 +49,9 @@ public interface GroupingHandler extends NotificationListener, HornetQComponent
     * this will force a removal of the group everywhere with an unproposal (dinstance=0).
     * This is for the case where a node goes missing
     */
-   void forceRemove(SimpleString groupid, SimpleString clusterName) throws Exception;
+   void forceRemove(String groupid, String clusterName) throws Exception;
 
-   void remove(SimpleString groupid, SimpleString clusterName) throws Exception;
+   void remove(String groupid, String clusterName) throws Exception;
 
-   void remove(SimpleString groupid, SimpleString clusterName, int distance) throws Exception;
+   void remove(String groupid, String clusterName, int distance) throws Exception;
 }

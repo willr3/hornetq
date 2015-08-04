@@ -12,6 +12,29 @@
  */
 package org.hornetq.core.server.impl;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQIllegalStateException;
+import org.hornetq.api.core.management.CoreNotificationType;
+import org.hornetq.api.core.management.ManagementHelper;
+import org.hornetq.core.client.impl.ClientConsumerImpl;
+import org.hornetq.core.filter.Filter;
+import org.hornetq.core.message.BodyEncoder;
+import org.hornetq.core.persistence.StorageManager;
+import org.hornetq.core.postoffice.Binding;
+import org.hornetq.core.postoffice.QueueBinding;
+import org.hornetq.core.server.*;
+import org.hornetq.core.server.management.ManagementService;
+import org.hornetq.core.server.management.Notification;
+import org.hornetq.core.transaction.Transaction;
+import org.hornetq.core.transaction.impl.TransactionImpl;
+import org.hornetq.spi.core.protocol.SessionCallback;
+import org.hornetq.spi.core.remoting.ReadyListener;
+import org.hornetq.utils.FutureLatch;
+import org.hornetq.utils.LinkedListIterator;
+import org.hornetq.utils.TypedProperties;
+
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -22,38 +45,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.management.CoreNotificationType;
-import org.hornetq.api.core.management.ManagementHelper;
-import org.hornetq.core.client.impl.ClientConsumerImpl;
-import org.hornetq.core.filter.Filter;
-import org.hornetq.core.message.BodyEncoder;
-import org.hornetq.core.persistence.StorageManager;
-import org.hornetq.core.postoffice.Binding;
-import org.hornetq.core.postoffice.QueueBinding;
-import org.hornetq.core.server.HandleStatus;
-import org.hornetq.core.server.HornetQMessageBundle;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.LargeServerMessage;
-import org.hornetq.core.server.MessageReference;
-import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.ServerConsumer;
-import org.hornetq.core.server.ServerMessage;
-import org.hornetq.core.server.ServerSession;
-import org.hornetq.core.server.management.ManagementService;
-import org.hornetq.core.server.management.Notification;
-import org.hornetq.core.transaction.Transaction;
-import org.hornetq.core.transaction.impl.TransactionImpl;
-import org.hornetq.spi.core.protocol.SessionCallback;
-import org.hornetq.spi.core.remoting.ReadyListener;
-import org.hornetq.utils.FutureLatch;
-import org.hornetq.utils.LinkedListIterator;
-import org.hornetq.utils.TypedProperties;
 
 /**
  * Concrete implementation of a ClientConsumer.
@@ -467,11 +458,11 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
 
          // HORNETQ-946
-         props.putSimpleStringProperty(ManagementHelper.HDR_USER, SimpleString.toSimpleString(session.getUsername()));
+         props.putSimpleStringProperty(ManagementHelper.HDR_USER, (session.getUsername()));
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, SimpleString.toSimpleString(((ServerSessionImpl) session).getRemotingConnection().getRemoteAddress()));
+         props.putSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS, (((ServerSessionImpl) session).getRemotingConnection().getRemoteAddress()));
 
-         props.putSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME, SimpleString.toSimpleString(session.getName()));
+         props.putSimpleStringProperty(ManagementHelper.HDR_SESSION_NAME, (session.getName()));
 
          Notification notification = new Notification(null, CoreNotificationType.CONSUMER_CLOSED, props);
 

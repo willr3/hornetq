@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -23,19 +23,19 @@ import org.hornetq.core.protocol.core.impl.PacketImpl;
 public class CreateSharedQueueMessage extends PacketImpl
 {
 
-   private SimpleString address;
+   private String address;
 
-   private SimpleString queueName;
+   private String queueName;
 
-   private SimpleString filterString;
+   private String filterString;
 
    private boolean durable;
 
    private boolean requiresResponse;
 
-   public CreateSharedQueueMessage(final SimpleString address,
-                                   final SimpleString queueName,
-                                   final SimpleString filterString,
+   public CreateSharedQueueMessage(final String address,
+                                   final String queueName,
+                                   final String filterString,
                                    final boolean durable,
                                    final boolean requiresResponse)
    {
@@ -67,17 +67,17 @@ public class CreateSharedQueueMessage extends PacketImpl
       return buff.toString();
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
@@ -87,17 +87,17 @@ public class CreateSharedQueueMessage extends PacketImpl
       return requiresResponse;
    }
 
-   public void setAddress(SimpleString address)
+   public void setAddress(String address)
    {
       this.address = address;
    }
 
-   public void setQueueName(SimpleString queueName)
+   public void setQueueName(String queueName)
    {
       this.queueName = queueName;
    }
 
-   public void setFilterString(SimpleString filterString)
+   public void setFilterString(String filterString)
    {
       this.filterString = filterString;
    }

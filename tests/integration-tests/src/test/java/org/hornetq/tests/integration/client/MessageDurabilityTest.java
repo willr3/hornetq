@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.client;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -60,8 +60,8 @@ public class MessageDurabilityTest extends ServiceTestBase
    {
       boolean durable = true;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, !durable);
 
@@ -90,8 +90,8 @@ public class MessageDurabilityTest extends ServiceTestBase
    {
       boolean durable = true;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, durable);
 
@@ -113,8 +113,8 @@ public class MessageDurabilityTest extends ServiceTestBase
    {
       boolean durable = true;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, durable);
 
@@ -139,8 +139,8 @@ public class MessageDurabilityTest extends ServiceTestBase
    {
       boolean durable = true;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      final SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      final String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, !durable);
 
@@ -168,8 +168,8 @@ public class MessageDurabilityTest extends ServiceTestBase
    {
       boolean durable = true;
 
-      SimpleString address = RandomUtil.randomSimpleString();
-      final SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      final String queue = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
 

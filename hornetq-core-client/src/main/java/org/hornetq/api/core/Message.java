@@ -52,25 +52,25 @@ import org.hornetq.utils.UUID;
  */
 public interface Message
 {
-   SimpleString HDR_ACTUAL_EXPIRY_TIME = new SimpleString("_HQ_ACTUAL_EXPIRY");
+   String HDR_ACTUAL_EXPIRY_TIME = new String("_HQ_ACTUAL_EXPIRY");
 
-   SimpleString HDR_ORIGINAL_ADDRESS = new SimpleString("_HQ_ORIG_ADDRESS");
+   String HDR_ORIGINAL_ADDRESS = new String("_HQ_ORIG_ADDRESS");
 
-   SimpleString HDR_ORIGINAL_QUEUE = new SimpleString("_HQ_ORIG_QUEUE");
+   String HDR_ORIGINAL_QUEUE = new String("_HQ_ORIG_QUEUE");
 
-   SimpleString HDR_ORIG_MESSAGE_ID = new SimpleString("_HQ_ORIG_MESSAGE_ID");
+   String HDR_ORIG_MESSAGE_ID = new String("_HQ_ORIG_MESSAGE_ID");
 
-   SimpleString HDR_GROUP_ID = new SimpleString("_HQ_GROUP_ID");
+   String HDR_GROUP_ID = new String("_HQ_GROUP_ID");
 
-   SimpleString HDR_LARGE_COMPRESSED = new SimpleString("_HQ_LARGE_COMPRESSED");
+   String HDR_LARGE_COMPRESSED = new String("_HQ_LARGE_COMPRESSED");
 
-   SimpleString HDR_LARGE_BODY_SIZE = new SimpleString("_HQ_LARGE_SIZE");
+   String HDR_LARGE_BODY_SIZE = new String("_HQ_LARGE_SIZE");
 
-   SimpleString HDR_SCHEDULED_DELIVERY_TIME = new SimpleString("_HQ_SCHED_DELIVERY");
+   String HDR_SCHEDULED_DELIVERY_TIME = new String("_HQ_SCHED_DELIVERY");
 
-   SimpleString HDR_DUPLICATE_DETECTION_ID = new SimpleString("_HQ_DUPL_ID");
+   String HDR_DUPLICATE_DETECTION_ID = new String("_HQ_DUPL_ID");
 
-   SimpleString HDR_LAST_VALUE_NAME = new SimpleString("_HQ_LVQ_NAME");
+   String HDR_LAST_VALUE_NAME = new String("_HQ_LVQ_NAME");
 
    byte DEFAULT_TYPE = 0;
 
@@ -109,14 +109,14 @@ public interface Message
    /**
     * Returns the address this message is sent to.
     */
-   SimpleString getAddress();
+   String getAddress();
 
    /**
     * Sets the address to send this message to.
     *
     * @param address address to send the message to
     */
-   Message setAddress(SimpleString address);
+   Message setAddress(String address);
 
    /**
     * Returns this message type.
@@ -215,12 +215,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putBooleanProperty(SimpleString key, boolean value);
+   Message putBooleanProperty(String key, boolean value);
 
    /**
-    * @see #putBooleanProperty(SimpleString, boolean)
+    * @see #putBooleanProperty(String, boolean)
     */
-   Message putBooleanProperty(String key, boolean value);
+   //Message putBooleanProperty(String key, boolean value);
 
    /**
     * Puts a byte property in this message.
@@ -228,12 +228,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putByteProperty(SimpleString key, byte value);
+   Message putByteProperty(String key, byte value);
 
    /**
-    * @see #putByteProperty(SimpleString, byte)
+    * @see #putByteProperty(String, byte)
     */
-   Message putByteProperty(String key, byte value);
+   //Message putByteProperty(String key, byte value);
 
    /**
     * Puts a byte[] property in this message.
@@ -241,12 +241,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putBytesProperty(SimpleString key, byte[] value);
+   Message putBytesProperty(String key, byte[] value);
 
    /**
-    * @see #putBytesProperty(SimpleString, byte[])
+    * @see #putBytesProperty(String, byte[])
     */
-   Message putBytesProperty(String key, byte[] value);
+   //Message putBytesProperty(String key, byte[] value);
 
    /**
     * Puts a short property in this message.
@@ -254,12 +254,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putShortProperty(SimpleString key, short value);
+   Message putShortProperty(String key, short value);
 
    /**
-    * @see #putShortProperty(SimpleString, short)
+    * @see #putShortProperty(String, short)
     */
-   Message putShortProperty(String key, short value);
+   //Message putShortProperty(String key, short value);
 
    /**
     * Puts a char property in this message.
@@ -267,12 +267,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putCharProperty(SimpleString key, char value);
+   Message putCharProperty(String key, char value);
 
    /**
-    * @see #putCharProperty(SimpleString, char)
+    * @see #putCharProperty(String, char)
     */
-   Message putCharProperty(String key, char value);
+   //Message putCharProperty(String key, char value);
 
    /**
     * Puts a int property in this message.
@@ -280,12 +280,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putIntProperty(SimpleString key, int value);
+   Message putIntProperty(String key, int value);
 
    /**
-    * @see #putIntProperty(SimpleString, int)
+    * @see #putIntProperty(String, int)
     */
-   Message putIntProperty(String key, int value);
+   //Message putIntProperty(String key, int value);
 
    /**
     * Puts a long property in this message.
@@ -293,12 +293,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putLongProperty(SimpleString key, long value);
+   Message putLongProperty(String key, long value);
 
    /**
-    * @see #putLongProperty(SimpleString, long)
+    * @see #putLongProperty(String, long)
     */
-   Message putLongProperty(String key, long value);
+   //Message putLongProperty(String key, long value);
 
    /**
     * Puts a float property in this message.
@@ -306,12 +306,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putFloatProperty(SimpleString key, float value);
+   Message putFloatProperty(String key, float value);
 
    /**
-    * @see #putFloatProperty(SimpleString, float)
+    * @see #putFloatProperty(String, float)
     */
-   Message putFloatProperty(String key, float value);
+   //Message putFloatProperty(String key, float value);
 
    /**
     * Puts a double property in this message.
@@ -319,20 +319,12 @@ public interface Message
     * @param key   property name
     * @param value property value
     */
-   Message putDoubleProperty(SimpleString key, double value);
-
-   /**
-    * @see #putDoubleProperty(SimpleString, double)
-    */
    Message putDoubleProperty(String key, double value);
 
    /**
-    * Puts a SimpleString property in this message.
-    *
-    * @param key   property name
-    * @param value property value
+    * @see #putDoubleProperty(String, double)
     */
-   Message putStringProperty(SimpleString key, SimpleString value);
+   //Message putDoubleProperty(String key, double value);
 
    /**
     * Puts a String property in this message.
@@ -341,6 +333,14 @@ public interface Message
     * @param value property value
     */
    Message putStringProperty(String key, String value);
+
+   /**
+    * Puts a String property in this message.
+    *
+    * @param key   property name
+    * @param value property value
+    */
+   //Message putStringProperty(String key, String value);
 
    /**
     * Puts an Object property in this message. <br>
@@ -355,7 +355,7 @@ public interface Message
     * <li>Float</li>
     * <li>Double</li>
     * <li>String</li>
-    * <li>SimpleString</li>
+    * <li>String</li>
     * </ul>
     * Using any other type will throw a PropertyConversionException.
     *
@@ -364,12 +364,12 @@ public interface Message
     * @throws HornetQPropertyConversionException if the value is not one of the accepted property
     *                                            types.
     */
-   Message putObjectProperty(SimpleString key, Object value) throws HornetQPropertyConversionException;
+   Message putObjectProperty(String key, Object value) throws HornetQPropertyConversionException;
 
    /**
-    * @see #putObjectProperty(SimpleString, Object)
+    * @see #putObjectProperty(String, Object)
     */
-   Message putObjectProperty(String key, Object value) throws HornetQPropertyConversionException;
+   //Message putObjectProperty(String key, Object value) throws HornetQPropertyConversionException;
 
    /**
     * Removes the property corresponding to the specified key.
@@ -377,160 +377,160 @@ public interface Message
     * @param key property name
     * @return the value corresponding to the specified key or @{code null}
     */
-   Object removeProperty(SimpleString key);
+   Object removeProperty(String key);
 
 
    /**
-    * @see #removeProperty(SimpleString)
+    * @see #removeProperty(String)
     */
-   Object removeProperty(String key);
+   //Object removeProperty(String key);
 
    /**
     * Returns {@code true} if this message contains a property with the given key, {@code false} else.
     *
     * @param key property name
     */
-   boolean containsProperty(SimpleString key);
+   boolean containsProperty(String key);
 
    /**
-    * @see #containsProperty(SimpleString)
+    * @see #containsProperty(String)
     */
-   boolean containsProperty(String key);
+   //boolean containsProperty(String key);
 
    /**
     * Returns the property corresponding to the specified key as a Boolean.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Boolean
     */
-   Boolean getBooleanProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getBooleanProperty(SimpleString)
+    * @see #getBooleanProperty(String)
     */
-   Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException;
+   //Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a Byte.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Byte
     */
-   Byte getByteProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Byte getByteProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getByteProperty(SimpleString)
+    * @see #getByteProperty(String)
     */
-   Byte getByteProperty(String key) throws HornetQPropertyConversionException;
+   //Byte getByteProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a Double.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Double
     */
-   Double getDoubleProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Double getDoubleProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getDoubleProperty(SimpleString)
+    * @see #getDoubleProperty(String)
     */
-   Double getDoubleProperty(String key) throws HornetQPropertyConversionException;
+   //Double getDoubleProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as an Integer.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to an Integer
     */
-   Integer getIntProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Integer getIntProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getIntProperty(SimpleString)
+    * @see #getIntProperty(String)
     */
-   Integer getIntProperty(String key) throws HornetQPropertyConversionException;
+   //Integer getIntProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a Long.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Long
     */
-   Long getLongProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Long getLongProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getLongProperty(SimpleString)
+    * @see #getLongProperty(String)
     */
-   Long getLongProperty(String key) throws HornetQPropertyConversionException;
+   //Long getLongProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key
     */
-   Object getObjectProperty(SimpleString key);
+   Object getObjectProperty(String key);
 
    /**
-    * @see #getBooleanProperty(SimpleString)
+    * @see #getBooleanProperty(String)
     */
-   Object getObjectProperty(String key);
+   //Object getObjectProperty(String key);
 
    /**
     * Returns the property corresponding to the specified key as a Short.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Short
     */
-   Short getShortProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Short getShortProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getShortProperty(SimpleString)
+    * @see #getShortProperty(String)
     */
-   Short getShortProperty(String key) throws HornetQPropertyConversionException;
+   //Short getShortProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a Float.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a Float
     */
-   Float getFloatProperty(SimpleString key) throws HornetQPropertyConversionException;
+   Float getFloatProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getFloatProperty(SimpleString)
+    * @see #getFloatProperty(String)
     */
-   Float getFloatProperty(String key) throws HornetQPropertyConversionException;
+   //Float getFloatProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a String.
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a String
     */
-   String getStringProperty(SimpleString key) throws HornetQPropertyConversionException;
-
-   /**
-    * @see #getStringProperty(SimpleString)
-    */
    String getStringProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * Returns the property corresponding to the specified key as a SimpleString.
-    *
-    * @throws HornetQPropertyConversionException if the value can not be converted to a SimpleString
+    * @see #getStringProperty(String)
     */
-   SimpleString getSimpleStringProperty(SimpleString key) throws HornetQPropertyConversionException;
+   //String getStringProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getSimpleStringProperty(SimpleString)
+    * Returns the property corresponding to the specified key as a String.
+    *
+    * @throws HornetQPropertyConversionException if the value can not be converted to a String
     */
-   SimpleString getSimpleStringProperty(String key) throws HornetQPropertyConversionException;
+   String getSimpleStringProperty(String key) throws HornetQPropertyConversionException;
+
+   /**
+    * @see #getSimpleStringProperty(String)
+    */
+   //String getStringProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns the property corresponding to the specified key as a byte[].
     *
     * @throws HornetQPropertyConversionException if the value can not be converted to a byte[]
     */
-   byte[] getBytesProperty(SimpleString key) throws HornetQPropertyConversionException;
+   //byte[] getBytesProperty(String key) throws HornetQPropertyConversionException;
 
    /**
-    * @see #getBytesProperty(SimpleString)
+    * @see #getBytesProperty(String)
     */
    byte[] getBytesProperty(String key) throws HornetQPropertyConversionException;
 
    /**
     * Returns all the names of the properties for this message.
     */
-   Set<SimpleString> getPropertyNames();
+   Set<String> getPropertyNames();
 
    /**
     * @return Returns the message in Map form, useful when encoding to JSON

@@ -12,16 +12,9 @@
  */
 package org.hornetq.core.protocol.stomp;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.zip.Inflater;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.persistence.OperationContext;
@@ -39,6 +32,12 @@ import org.hornetq.spi.core.protocol.SessionCallback;
 import org.hornetq.spi.core.remoting.ReadyListener;
 import org.hornetq.utils.ConfigurationHelper;
 import org.hornetq.utils.UUIDGenerator;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.zip.Inflater;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 
@@ -86,11 +85,11 @@ public class StompSession implements SessionCallback
       return session;
    }
 
-   public void sendProducerCreditsMessage(int credits, SimpleString address)
+   public void sendProducerCreditsMessage(int credits, String address)
    {
    }
 
-   public void sendProducerCreditsFailMessage(int credits, SimpleString address)
+   public void sendProducerCreditsFailMessage(int credits, String address)
    {
    }
 
@@ -258,7 +257,7 @@ public class StompSession implements SessionCallback
                                String selector,
                                String ack) throws Exception
    {
-      SimpleString queue = SimpleString.toSimpleString(destination);
+      String queue = (destination);
       int receiveCredits = consumerCredits;
       if (ack.equals(Stomp.Headers.Subscribe.AckModeValues.AUTO))
       {
@@ -274,23 +273,23 @@ public class StompSession implements SessionCallback
             {
                throw BUNDLE.missingClientID();
             }
-            queue = SimpleString.toSimpleString(clientID + "." + durableSubscriptionName);
+            queue = (clientID + "." + durableSubscriptionName);
             QueueQueryResult query = session.executeQueueQuery(queue);
             if (!query.isExists())
             {
-               session.createQueue(SimpleString.toSimpleString(destination), queue, SimpleString.toSimpleString(selector), false, true);
+               session.createQueue((destination), queue, (selector), false, true);
             }
          }
          else
          {
             queue = UUIDGenerator.getInstance().generateSimpleStringUUID();
-            session.createQueue(SimpleString.toSimpleString(destination), queue, SimpleString.toSimpleString(selector), true, false);
+            session.createQueue((destination), queue, (selector), true, false);
          }
          ((ServerSessionImpl) session).createConsumer(consumerID, queue, null, false, false, receiveCredits);
       }
       else
       {
-         ((ServerSessionImpl) session).createConsumer(consumerID, queue, SimpleString.toSimpleString(selector), false, false, receiveCredits);
+         ((ServerSessionImpl) session).createConsumer(consumerID, queue, (selector), false, false, receiveCredits);
       }
 
       StompSubscription subscription = new StompSubscription(subscriptionID, ack);
@@ -311,14 +310,14 @@ public class StompSession implements SessionCallback
          {
             iterator.remove();
             session.closeConsumer(consumerID);
-            SimpleString queueName;
+            String queueName;
             if (durableSubscriptionName != null && durableSubscriptionName.trim().length() != 0)
             {
-               queueName = SimpleString.toSimpleString(id + "." + durableSubscriptionName);
+               queueName = (id + "." + durableSubscriptionName);
             }
             else
             {
-               queueName = SimpleString.toSimpleString(id);
+               queueName = (id);
             }
             QueueQueryResult query = session.executeQueueQuery(queueName);
             if (query.isExists())

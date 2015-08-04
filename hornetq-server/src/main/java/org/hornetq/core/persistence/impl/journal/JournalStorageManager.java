@@ -12,55 +12,10 @@
  */
 package org.hornetq.core.persistence.impl.journal;
 
-import javax.transaction.xa.Xid;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.ByteBuffer;
-import java.security.AccessController;
-import java.security.DigestInputStream;
-import java.security.InvalidParameterException;
-import java.security.MessageDigest;
-import java.security.PrivilegedAction;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.HornetQInternalErrorException;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.filter.Filter;
-import org.hornetq.core.journal.EncodingSupport;
-import org.hornetq.core.journal.IOAsyncTask;
-import org.hornetq.core.journal.IOCriticalErrorListener;
-import org.hornetq.core.journal.Journal;
-import org.hornetq.core.journal.JournalLoadInformation;
-import org.hornetq.core.journal.PreparedTransactionInfo;
-import org.hornetq.core.journal.RecordInfo;
-import org.hornetq.core.journal.SequentialFile;
-import org.hornetq.core.journal.SequentialFileFactory;
-import org.hornetq.core.journal.TransactionFailureCallback;
+import org.hornetq.core.journal.*;
 import org.hornetq.core.journal.impl.AIOSequentialFileFactory;
 import org.hornetq.core.journal.impl.JournalFile;
 import org.hornetq.core.journal.impl.JournalImpl;
@@ -88,39 +43,29 @@ import org.hornetq.core.postoffice.PostOffice;
 import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage.LiveStopping;
 import org.hornetq.core.replication.ReplicatedJournal;
 import org.hornetq.core.replication.ReplicationManager;
-import org.hornetq.core.server.HornetQMessageBundle;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.JournalType;
-import org.hornetq.core.server.LargeServerMessage;
-import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.RouteContextList;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.group.impl.GroupBinding;
 import org.hornetq.core.server.impl.JournalLoader;
 import org.hornetq.core.server.impl.ServerMessageImpl;
-import org.hornetq.core.transaction.ResourceManager;
-import org.hornetq.core.transaction.Transaction;
+import org.hornetq.core.transaction.*;
 import org.hornetq.core.transaction.Transaction.State;
-import org.hornetq.core.transaction.TransactionOperation;
-import org.hornetq.core.transaction.TransactionOperationAbstract;
-import org.hornetq.core.transaction.TransactionPropertyIndexes;
 import org.hornetq.core.transaction.impl.TransactionImpl;
-import org.hornetq.utils.Base64;
-import org.hornetq.utils.ByteUtil;
-import org.hornetq.utils.DataConstants;
-import org.hornetq.utils.ExecutorFactory;
-import org.hornetq.utils.HornetQThreadFactory;
+import org.hornetq.utils.*;
 import org.hornetq.utils.UUID;
-import org.hornetq.utils.XidCodecSupport;
 
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.ACKNOWLEDGE_CURSOR;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.ADD_LARGE_MESSAGE;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.ADD_LARGE_MESSAGE_PENDING;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.DUPLICATE_ID;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.PAGE_CURSOR_COUNTER_INC;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.PAGE_CURSOR_COUNTER_VALUE;
-import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.SET_SCHEDULED_DELIVERY_TIME;
+import javax.transaction.xa.Xid;
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.ByteBuffer;
+import java.security.*;
+import java.util.*;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.*;
 
 /**
  * Controls access to the journals and other storage files such as the ones used to store pages and
@@ -214,11 +159,11 @@ public class JournalStorageManager implements StorageManager
    private boolean journalLoaded = false;
 
    // Persisted core configuration
-   private final Map<SimpleString, PersistedRoles> mapPersistedRoles =
-      new ConcurrentHashMap<SimpleString, PersistedRoles>();
+   private final Map<String, PersistedRoles> mapPersistedRoles =
+      new ConcurrentHashMap<String, PersistedRoles>();
 
-   private final Map<SimpleString, PersistedAddressSetting> mapPersistedAddressSettings =
-      new ConcurrentHashMap<SimpleString, PersistedAddressSetting>();
+   private final Map<String, PersistedAddressSetting> mapPersistedAddressSettings =
+      new ConcurrentHashMap<String, PersistedAddressSetting>();
 
    private final Set<Long> largeMessagesToDelete = new HashSet<Long>();
 
@@ -389,7 +334,7 @@ public class JournalStorageManager implements StorageManager
 
       try
       {
-         Map<SimpleString, Collection<Integer>> pageFilesToSync;
+         Map<String, Collection<Integer>> pageFilesToSync;
          storageManagerLock.writeLock().lock();
          try
          {
@@ -555,9 +500,9 @@ public class JournalStorageManager implements StorageManager
     * @param pageFilesToSync
     * @throws Exception
     */
-   private void sendPagesToBackup(Map<SimpleString, Collection<Integer>> pageFilesToSync, PagingManager manager) throws Exception
+   private void sendPagesToBackup(Map<String, Collection<Integer>> pageFilesToSync, PagingManager manager) throws Exception
    {
-      for (Entry<SimpleString, Collection<Integer>> entry : pageFilesToSync.entrySet())
+      for (Entry<String, Collection<Integer>> entry : pageFilesToSync.entrySet())
       {
          if (!started)
             return;
@@ -571,10 +516,10 @@ public class JournalStorageManager implements StorageManager
     * @return
     * @throws Exception
     */
-   private Map<SimpleString, Collection<Integer>> getPageInformationForSync(PagingManager pagingManager) throws Exception
+   private Map<String, Collection<Integer>> getPageInformationForSync(PagingManager pagingManager) throws Exception
    {
-      Map<SimpleString, Collection<Integer>> info = new HashMap<SimpleString, Collection<Integer>>();
-      for (SimpleString storeName : pagingManager.getStoreNames())
+      Map<String, Collection<Integer>> info = new HashMap<String, Collection<Integer>>();
+      for (String storeName : pagingManager.getStoreNames())
       {
          PagingStore store = pagingManager.getPageStore(storeName);
          info.put(storeName, store.getCurrentIds());
@@ -683,7 +628,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    @Override
-   public void pageClosed(final SimpleString storeName, final int pageNumber)
+   public void pageClosed(final String storeName, final int pageNumber)
    {
       if (isReplicated())
       {
@@ -701,7 +646,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    @Override
-   public void pageDeleted(final SimpleString storeName, final int pageNumber)
+   public void pageDeleted(final String storeName, final int pageNumber)
    {
       if (isReplicated())
       {
@@ -1021,7 +966,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void storeDuplicateID(final SimpleString address, final byte[] duplID, final long recordID) throws Exception
+   public void storeDuplicateID(final String address, final byte[] duplID, final long recordID) throws Exception
    {
       readLock();
       try
@@ -1345,7 +1290,7 @@ public class JournalStorageManager implements StorageManager
 
 
    public void storeDuplicateIDTransactional(final long txID,
-                                             final SimpleString address,
+                                             final String address,
                                              final byte[] duplID,
                                              final long recordID) throws Exception
    {
@@ -1363,7 +1308,7 @@ public class JournalStorageManager implements StorageManager
    }
 
    public void updateDuplicateIDTransactional(final long txID,
-                                              final SimpleString address,
+                                              final String address,
                                               final byte[] duplID,
                                               final long recordID) throws Exception
    {
@@ -1485,7 +1430,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void deleteAddressSetting(SimpleString addressMatch) throws Exception
+   public void deleteAddressSetting(String addressMatch) throws Exception
    {
       PersistedAddressSetting oldSetting = mapPersistedAddressSettings.remove(addressMatch);
       if (oldSetting != null)
@@ -1502,7 +1447,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   public void deleteSecurityRoles(SimpleString addressMatch) throws Exception
+   public void deleteSecurityRoles(String addressMatch) throws Exception
    {
       PersistedRoles oldRoles = mapPersistedRoles.remove(addressMatch);
       if (oldRoles != null)
@@ -1524,7 +1469,7 @@ public class JournalStorageManager implements StorageManager
                                                     final PagingManager pagingManager,
                                                     final ResourceManager resourceManager,
                                                     Map<Long, QueueBindingInfo> queueInfos,
-                                                    final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                                    final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                                     final Set<Pair<Long, Long>> pendingLargeMessages,
                                                     List<PageCountPending> pendingNonTXPageCounter,
                                                     final JournalLoader journalLoader) throws Exception
@@ -1958,7 +1903,7 @@ public class JournalStorageManager implements StorageManager
 
          if (queueInfo != null)
          {
-            SimpleString address = queueInfo.getAddress();
+            String address = queueInfo.getAddress();
             PagingStore store = pagingManager.getPageStore(address);
             subs = store.getCursorProvider().getSubscription(queueID);
             pageSubscriptions.put(queueID, subs);
@@ -2007,7 +1952,7 @@ public class JournalStorageManager implements StorageManager
 
       Filter filter = queue.getFilter();
 
-      SimpleString filterString = filter == null ? null : filter.getFilterString();
+      String filterString = filter == null ? null : filter.getFilterString();
 
       PersistentQueueBindingEncoding bindingEncoding = new PersistentQueueBindingEncoding(queue.getName(),
                                                                                           binding.getAddress(),
@@ -2566,7 +2511,7 @@ public class JournalStorageManager implements StorageManager
                                          final ResourceManager resourceManager,
                                          final Map<Long, QueueBindingInfo> queueInfos,
                                          final List<PreparedTransactionInfo> preparedTransactions,
-                                         final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                         final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                          final Map<Long, PageSubscription> pageSubscriptions,
                                          final Set<Pair<Long, Long>> pendingLargeMessages, JournalLoader journalLoader) throws Exception
    {
@@ -2955,11 +2900,11 @@ public class JournalStorageManager implements StorageManager
    {
       public long id;
 
-      public SimpleString groupId;
+      public String groupId;
 
-      public SimpleString clusterName;
+      public String clusterName;
 
-      public GroupingEncoding(final long id, final SimpleString groupId, final SimpleString clusterName)
+      public GroupingEncoding(final long id, final String groupId, final String clusterName)
       {
          this.id = id;
          this.groupId = groupId;
@@ -2972,7 +2917,7 @@ public class JournalStorageManager implements StorageManager
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(groupId) + SimpleString.sizeofString(clusterName);
+         return SSU.sizeof(groupId) + SSU.sizeof(clusterName);
       }
 
       public void encode(final HornetQBuffer buffer)
@@ -2997,12 +2942,12 @@ public class JournalStorageManager implements StorageManager
          this.id = id;
       }
 
-      public SimpleString getGroupId()
+      public String getGroupId()
       {
          return groupId;
       }
 
-      public SimpleString getClusterName()
+      public String getClusterName()
       {
          return clusterName;
       }
@@ -3018,11 +2963,11 @@ public class JournalStorageManager implements StorageManager
    {
       public long id;
 
-      public SimpleString name;
+      public String name;
 
-      public SimpleString address;
+      public String address;
 
-      public SimpleString filterString;
+      public String filterString;
 
       public PersistentQueueBindingEncoding()
       {
@@ -3041,9 +2986,9 @@ public class JournalStorageManager implements StorageManager
             "]";
       }
 
-      public PersistentQueueBindingEncoding(final SimpleString name,
-                                            final SimpleString address,
-                                            final SimpleString filterString)
+      public PersistentQueueBindingEncoding(final String name,
+                                            final String address,
+                                            final String filterString)
       {
          this.name = name;
          this.address = address;
@@ -3060,22 +3005,22 @@ public class JournalStorageManager implements StorageManager
          this.id = id;
       }
 
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return address;
       }
 
-      public void replaceQueueName(SimpleString newName)
+      public void replaceQueueName(String newName)
       {
          this.name = newName;
       }
 
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
          return filterString;
       }
 
-      public SimpleString getQueueName()
+      public String getQueueName()
       {
          return name;
       }
@@ -3096,8 +3041,8 @@ public class JournalStorageManager implements StorageManager
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(name) + SimpleString.sizeofString(address) +
-            SimpleString.sizeofNullableString(filterString);
+         return SSU.sizeof(name) + SSU.sizeof(address) +
+            SSU.sizeof(filterString);
       }
    }
 
@@ -3408,11 +3353,11 @@ public class JournalStorageManager implements StorageManager
 
    public static class DuplicateIDEncoding implements EncodingSupport
    {
-      SimpleString address;
+      String address;
 
       byte[] duplID;
 
-      public DuplicateIDEncoding(final SimpleString address, final byte[] duplID)
+      public DuplicateIDEncoding(final String address, final byte[] duplID)
       {
          this.address = address;
 
@@ -3445,17 +3390,17 @@ public class JournalStorageManager implements StorageManager
 
       public int getEncodeSize()
       {
-         return SimpleString.sizeofString(address) + DataConstants.SIZE_INT + duplID.length;
+         return SSU.sizeof(address) + DataConstants.SIZE_INT + duplID.length;
       }
 
       @Override
       public String toString()
       {
-         // this would be useful when testing. Most tests on the testsuite will use a SimpleString on the duplicate ID
+         // this would be useful when testing. Most tests on the testsuite will use a String on the duplicate ID
          // and this may be useful to validate the journal on those tests
          // You may uncomment these two lines on that case and replcate the toString for the PrintData
 
-         // SimpleString simpleStr = new SimpleString(duplID);
+         // String simpleStr = new String(duplID);
          // return "DuplicateIDEncoding [address=" + address + ", duplID=" + simpleStr + "]";
 
          String bridgeRepresentation = null;

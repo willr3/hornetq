@@ -12,18 +12,13 @@
  */
 package org.hornetq.tests.integration.jms.jms2client;
 
-import javax.jms.JMSConsumer;
-import javax.jms.JMSContext;
-import javax.jms.JMSProducer;
-import javax.jms.JMSRuntimeException;
-import javax.jms.Topic;
-import java.util.Random;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.*;
+import java.util.Random;
 
 public class SharedConsumerTest extends JMSTestBase
 {
@@ -101,10 +96,10 @@ public class SharedConsumerTest extends JMSTestBase
          JMSConsumer con1 = context.createSharedConsumer(topic1, "mySharedCon");
          JMSConsumer con2 = context.createSharedConsumer(topic1, "mySharedCon");
          con1.close();
-         Binding binding = server.getPostOffice().getBinding(new SimpleString("nonDurable.mySharedCon"));
+         Binding binding = server.getPostOffice().getBinding(new String("nonDurable.mySharedCon"));
          assertNotNull(binding);
          con2.close();
-         binding = server.getPostOffice().getBinding(new SimpleString("nonDurable.mySharedCon"));
+         binding = server.getPostOffice().getBinding(new String("nonDurable.mySharedCon"));
          assertNull(binding);
          con1 = context.createSharedConsumer(topic2, "mySharedCon");
       }

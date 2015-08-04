@@ -21,7 +21,7 @@ import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -49,9 +49,9 @@ public class LVQTest extends UnitTestCase
 
    private ClientSession clientSessionTxSends;
 
-   private final SimpleString address = new SimpleString("LVQTestAddress");
+   private final String address = new String("LVQTestAddress");
 
-   private final SimpleString qName1 = new SimpleString("LVQTestQ1");
+   private final String qName1 = new String("LVQTestQ1");
 
    @Test
    public void testSimple() throws Exception
@@ -59,7 +59,7 @@ public class LVQTest extends UnitTestCase
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
       ClientMessage m1 = createTextMessage(clientSession, "m1");
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
       m2.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
@@ -77,8 +77,8 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
-      SimpleString messageId1 = new SimpleString("SMID1");
-      SimpleString messageId2 = new SimpleString("SMID2");
+      String messageId1 = new String("SMID1");
+      String messageId2 = new String("SMID2");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, messageId1);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
@@ -108,7 +108,7 @@ public class LVQTest extends UnitTestCase
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
       ClientMessage m1 = createTextMessage(clientSession, "m1");
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
       m2.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
@@ -131,7 +131,7 @@ public class LVQTest extends UnitTestCase
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
       ClientMessage m1 = createTextMessage(clientSession, "m1");
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
       m2.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
@@ -157,7 +157,7 @@ public class LVQTest extends UnitTestCase
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
 
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
@@ -212,7 +212,7 @@ public class LVQTest extends UnitTestCase
       ClientProducer producer = clientSessionTxReceives.createProducer(address);
       ClientConsumer consumer = clientSessionTxReceives.createConsumer(qName1);
       ClientMessage m1 = createTextMessage(clientSession, "m1");
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
       m2.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
@@ -230,8 +230,8 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxReceives.createProducer(address);
       ClientConsumer consumer = clientSessionTxReceives.createConsumer(qName1);
-      SimpleString messageId1 = new SimpleString("SMID1");
-      SimpleString messageId2 = new SimpleString("SMID2");
+      String messageId1 = new String("SMID1");
+      String messageId2 = new String("SMID2");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, messageId1);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
@@ -263,8 +263,8 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxReceives.createProducer(address);
       ClientConsumer consumer = clientSessionTxReceives.createConsumer(qName1);
-      SimpleString messageId1 = new SimpleString("SMID1");
-      SimpleString messageId2 = new SimpleString("SMID2");
+      String messageId1 = new String("SMID1");
+      String messageId2 = new String("SMID2");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, messageId1);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
@@ -310,7 +310,7 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxReceives.createProducer(address);
       ClientConsumer consumer = clientSessionTxReceives.createConsumer(qName1);
-      SimpleString messageId1 = new SimpleString("SMID1");
+      String messageId1 = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, messageId1);
       producer.send(m1);
@@ -331,7 +331,7 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxSends.createProducer(address);
       ClientConsumer consumer = clientSessionTxSends.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       ClientMessage m2 = createTextMessage(clientSession, "m2");
@@ -363,7 +363,7 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);
@@ -402,7 +402,7 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxSends.createProducer(address);
       ClientConsumer consumer = clientSessionTxSends.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);
@@ -444,7 +444,7 @@ public class LVQTest extends UnitTestCase
       Queue queue = server.locateQueue(qName1);
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);
@@ -505,7 +505,7 @@ public class LVQTest extends UnitTestCase
       Queue queue = server.locateQueue(qName1);
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);
@@ -531,7 +531,7 @@ public class LVQTest extends UnitTestCase
       Queue queue = server.locateQueue(qName1);
       ClientProducer producer = clientSession.createProducer(address);
       ClientConsumer consumer = clientSession.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);
@@ -558,7 +558,7 @@ public class LVQTest extends UnitTestCase
    {
       ClientProducer producer = clientSessionTxReceives.createProducer(address);
       ClientConsumer consumer = clientSessionTxReceives.createConsumer(qName1);
-      SimpleString rh = new SimpleString("SMID1");
+      String rh = new String("SMID1");
       ClientMessage m1 = createTextMessage(clientSession, "m1");
       m1.putStringProperty(Message.HDR_LAST_VALUE_NAME, rh);
       m1.setDurable(true);

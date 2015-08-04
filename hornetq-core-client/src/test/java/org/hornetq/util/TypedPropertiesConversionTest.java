@@ -12,7 +12,7 @@
  */
 package org.hornetq.util;
 import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.utils.TypedProperties;
 import org.junit.After;
@@ -36,9 +36,9 @@ public class TypedPropertiesConversionTest
 
    private TypedProperties props;
 
-   private SimpleString key;
+   private String key;
 
-   private final SimpleString unknownKey = new SimpleString("this.key.is.never.used");
+   private final String unknownKey = new String("this.key.is.never.used");
 
    // Static --------------------------------------------------------
 
@@ -71,9 +71,9 @@ public class TypedPropertiesConversionTest
       props.putBooleanProperty(key, val);
 
       Assert.assertEquals(val, props.getBooleanProperty(key));
-      Assert.assertEquals(new SimpleString(Boolean.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Boolean.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Boolean.toString(val)));
+      props.putSimpleStringProperty(key, new String(Boolean.toString(val)));
       Assert.assertEquals(val, props.getBooleanProperty(key));
 
       try
@@ -96,7 +96,7 @@ public class TypedPropertiesConversionTest
       props.putCharProperty(key, val);
 
       Assert.assertEquals(val, props.getCharProperty(key));
-      Assert.assertEquals(new SimpleString(Character.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Character.toString(val)), props.getSimpleStringProperty(key));
 
       try
       {
@@ -125,9 +125,9 @@ public class TypedPropertiesConversionTest
       props.putByteProperty(key, val);
 
       Assert.assertEquals(val, props.getByteProperty(key));
-      Assert.assertEquals(new SimpleString(Byte.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Byte.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Byte.toString(val)));
+      props.putSimpleStringProperty(key, new String(Byte.toString(val)));
       Assert.assertEquals(val, props.getByteProperty(key));
 
       try
@@ -157,9 +157,9 @@ public class TypedPropertiesConversionTest
       props.putIntProperty(key, val);
 
       Assert.assertEquals(val, props.getIntProperty(key));
-      Assert.assertEquals(new SimpleString(Integer.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Integer.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Integer.toString(val)));
+      props.putSimpleStringProperty(key, new String(Integer.toString(val)));
       Assert.assertEquals(val, props.getIntProperty(key));
 
       Byte byteVal = RandomUtil.randomByte();
@@ -193,9 +193,9 @@ public class TypedPropertiesConversionTest
       props.putLongProperty(key, val);
 
       Assert.assertEquals(val, props.getLongProperty(key));
-      Assert.assertEquals(new SimpleString(Long.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Long.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Long.toString(val)));
+      props.putSimpleStringProperty(key, new String(Long.toString(val)));
       Assert.assertEquals(val, props.getLongProperty(key));
 
       Byte byteVal = RandomUtil.randomByte();
@@ -237,9 +237,9 @@ public class TypedPropertiesConversionTest
       props.putDoubleProperty(key, val);
 
       Assert.assertEquals(val, props.getDoubleProperty(key));
-      Assert.assertEquals(new SimpleString(Double.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Double.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Double.toString(val)));
+      props.putSimpleStringProperty(key, new String(Double.toString(val)));
       Assert.assertEquals(val, props.getDoubleProperty(key));
 
       try
@@ -270,9 +270,9 @@ public class TypedPropertiesConversionTest
 
       Assert.assertEquals(val, props.getFloatProperty(key));
       Assert.assertEquals(Double.valueOf(val), props.getDoubleProperty(key));
-      Assert.assertEquals(new SimpleString(Float.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Float.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Float.toString(val)));
+      props.putSimpleStringProperty(key, new String(Float.toString(val)));
       Assert.assertEquals(val, props.getFloatProperty(key));
 
       try
@@ -303,9 +303,9 @@ public class TypedPropertiesConversionTest
 
       Assert.assertEquals(val, props.getShortProperty(key));
       Assert.assertEquals(Integer.valueOf(val), props.getIntProperty(key));
-      Assert.assertEquals(new SimpleString(Short.toString(val)), props.getSimpleStringProperty(key));
+      Assert.assertEquals(new String(Short.toString(val)), props.getSimpleStringProperty(key));
 
-      props.putSimpleStringProperty(key, new SimpleString(Short.toString(val)));
+      props.putSimpleStringProperty(key, new String(Short.toString(val)));
       Assert.assertEquals(val, props.getShortProperty(key));
 
       Byte byteVal = RandomUtil.randomByte();
@@ -335,7 +335,7 @@ public class TypedPropertiesConversionTest
    @Test
    public void testSimpleStringProperty() throws Exception
    {
-      SimpleString strVal = RandomUtil.randomSimpleString();
+      String strVal = RandomUtil.randomSimpleString();
       props.putSimpleStringProperty(key, strVal);
       Assert.assertEquals(strVal, props.getSimpleStringProperty(key));
    }

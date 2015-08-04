@@ -12,16 +12,7 @@
  */
 package org.hornetq.tests.unit.core.postoffice.impl;
 
-import org.junit.Test;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
-import javax.transaction.xa.Xid;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.BindingType;
@@ -36,6 +27,12 @@ import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.TransactionOperation;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Test;
+
+import javax.transaction.xa.Xid;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A BindingImplTest
@@ -80,12 +77,12 @@ public class BindingsImplTest extends UnitTestCase
 
    private void internalTest(final boolean route) throws Exception
    {
-      final FakeBinding fake = new FakeBinding(new SimpleString("a"));
+      final FakeBinding fake = new FakeBinding(new String("a"));
 
       final Bindings bind = new BindingsImpl(null, null, null);
       bind.addBinding(fake);
-      bind.addBinding(new FakeBinding(new SimpleString("a")));
-      bind.addBinding(new FakeBinding(new SimpleString("a")));
+      bind.addBinding(new FakeBinding(new String("a")));
+      bind.addBinding(new FakeBinding(new String("a")));
 
       Thread t = new Thread()
       {
@@ -103,7 +100,7 @@ public class BindingsImplTest extends UnitTestCase
          }
       };
 
-      Queue queue = new FakeQueue(new SimpleString("a"));
+      Queue queue = new FakeQueue(new String("a"));
       t.start();
 
       for (int i = 0; i < 100; i++)
@@ -261,7 +258,7 @@ public class BindingsImplTest extends UnitTestCase
       /* (non-Javadoc)
        * @see org.hornetq.core.filter.Filter#getFilterString()
        */
-      public SimpleString getFilterString()
+      public String getFilterString()
       {
          return null;
       }
@@ -286,19 +283,19 @@ public class BindingsImplTest extends UnitTestCase
       }
 
       @Override
-      public void unproposed(SimpleString groupID)
+      public void unproposed(String groupID)
       {
 
       }
 
-      final SimpleString name;
+      final String name;
 
-      FakeBinding(final SimpleString name)
+      FakeBinding(final String name)
       {
          this.name = name;
       }
 
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return null;
       }
@@ -315,7 +312,7 @@ public class BindingsImplTest extends UnitTestCase
       /* (non-Javadoc)
        * @see org.hornetq.core.postoffice.Binding#getClusterName()
        */
-      public SimpleString getClusterName()
+      public String getClusterName()
       {
 
          return null;
@@ -345,7 +342,7 @@ public class BindingsImplTest extends UnitTestCase
       /* (non-Javadoc)
        * @see org.hornetq.core.postoffice.Binding#getRoutingName()
        */
-      public SimpleString getRoutingName()
+      public String getRoutingName()
       {
          return name;
       }
@@ -362,7 +359,7 @@ public class BindingsImplTest extends UnitTestCase
       /* (non-Javadoc)
        * @see org.hornetq.core.postoffice.Binding#getUniqueName()
        */
-      public SimpleString getUniqueName()
+      public String getUniqueName()
       {
          return null;
       }

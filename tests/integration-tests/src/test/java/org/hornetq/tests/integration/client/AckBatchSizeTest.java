@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -30,13 +30,13 @@ import org.junit.Test;
  */
 public class AckBatchSizeTest extends ServiceTestBase
 {
-   public final SimpleString addressA = new SimpleString("addressA");
+   public final String addressA = new String("addressA");
 
-   public final SimpleString queueA = new SimpleString("queueA");
+   public final String queueA = new String("queueA");
 
-   public final SimpleString queueB = new SimpleString("queueB");
+   public final String queueB = new String("queueB");
 
-   public final SimpleString queueC = new SimpleString("queueC");
+   public final String queueC = new String("queueC");
 
    /*ackbatchSize tests*/
 
@@ -44,7 +44,7 @@ public class AckBatchSizeTest extends ServiceTestBase
    * tests that wed don't acknowledge until the correct ackBatchSize is reached
    * */
 
-   private int getMessageEncodeSize(final SimpleString address) throws Exception
+   private int getMessageEncodeSize(final String address) throws Exception
    {
       ServerLocator locator = createInVMNonHALocator();
       ClientSessionFactory cf = createSessionFactory(locator);

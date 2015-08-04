@@ -27,7 +27,7 @@ import java.util.Set;
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.config.BridgeConfiguration;
 import org.hornetq.core.config.ClusterConnectionConfiguration;
@@ -181,9 +181,9 @@ public class ConfigurationImpl implements Configuration
 
    private long transactionTimeoutScanPeriod = HornetQDefaultConfiguration.getDefaultTransactionTimeoutScanPeriod();
 
-   private SimpleString managementAddress = HornetQDefaultConfiguration.getDefaultManagementAddress();
+   private String managementAddress = HornetQDefaultConfiguration.getDefaultManagementAddress();
 
-   private SimpleString managementNotificationAddress = HornetQDefaultConfiguration.getDefaultManagementNotificationAddress();
+   private String managementNotificationAddress = HornetQDefaultConfiguration.getDefaultManagementNotificationAddress();
 
    protected String clusterUser = HornetQDefaultConfiguration.getDefaultClusterUser();
 
@@ -760,22 +760,22 @@ public class ConfigurationImpl implements Configuration
       messageCounterMaxDayHistory = maxDayHistory;
    }
 
-   public SimpleString getManagementAddress()
+   public String getManagementAddress()
    {
       return managementAddress;
    }
 
-   public void setManagementAddress(final SimpleString address)
+   public void setManagementAddress(final String address)
    {
       managementAddress = address;
    }
 
-   public SimpleString getManagementNotificationAddress()
+   public String getManagementNotificationAddress()
    {
       return managementNotificationAddress;
    }
 
-   public void setManagementNotificationAddress(final SimpleString address)
+   public void setManagementNotificationAddress(final String address)
    {
       managementNotificationAddress = address;
    }

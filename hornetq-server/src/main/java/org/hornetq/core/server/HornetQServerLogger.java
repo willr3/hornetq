@@ -43,7 +43,7 @@ import javax.transaction.xa.Xid;
 import io.netty.channel.Channel;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.impl.ServerLocatorInternal;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.IOAsyncTask;
@@ -83,15 +83,15 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221001, value = "HornetQ Server version {0} [{1}] {2}", format = Message.Format.MESSAGE_FORMAT)
-   void serverStarted(String fullVersion, SimpleString nodeId, String identity);
+   void serverStarted(String fullVersion, String nodeId, String identity);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221002, value = "HornetQ Server version {0} [{1}] stopped", format = Message.Format.MESSAGE_FORMAT)
-   void serverStopped(String version, SimpleString nodeId);
+   void serverStopped(String version, String nodeId);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221003, value = "trying to deploy queue {0}", format = Message.Format.MESSAGE_FORMAT)
-   void deployQueue(SimpleString queueName);
+   void deployQueue(String queueName);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221004, value = "{0}", format = Message.Format.MESSAGE_FORMAT)
@@ -117,7 +117,7 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221109, value = "HornetQ Backup Server version {0} [{1}] started, waiting live to fail before it gets active",
          format = Message.Format.MESSAGE_FORMAT)
-   void backupServerStarted(String version, SimpleString nodeID);
+   void backupServerStarted(String version, String nodeID);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221010, value = "Backup Server is now live", format = Message.Format.MESSAGE_FORMAT)
@@ -193,7 +193,7 @@ public interface HornetQServerLogger extends BasicLogger
          id = 221026,
          value = "Bridge {0} connected to fowardingAddress={1}. {2} does not have any bindings what means messages will be ignored until a binding is created.",
          format = Message.Format.MESSAGE_FORMAT)
-   void bridgeNoBindings(SimpleString name, SimpleString forwardingAddress, SimpleString address);
+   void bridgeNoBindings(String name, String forwardingAddress, String address);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221027, value =  "Bridge {0} is connected", format = Message.Format.MESSAGE_FORMAT)
@@ -205,11 +205,11 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221029, value =  "stopped bridge {0}", format = Message.Format.MESSAGE_FORMAT)
-   void bridgeStopped(SimpleString name);
+   void bridgeStopped(String name);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221030, value =  "paused bridge {0}", format = Message.Format.MESSAGE_FORMAT)
-   void bridgePaused(SimpleString name);
+   void bridgePaused(String name);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221031, value =  "backup announced", format = Message.Format.MESSAGE_FORMAT)
@@ -234,7 +234,7 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221036, value =  "Message with duplicate ID {0} was already set at {1}. Move from {2} being ignored and message removed from {3}",
          format = Message.Format.MESSAGE_FORMAT)
-   void messageWithDuplicateID(Object duplicateProperty, SimpleString toAddress, SimpleString address, SimpleString simpleString);
+   void messageWithDuplicateID(Object duplicateProperty, String toAddress, String address, String simpleString);
 
    @LogMessage(level = Logger.Level.INFO)
    @Message(id = 221037, value = "{0} to become \''live\''", format = Message.Format.MESSAGE_FORMAT)
@@ -308,7 +308,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222006, value = "Binding already exists with name {0}, divert will not be deployed", format = Message.Format.MESSAGE_FORMAT)
-   void divertBindingNotExists(SimpleString bindingName);
+   void divertBindingNotExists(String bindingName);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222007, value = "Security risk! HornetQ is running with the default cluster admin user and default password. "
@@ -383,7 +383,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222023, value = "problem cleaning page address {0}", format = Message.Format.MESSAGE_FORMAT)
-   void problemCleaningPageAddress(@Cause Exception e, SimpleString address);
+   void problemCleaningPageAddress(@Cause Exception e, String address);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222024, value = "Could not complete operations on IO context {0}",
@@ -411,7 +411,7 @@ public interface HornetQServerLogger extends BasicLogger
    @Message(id = 222029,
          value = "Could not locate page transaction {0}, ignoring message on position {1} on address={2} queue={3}",
          format = Message.Format.MESSAGE_FORMAT)
-   void pageSubscriptionCouldntLoad(long transactionID, PagePosition position, SimpleString address, SimpleString name);
+   void pageSubscriptionCouldntLoad(long transactionID, PagePosition position, String address, String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222030, value = "File {0} being renamed to {1}.invalidPage as it was loaded partially. Please verify your data.", format = Message.Format.MESSAGE_FORMAT)
@@ -440,7 +440,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222036, value = "Timed out on waiting PagingStore {0} to shutdown", format = Message.Format.MESSAGE_FORMAT)
-   void pageStoreTimeout(SimpleString address);
+   void pageStoreTimeout(String address);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222037, value = "IO Error, impossible to start paging", format = Message.Format.MESSAGE_FORMAT)
@@ -448,11 +448,11 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222038, value = "Starting paging on {0}, size = {1}, maxSize={2}", format = Message.Format.MESSAGE_FORMAT)
-   void pageStoreStart(SimpleString storeName, long addressSize, long maxSize);
+   void pageStoreStart(String storeName, long addressSize, long maxSize);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222039, value = "Messages are being dropped on address {0}", format = Message.Format.MESSAGE_FORMAT)
-   void pageStoreDropMessages(SimpleString storeName);
+   void pageStoreDropMessages(String storeName);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222040, value = "Server is stopped", format = Message.Format.MESSAGE_FORMAT)
@@ -527,7 +527,7 @@ public interface HornetQServerLogger extends BasicLogger
    @Message(id = 222056, value = "Did not route to any bindings for address {0} and sendToDLAOnNoRoute is true " +
          "but there is no DLA configured for the address, the message will be ignored.",
          format = Message.Format.MESSAGE_FORMAT)
-   void noDLA(SimpleString address);
+   void noDLA(String address);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222057, value = "It was not possible to add references due to an IO error code {0} message = {1}",
@@ -684,16 +684,16 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222096, value = "Error on querying binding on bridge {0}. Retrying in 100 milliseconds", format = Message.Format.MESSAGE_FORMAT)
-   void errorQueryingBridge(@Cause Throwable t, SimpleString name);
+   void errorQueryingBridge(@Cause Throwable t, String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222097, value = "Address {0} does not have any bindings yet, retry #({1})",
          format = Message.Format.MESSAGE_FORMAT)
-   void errorQueryingBridge(SimpleString address, Integer retryCount);
+   void errorQueryingBridge(String address, Integer retryCount);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222098, value = "Server is starting, retry to create the session for bridge {0}", format = Message.Format.MESSAGE_FORMAT)
-   void errorStartingBridge(SimpleString name);
+   void errorStartingBridge(String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222099, value = "Bridge {0} is unable to connect to destination. It will be disabled.", format = Message.Format.MESSAGE_FORMAT)
@@ -706,7 +706,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222101, value =  "Bridge {0} achieved {1} maxattempts={2} it will stop retrying to reconnect", format = Message.Format.MESSAGE_FORMAT)
-   void bridgeAbortStart(SimpleString name, Integer retryCount, Integer reconnectAttempts);
+   void bridgeAbortStart(String name, Integer retryCount, Integer reconnectAttempts);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222102, value = "Unexpected exception while trying to reconnect", format = Message.Format.MESSAGE_FORMAT)
@@ -745,7 +745,7 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222110, value = "no queue IDs defined!,  originalMessage  = {0}, copiedMessage = {1}, props={2}",
          format = Message.Format.MESSAGE_FORMAT)
-   void noQueueIdDefined(ServerMessage message, ServerMessage messageCopy, SimpleString idsHeaderName);
+   void noQueueIdDefined(ServerMessage message, ServerMessage messageCopy, String idsHeaderName);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222111, value = "exception while invoking {0} on {1}",
@@ -765,7 +765,7 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222114, value = "Unable to delete group binding info {0}",
          format = Message.Format.MESSAGE_FORMAT)
-   void unableToDeleteGroupBindings(@Cause Exception e, SimpleString groupId);
+   void unableToDeleteGroupBindings(@Cause Exception e, String groupId);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222115, value = "Error closing serverLocator={0}",
@@ -778,11 +778,11 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222117, value = "unable to start cluster connection {0}", format = Message.Format.MESSAGE_FORMAT)
-   void unableToStartClusterConnection(@Cause Exception e, SimpleString name);
+   void unableToStartClusterConnection(@Cause Exception e, String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222118, value = "unable to start Bridge {0}", format = Message.Format.MESSAGE_FORMAT)
-   void unableToStartBridge(@Cause Exception e, SimpleString name);
+   void unableToStartBridge(@Cause Exception e, String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222119, value = "No connector with name {0}. backup cannot be announced.",
@@ -877,7 +877,7 @@ public interface HornetQServerLogger extends BasicLogger
    @Message(id = 222139, value =   "{0}::Remote queue binding {1} has already been bound in the post office. Most likely cause for this is you have a loop " +
          "in your cluster due to cluster max-hops being too large or you have multiple cluster connections to the same nodes using overlapping addresses",
          format = Message.Format.MESSAGE_FORMAT)
-   void remoteQueueAlreadyBoundOnClusterConnection(Object messageFlowRecord, SimpleString clusterName);
+   void remoteQueueAlreadyBoundOnClusterConnection(Object messageFlowRecord, String clusterName);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222140, value =   "problem closing backup session factory for cluster connection", format = Message.Format.MESSAGE_FORMAT)
@@ -906,26 +906,26 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222146, value =   "Message has expired. No bindings for Expiry Address {0} so dropping it", format = Message.Format.MESSAGE_FORMAT)
-   void errorExpiringReferencesNoBindings(SimpleString expiryAddress);
+   void errorExpiringReferencesNoBindings(String expiryAddress);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222147, value =   "Message has expired. No expiry queue configured for queue {0} so dropping it", format = Message.Format.MESSAGE_FORMAT)
-   void errorExpiringReferencesNoQueue(SimpleString name);
+   void errorExpiringReferencesNoQueue(String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222148, value =    "Message {0} has exceeded max delivery attempts. No bindings for Dead Letter Address {1} so dropping it" ,
          format = Message.Format.MESSAGE_FORMAT)
-   void messageExceededMaxDelivery(MessageReference ref, SimpleString name);
+   void messageExceededMaxDelivery(MessageReference ref, String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222149, value =    "Message {0} has reached maximum delivery attempts, sending it to Dead Letter Address {1} from {2}",
          format = Message.Format.MESSAGE_FORMAT)
-   void messageExceededMaxDeliverySendtoDLA(MessageReference ref, SimpleString name, SimpleString simpleString);
+   void messageExceededMaxDeliverySendtoDLA(MessageReference ref, String name, String simpleString);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222150, value =     "Message has exceeded max delivery attempts. No Dead Letter Address configured for queue {0} so dropping it",
          format = Message.Format.MESSAGE_FORMAT)
-   void messageExceededMaxDeliveryNoDLA(SimpleString name);
+   void messageExceededMaxDeliveryNoDLA(String name);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222151, value =     "removing consumer which did not handle a message, consumer={0}, message={1}",
@@ -1004,7 +1004,7 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222167, value =  "Group Binding not available so deleting {0} groups from {1}, groups will be bound to another node",
          format = Message.Format.MESSAGE_FORMAT)
-   void groupingQueueRemoved(int size, SimpleString clusterName);
+   void groupingQueueRemoved(int size, String clusterName);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222168, value = "The 'protocol' property is deprecated, if you want this Acceptor to support multiple protocols use the 'protocols' property, i.e. 'CORE,AMQP,STOMP'",
@@ -1100,7 +1100,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.ERROR)
    @Message(id = 224006, value = "Invalid filter: {0}", format = Message.Format.MESSAGE_FORMAT)
-   void invalidFilter(@Cause Throwable t, SimpleString filter);
+   void invalidFilter(@Cause Throwable t, String filter);
 
    @LogMessage(level = Logger.Level.ERROR)
    @Message(id = 224007, value = "page subscription = {0} error={1}", format = Message.Format.MESSAGE_FORMAT)
@@ -1260,7 +1260,7 @@ public interface HornetQServerLogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.ERROR)
    @Message(id = 224048, value =  "Failed to remove temporary queue {0}", format = Message.Format.MESSAGE_FORMAT)
-   void errorRemovingTempQueue(@Cause Exception e, SimpleString bindingName);
+   void errorRemovingTempQueue(@Cause Exception e, String bindingName);
 
    @LogMessage(level = Logger.Level.ERROR)
    @Message(id = 224049, value =  "Cannot find consumer with id {0}", format = Message.Format.MESSAGE_FORMAT)

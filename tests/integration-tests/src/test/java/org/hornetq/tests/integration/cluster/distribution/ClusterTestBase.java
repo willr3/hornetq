@@ -32,7 +32,7 @@ import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
@@ -105,9 +105,9 @@ public abstract class ClusterTestBase extends ServiceTestBase
 
    private static final long TIMEOUT_START_SERVER = 10;
 
-   private static final SimpleString COUNT_PROP = new SimpleString("count_prop");
+   private static final String COUNT_PROP = new String("count_prop");
 
-   protected static final SimpleString FILTER_PROP = new SimpleString("animal");
+   protected static final String FILTER_PROP = new String("animal");
 
    private static final int MAX_SERVERS = 10;
 
@@ -487,7 +487,7 @@ public abstract class ClusterTestBase extends ServiceTestBase
 
 
       PostOffice po = server.getPostOffice();
-      Bindings bindings = po.getBindingsForAddress(new SimpleString(address));
+      Bindings bindings = po.getBindingsForAddress(new String(address));
 
       System.out.println("=======================================================================");
       System.out.println("Binding information for address = " + address + " on node " + node);
@@ -554,7 +554,7 @@ public abstract class ClusterTestBase extends ServiceTestBase
       {
          return "server is shutdown";
       }
-      Bindings bindings = po.getBindingsForAddress(new SimpleString(address));
+      Bindings bindings = po.getBindingsForAddress(new String(address));
 
       out.println("=======================================================================");
       out.println("Binding information for address = " + address + " on " + server);
@@ -763,13 +763,13 @@ public abstract class ClusterTestBase extends ServiceTestBase
 
             if (filterVal != null)
             {
-               message.putStringProperty(ClusterTestBase.FILTER_PROP, new SimpleString(filterVal));
+               message.putStringProperty(ClusterTestBase.FILTER_PROP, new String(filterVal));
             }
 
             if (duplicateDetectionSeq != null)
             {
                String str = Integer.toString(duplicateDetectionSeq.incrementAndGet());
-               message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString(str));
+               message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new String(str));
             }
 
             message.putIntProperty(ClusterTestBase.COUNT_PROP, i);
@@ -799,8 +799,8 @@ public abstract class ClusterTestBase extends ServiceTestBase
                                    final String address,
                                    final int numMessages,
                                    final boolean durable,
-                                   final SimpleString key,
-                                   final SimpleString val) throws Exception
+                                   final String key,
+                                   final String val) throws Exception
    {
       sendInRange(node, address, 0, numMessages, durable, key, val);
    }
@@ -810,8 +810,8 @@ public abstract class ClusterTestBase extends ServiceTestBase
                               final int msgStart,
                               final int msgEnd,
                               final boolean durable,
-                              final SimpleString key,
-                              final SimpleString val) throws Exception
+                              final String key,
+                              final String val) throws Exception
    {
       ClientSessionFactory sf = sfs[node];
 
@@ -861,9 +861,9 @@ public abstract class ClusterTestBase extends ServiceTestBase
                                     final long reaperPeriod)
    {
       servers[node].getConfiguration()
-         .setGroupingHandlerConfiguration(new GroupingHandlerConfiguration(new SimpleString("grouparbitrator"),
+         .setGroupingHandlerConfiguration(new GroupingHandlerConfiguration(new String("grouparbitrator"),
                                                                            type,
-                                                                           new SimpleString("queues"),
+                                                                           new String("queues"),
                                                                            timeout,
                                                                            groupTimeout,
                                                                            reaperPeriod));
@@ -922,7 +922,7 @@ public abstract class ClusterTestBase extends ServiceTestBase
                                                         final int msgEnd,
                                                         final int... consumerIDs) throws Exception
    {
-      HashMap<SimpleString, Integer> groupIdsReceived = new HashMap<SimpleString, Integer>();
+      HashMap<String, Integer> groupIdsReceived = new HashMap<String, Integer>();
       for (int i = 0; i < consumerIDs.length; i++)
       {
          ConsumerHolder holder = consumers[consumerIDs[i]];
@@ -955,7 +955,7 @@ public abstract class ClusterTestBase extends ServiceTestBase
                Assert.assertTrue("Message received too soon", System.currentTimeMillis() >= firstReceiveTime);
             }
 
-            SimpleString id = (SimpleString) message.getObjectProperty(Message.HDR_GROUP_ID);
+            String id = (String) message.getObjectProperty(Message.HDR_GROUP_ID);
 
             if (groupIdsReceived.get(id) == null)
             {

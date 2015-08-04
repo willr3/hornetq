@@ -13,7 +13,7 @@
 package org.hornetq.utils;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * Helper methods to read and write from HornetQBuffer.
@@ -46,18 +46,18 @@ public class BufferHelper
 
    public static void writeAsNullableSimpleString(HornetQBuffer buffer, String str)
    {
-      buffer.writeNullableSimpleString(SimpleString.toSimpleString(str));
+      buffer.writeNullableSimpleString(str);
    }
 
    public static String readNullableSimpleStringAsString(HornetQBuffer buffer)
    {
-      SimpleString str = buffer.readNullableSimpleString();
+      String str = buffer.readNullableSimpleString();
       return str != null ? str.toString() : null;
    }
 
    public static void writeAsSimpleString(HornetQBuffer buffer, String str)
    {
-      buffer.writeSimpleString(new SimpleString(str));
+      buffer.writeSimpleString(new String(str));
    }
 
    /**

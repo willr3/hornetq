@@ -12,20 +12,12 @@
  */
 package org.hornetq.core.protocol.core.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.Executor;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.core.client.HornetQClientLogger;
+import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.protocol.core.Channel;
 import org.hornetq.core.protocol.core.CoreRemotingConnection;
 import org.hornetq.core.protocol.core.Packet;
@@ -34,10 +26,13 @@ import org.hornetq.core.protocol.core.impl.wireformat.DisconnectMessage;
 import org.hornetq.core.remoting.CloseListener;
 import org.hornetq.core.remoting.FailureListener;
 import org.hornetq.core.security.HornetQPrincipal;
-import org.hornetq.core.client.HornetQClientLogger;
-import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.spi.core.remoting.Connection;
 import org.hornetq.utils.SimpleIDGenerator;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Executor;
 
 /**
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
@@ -91,7 +86,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
 
    private final Executor executor;
 
-   private final SimpleString nodeID;
+   private final String nodeID;
 
    private final long creationTime;
 
@@ -121,7 +116,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
                           final List<Interceptor> incomingInterceptors,
                           final List<Interceptor> outgoingInterceptors,
                           final Executor executor,
-                          final SimpleString nodeID)
+                          final String nodeID)
 
    {
       this(packetDecoder, transportConnection, -1, -1, incomingInterceptors, outgoingInterceptors, false, executor, nodeID);
@@ -135,7 +130,7 @@ public class RemotingConnectionImpl implements CoreRemotingConnection
                                   final List<Interceptor> outgoingInterceptors,
                                   final boolean client,
                                   final Executor executor,
-                                  final SimpleString nodeID)
+                                  final String nodeID)
 
    {
       this.packetDecoder = packetDecoder;

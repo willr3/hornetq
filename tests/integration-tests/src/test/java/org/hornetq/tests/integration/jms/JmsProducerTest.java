@@ -15,17 +15,6 @@
  */
 package org.hornetq.tests.integration.jms;
 
-import javax.jms.DeliveryMode;
-import javax.jms.JMSConsumer;
-import javax.jms.JMSContext;
-import javax.jms.JMSProducer;
-import javax.jms.MessageFormatRuntimeException;
-import javax.jms.Queue;
-import javax.jms.TextMessage;
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.client.impl.ClientSessionImpl;
 import org.hornetq.core.client.impl.DelegatingSession;
 import org.hornetq.jms.client.HornetQJMSContext;
@@ -35,6 +24,10 @@ import org.hornetq.tests.util.JMSTestBase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class JmsProducerTest extends JMSTestBase
 {
@@ -102,7 +95,7 @@ public class JmsProducerTest extends JMSTestBase
    public void multipleSendsUsingSetters() throws Exception
    {
       jmsServer.createQueue(true, "q1", null, true, "/queues/q1");
-      server.createQueue(SimpleString.toSimpleString("q1"), SimpleString.toSimpleString("q1"), null, true, false);
+      server.createQueue(("q1"), ("q1"), null, true, false);
 
       Queue q1 = context.createQueue("q1");
 

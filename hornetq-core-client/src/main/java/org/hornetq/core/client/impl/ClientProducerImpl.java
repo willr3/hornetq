@@ -12,16 +12,7 @@
  */
 package org.hornetq.core.client.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQInterruptedException;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.*;
 import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.message.BodyEncoder;
@@ -36,6 +27,10 @@ import org.hornetq.utils.HornetQBufferInputStream;
 import org.hornetq.utils.TokenBucketLimiter;
 import org.hornetq.utils.UUIDGenerator;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * The client-side Producer.
  *
@@ -45,7 +40,7 @@ import org.hornetq.utils.UUIDGenerator;
  */
 public class ClientProducerImpl implements ClientProducerInternal
 {
-   private final SimpleString address;
+   private final String address;
 
    private final ClientSessionInternal session;
 
@@ -61,7 +56,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
    private final boolean blockOnDurableSend;
 
-   private final SimpleString groupID;
+   private final String groupID;
 
    private final int minLargeMessageSize;
 
@@ -72,12 +67,12 @@ public class ClientProducerImpl implements ClientProducerInternal
    // Constructors ---------------------------------------------------------------------------------
 
    public ClientProducerImpl(final ClientSessionInternal session,
-                             final SimpleString address,
+                             final String address,
                              final TokenBucketLimiter rateLimiter,
                              final boolean blockOnNonDurableSend,
                              final boolean blockOnDurableSend,
                              final boolean autoGroup,
-                             final SimpleString groupID,
+                             final String groupID,
                              final int minLargeMessageSize,
                              final Channel channel)
    {
@@ -116,7 +111,7 @@ public class ClientProducerImpl implements ClientProducerInternal
 
    // ClientProducer implementation ----------------------------------------------------------------
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -128,20 +123,20 @@ public class ClientProducerImpl implements ClientProducerInternal
       doSend(null, msg, null, false);
    }
 
-   public void send(final SimpleString address1, final Message msg) throws HornetQException
+   public void send(final String address1, final Message msg) throws HornetQException
    {
       checkClosed();
 
       doSend(address1, msg, null, false);
    }
 
-   public void send(final String address1, final Message message) throws HornetQException
-   {
-      send(SimpleString.toSimpleString(address1), message);
-   }
+//   public void send(final String address1, final Message message) throws HornetQException
+//   {
+//      send(address1, message);
+//   }
 
    @Override
-   public void send(SimpleString address1, Message message, SendAcknowledgementHandler handler) throws HornetQException
+   public void send(String address1, Message message, SendAcknowledgementHandler handler) throws HornetQException
    {
       checkClosed();
       boolean confirmationWindowEnabled = session.isConfirmationWindowEnabled();
@@ -224,7 +219,7 @@ public class ClientProducerImpl implements ClientProducerInternal
       closed = true;
    }
 
-   private void doSend(final SimpleString address1, final Message msg, final SendAcknowledgementHandler handler,
+   private void doSend(final String address1, final Message msg, final SendAcknowledgementHandler handler,
                        final boolean forceAsync) throws HornetQException
    {
       session.startCall();

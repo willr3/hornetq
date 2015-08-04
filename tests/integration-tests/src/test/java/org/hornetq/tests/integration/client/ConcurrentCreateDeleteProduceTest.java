@@ -12,16 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.Queue;
@@ -29,6 +20,9 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The delete queue was reseting some fields on the Queue what would eventually turn a NPE.
@@ -41,7 +35,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
 
    volatile boolean running = true;
 
-   private final SimpleString ADDRESS = new SimpleString("ADQUEUE");
+   private final String ADDRESS = new String("ADQUEUE");
 
 
    AtomicInteger sequence = new AtomicInteger(0);
@@ -82,7 +76,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
       ClientProducer producer = session.createProducer(ADDRESS);
 
       // just to make it page forever
-      Queue serverQueue = server.createQueue(ADDRESS, SimpleString.toSimpleString("everPage"), null, true, false);
+      Queue serverQueue = server.createQueue(ADDRESS, ("everPage"), null, true, false);
       serverQueue.getPageSubscription().getPagingStore().startPaging();
 
       Consumer[] consumers = new Consumer[10];
@@ -134,7 +128,7 @@ public class ConcurrentCreateDeleteProduceTest extends ServiceTestBase
 
             for (int i = 0; i < 100 && running; i++)
             {
-               SimpleString queueName = ADDRESS.concat("_" + sequence.incrementAndGet());
+               String queueName = ADDRESS.concat("_" + sequence.incrementAndGet());
                session.createQueue(ADDRESS, queueName, true);
                ClientConsumer consumer = session.createConsumer(queueName);
                while (running)

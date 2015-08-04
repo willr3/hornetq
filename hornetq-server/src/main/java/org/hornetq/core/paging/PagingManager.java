@@ -14,7 +14,7 @@ package org.hornetq.core.paging;
 
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
 
@@ -39,7 +39,7 @@ import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
 public interface PagingManager extends HornetQComponent, HierarchicalRepositoryChangeListener
 {
    /** Returns the PageStore associated with the address. A new page store is created if necessary. */
-   PagingStore getPageStore(SimpleString address) throws Exception;
+   PagingStore getPageStore(String address) throws Exception;
 
    /**
     * Point to inform/restoring Transactions used when the messages were added into paging
@@ -64,9 +64,9 @@ public interface PagingManager extends HornetQComponent, HierarchicalRepositoryC
     */
    void reloadStores() throws Exception;
 
-   SimpleString[] getStoreNames();
+   String[] getStoreNames();
 
-   void deletePageStore(SimpleString storeName) throws Exception;
+   void deletePageStore(String storeName) throws Exception;
 
    void processReload() throws Exception;
 

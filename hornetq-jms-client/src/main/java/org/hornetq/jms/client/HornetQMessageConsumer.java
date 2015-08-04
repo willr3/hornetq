@@ -12,22 +12,14 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.IllegalStateException;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueReceiver;
-import javax.jms.Session;
-import javax.jms.Topic;
-import javax.jms.TopicSubscriber;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.MessageHandler;
 import org.hornetq.api.jms.HornetQJMSConstants;
+
+import javax.jms.IllegalStateException;
+import javax.jms.*;
 
 /**
  * HornetQ implementation of a JMS MessageConsumer.
@@ -54,7 +46,7 @@ public final class HornetQMessageConsumer implements QueueReceiver, TopicSubscri
 
    private final String selector;
 
-   private final SimpleString autoDeleteQueueName;
+   private final String autoDeleteQueueName;
 
    // Constructors --------------------------------------------------
 
@@ -64,7 +56,7 @@ public final class HornetQMessageConsumer implements QueueReceiver, TopicSubscri
                                     final boolean noLocal,
                                     final HornetQDestination destination,
                                     final String selector,
-                                    final SimpleString autoDeleteQueueName) throws JMSException
+                                    final String autoDeleteQueueName) throws JMSException
    {
       this.connection = connection;
 

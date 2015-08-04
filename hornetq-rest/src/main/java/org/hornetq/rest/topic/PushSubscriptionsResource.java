@@ -13,7 +13,7 @@
 package org.hornetq.rest.topic;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.rest.HornetQRestLogger;
@@ -97,7 +97,7 @@ public class PushSubscriptionsResource
       if (reg.isEnabled() == false) return;
       String destination = reg.getDestination();
       ClientSession session = sessionFactory.createSession(false, false, false);
-      ClientSession.QueueQuery query = session.queueQuery(new SimpleString(destination));
+      ClientSession.QueueQuery query = session.queueQuery(new String(destination));
       ClientSession createSession = null;
       if (!query.isExists())
       {

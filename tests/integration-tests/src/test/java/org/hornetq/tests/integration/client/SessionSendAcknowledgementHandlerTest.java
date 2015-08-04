@@ -12,22 +12,16 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.SendAcknowledgementHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A SendAcknowledgementsTest
@@ -38,9 +32,9 @@ public class SessionSendAcknowledgementHandlerTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString address = new SimpleString("address");
+   private final String address = new String("address");
 
-   private final SimpleString queueName = new SimpleString("queue");
+   private final String queueName = new String("queue");
 
    @Override
    @Before

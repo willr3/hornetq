@@ -29,7 +29,7 @@ import java.util.Map;
 import org.junit.Assert;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -75,8 +75,8 @@ public class ManagementWithStompTest extends ManagementTestBase
    @Test
    public void testGetManagementAttributeFromStomp() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, null, false);
 
@@ -118,8 +118,8 @@ public class ManagementWithStompTest extends ManagementTestBase
    @Test
    public void testInvokeOperationFromStomp() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
 
       session.createQueue(address, queue, null, false);
 

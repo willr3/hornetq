@@ -13,7 +13,7 @@
 package org.hornetq.tests.integration.cluster.bridge;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.Transformer;
 
@@ -30,15 +30,15 @@ public class SimpleTransformer implements Transformer
 {
    public ServerMessage transform(final ServerMessage message)
    {
-      SimpleString oldProp = (SimpleString)message.getObjectProperty(new SimpleString("wibble"));
+      String oldProp = (String)message.getObjectProperty(new String("wibble"));
 
-      if (!oldProp.equals(new SimpleString("bing")))
+      if (!oldProp.equals(new String("bing")))
       {
          throw new IllegalStateException("Wrong property value!!");
       }
 
       // Change a property
-      message.putStringProperty(new SimpleString("wibble"), new SimpleString("bong"));
+      message.putStringProperty(new String("wibble"), new String("bong"));
 
       // Change the body
       HornetQBuffer buffer = message.getBodyBuffer();

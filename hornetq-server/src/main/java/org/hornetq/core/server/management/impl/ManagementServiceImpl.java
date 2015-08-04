@@ -12,46 +12,14 @@
  */
 package org.hornetq.core.server.management.impl;
 
-import javax.management.InstanceNotFoundException;
-import javax.management.MBeanRegistrationException;
-import javax.management.MBeanServer;
-import javax.management.NotificationBroadcasterSupport;
-import javax.management.ObjectName;
-import javax.management.StandardMBean;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledExecutorService;
-
 import org.hornetq.api.core.BroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.management.AcceptorControl;
-import org.hornetq.api.core.management.BridgeControl;
-import org.hornetq.api.core.management.BroadcastGroupControl;
-import org.hornetq.api.core.management.ClusterConnectionControl;
-import org.hornetq.api.core.management.DivertControl;
-import org.hornetq.api.core.management.ManagementHelper;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.core.management.ResourceNames;
+import org.hornetq.api.core.management.*;
 import org.hornetq.core.config.BridgeConfiguration;
 import org.hornetq.core.config.ClusterConnectionConfiguration;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.DivertConfiguration;
-import org.hornetq.core.management.impl.AcceptorControlImpl;
-import org.hornetq.core.management.impl.AddressControlImpl;
-import org.hornetq.core.management.impl.BridgeControlImpl;
-import org.hornetq.core.management.impl.BroadcastGroupControlImpl;
-import org.hornetq.core.management.impl.ClusterConnectionControlImpl;
-import org.hornetq.core.management.impl.DivertControlImpl;
-import org.hornetq.core.management.impl.HornetQServerControlImpl;
-import org.hornetq.core.management.impl.QueueControlImpl;
+import org.hornetq.core.management.impl.*;
 import org.hornetq.core.messagecounter.MessageCounter;
 import org.hornetq.core.messagecounter.MessageCounterManager;
 import org.hornetq.core.messagecounter.impl.MessageCounterManagerImpl;
@@ -60,13 +28,8 @@ import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.PostOffice;
 import org.hornetq.core.remoting.server.RemotingService;
 import org.hornetq.core.security.Role;
-import org.hornetq.core.server.Divert;
-import org.hornetq.core.server.HornetQMessageBundle;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.server.HornetQServerLogger;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.QueueFactory;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.Bridge;
 import org.hornetq.core.server.cluster.BroadcastGroup;
 import org.hornetq.core.server.cluster.ClusterConnection;
@@ -79,6 +42,13 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.core.transaction.ResourceManager;
 import org.hornetq.spi.core.remoting.Acceptor;
 import org.hornetq.utils.TypedProperties;
+
+import javax.management.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledExecutorService;
 
 /*
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
@@ -115,9 +85,9 @@ public class ManagementServiceImpl implements ManagementService
 
    private MessageCounterManager messageCounterManager;
 
-   private final SimpleString managementNotificationAddress;
+   private final String managementNotificationAddress;
 
-   private final SimpleString managementAddress;
+   private final String managementAddress;
 
    private boolean started = false;
 
@@ -212,7 +182,7 @@ public class ManagementServiceImpl implements ManagementService
       unregisterFromRegistry(ResourceNames.CORE_SERVER);
    }
 
-   public synchronized void registerAddress(final SimpleString address) throws Exception
+   public synchronized void registerAddress(final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getAddressObjectName(address);
       AddressControlImpl addressControl = new AddressControlImpl(address,
@@ -231,7 +201,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterAddress(final SimpleString address) throws Exception
+   public synchronized void unregisterAddress(final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getAddressObjectName(address);
 
@@ -240,7 +210,7 @@ public class ManagementServiceImpl implements ManagementService
    }
 
    public synchronized void registerQueue(final Queue queue,
-                                          final SimpleString address,
+                                          final String address,
                                           final StorageManager storageManager) throws Exception
    {
       QueueControlImpl queueControl = new QueueControlImpl(queue,
@@ -269,7 +239,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterQueue(final SimpleString name, final SimpleString address) throws Exception
+   public synchronized void unregisterQueue(final String name, final String address) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getQueueObjectName(address, name);
       unregisterFromJMX(objectName);
@@ -290,7 +260,7 @@ public class ManagementServiceImpl implements ManagementService
       }
    }
 
-   public synchronized void unregisterDivert(final SimpleString name) throws Exception
+   public synchronized void unregisterDivert(final String name) throws Exception
    {
       ObjectName objectName = objectNameBuilder.getDivertObjectName(name.toString());
       unregisterFromJMX(objectName);
@@ -550,12 +520,12 @@ public class ManagementServiceImpl implements ManagementService
       listeners.remove(listener);
    }
 
-   public SimpleString getManagementAddress()
+   public String getManagementAddress()
    {
       return managementAddress;
    }
 
-   public SimpleString getManagementNotificationAddress()
+   public String getManagementNotificationAddress()
    {
       return managementNotificationAddress;
    }
@@ -712,21 +682,21 @@ public class ManagementServiceImpl implements ManagementService
                if (notification.getProperties() != null)
                {
                   TypedProperties props = notification.getProperties();
-                  for (SimpleString name : notification.getProperties().getPropertyNames())
+                  for (String name : notification.getProperties().getPropertyNames())
                   {
                      notificationMessage.putObjectProperty(name, props.getProperty(name));
                   }
                }
 
                notificationMessage.putStringProperty(ManagementHelper.HDR_NOTIFICATION_TYPE,
-                                                     new SimpleString(notification.getType().toString()));
+                                                     new String(notification.getType().toString()));
 
                notificationMessage.putLongProperty(ManagementHelper.HDR_NOTIFICATION_TIMESTAMP, System.currentTimeMillis());
 
                if (notification.getUID() != null)
                {
-                  notificationMessage.putStringProperty(new SimpleString("foobar"),
-                                                        new SimpleString(notification.getUID()));
+                  notificationMessage.putStringProperty(new String("foobar"),
+                                                        new String(notification.getUID()));
                }
 
                postOffice.route(notificationMessage, false);

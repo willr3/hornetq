@@ -12,10 +12,9 @@
  */
 package org.hornetq.core.postoffice;
 
-import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.transaction.Transaction;
+
+import java.util.Map;
 
 /**
  * Used to maintain addresses and BindingsImpl.
@@ -35,15 +34,15 @@ public interface AddressManager
     * @return
     * @throws Exception
     */
-   Binding removeBinding(SimpleString uniqueName, Transaction tx) throws Exception;
+   Binding removeBinding(String uniqueName, Transaction tx) throws Exception;
 
-   Bindings getBindingsForRoutingAddress(SimpleString address) throws Exception;
+   Bindings getBindingsForRoutingAddress(String address) throws Exception;
 
-   Bindings getMatchingBindings(SimpleString address) throws Exception;
+   Bindings getMatchingBindings(String address) throws Exception;
 
    void clear();
 
-   Binding getBinding(SimpleString queueName);
+   Binding getBinding(String queueName);
 
-   Map<SimpleString, Binding> getBindings();
+   Map<String, Binding> getBindings();
 }

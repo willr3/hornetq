@@ -12,12 +12,7 @@
  */
 package org.hornetq.core.server.impl;
 
-import javax.transaction.xa.Xid;
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.journal.Journal;
 import org.hornetq.core.persistence.GroupingInfo;
 import org.hornetq.core.persistence.QueueBindingInfo;
@@ -27,6 +22,10 @@ import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.ResourceManager;
 import org.hornetq.core.transaction.Transaction;
+
+import javax.transaction.xa.Xid;
+import java.util.List;
+import java.util.Map;
 
 public interface JournalLoader
 {
@@ -38,7 +37,7 @@ public interface JournalLoader
 
    void handleGroupingBindings(List<GroupingInfo> groupingInfos);
 
-   void handleDuplicateIds(Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception;
+   void handleDuplicateIds(Map<String, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception;
 
    void postLoad(Journal messageJournal) throws Exception;
 

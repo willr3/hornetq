@@ -12,32 +12,22 @@
  */
 package org.hornetq.core.client.impl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.GatheringByteChannel;
-import java.nio.channels.ScatteringByteChannel;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-
 import io.netty.buffer.ByteBuf;
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.HornetQInterruptedException;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.*;
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.client.HornetQClientMessageBundle;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.UTF8Util;
+
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.GatheringByteChannel;
+import java.nio.channels.ScatteringByteChannel;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class aggregates several {@link SessionReceiveContinuationMessage}s as it was being handled
@@ -1060,7 +1050,7 @@ public class LargeMessageControllerImpl implements LargeMessageController
    }
 
    @Override
-   public SimpleString readNullableSimpleString()
+   public String readNullableSimpleString()
    {
       int b = readByte();
       if (b == DataConstants.NULL)
@@ -1088,12 +1078,12 @@ public class LargeMessageControllerImpl implements LargeMessageController
    }
 
    @Override
-   public SimpleString readSimpleString()
+   public String readSimpleString()
    {
       int len = readInt();
       byte[] data = new byte[len];
       readBytes(data);
-      return new SimpleString(data);
+      return new String(data);
    }
 
    @Override
@@ -1153,7 +1143,7 @@ public class LargeMessageControllerImpl implements LargeMessageController
    }
 
    @Override
-   public void writeNullableSimpleString(final SimpleString val)
+   public void writeNullableSimpleString(final String val)
    {
       throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
    }
@@ -1165,7 +1155,7 @@ public class LargeMessageControllerImpl implements LargeMessageController
    }
 
    @Override
-   public void writeSimpleString(final SimpleString val)
+   public void writeSimpleString(final String val)
    {
       throw new IllegalAccessError(LargeMessageControllerImpl.READ_ONLY_ERROR_MESSAGE);
    }

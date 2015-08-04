@@ -11,34 +11,24 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.server;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -49,13 +39,13 @@ public class ExpiryRunnerTest extends UnitTestCase
 
    private ClientSession clientSession;
 
-   private final SimpleString qName = new SimpleString("ExpiryRunnerTestQ");
+   private final String qName = new String("ExpiryRunnerTestQ");
 
-   private final SimpleString qName2 = new SimpleString("ExpiryRunnerTestQ2");
+   private final String qName2 = new String("ExpiryRunnerTestQ2");
 
-   private SimpleString expiryQueue;
+   private String expiryQueue;
 
-   private SimpleString expiryAddress;
+   private String expiryAddress;
    private ServerLocator locator;
 
    @Test
@@ -277,8 +267,8 @@ public class ExpiryRunnerTest extends UnitTestCase
 
       clientSession = sessionFactory.createSession(false, true, true);
       clientSession.createQueue(qName, qName, null, false);
-      expiryAddress = new SimpleString("EA");
-      expiryQueue = new SimpleString("expiryQ");
+      expiryAddress = new String("EA");
+      expiryQueue = new String("expiryQ");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setExpiryAddress(expiryAddress);
       server.getAddressSettingsRepository().addMatch(qName.toString(), addressSettings);

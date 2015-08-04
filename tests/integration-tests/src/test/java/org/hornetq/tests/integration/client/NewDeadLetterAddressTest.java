@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -52,13 +52,13 @@ public class NewDeadLetterAddressTest extends UnitTestCase
    @Test
    public void testSendToDLAWhenNoRoute() throws Exception
    {
-      SimpleString dla = new SimpleString("DLA");
-      SimpleString address = new SimpleString("empty_address");
+      String dla = new String("DLA");
+      String address = new String("empty_address");
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setDeadLetterAddress(dla);
       addressSettings.setSendToDLAOnNoRoute(true);
       server.getAddressSettingsRepository().addMatch(address.toString(), addressSettings);
-      SimpleString dlq = new SimpleString("DLQ1");
+      String dlq = new String("DLQ1");
       clientSession.createQueue(dla, dlq, null, false);
       ClientProducer producer = clientSession.createProducer(address);
       producer.send(createTextMessage(clientSession, "heyho!"));

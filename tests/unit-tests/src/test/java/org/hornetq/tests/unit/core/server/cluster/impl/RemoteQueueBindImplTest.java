@@ -14,7 +14,7 @@ package org.hornetq.tests.unit.core.server.cluster.impl;
 
 import org.junit.Test;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.server.cluster.impl.RemoteQueueBindingImpl;
 import org.hornetq.tests.unit.core.postoffice.impl.FakeQueue;
@@ -46,13 +46,13 @@ public class RemoteQueueBindImplTest extends UnitTestCase
    {
 
       final long id = RandomUtil.randomLong();
-      final SimpleString address = RandomUtil.randomSimpleString();
-      final SimpleString uniqueName = RandomUtil.randomSimpleString();
-      final SimpleString routingName = RandomUtil.randomSimpleString();
+      final String address = RandomUtil.randomSimpleString();
+      final String uniqueName = RandomUtil.randomSimpleString();
+      final String routingName = RandomUtil.randomSimpleString();
       final Long remoteQueueID = RandomUtil.randomLong();
-      final SimpleString filterString = new SimpleString("A>B");
+      final String filterString = new String("A>B");
       final Queue storeAndForwardQueue = new FakeQueue(null);
-      final SimpleString bridgeName = RandomUtil.randomSimpleString();
+      final String bridgeName = RandomUtil.randomSimpleString();
       final int distance = 0;
       RemoteQueueBindingImpl binding = new RemoteQueueBindingImpl(id,
                                                                   address,
@@ -66,14 +66,14 @@ public class RemoteQueueBindImplTest extends UnitTestCase
 
       for (int i = 0; i < 100; i++)
       {
-         binding.addConsumer(new SimpleString("B" + i + "<A"));
+         binding.addConsumer(new String("B" + i + "<A"));
       }
 
       assertEquals(100, binding.getFilters().size());
 
       for (int i = 0; i < 100; i++)
       {
-         binding.removeConsumer(new SimpleString("B" + i + "<A"));
+         binding.removeConsumer(new String("B" + i + "<A"));
       }
 
       assertEquals(0, binding.getFilters().size());

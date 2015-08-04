@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -48,8 +48,8 @@ public class ClientCrashTest extends ClientTestBase
 
    // Constants -----------------------------------------------------
 
-   public static final SimpleString QUEUE = new SimpleString("ClientCrashTestQueue");
-   public static final SimpleString QUEUE2 = new SimpleString("ClientCrashTestQueue2");
+   public static final String QUEUE = new String("ClientCrashTestQueue");
+   public static final String QUEUE2 = new String("ClientCrashTestQueue2");
 
    public static final String MESSAGE_TEXT_FROM_SERVER = "ClientCrashTest from server";
 

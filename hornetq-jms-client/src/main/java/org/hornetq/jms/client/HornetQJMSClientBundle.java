@@ -13,22 +13,16 @@
 package org.hornetq.jms.client;
 
 
-import javax.jms.IllegalStateException;
-import javax.jms.IllegalStateRuntimeException;
-import javax.jms.InvalidDestinationException;
-import javax.jms.JMSException;
-import javax.jms.JMSRuntimeException;
-import javax.jms.MessageNotReadableException;
-import javax.jms.MessageNotWriteableException;
-
 import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.api.core.HornetQInvalidFilterExpressionException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
-import org.hornetq.api.core.SimpleString;
 import org.jboss.logging.Cause;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
 import org.jboss.logging.Messages;
+
+import javax.jms.IllegalStateException;
+import javax.jms.*;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -46,13 +40,13 @@ public interface HornetQJMSClientBundle
    HornetQJMSClientBundle BUNDLE = Messages.getBundle(HornetQJMSClientBundle.class);
 
    @Message(id = 129000, value =  "Invalid filter: {0}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, SimpleString filter);
+   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, String filter);
 
    @Message(id = 129001, value =  "Invalid Subscription Name. It is required to set the subscription name", format = Message.Format.MESSAGE_FORMAT)
    HornetQIllegalStateException invalidSubscriptionName();
 
    @Message(id = 129002, value =  "Destination {0} does not exist", format = Message.Format.MESSAGE_FORMAT)
-   HornetQNonExistentQueueException destinationDoesNotExist(SimpleString destination);
+   HornetQNonExistentQueueException destinationDoesNotExist(String destination);
 
    @Message(id = 129003, value =  "name cannot be null", format = Message.Format.MESSAGE_FORMAT)
    IllegalArgumentException nameCannotBeNull();

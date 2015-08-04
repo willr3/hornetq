@@ -11,18 +11,7 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.jms.client;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-
 import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.jms.client.HornetQMessage;
 import org.hornetq.jms.client.HornetQTextMessage;
@@ -32,6 +21,8 @@ import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.*;
 
 /**
  * GroupingTest
@@ -63,7 +54,7 @@ public class GroupingTest extends JMSTestBase
 
    protected void setProperty(Message message)
    {
-      ((HornetQMessage)message).getCoreMessage().putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, new SimpleString("foo"));
+      ((HornetQMessage)message).getCoreMessage().putStringProperty(org.hornetq.api.core.Message.HDR_GROUP_ID, new String("foo"));
    }
 
    protected ConnectionFactory getCF() throws Exception

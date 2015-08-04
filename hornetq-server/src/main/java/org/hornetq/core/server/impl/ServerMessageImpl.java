@@ -12,11 +12,8 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.server.MessageReference;
@@ -25,6 +22,9 @@ import org.hornetq.core.server.ServerMessage;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.MemorySize;
 import org.hornetq.utils.TypedProperties;
+
+import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A ServerMessageImpl
@@ -235,7 +235,7 @@ public class ServerMessageImpl extends MessageImpl implements ServerMessage
    @Override
    public void setOriginalHeaders(final ServerMessage other, final MessageReference originalReference, final boolean expiry)
    {
-      SimpleString originalQueue = other.getSimpleStringProperty(Message.HDR_ORIGINAL_QUEUE);
+      String originalQueue = other.getSimpleStringProperty(Message.HDR_ORIGINAL_QUEUE);
 
       if (originalQueue != null)
       {
@@ -282,7 +282,7 @@ public class ServerMessageImpl extends MessageImpl implements ServerMessage
       address = pagingStore.getAddress();
    }
 
-   public synchronized void forceAddress(final SimpleString address)
+   public synchronized void forceAddress(final String address)
    {
       this.address = address;
       bufferValid = false;
@@ -341,9 +341,9 @@ public class ServerMessageImpl extends MessageImpl implements ServerMessage
       }
       else
       {
-         if (duplicateID instanceof SimpleString)
+         if (duplicateID instanceof String)
          {
-            return ((SimpleString) duplicateID).getData();
+            return SSU.getData((String) duplicateID);
          }
          else
          {

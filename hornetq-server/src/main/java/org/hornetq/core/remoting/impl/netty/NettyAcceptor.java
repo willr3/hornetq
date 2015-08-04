@@ -52,7 +52,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.client.impl.ClientSessionFactoryImpl;
@@ -456,10 +456,10 @@ public class NettyAcceptor implements Acceptor
          if (notificationService != null)
          {
             TypedProperties props = new TypedProperties();
-            props.putSimpleStringProperty(new SimpleString("factory"),
-                                          new SimpleString(NettyAcceptorFactory.class.getName()));
-            props.putSimpleStringProperty(new SimpleString("host"), new SimpleString(host));
-            props.putIntProperty(new SimpleString("port"), port);
+            props.putSimpleStringProperty(new String("factory"),
+                                          new String(NettyAcceptorFactory.class.getName()));
+            props.putSimpleStringProperty(new String("host"), new String(host));
+            props.putIntProperty(new String("port"), port);
             Notification notification = new Notification(null, CoreNotificationType.ACCEPTOR_STARTED, props);
             notificationService.sendNotification(notification);
          }
@@ -573,10 +573,10 @@ public class NettyAcceptor implements Acceptor
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("factory"),
-                                       new SimpleString(NettyAcceptorFactory.class.getName()));
-         props.putSimpleStringProperty(new SimpleString("host"), new SimpleString(host));
-         props.putIntProperty(new SimpleString("port"), port);
+         props.putSimpleStringProperty(new String("factory"),
+                                       new String(NettyAcceptorFactory.class.getName()));
+         props.putSimpleStringProperty(new String("host"), new String(host));
+         props.putIntProperty(new String("port"), port);
          Notification notification = new Notification(null, CoreNotificationType.ACCEPTOR_STOPPED, props);
          try
          {

@@ -19,7 +19,7 @@ import java.util.Set;
 
 import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.security.Role;
 import org.hornetq.core.server.JournalType;
@@ -391,12 +391,12 @@ public interface Configuration extends Serializable
     * Clients can send management messages to this address to manage this server. <br>
     * Default value is {@value HornetQDefaultConfiguration#DEFAULT_MANAGEMENT_ADDRESS}.
     */
-   SimpleString getManagementAddress();
+   String getManagementAddress();
 
    /**
     * Sets the management address of this server.
     */
-   void setManagementAddress(SimpleString address);
+   void setManagementAddress(String address);
 
    /**
     * Returns the management notification address of this server. <br>
@@ -404,12 +404,12 @@ public interface Configuration extends Serializable
     * server. <br>
     * Default value is {@value HornetQDefaultConfiguration#DEFAULT_MANAGEMENT_NOTIFICATION_ADDRESS}.
     */
-   SimpleString getManagementNotificationAddress();
+   String getManagementNotificationAddress();
 
    /**
     * Sets the management notification address of this server.
     */
-   void setManagementNotificationAddress(SimpleString address);
+   void setManagementNotificationAddress(String address);
 
    /**
     * Returns the cluster user for this server. <br>

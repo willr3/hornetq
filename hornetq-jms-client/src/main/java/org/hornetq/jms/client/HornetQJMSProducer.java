@@ -12,30 +12,13 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.BytesMessage;
-import javax.jms.CompletionListener;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.JMSProducer;
-import javax.jms.JMSRuntimeException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageFormatRuntimeException;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.TextMessage;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import org.hornetq.api.core.HornetQPropertyConversionException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.utils.TypedProperties;
+
+import javax.jms.*;
+import java.io.Serializable;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * NOTE: this class forwards {@link #setDisableMessageID(boolean)} and
@@ -51,9 +34,9 @@ public final class HornetQJMSProducer implements JMSProducer
    private final MessageProducer producer;
    private final TypedProperties properties = new TypedProperties();
 
-   //we convert Strings to SimpleStrings so if getProperty is called the wrong object is returned, this list let's us return the
+   //we convert Strings to Strings so if getProperty is called the wrong object is returned, this list let's us return the
    //correct type
-   private final List<SimpleString> stringPropertyNames = new ArrayList<>();
+   private final List<String> stringPropertyNames = new ArrayList<>();
 
    private volatile CompletionListener completionListener;
 
@@ -95,7 +78,7 @@ public final class HornetQJMSProducer implements JMSProducer
             message.setJMSType(jmsHeaderType);
          }
          // XXX HORNETQ-1209 "JMS 2.0" can this be a foreign msg?
-         // if so, then "SimpleString" properties will trigger an error.
+         // if so, then "String" properties will trigger an error.
          setProperties(message);
          if (completionListener != null)
          {
@@ -122,7 +105,7 @@ public final class HornetQJMSProducer implements JMSProducer
     */
    private void setProperties(Message message) throws JMSException
    {
-      for (SimpleString name : properties.getPropertyNames())
+      for (String name : properties.getPropertyNames())
       {
          message.setObjectProperty(name.toString(), properties.getProperty(name));
       }
@@ -427,7 +410,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, boolean value)
    {
       checkName(name);
-      properties.putBooleanProperty(new SimpleString(name), value);
+      properties.putBooleanProperty(new String(name), value);
       return this;
    }
 
@@ -435,7 +418,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, byte value)
    {
       checkName(name);
-      properties.putByteProperty(new SimpleString(name), value);
+      properties.putByteProperty(new String(name), value);
       return this;
    }
 
@@ -443,7 +426,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, short value)
    {
       checkName(name);
-      properties.putShortProperty(new SimpleString(name), value);
+      properties.putShortProperty(new String(name), value);
       return this;
    }
 
@@ -451,7 +434,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, int value)
    {
       checkName(name);
-      properties.putIntProperty(new SimpleString(name), value);
+      properties.putIntProperty(new String(name), value);
       return this;
    }
 
@@ -459,7 +442,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, long value)
    {
       checkName(name);
-      properties.putLongProperty(new SimpleString(name), value);
+      properties.putLongProperty(new String(name), value);
       return this;
    }
 
@@ -467,7 +450,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, float value)
    {
       checkName(name);
-      properties.putFloatProperty(new SimpleString(name), value);
+      properties.putFloatProperty(new String(name), value);
       return this;
    }
 
@@ -475,7 +458,7 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, double value)
    {
       checkName(name);
-      properties.putDoubleProperty(new SimpleString(name), value);
+      properties.putDoubleProperty(new String(name), value);
       return this;
    }
 
@@ -483,8 +466,8 @@ public final class HornetQJMSProducer implements JMSProducer
    public JMSProducer setProperty(String name, String value)
    {
       checkName(name);
-      SimpleString key = new SimpleString(name);
-      properties.putSimpleStringProperty(key, new SimpleString(value));
+      String key = new String(name);
+      properties.putSimpleStringProperty(key, new String(value));
       stringPropertyNames.add(key);
       return this;
    }
@@ -495,7 +478,7 @@ public final class HornetQJMSProducer implements JMSProducer
       checkName(name);
       try
       {
-         TypedProperties.setObjectProperty(new SimpleString(name), value, properties);
+         TypedProperties.setObjectProperty(new String(name), value, properties);
       }
       catch (HornetQPropertyConversionException hqe)
       {
@@ -526,7 +509,7 @@ public final class HornetQJMSProducer implements JMSProducer
    @Override
    public boolean propertyExists(String name)
    {
-      return properties.containsProperty(new SimpleString(name));
+      return properties.containsProperty(new String(name));
    }
 
    @Override
@@ -534,7 +517,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getBooleanProperty(new SimpleString(name));
+         return properties.getBooleanProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -551,7 +534,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getByteProperty(new SimpleString(name));
+         return properties.getByteProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -564,7 +547,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getShortProperty(new SimpleString(name));
+         return properties.getShortProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -577,7 +560,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getIntProperty(new SimpleString(name));
+         return properties.getIntProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -590,7 +573,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getLongProperty(new SimpleString(name));
+         return properties.getLongProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -603,7 +586,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getFloatProperty(new SimpleString(name));
+         return properties.getFloatProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -616,7 +599,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         return properties.getDoubleProperty(new SimpleString(name));
+         return properties.getDoubleProperty(new String(name));
       }
       catch (HornetQPropertyConversionException ce)
       {
@@ -629,7 +612,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         SimpleString prop = properties.getSimpleStringProperty(new SimpleString(name));
+         String prop = properties.getSimpleStringProperty(new String(name));
          if (prop == null)
             return null;
          return prop.toString();
@@ -649,7 +632,7 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         SimpleString key = new SimpleString(name);
+         String key = new String(name);
          Object property = properties.getProperty(key);
          if (stringPropertyNames.contains(key))
          {
@@ -672,10 +655,10 @@ public final class HornetQJMSProducer implements JMSProducer
    {
       try
       {
-         Set<SimpleString> simplePropNames = properties.getPropertyNames();
+         Set<String> simplePropNames = properties.getPropertyNames();
          Set<String> propNames = new HashSet<String>(simplePropNames.size());
 
-         for (SimpleString str : simplePropNames)
+         for (String str : simplePropNames)
          {
             propNames.add(str.toString());
          }

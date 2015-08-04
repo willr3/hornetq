@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.filter;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.ServerMessage;
 
 /**
@@ -26,5 +26,5 @@ public interface Filter
 {
    boolean match(ServerMessage message);
 
-   SimpleString getFilterString();
+   String getFilterString();
 }

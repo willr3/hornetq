@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 import org.hornetq.core.server.QueueQueryResult;
 
@@ -26,7 +26,7 @@ import org.hornetq.core.server.QueueQueryResult;
  */
 public class SessionQueueQueryResponseMessage extends PacketImpl
 {
-   private SimpleString name;
+   private String name;
 
    private boolean exists;
 
@@ -36,9 +36,9 @@ public class SessionQueueQueryResponseMessage extends PacketImpl
 
    private long messageCount;
 
-   private SimpleString filterString;
+   private String filterString;
 
-   private SimpleString address;
+   private String address;
 
    private boolean temporary;
 
@@ -53,11 +53,11 @@ public class SessionQueueQueryResponseMessage extends PacketImpl
       this(null, null, false, false, null, 0, 0, false);
    }
 
-   private SessionQueueQueryResponseMessage(final SimpleString name,
-                                            final SimpleString address,
+   private SessionQueueQueryResponseMessage(final String name,
+                                            final String address,
                                             final boolean durable,
                                             final boolean temporary,
-                                            final SimpleString filterString,
+                                            final String filterString,
                                             final int consumerCount,
                                             final long messageCount,
                                             final boolean exists)
@@ -107,17 +107,17 @@ public class SessionQueueQueryResponseMessage extends PacketImpl
       return messageCount;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }

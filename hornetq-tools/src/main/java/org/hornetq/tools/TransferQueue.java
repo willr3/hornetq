@@ -13,21 +13,14 @@
 
 package org.hornetq.tools;
 
+import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.client.*;
+import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
+import org.hornetq.core.remoting.impl.netty.TransportConstants;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
-import org.hornetq.core.remoting.impl.netty.TransportConstants;
 
 /**
  * @author Clebert Suconic
@@ -157,7 +150,7 @@ public class TransferQueue // NO_UCD (unused code)
 
             LinkedList<String> listToRemove = new LinkedList<String>();
 
-            for (SimpleString name : message.getPropertyNames())
+            for (String name : message.getPropertyNames())
             {
                if (name.toString().startsWith("_HQ_ROUTE_TO"))
                {

@@ -12,13 +12,7 @@
  */
 package org.hornetq.tests.integration.management;
 
-import org.junit.Test;
-
-import java.util.HashMap;
-
-import org.junit.Assert;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -31,6 +25,10 @@ import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.management.Notification;
 import org.hornetq.tests.integration.SimpleNotificationService;
 import org.hornetq.tests.util.RandomUtil;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.HashMap;
 
 /**
  * A AcceptorControlTest
@@ -157,7 +155,7 @@ public class AcceptorControlTest extends ManagementTestBase
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.ACCEPTOR_STOPPED, notif.getType());
       Assert.assertEquals(InVMAcceptorFactory.class.getName(),
-                          notif.getProperties().getSimpleStringProperty(new SimpleString("factory")).toString());
+                          notif.getProperties().getSimpleStringProperty(new String("factory")).toString());
 
       acceptorControl.start();
 
@@ -165,7 +163,7 @@ public class AcceptorControlTest extends ManagementTestBase
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.ACCEPTOR_STARTED, notif.getType());
       Assert.assertEquals(InVMAcceptorFactory.class.getName(),
-                          notif.getProperties().getSimpleStringProperty(new SimpleString("factory")).toString());
+                          notif.getProperties().getSimpleStringProperty(new String("factory")).toString());
    }
 
    // Package protected ---------------------------------------------

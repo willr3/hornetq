@@ -12,20 +12,10 @@
  */
 package org.hornetq.tests.integration.server;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQQueueExistsException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.CoreQueueConfiguration;
 import org.hornetq.core.postoffice.Bindings;
@@ -35,6 +25,9 @@ import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A PredefinedQueueTest
@@ -165,7 +158,7 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       server.start();
 
-      Bindings bindings = server.getPostOffice().getBindingsForAddress(new SimpleString(testAddress));
+      Bindings bindings = server.getPostOffice().getBindingsForAddress(new String(testAddress));
 
       Assert.assertEquals(2, bindings.getBindings().size());
 
@@ -177,7 +170,7 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -185,7 +178,7 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -278,7 +271,7 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -288,7 +281,7 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -362,9 +355,9 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       final int numMessages = 1;
 
@@ -452,9 +445,9 @@ public class PredefinedQueueTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       final int numMessages = 1;
 
@@ -464,7 +457,7 @@ public class PredefinedQueueTest extends ServiceTestBase
       {
          ClientMessage message = session.createMessage(true);
 
-         message.putStringProperty(new SimpleString("cheese"), new SimpleString("camembert"));
+         message.putStringProperty(new String("cheese"), new String("camembert"));
 
          message.putIntProperty(propKey, i);
 
@@ -489,7 +482,7 @@ public class PredefinedQueueTest extends ServiceTestBase
       {
          ClientMessage message = session.createMessage(true);
 
-         message.putStringProperty(new SimpleString("cheese"), new SimpleString("roquefort"));
+         message.putStringProperty(new String("cheese"), new String("roquefort"));
 
          message.putIntProperty(propKey, i);
 

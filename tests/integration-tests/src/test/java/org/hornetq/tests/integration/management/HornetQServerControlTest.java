@@ -12,27 +12,9 @@
  */
 package org.hornetq.tests.integration.management;
 
-import javax.transaction.xa.XAResource;
-import javax.transaction.xa.Xid;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.api.core.management.AddressSettingsInfo;
-import org.hornetq.api.core.management.BridgeControl;
-import org.hornetq.api.core.management.DivertControl;
-import org.hornetq.api.core.management.HornetQServerControl;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.api.core.management.QueueControl;
-import org.hornetq.api.core.management.RoleInfo;
+import org.hornetq.api.core.client.*;
+import org.hornetq.api.core.management.*;
 import org.hornetq.core.asyncio.impl.AsynchronousFileImpl;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.messagecounter.impl.MessageCounterManagerImpl;
@@ -51,6 +33,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A QueueControlTest
@@ -180,8 +167,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCreateAndDestroyQueue() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
 
       HornetQServerControl serverControl = createManagementControl();
 
@@ -205,8 +192,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCreateAndDestroyQueue_2() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
       String filter = "color = 'green'";
       boolean durable = true;
 
@@ -232,8 +219,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCreateAndDestroyQueue_3() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
       boolean durable = true;
 
       HornetQServerControl serverControl = createManagementControl();
@@ -258,8 +245,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCreateAndDestroyQueueWithNullFilter() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
       String filter = null;
       boolean durable = true;
 
@@ -285,8 +272,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCreateAndDestroyQueueWithEmptyStringForFilter() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
       String filter = "";
       boolean durable = true;
 
@@ -312,8 +299,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testGetQueueNames() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
 
       HornetQServerControl serverControl = createManagementControl();
 
@@ -332,8 +319,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testGetAddressNames() throws Exception
    {
-      SimpleString address = RandomUtil.randomSimpleString();
-      SimpleString name = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
+      String name = RandomUtil.randomSimpleString();
 
       HornetQServerControl serverControl = createManagementControl();
 
@@ -828,7 +815,7 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testListPreparedTransactionDetails() throws Exception
    {
-      SimpleString atestq = new SimpleString("BasicXaTestq");
+      String atestq = new String("BasicXaTestq");
       Xid xid = newXID();
 
       ServerLocator locator = HornetQClient.createServerLocatorWithoutHA(new TransportConfiguration(UnitTestCase.INVM_CONNECTOR_FACTORY));
@@ -874,7 +861,7 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testListPreparedTransactionDetailsAsHTML() throws Exception
    {
-      SimpleString atestq = new SimpleString("BasicXaTestq");
+      String atestq = new String("BasicXaTestq");
       Xid xid = newXID();
 
       ServerLocator locator = HornetQClient.createServerLocatorWithoutHA(new TransportConfiguration(UnitTestCase.INVM_CONNECTOR_FACTORY));
@@ -914,8 +901,8 @@ public class HornetQServerControlTest extends ManagementTestBase
    @Test
    public void testCommitPreparedTransactions() throws Exception
    {
-      SimpleString recQueue = new SimpleString("BasicXaTestqRec");
-      SimpleString sendQueue = new SimpleString("BasicXaTestqSend");
+      String recQueue = new String("BasicXaTestqRec");
+      String sendQueue = new String("BasicXaTestqSend");
 
       byte[] globalTransactionId = UUIDGenerator.getInstance().generateStringUUID().getBytes();
       Xid xid = new XidImpl("xa1".getBytes(), 1, globalTransactionId);

@@ -12,14 +12,12 @@
  */
 package org.hornetq.tests.integration.cluster.restart;
 
-import org.junit.Test;
-
-import java.util.Collection;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.integration.cluster.distribution.ClusterTestBase;
+import org.junit.Test;
+
+import java.util.Collection;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -160,7 +158,7 @@ public class ClusterRestartTest extends ClusterTestBase
       for (int i = 0; i < num; i++)
       {
          Collection<Binding> bindings0 = getServer(i).getPostOffice()
-            .getBindingsForAddress(new SimpleString("queues.testaddress"))
+            .getBindingsForAddress(new String("queues.testaddress"))
             .getBindings();
          for (Binding binding : bindings0)
          {

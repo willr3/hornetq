@@ -12,24 +12,7 @@
  */
 package org.hornetq.tests.integration.discovery;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.hornetq.api.core.BroadcastEndpoint;
-import org.hornetq.api.core.BroadcastEndpointFactory;
-import org.hornetq.api.core.JGroupsBroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
+import org.hornetq.api.core.*;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.cluster.DiscoveryEntry;
 import org.hornetq.core.cluster.DiscoveryGroup;
@@ -43,6 +26,14 @@ import org.hornetq.utils.UUIDGenerator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.*;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This will test Discovery test on JGroups and UDP.
@@ -1124,7 +1115,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.DISCOVERY_GROUP_STARTED, notif.getType());
       Assert.assertEquals(dg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getSimpleStringProperty(new String("name"))
          .toString());
 
       dg.stop();
@@ -1133,7 +1124,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.DISCOVERY_GROUP_STOPPED, notif.getType());
       Assert.assertEquals(dg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getSimpleStringProperty(new String("name"))
          .toString());
    }
 
@@ -1164,7 +1155,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       Notification notif = notifListener.getNotifications().get(0);
       Assert.assertEquals(CoreNotificationType.BROADCAST_GROUP_STARTED, notif.getType());
       Assert.assertEquals(bg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getSimpleStringProperty(new String("name"))
          .toString());
 
       bg.stop();
@@ -1173,7 +1164,7 @@ public class DiscoveryTest extends DiscoveryBaseTest
       notif = notifListener.getNotifications().get(1);
       Assert.assertEquals(CoreNotificationType.BROADCAST_GROUP_STOPPED, notif.getType());
       Assert.assertEquals(bg.getName(), notif.getProperties()
-         .getSimpleStringProperty(new SimpleString("name"))
+         .getSimpleStringProperty(new String("name"))
          .toString());
    }
 

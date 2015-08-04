@@ -13,40 +13,11 @@
 
 package org.hornetq.tools;
 
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
-import java.io.OutputStream;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.*;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.impl.ConfigurationImpl;
-import org.hornetq.core.journal.Journal;
-import org.hornetq.core.journal.PreparedTransactionInfo;
-import org.hornetq.core.journal.RecordInfo;
-import org.hornetq.core.journal.SequentialFileFactory;
-import org.hornetq.core.journal.TransactionFailureCallback;
+import org.hornetq.core.journal.*;
 import org.hornetq.core.journal.impl.JournalImpl;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
 import org.hornetq.core.message.BodyEncoder;
@@ -83,6 +54,16 @@ import org.hornetq.jms.persistence.config.PersistedType;
 import org.hornetq.jms.persistence.impl.journal.JMSJournalStorageManagerImpl;
 import org.hornetq.utils.Base64;
 import org.hornetq.utils.ExecutorFactory;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.OutputStream;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Read the journal, page, and large-message data from a stopped instance of HornetQ and save it in an XML format to
@@ -772,9 +753,9 @@ public final class XmlDataExporter
 
          manager.start();
 
-         SimpleString[] stores = manager.getStoreNames();
+         String[] stores = manager.getStoreNames();
 
-         for (SimpleString store : stores)
+         for (String store : stores)
          {
             PagingStore pageStore = manager.getPageStore(store);
 
@@ -816,7 +797,7 @@ public final class XmlDataExporter
                            PersistentQueueBindingEncoding queueBinding = queueBindings.get(queueID);
                            if (queueBinding != null)
                            {
-                              SimpleString queueName = queueBinding.getQueueName();
+                              String queueName = queueBinding.getQueueName();
                               queueNames.add(queueName.toString());
                            }
                         }
@@ -939,7 +920,7 @@ public final class XmlDataExporter
    private void printMessageProperties(ServerMessage message) throws XMLStreamException
    {
       xmlWriter.writeStartElement(XmlDataConstants.PROPERTIES_PARENT);
-      for (SimpleString key : message.getPropertyNames())
+      for (String key : message.getPropertyNames())
       {
          Object value = message.getObjectProperty(key);
          xmlWriter.writeEmptyElement(XmlDataConstants.PROPERTIES_CHILD);
@@ -985,7 +966,7 @@ public final class XmlDataExporter
          {
             xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_STRING);
          }
-         else if (value instanceof SimpleString)
+         else if (value instanceof String)
          {
             xmlWriter.writeAttribute(XmlDataConstants.PROPERTY_TYPE, XmlDataConstants.PROPERTY_TYPE_SIMPLE_STRING);
          }

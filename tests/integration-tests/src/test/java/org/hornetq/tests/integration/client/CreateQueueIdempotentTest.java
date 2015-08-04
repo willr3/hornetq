@@ -12,11 +12,8 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQQueueExistsException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
@@ -28,6 +25,8 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CreateQueueIdempotentTest extends ServiceTestBase
 {
@@ -51,7 +50,7 @@ public class CreateQueueIdempotentTest extends ServiceTestBase
    @Test
    public void testSequentialCreateQueueIdempotency() throws Exception
    {
-      final SimpleString QUEUE = new SimpleString("SequentialCreateQueueIdempotency");
+      final String QUEUE = new String("SequentialCreateQueueIdempotency");
 
       ServerLocator locator = createInVMNonHALocator();
 
@@ -146,7 +145,7 @@ public class CreateQueueIdempotentTest extends ServiceTestBase
             locator = createInVMNonHALocator();
             ClientSessionFactory sf = createSessionFactory(locator);
             session = sf.createSession(false, true, true);
-            final SimpleString QUEUE = new SimpleString(queueName);
+            final String QUEUE = new String(queueName);
             session.createQueue(QUEUE, QUEUE, null, true);
             queuesCreated.incrementAndGet();
          }

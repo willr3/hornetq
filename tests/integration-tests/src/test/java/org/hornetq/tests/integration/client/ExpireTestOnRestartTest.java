@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -45,7 +45,7 @@ public class ExpireTestOnRestartTest extends ServiceTestBase
       super.setUp();
       server = createServer(true);
       AddressSettings setting = new AddressSettings();
-      setting.setExpiryAddress(SimpleString.toSimpleString("exp"));
+      setting.setExpiryAddress(("exp"));
       setting.setAddressFullMessagePolicy(AddressFullMessagePolicy.PAGE);
       setting.setPageSizeBytes(100 * 1024);
       setting.setMaxSizeBytes(200 * 1024);
@@ -97,7 +97,7 @@ public class ExpireTestOnRestartTest extends ServiceTestBase
 
       server.start();
 
-      Queue queue = server.locateQueue(SimpleString.toSimpleString("test"));
+      Queue queue = server.locateQueue(("test"));
 
       factory = locator.createSessionFactory();
       session = factory.createSession(false, false);

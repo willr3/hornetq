@@ -12,15 +12,7 @@
  */
 package org.hornetq.tests.integration.ra;
 
-import javax.jms.Message;
-import javax.resource.ResourceException;
-import java.lang.reflect.Method;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
@@ -34,6 +26,13 @@ import org.hornetq.ra.inflow.HornetQActivation;
 import org.hornetq.ra.inflow.HornetQActivationSpec;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Test;
+
+import javax.jms.Message;
+import javax.resource.ResourceException;
+import java.lang.reflect.Method;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -571,7 +570,7 @@ public class HornetQMessageHandlerTest extends HornetQRATestBase
 
       HornetQActivation activation = lookupActivation(qResourceAdapter);
 
-      SimpleString tempQueueName = activation.getTopicTemporaryQueue();
+      String tempQueueName = activation.getTopicTemporaryQueue();
 
       QueueQuery query = session.queueQuery(tempQueueName);
       assertTrue(query.isExists());

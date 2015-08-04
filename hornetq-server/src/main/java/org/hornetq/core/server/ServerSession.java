@@ -12,16 +12,15 @@
  */
 package org.hornetq.core.server;
 
-import javax.transaction.xa.Xid;
-import java.util.List;
-import java.util.Set;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.message.impl.MessageInternal;
 import org.hornetq.core.persistence.OperationContext;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.utils.json.JSONArray;
+
+import javax.transaction.xa.Xid;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A ServerSession
@@ -87,19 +86,19 @@ public interface ServerSession
 
    void stop();
 
-   void createQueue(SimpleString address,
-                    SimpleString name,
-                    SimpleString filterString,
+   void createQueue(String address,
+                    String name,
+                    String filterString,
                     boolean temporary,
                     boolean durable) throws Exception;
 
-   void deleteQueue(SimpleString name) throws Exception;
+   void deleteQueue(String name) throws Exception;
 
-   void createConsumer(long consumerID, SimpleString queueName, SimpleString filterString, boolean browseOnly) throws Exception;
+   void createConsumer(long consumerID, String queueName, String filterString, boolean browseOnly) throws Exception;
 
-   QueueQueryResult executeQueueQuery(SimpleString name) throws Exception;
+   QueueQueryResult executeQueueQuery(String name) throws Exception;
 
-   BindingQueryResult executeBindingQuery(SimpleString address) throws Exception;
+   BindingQueryResult executeBindingQuery(String address) throws Exception;
 
    void closeConsumer(long consumerID) throws Exception;
 
@@ -113,7 +112,7 @@ public interface ServerSession
 
    void forceConsumerDelivery(long consumerID, long sequence) throws Exception;
 
-   void requestProducerCredits(SimpleString address, int credits) throws Exception;
+   void requestProducerCredits(String address, int credits) throws Exception;
 
    void close(boolean failed) throws Exception;
 
@@ -148,10 +147,10 @@ public interface ServerSession
 
    Transaction getCurrentTransaction();
 
-   void createSharedQueue(SimpleString address,
-                          SimpleString name,
+   void createSharedQueue(String address,
+                          String name,
                           boolean durable,
-                          SimpleString filterString) throws Exception;
+                          String filterString) throws Exception;
 
    List<MessageReference> getInTXMessagesForConsumer(long consumerId);
 }

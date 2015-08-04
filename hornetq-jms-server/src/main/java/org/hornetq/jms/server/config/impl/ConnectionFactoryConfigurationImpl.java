@@ -12,16 +12,15 @@
  */
 package org.hornetq.jms.server.config.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.jms.JMSFactoryType;
 import org.hornetq.jms.server.config.ConnectionFactoryConfiguration;
 import org.hornetq.utils.BufferHelper;
 import org.hornetq.utils.DataConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class contains the configuration properties of a connection factory.
@@ -519,7 +518,7 @@ public class ConnectionFactoryConfigurationImpl implements ConnectionFactoryConf
 
          for (int i = 0; i < nConnectors; i++)
          {
-            SimpleString str = buffer.readSimpleString();
+            String str = buffer.readSimpleString();
 
             connectorNames.add(str.toString());
          }

@@ -12,6 +12,15 @@
  */
 package org.hornetq.tests.integration.cluster.reattach;
 
+import org.hornetq.api.core.HornetQNotConnectedException;
+import org.hornetq.api.core.client.*;
+import org.hornetq.core.client.impl.ClientSessionInternal;
+import org.hornetq.core.protocol.core.impl.RemotingConnectionImpl;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.jms.client.HornetQTextMessage;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -19,24 +28,6 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.core.client.impl.ClientSessionInternal;
-import org.hornetq.core.protocol.core.impl.RemotingConnectionImpl;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.jms.client.HornetQTextMessage;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.ServiceTestBase;
 
 /**
  * A OrderReattachTest
@@ -49,7 +40,7 @@ public class OrderReattachTest extends ServiceTestBase
 {
    // Constants -----------------------------------------------------
 
-   final SimpleString ADDRESS = new SimpleString("address");
+   final String ADDRESS = new String("address");
 
    // Attributes ----------------------------------------------------
    private final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
@@ -189,7 +180,7 @@ public class OrderReattachTest extends ServiceTestBase
 
       for (int i = 0; i < numSessions; i++)
       {
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          // failureQueue.push(true);
 
@@ -220,7 +211,7 @@ public class OrderReattachTest extends ServiceTestBase
          {
             // failureQueue.push(true);
          }
-         message.putIntProperty(new SimpleString("count"), i);
+         message.putIntProperty(new String("count"), i);
          producer.send(message);
       }
 
@@ -305,7 +296,7 @@ public class OrderReattachTest extends ServiceTestBase
 
          failureQueue.push(true);
 
-         SimpleString subName = new SimpleString("sub" + i);
+         String subName = new String("sub" + i);
 
          s.deleteQueue(subName);
       }

@@ -12,23 +12,8 @@
  */
 package org.hornetq.tests.integration.xa;
 
-import javax.transaction.xa.XAException;
-import javax.transaction.xa.XAResource;
-import javax.transaction.xa.Xid;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.settings.impl.AddressSettings;
@@ -39,6 +24,14 @@ import org.hornetq.utils.UUIDGenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -58,7 +51,7 @@ public class BasicXaTest extends ServiceTestBase
 
    private Configuration configuration;
 
-   private final SimpleString atestq = new SimpleString("BasicXaTestq");
+   private final String atestq = new String("BasicXaTestq");
 
    private ServerLocator locator;
 
@@ -614,8 +607,8 @@ public class BasicXaTest extends ServiceTestBase
    @Test
    public void testSimpleJoin() throws Exception
    {
-      SimpleString ADDRESS1 = new SimpleString("Address-1");
-      SimpleString ADDRESS2 = new SimpleString("Address-2");
+      String ADDRESS1 = new String("Address-1");
+      String ADDRESS2 = new String("Address-2");
 
       clientSession.createQueue(ADDRESS1, ADDRESS1, true);
       clientSession.createQueue(ADDRESS2, ADDRESS2, true);
@@ -691,7 +684,7 @@ public class BasicXaTest extends ServiceTestBase
       int NUMBER_OF_QUEUES = 10;
       ClientSession session = null;
 
-      SimpleString ADDRESS = new SimpleString("Address");
+      String ADDRESS = new String("Address");
 
       ClientSession newJoinSession = null;
 

@@ -12,9 +12,6 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.util.concurrent.ScheduledExecutorService;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.paging.cursor.PageSubscription;
 import org.hornetq.core.persistence.StorageManager;
@@ -24,6 +21,8 @@ import org.hornetq.core.server.QueueFactory;
 import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.utils.ExecutorFactory;
+
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  *
@@ -66,8 +65,8 @@ public class QueueFactoryImpl implements QueueFactory
    }
 
    public Queue createQueue(final long persistenceID,
-                            final SimpleString address,
-                            final SimpleString name,
+                            final String address,
+                            final String name,
                             final Filter filter,
                             final PageSubscription pageSubscription,
                             final boolean durable,

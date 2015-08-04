@@ -21,7 +21,7 @@ import io.netty.buffer.ByteBuf;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionReceiveContinuationMessage;
 import org.hornetq.utils.DataConstants;
@@ -591,7 +591,7 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
    }
 
    @Override
-   public SimpleString readNullableSimpleString()
+   public String readNullableSimpleString()
    {
       int b = readByte();
       if (b == DataConstants.NULL)
@@ -619,12 +619,12 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
    }
 
    @Override
-   public SimpleString readSimpleString()
+   public String readSimpleString()
    {
       int len = readInt();
       byte[] data = new byte[len];
       readBytes(data);
-      return new SimpleString(data);
+      return new String(data);
    }
 
    @Override
@@ -684,7 +684,7 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
    }
 
    @Override
-   public void writeNullableSimpleString(final SimpleString val)
+   public void writeNullableSimpleString(final String val)
    {
       throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
    }
@@ -696,7 +696,7 @@ final class CompressedLargeMessageControllerImpl implements LargeMessageControll
    }
 
    @Override
-   public void writeSimpleString(final SimpleString val)
+   public void writeSimpleString(final String val)
    {
       throw new IllegalAccessError(OPERATION_NOT_SUPPORTED);
    }

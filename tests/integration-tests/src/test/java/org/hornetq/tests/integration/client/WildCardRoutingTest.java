@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -46,12 +46,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testBasicWildcardRouting() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -76,10 +76,10 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testBasicWildcardRoutingQueuesDontExist() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName = new String("Q");
       clientSession.createQueue(address, queueName, null, false);
       ClientProducer producer = clientSession.createProducer(addressAB);
       ClientProducer producer2 = clientSession.createProducer(addressAC);
@@ -108,11 +108,11 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testBasicWildcardRoutingQueuesDontExist2() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName = new SimpleString("Q");
-      SimpleString queueName2 = new SimpleString("Q2");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName = new String("Q");
+      String queueName2 = new String("Q2");
       clientSession.createQueue(address, queueName, null, false);
       clientSession.createQueue(address, queueName2, null, false);
       ClientProducer producer = clientSession.createProducer(addressAB);
@@ -148,12 +148,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testBasicWildcardRoutingWithHash() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -178,12 +178,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingQueuesAddedAfter() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(address, queueName, null, false);
       ClientProducer producer = clientSession.createProducer(addressAB);
       ClientProducer producer2 = clientSession.createProducer(addressAC);
@@ -208,12 +208,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingQueuesAddedThenDeleted() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -242,26 +242,26 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingLotsOfQueuesAddedThenDeleted() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString addressAD = new SimpleString("a.d");
-      SimpleString addressAE = new SimpleString("a.e");
-      SimpleString addressAF = new SimpleString("a.f");
-      SimpleString addressAG = new SimpleString("a.g");
-      SimpleString addressAH = new SimpleString("a.h");
-      SimpleString addressAJ = new SimpleString("a.j");
-      SimpleString addressAK = new SimpleString("a.k");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName3 = new SimpleString("Q3");
-      SimpleString queueName4 = new SimpleString("Q4");
-      SimpleString queueName5 = new SimpleString("Q5");
-      SimpleString queueName6 = new SimpleString("Q6");
-      SimpleString queueName7 = new SimpleString("Q7");
-      SimpleString queueName8 = new SimpleString("Q8");
-      SimpleString queueName9 = new SimpleString("Q9");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String addressAD = new String("a.d");
+      String addressAE = new String("a.e");
+      String addressAF = new String("a.f");
+      String addressAG = new String("a.g");
+      String addressAH = new String("a.h");
+      String addressAJ = new String("a.j");
+      String addressAK = new String("a.k");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName3 = new String("Q3");
+      String queueName4 = new String("Q4");
+      String queueName5 = new String("Q5");
+      String queueName6 = new String("Q6");
+      String queueName7 = new String("Q7");
+      String queueName8 = new String("Q8");
+      String queueName9 = new String("Q9");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(addressAD, queueName3, null, false);
@@ -340,26 +340,26 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingLotsOfQueuesAddedThenDeletedHash() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString addressAD = new SimpleString("a.d");
-      SimpleString addressAE = new SimpleString("a.e");
-      SimpleString addressAF = new SimpleString("a.f");
-      SimpleString addressAG = new SimpleString("a.g");
-      SimpleString addressAH = new SimpleString("a.h");
-      SimpleString addressAJ = new SimpleString("a.j");
-      SimpleString addressAK = new SimpleString("a.k");
-      SimpleString address = new SimpleString("#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName3 = new SimpleString("Q3");
-      SimpleString queueName4 = new SimpleString("Q4");
-      SimpleString queueName5 = new SimpleString("Q5");
-      SimpleString queueName6 = new SimpleString("Q6");
-      SimpleString queueName7 = new SimpleString("Q7");
-      SimpleString queueName8 = new SimpleString("Q8");
-      SimpleString queueName9 = new SimpleString("Q9");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String addressAD = new String("a.d");
+      String addressAE = new String("a.e");
+      String addressAF = new String("a.f");
+      String addressAG = new String("a.g");
+      String addressAH = new String("a.h");
+      String addressAJ = new String("a.j");
+      String addressAK = new String("a.k");
+      String address = new String("#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName3 = new String("Q3");
+      String queueName4 = new String("Q4");
+      String queueName5 = new String("Q5");
+      String queueName6 = new String("Q6");
+      String queueName7 = new String("Q7");
+      String queueName8 = new String("Q8");
+      String queueName9 = new String("Q9");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(addressAD, queueName3, null, false);
@@ -438,12 +438,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingWithSingleHash() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -468,12 +468,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingWithHash() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.f");
-      SimpleString addressAC = new SimpleString("a.c.f");
-      SimpleString address = new SimpleString("a.#.f");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.f");
+      String addressAC = new String("a.c.f");
+      String address = new String("a.#.f");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -498,13 +498,13 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingWithHashMultiLengthAddresses() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c.f");
-      SimpleString addressAC = new SimpleString("a.c.f");
-      SimpleString addressAD = new SimpleString("a.d");
-      SimpleString address = new SimpleString("a.#.f");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c.f");
+      String addressAC = new String("a.c.f");
+      String addressAD = new String("a.d");
+      String address = new String("a.#.f");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -529,12 +529,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingWithDoubleStar() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("*.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("*.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -559,12 +559,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingPartialMatchStar() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("*.b");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("*.b");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -585,12 +585,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingVariableLengths() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c");
+      String addressAC = new String("a.c");
+      String address = new String("a.#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -613,12 +613,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingVariableLengthsStar() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -639,12 +639,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingMultipleStars() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("*.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c");
+      String addressAC = new String("a.c");
+      String address = new String("*.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -665,12 +665,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingStarInMiddle() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("*.b.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c");
+      String addressAC = new String("a.c");
+      String address = new String("*.b.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -691,12 +691,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingStarAndHash() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c.d");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("*.b.#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c.d");
+      String addressAC = new String("a.c");
+      String address = new String("*.b.#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -717,12 +717,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testWildcardRoutingHashAndStar() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("#.b.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c");
+      String addressAC = new String("a.c");
+      String address = new String("#.b.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);
@@ -743,12 +743,12 @@ public class WildCardRoutingTest extends UnitTestCase
    @Test
    public void testLargeWildcardRouting() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.#");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z");
+      String addressAC = new String("a.c");
+      String address = new String("a.#");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
       clientSession.createQueue(addressAB, queueName1, null, false);
       clientSession.createQueue(addressAC, queueName2, null, false);
       clientSession.createQueue(address, queueName, null, false);

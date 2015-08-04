@@ -22,10 +22,10 @@
 
 package org.hornetq.core.filter.impl;
 
-import java.util.HashSet;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.client.HornetQClientMessageBundle;
+
+import java.util.HashSet;
 
 /**
 * Implementations of the operators used in HornetQ filter expressions
@@ -949,7 +949,7 @@ public final class Operator
             throwBadObjectException(class3);
          }
 
-         SimpleString escapeString = (SimpleString)arg3;
+         String escapeString = (String)arg3;
          if (escapeString.length() != 1)
          {
             throw new Exception("LIKE ESCAPE: Bad escape character " + escapeString.toString());

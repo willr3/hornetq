@@ -12,7 +12,7 @@
  */
 package org.hornetq.tests.integration.persistence;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.postoffice.DuplicateIDCache;
 import org.hornetq.core.postoffice.impl.DuplicateIDCacheImpl;
 import org.hornetq.core.transaction.impl.TransactionImpl;
@@ -32,7 +32,7 @@ public class DuplicateCacheTest extends StorageManagerTestBase
    {
       createStorage();
 
-      DuplicateIDCache cache = new DuplicateIDCacheImpl(new SimpleString("test"), 2000, journal, true);
+      DuplicateIDCache cache = new DuplicateIDCacheImpl(new String("test"), 2000, journal, true);
 
       TransactionImpl tx = new TransactionImpl(journal);
 
@@ -78,7 +78,7 @@ public class DuplicateCacheTest extends StorageManagerTestBase
    {
       createStorage();
 
-      DuplicateIDCache cache = new DuplicateIDCacheImpl(new SimpleString("test"), 2000, journal, false);
+      DuplicateIDCache cache = new DuplicateIDCacheImpl(new String("test"), 2000, journal, false);
 
       TransactionImpl tx = new TransactionImpl(journal);
 

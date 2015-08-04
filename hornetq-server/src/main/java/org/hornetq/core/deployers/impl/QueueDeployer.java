@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.deployers.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.CoreQueueConfiguration;
 import org.hornetq.core.deployers.DeploymentManager;
 import org.hornetq.core.server.HornetQServer;
@@ -66,9 +66,9 @@ public class QueueDeployer extends XmlDeployer
    {
       CoreQueueConfiguration queueConfig = parser.parseQueueConfiguration(node);
 
-      server.deployQueue(SimpleString.toSimpleString(queueConfig.getAddress()),
-                         SimpleString.toSimpleString(queueConfig.getName()),
-                         SimpleString.toSimpleString(queueConfig.getFilterString()),
+      server.deployQueue(queueConfig.getAddress(),
+                         queueConfig.getName(),
+                         queueConfig.getFilterString(),
                          queueConfig.isDurable(),
                          false);
    }

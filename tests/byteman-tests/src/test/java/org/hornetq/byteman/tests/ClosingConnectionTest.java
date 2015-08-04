@@ -12,15 +12,7 @@
  */
 package org.hornetq.byteman.tests;
 
-import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.api.core.management.HornetQServerControl;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.JournalType;
@@ -35,10 +27,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.management.MBeanServer;
+import javax.management.MBeanServerFactory;
+
 @RunWith(BMUnitRunner.class)
 public class ClosingConnectionTest extends ServiceTestBase
 {
-   public static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   public static final String ADDRESS = new String("SimpleAddress");
 
    private ServerLocator locator;
 

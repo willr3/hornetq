@@ -12,9 +12,6 @@
  */
 package org.hornetq.tests.integration.paging;
 
-import javax.transaction.xa.Xid;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.ServerLocator;
@@ -31,6 +28,8 @@ import org.hornetq.core.transaction.impl.TransactionImpl;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.transaction.xa.Xid;
 
 /**
  * A PagingCounterTest
@@ -62,7 +61,7 @@ public class PagingCounterTest extends ServiceTestBase
 
       try
       {
-         Queue queue = server.createQueue(new SimpleString("A1"), new SimpleString("A1"), null, true, false);
+         Queue queue = server.createQueue(new String("A1"), new String("A1"), null, true, false);
 
          PageSubscriptionCounter counter = locateCounter(queue);
 
@@ -95,7 +94,7 @@ public class PagingCounterTest extends ServiceTestBase
 
       try
       {
-         Queue queue = server.createQueue(new SimpleString("A1"), new SimpleString("A1"), null, true, false);
+         Queue queue = server.createQueue(new String("A1"), new String("A1"), null, true, false);
 
          PageSubscriptionCounter counter = locateCounter(queue);
 
@@ -132,7 +131,7 @@ public class PagingCounterTest extends ServiceTestBase
 
          server.start();
 
-         queue = server.locateQueue(new SimpleString("A1"));
+         queue = server.locateQueue(new String("A1"));
 
          assertNotNull(queue);
 
@@ -157,7 +156,7 @@ public class PagingCounterTest extends ServiceTestBase
 
       try
       {
-         Queue queue = server.createQueue(new SimpleString("A1"), new SimpleString("A1"), null, true, false);
+         Queue queue = server.createQueue(new String("A1"), new String("A1"), null, true, false);
 
          PageSubscriptionCounter counter = locateCounter(queue);
 
@@ -196,7 +195,7 @@ public class PagingCounterTest extends ServiceTestBase
 
          server.start();
 
-         queue = server.locateQueue(new SimpleString("A1"));
+         queue = server.locateQueue(new String("A1"));
 
          assertNotNull(queue);
 
@@ -215,7 +214,7 @@ public class PagingCounterTest extends ServiceTestBase
    @Test
    public void testRestartCounter() throws Exception
    {
-      Queue queue = server.createQueue(new SimpleString("A1"), new SimpleString("A1"), null, true, false);
+      Queue queue = server.createQueue(new String("A1"), new String("A1"), null, true, false);
 
       PageSubscriptionCounter counter = locateCounter(queue);
 
@@ -241,7 +240,7 @@ public class PagingCounterTest extends ServiceTestBase
 
       server.start();
 
-      queue = server.locateQueue(new SimpleString("A1"));
+      queue = server.locateQueue(new String("A1"));
 
       assertNotNull(queue);
 
@@ -259,7 +258,7 @@ public class PagingCounterTest extends ServiceTestBase
    private PageSubscriptionCounter locateCounter(Queue queue) throws Exception
    {
       PageSubscription subscription = server.getPagingManager()
-         .getPageStore(new SimpleString("A1"))
+         .getPageStore(new String("A1"))
          .getCursorProvider()
          .getSubscription(queue.getID());
 
@@ -272,7 +271,7 @@ public class PagingCounterTest extends ServiceTestBase
    {
       Xid xid = newXID();
 
-      Queue queue = server.createQueue(new SimpleString("A1"), new SimpleString("A1"), null, true, false);
+      Queue queue = server.createQueue(new String("A1"), new String("A1"), null, true, false);
 
       PageSubscriptionCounter counter = locateCounter(queue);
 
@@ -301,7 +300,7 @@ public class PagingCounterTest extends ServiceTestBase
 
       storage = server.getStorageManager();
 
-      queue = server.locateQueue(new SimpleString("A1"));
+      queue = server.locateQueue(new String("A1"));
 
       assertNotNull(queue);
 

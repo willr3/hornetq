@@ -12,36 +12,8 @@
  */
 package org.hornetq.tests.integration.client;
 
-import javax.transaction.xa.XAResource;
-import javax.transaction.xa.Xid;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientConsumerInternal;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.DivertConfiguration;
@@ -76,6 +48,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * A PagingTest
  *
@@ -98,7 +82,7 @@ public class PagingTest extends ServiceTestBase
 
    private static final int PAGE_SIZE = 10 * 1024;
 
-   static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   static final String ADDRESS = new String("SimpleAddress");
 
    @Override
    @Before
@@ -728,7 +712,7 @@ public class PagingTest extends ServiceTestBase
       defaultSetting.setPageSizeBytes(PAGE_SIZE);
       defaultSetting.setMaxSizeBytes(PAGE_MAX);
       // defaultSetting.setRedeliveryDelay(500);
-      defaultSetting.setExpiryAddress(new SimpleString("EXP"));
+      defaultSetting.setExpiryAddress(new String("EXP"));
       defaultSetting.setAddressFullMessagePolicy(AddressFullMessagePolicy.PAGE);
 
       server.getAddressSettingsRepository().clear();
@@ -756,7 +740,7 @@ public class PagingTest extends ServiceTestBase
       session.createQueue("EXP", "EXP", null, true);
 
       Queue queue1 = server.locateQueue(ADDRESS);
-      Queue qEXP = server.locateQueue(new SimpleString("EXP"));
+      Queue qEXP = server.locateQueue(new String("EXP"));
 
       ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
 
@@ -883,7 +867,7 @@ public class PagingTest extends ServiceTestBase
       locator.setBlockOnDurableSend(true);
       locator.setBlockOnAcknowledge(true);
 
-      SimpleString QUEUE2 = ADDRESS.concat("-2");
+      String QUEUE2 = ADDRESS.concat("-2");
 
       ClientSessionFactory sf = locator.createSessionFactory();
 
@@ -1095,7 +1079,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -1304,7 +1288,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
 
@@ -1387,7 +1371,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -1518,7 +1502,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -1626,7 +1610,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -1743,7 +1727,7 @@ public class PagingTest extends ServiceTestBase
 
             bodyLocal.writeBytes(body);
 
-            message.putIntProperty(new SimpleString("id"), i);
+            message.putIntProperty(new String("id"), i);
 
             producer.send(message);
             if (i % messagesPerTX == 0)
@@ -1812,8 +1796,8 @@ public class PagingTest extends ServiceTestBase
       pg.close();
 
       long[] queues = new long[]{
-         server.locateQueue(new SimpleString("q1")).getID(),
-         server.locateQueue(new SimpleString("q2")).getID()};
+         server.locateQueue(new String("q1")).getID(),
+         server.locateQueue(new String("q2")).getID()};
 
       for (long q : queues)
       {
@@ -1852,8 +1836,8 @@ public class PagingTest extends ServiceTestBase
       ClientConsumer cons2 = sess.createConsumer("q2");
       assertNull(cons2.receiveImmediate());
 
-      Queue q1 = server.locateQueue(new SimpleString("q1"));
-      Queue q2 = server.locateQueue(new SimpleString("q2"));
+      Queue q1 = server.locateQueue(new String("q1"));
+      Queue q2 = server.locateQueue(new String("q2"));
 
       System.err.println("isComplete = " + q1.getPageSubscription().isComplete(619) + " on queue " + q1.getID());
       System.err.println("isComplete = " + q2.getPageSubscription().isComplete(619) + " on queue " + q2.getID());
@@ -2061,7 +2045,7 @@ public class PagingTest extends ServiceTestBase
       session.createQueue(PagingTest.ADDRESS, PagingTest.ADDRESS, null, true);
       session.createQueue(PagingTest.ADDRESS,
                           PagingTest.ADDRESS.concat("-invalid"),
-                          new SimpleString(HornetQServerImpl.GENERIC_IGNORED_FILTER),
+                          new String(HornetQServerImpl.GENERIC_IGNORED_FILTER),
                           true);
 
       ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
@@ -2078,7 +2062,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
          if (i % 1000 == 0)
@@ -2279,7 +2263,7 @@ public class PagingTest extends ServiceTestBase
 
                bodyLocal.writeBytes(body);
 
-               message.putIntProperty(new SimpleString("id"), i);
+               message.putIntProperty(new String("id"), i);
 
                producer.send(message);
             }
@@ -2507,7 +2491,7 @@ public class PagingTest extends ServiceTestBase
 
             bodyLocal.writeBytes(body);
 
-            message.putIntProperty(new SimpleString("id"), i);
+            message.putIntProperty(new String("id"), i);
 
             producer.send(message);
          }
@@ -2672,7 +2656,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }
@@ -2814,7 +2798,7 @@ public class PagingTest extends ServiceTestBase
       {
          message = session.createMessage(true);
          message.getBodyBuffer().writeBytes(body);
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          // Consume messages to force an eventual out of order delivery
          if (i == 5)
@@ -2831,7 +2815,7 @@ public class PagingTest extends ServiceTestBase
             consumer.close();
          }
 
-         Integer messageID = (Integer) message.getObjectProperty(new SimpleString("id"));
+         Integer messageID = (Integer) message.getObjectProperty(new String("id"));
          Assert.assertNotNull(messageID);
          Assert.assertEquals(messageID.intValue(), i);
 
@@ -2852,7 +2836,7 @@ public class PagingTest extends ServiceTestBase
 
          Assert.assertNotNull(message);
 
-         Integer messageID = (Integer) message.getObjectProperty(new SimpleString("id"));
+         Integer messageID = (Integer) message.getObjectProperty(new String("id"));
 
          Assert.assertNotNull(messageID);
          Assert.assertEquals("message received out of order", messageID.intValue(), i);
@@ -2909,7 +2893,7 @@ public class PagingTest extends ServiceTestBase
 
       ClientMessage firstMessage = sessionTransacted.createMessage(IS_DURABLE_MESSAGE);
       firstMessage.getBodyBuffer().writeBytes(body);
-      firstMessage.putIntProperty(new SimpleString("id"), 0);
+      firstMessage.putIntProperty(new String("id"), 0);
 
       producerTransacted.send(firstMessage);
 
@@ -2943,7 +2927,7 @@ public class PagingTest extends ServiceTestBase
       {
          message = session.createMessage(true);
          message.getBodyBuffer().writeBytes(body);
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          // Consume messages to force an eventual out of order delivery
          if (i == 5)
@@ -2964,7 +2948,7 @@ public class PagingTest extends ServiceTestBase
             consumer.close();
          }
 
-         Integer messageID = (Integer) message.getObjectProperty(new SimpleString("id"));
+         Integer messageID = (Integer) message.getObjectProperty(new String("id"));
          Assert.assertNotNull(messageID);
          Assert.assertEquals(messageID.intValue(), i);
 
@@ -2985,7 +2969,7 @@ public class PagingTest extends ServiceTestBase
 
          Assert.assertNotNull(message);
 
-         Integer messageID = (Integer) message.getObjectProperty(new SimpleString("id"));
+         Integer messageID = (Integer) message.getObjectProperty(new String("id"));
 
          // System.out.println(messageID);
          Assert.assertNotNull(messageID);
@@ -3040,8 +3024,8 @@ public class PagingTest extends ServiceTestBase
       {
          ClientMessage message = sessionNonTX.createMessage(true);
          message.getBodyBuffer().writeBytes(body);
-         message.putIntProperty(new SimpleString("id"), i);
-         message.putStringProperty(new SimpleString("tst"), new SimpleString("i=" + i));
+         message.putIntProperty(new String("id"), i);
+         message.putStringProperty(new String("tst"), new String("i=" + i));
 
          producerTransacted.send(message);
 
@@ -3050,7 +3034,7 @@ public class PagingTest extends ServiceTestBase
             for (int j = 0; j < 20; j++)
             {
                ClientMessage msgSend = sessionNonTX.createMessage(true);
-               msgSend.putStringProperty(new SimpleString("tst"), new SimpleString("i=" + i + ", j=" + j));
+               msgSend.putStringProperty(new String("tst"), new String("i=" + i + ", j=" + j));
                msgSend.getBodyBuffer().writeBytes(new byte[10 * 1024]);
                producerNonTransacted.send(msgSend);
             }
@@ -3095,7 +3079,7 @@ public class PagingTest extends ServiceTestBase
 
          Assert.assertNotNull(message);
 
-         Integer messageID = (Integer) message.getObjectProperty(new SimpleString("id"));
+         Integer messageID = (Integer) message.getObjectProperty(new String("id"));
 
          Assert.assertNotNull(messageID);
          Assert.assertEquals("message received out of order", i, messageID.intValue());
@@ -3401,7 +3385,7 @@ public class PagingTest extends ServiceTestBase
          message = session.createMessage(true);
 
          message.getBodyBuffer().writeBytes(body);
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          PagingStore store = server.getPagingManager()
             .getPageStore(PagingTest.ADDRESS);
@@ -3516,7 +3500,7 @@ public class PagingTest extends ServiceTestBase
             bodyLocal.writeInt(j);
          }
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }
@@ -3575,7 +3559,7 @@ public class PagingTest extends ServiceTestBase
             bodyLocal.writeInt(j);
          }
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }
@@ -3658,7 +3642,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(new byte[1024]);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }
@@ -3980,7 +3964,7 @@ public class PagingTest extends ServiceTestBase
 
       for (int i = 0; i < NUMBER_OF_BINDINGS; i++)
       {
-         session.createQueue(PagingTest.ADDRESS, new SimpleString("someQueue" + i), null, true);
+         session.createQueue(PagingTest.ADDRESS, new String("someQueue" + i), null, true);
       }
 
       ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
@@ -4024,7 +4008,7 @@ public class PagingTest extends ServiceTestBase
 
          for (int i = 0; i < NUMBER_OF_BINDINGS; i++)
          {
-            ClientConsumer consumer = session.createConsumer(new SimpleString("someQueue" + i));
+            ClientConsumer consumer = session.createConsumer(new String("someQueue" + i));
 
             ClientMessage message2 = consumer.receive(PagingTest.RECEIVE_TIMEOUT);
 
@@ -4043,7 +4027,7 @@ public class PagingTest extends ServiceTestBase
 
       for (int i = 0; i < NUMBER_OF_BINDINGS; i++)
       {
-         Queue queue = (Queue) server.getPostOffice().getBinding(new SimpleString("someQueue" + i)).getBindable();
+         Queue queue = (Queue) server.getPostOffice().getBinding(new String("someQueue" + i)).getBindable();
 
          Assert.assertEquals("Queue someQueue" + i + " was supposed to be empty", 0, queue.getMessageCount());
          Assert.assertEquals("Queue someQueue" + i + " was supposed to be empty", 0, queue.getDeliveringCount());
@@ -4137,8 +4121,8 @@ public class PagingTest extends ServiceTestBase
    @Test
    public void testPagingOneDestinationOnly() throws Exception
    {
-      SimpleString PAGED_ADDRESS = new SimpleString("paged");
-      SimpleString NON_PAGED_ADDRESS = new SimpleString("non-paged");
+      String PAGED_ADDRESS = new String("paged");
+      String NON_PAGED_ADDRESS = new String("non-paged");
 
       Configuration configuration = createDefaultConfig();
 
@@ -4228,8 +4212,8 @@ public class PagingTest extends ServiceTestBase
    @Test
    public void testPagingDifferentSizes() throws Exception
    {
-      SimpleString PAGED_ADDRESS_A = new SimpleString("paged-a");
-      SimpleString PAGED_ADDRESS_B = new SimpleString("paged-b");
+      String PAGED_ADDRESS_A = new String("paged-a");
+      String PAGED_ADDRESS_B = new String("paged-b");
 
       Configuration configuration = createDefaultConfig();
 
@@ -4442,7 +4426,7 @@ public class PagingTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
 
@@ -4509,7 +4493,7 @@ public class PagingTest extends ServiceTestBase
       {
          session.createQueue(PagingTest.ADDRESS,
                              PagingTest.ADDRESS.concat("=" + i),
-                             new SimpleString("propTest=" + i),
+                             new String("propTest=" + i),
                              true);
       }
 
@@ -4735,7 +4719,7 @@ public class PagingTest extends ServiceTestBase
          // A queue with an impossible filter
          session.createQueue(PagingTest.ADDRESS,
                              PagingTest.ADDRESS.concat("-3"),
-                             new SimpleString("nothing='something'"),
+                             new String("nothing='something'"),
                              true);
 
          PagingStore store = server.getPagingManager().getPageStore(ADDRESS);
@@ -4934,7 +4918,7 @@ public class PagingTest extends ServiceTestBase
       Map<String, AddressSettings> settings = new HashMap<String, AddressSettings>();
       AddressSettings dla = new AddressSettings();
       dla.setMaxDeliveryAttempts(5);
-      dla.setDeadLetterAddress(new SimpleString("DLA"));
+      dla.setDeadLetterAddress(new String("DLA"));
       settings.put(ADDRESS.toString(), dla);
 
       server = createServer(true, config, PagingTest.PAGE_SIZE, PagingTest.PAGE_MAX, settings);
@@ -4964,7 +4948,7 @@ public class PagingTest extends ServiceTestBase
 
          PagingStore pgStoreAddress = server.getPagingManager().getPageStore(ADDRESS);
          pgStoreAddress.startPaging();
-         PagingStore pgStoreDLA = server.getPagingManager().getPageStore(new SimpleString("DLA"));
+         PagingStore pgStoreDLA = server.getPagingManager().getPageStore(new String("DLA"));
 
          ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
 
@@ -5179,8 +5163,8 @@ public class PagingTest extends ServiceTestBase
       Map<String, AddressSettings> settings = new HashMap<String, AddressSettings>();
       AddressSettings dla = new AddressSettings();
       dla.setMaxDeliveryAttempts(5);
-      dla.setDeadLetterAddress(new SimpleString("DLA"));
-      dla.setExpiryAddress(new SimpleString("DLA"));
+      dla.setDeadLetterAddress(new String("DLA"));
+      dla.setExpiryAddress(new String("DLA"));
       settings.put(ADDRESS.toString(), dla);
 
       server = createServer(true, config, PagingTest.PAGE_SIZE, PagingTest.PAGE_MAX, settings);
@@ -5207,7 +5191,7 @@ public class PagingTest extends ServiceTestBase
 
          PagingStore pgStoreAddress = server.getPagingManager().getPageStore(ADDRESS);
          pgStoreAddress.startPaging();
-         PagingStore pgStoreDLA = server.getPagingManager().getPageStore(new SimpleString("DLA"));
+         PagingStore pgStoreDLA = server.getPagingManager().getPageStore(new String("DLA"));
 
          ClientProducer producer = session.createProducer(PagingTest.ADDRESS);
 
@@ -5559,8 +5543,8 @@ public class PagingTest extends ServiceTestBase
       Assert.assertEquals(3, q.getMessageCount());
 
       // send a message with a dup ID that should fail b/c the address is full
-      SimpleString dupID1 = new SimpleString("abcdefg");
-      message.putBytesProperty(Message.HDR_DUPLICATE_DETECTION_ID, dupID1.getData());
+      String dupID1 = new String("abcdefg");
+      message.putBytesProperty(Message.HDR_DUPLICATE_DETECTION_ID, SSU.getData(dupID1));
       message.putStringProperty("key", dupID1.toString());
 
       validateExceptionOnSending(producer, message);
@@ -5655,7 +5639,7 @@ public class PagingTest extends ServiceTestBase
       session.createQueue("Q", "Q2", "dest=2", true);
       session.createQueue("Q", "Q3", "dest=3", true);
 
-      Queue queue = server.locateQueue(new SimpleString("Q1"));
+      Queue queue = server.locateQueue(new String("Q1"));
       queue.getPageSubscription().getPagingStore().startPaging();
 
       ClientProducer prod = session.createProducer("Q");
@@ -5766,7 +5750,7 @@ public class PagingTest extends ServiceTestBase
          final int MESSAGE_SIZE = 300;
          final byte[] bodyWrite = new byte[MESSAGE_SIZE];
 
-         Queue serverQueue = server.locateQueue(new SimpleString("Q1"));
+         Queue serverQueue = server.locateQueue(new String("Q1"));
          PagingStore pageStore = serverQueue.getPageSubscription().getPagingStore();
 
          ClientProducer producer = session.createProducer(ADDRESS);
@@ -6382,7 +6366,7 @@ public class PagingTest extends ServiceTestBase
          session.createQueue("Q1", "Q1", true);
          session.createQueue("Q2", "Q2", true);
 
-         PagingStore store = server.getPagingManager().getPageStore(new SimpleString("Q1"));
+         PagingStore store = server.getPagingManager().getPageStore(new String("Q1"));
 
 
          ClientProducer prod = session.createProducer("Q1");
@@ -6417,9 +6401,9 @@ public class PagingTest extends ServiceTestBase
          }
          session.commit();
 
-         Queue queue = server.locateQueue(new SimpleString("Q1"));
+         Queue queue = server.locateQueue(new String("Q1"));
 
-         queue.moveReferences(10, (Filter) null, new SimpleString("Q2"), false);
+         queue.moveReferences(10, (Filter) null, new String("Q2"), false);
 
          waitForNotPaging(store);
 
@@ -6457,7 +6441,7 @@ public class PagingTest extends ServiceTestBase
 
          assertNull(cons.receiveImmediate());
 
-         waitForNotPaging(server.locateQueue(new SimpleString("Q2")));
+         waitForNotPaging(server.locateQueue(new String("Q2")));
 
          session.close();
          sf.close();

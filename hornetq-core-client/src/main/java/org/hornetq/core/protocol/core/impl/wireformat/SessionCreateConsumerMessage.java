@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -24,17 +24,17 @@ public class SessionCreateConsumerMessage extends PacketImpl
 
    private long id;
 
-   private SimpleString queueName;
+   private String queueName;
 
-   private SimpleString filterString;
+   private String filterString;
 
    private boolean browseOnly;
 
    private boolean requiresResponse;
 
    public SessionCreateConsumerMessage(final long id,
-                                       final SimpleString queueName,
-                                       final SimpleString filterString,
+                                       final String queueName,
+                                       final String filterString,
                                        final boolean browseOnly,
                                        final boolean requiresResponse)
    {
@@ -67,12 +67,12 @@ public class SessionCreateConsumerMessage extends PacketImpl
       return id;
    }
 
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }
 
-   public SimpleString getFilterString()
+   public String getFilterString()
    {
       return filterString;
    }
@@ -87,12 +87,12 @@ public class SessionCreateConsumerMessage extends PacketImpl
       return requiresResponse;
    }
 
-   public void setQueueName(SimpleString queueName)
+   public void setQueueName(String queueName)
    {
       this.queueName = queueName;
    }
 
-   public void setFilterString(SimpleString filterString)
+   public void setFilterString(String filterString)
    {
       this.filterString = filterString;
    }

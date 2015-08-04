@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -22,9 +22,9 @@ import org.hornetq.core.protocol.core.impl.PacketImpl;
  */
 public class SessionDeleteQueueMessage extends PacketImpl
 {
-   private SimpleString queueName;
+   private String queueName;
 
-   public SessionDeleteQueueMessage(final SimpleString queueName)
+   public SessionDeleteQueueMessage(final String queueName)
    {
       super(DELETE_QUEUE);
 
@@ -45,7 +45,7 @@ public class SessionDeleteQueueMessage extends PacketImpl
       return buff.toString();
    }
 
-   public SimpleString getQueueName()
+   public String getQueueName()
    {
       return queueName;
    }

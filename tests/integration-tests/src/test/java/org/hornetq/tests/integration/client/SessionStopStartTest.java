@@ -11,26 +11,16 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.client;
+import org.hornetq.api.core.client.*;
+import org.hornetq.core.server.HornetQServer;
+import org.hornetq.tests.integration.IntegrationTestLogger;
+import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.Assert;
 import org.junit.Before;
-
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.tests.integration.IntegrationTestLogger;
-import org.hornetq.tests.util.ServiceTestBase;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -41,7 +31,7 @@ public class SessionStopStartTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private ServerLocator locator;
 
@@ -72,7 +62,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -117,7 +107,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -165,7 +155,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -256,7 +246,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -355,7 +345,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -458,7 +448,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -545,7 +535,7 @@ public class SessionStopStartTest extends ServiceTestBase
       session.close();
    }
 
-   private int getMessageEncodeSize(final SimpleString address) throws Exception
+   private int getMessageEncodeSize(final String address) throws Exception
    {
       ServerLocator locator = createInVMNonHALocator();
       ClientSessionFactory cf = createSessionFactory(locator);
@@ -576,7 +566,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -630,7 +620,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 
@@ -672,7 +662,7 @@ public class SessionStopStartTest extends ServiceTestBase
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = createTextMessage(session, "m" + i);
-         message.putIntProperty(new SimpleString("i"), i);
+         message.putIntProperty(new String("i"), i);
          producer.send(message);
       }
 

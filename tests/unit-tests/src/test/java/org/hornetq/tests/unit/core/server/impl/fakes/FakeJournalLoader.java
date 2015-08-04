@@ -12,12 +12,7 @@
  */
 package org.hornetq.tests.unit.core.server.impl.fakes;
 
-import javax.transaction.xa.Xid;
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.journal.Journal;
 import org.hornetq.core.persistence.GroupingInfo;
 import org.hornetq.core.persistence.QueueBindingInfo;
@@ -28,6 +23,10 @@ import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.JournalLoader;
 import org.hornetq.core.transaction.ResourceManager;
 import org.hornetq.core.transaction.Transaction;
+
+import javax.transaction.xa.Xid;
+import java.util.List;
+import java.util.Map;
 
 public class FakeJournalLoader implements JournalLoader
 {
@@ -52,7 +51,7 @@ public class FakeJournalLoader implements JournalLoader
    }
 
    @Override
-   public void handleDuplicateIds(Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception
+   public void handleDuplicateIds(Map<String, List<Pair<byte[], Long>>> duplicateIDMap) throws Exception
    {
    }
 

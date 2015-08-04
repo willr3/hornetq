@@ -20,7 +20,7 @@ import org.apache.qpid.proton.amqp.transport.ErrorCondition;
 import org.apache.qpid.proton.engine.Delivery;
 import org.apache.qpid.proton.engine.Receiver;
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPException;
 import org.hornetq.core.server.QueueQueryResult;
 
@@ -105,7 +105,7 @@ public class ProtonProducer implements ProtonDeliveryHandler
       {
          //if dynamic we have to create the node (queue) and set the address on the target, the node is temporary and
          // will be deleted on closing of the session
-         SimpleString queue = new SimpleString(java.util.UUID.randomUUID().toString());
+         String queue = new String(java.util.UUID.randomUUID().toString());
          try
          {
             protonSession.getServerSession().createQueue(queue, queue, null, true, false);
@@ -127,7 +127,7 @@ public class ProtonProducer implements ProtonDeliveryHandler
          }
          try
          {
-            QueueQueryResult queryResult = protonSession.getServerSession().executeQueueQuery(new SimpleString(address));
+            QueueQueryResult queryResult = protonSession.getServerSession().executeQueueQuery(new String(address));
             if (!queryResult.isExists())
             {
                throw HornetQAMQPProtocolMessageBundle.BUNDLE.addressDoesntExist();

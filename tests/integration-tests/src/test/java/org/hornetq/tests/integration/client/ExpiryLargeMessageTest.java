@@ -12,16 +12,8 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.io.File;
-
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.Queue;
 import org.hornetq.core.settings.impl.AddressFullMessagePolicy;
@@ -29,6 +21,8 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  * This test will send large messages in page-mode, DLQ then, expiry then, and they should be received fine
@@ -41,11 +35,11 @@ public class ExpiryLargeMessageTest extends ServiceTestBase
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
    // Constants -----------------------------------------------------
-   final SimpleString EXPIRY = new SimpleString("my-expiry");
+   final String EXPIRY = new String("my-expiry");
 
-   final SimpleString DLQ = new SimpleString("my-DLQ");
+   final String DLQ = new String("my-DLQ");
 
-   final SimpleString MY_QUEUE = new SimpleString("MY-QUEUE");
+   final String MY_QUEUE = new String("MY-QUEUE");
 
    final int messageSize = 10 * 1024;
 

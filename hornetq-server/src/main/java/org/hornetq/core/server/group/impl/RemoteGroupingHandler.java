@@ -12,17 +12,6 @@
  */
 package org.hornetq.core.server.group.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.postoffice.BindingType;
@@ -34,6 +23,16 @@ import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.ExecutorFactory;
 import org.hornetq.utils.TypedProperties;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * A remote Grouping handler.
  * <p/>
@@ -44,9 +43,9 @@ import org.hornetq.utils.TypedProperties;
  */
 public final class RemoteGroupingHandler extends GroupHandlingAbstract
 {
-   private final SimpleString name;
+   private final String name;
 
-   private final Map<SimpleString, Response> responses = new ConcurrentHashMap<SimpleString, Response>();
+   private final Map<String, Response> responses = new ConcurrentHashMap<String, Response>();
 
    private final Lock lock = new ReentrantLock();
 
@@ -56,7 +55,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
 
    private final long groupTimeout;
 
-   private final ConcurrentMap<SimpleString, List<SimpleString>> groupMap = new ConcurrentHashMap<SimpleString, List<SimpleString>>();
+   private final ConcurrentMap<String, List<String>> groupMap = new ConcurrentHashMap<String, List<String>>();
 
    private final ConcurrentHashSet<Notification> pendingNotifications = new ConcurrentHashSet();
 
@@ -64,8 +63,8 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
 
    public RemoteGroupingHandler(final ExecutorFactory executorFactory,
                                 final ManagementService managementService,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final long timeout,
                                 final long groupTimeout)
    {
@@ -76,15 +75,15 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    public RemoteGroupingHandler(final ManagementService managementService,
-                                final SimpleString name,
-                                final SimpleString address,
+                                final String name,
+                                final String address,
                                 final long timeout,
                                 final long groupTimeout)
    {
       this(null, managementService, name, address, timeout, groupTimeout);
    }
 
-   public SimpleString getName()
+   public String getName()
    {
       return name;
    }
@@ -215,7 +214,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       }
    }
 
-   private Notification createProposalNotification(SimpleString groupId, SimpleString clusterName)
+   private Notification createProposalNotification(String groupId, String clusterName)
    {
       TypedProperties props = new TypedProperties();
 
@@ -232,7 +231,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       return new Notification(null, CoreNotificationType.PROPOSAL, props);
    }
 
-   public Response getProposal(final SimpleString fullID, boolean touchTime)
+   public Response getProposal(final String fullID, boolean touchTime)
    {
       Response response = responses.get(fullID);
 
@@ -244,9 +243,9 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName) throws Exception
+   public void remove(String groupid, String clusterName) throws Exception
    {
-      List<SimpleString> groups = groupMap.get(clusterName);
+      List<String> groups = groupMap.get(clusterName);
       if (groups != null)
       {
          groups.remove(groupid);
@@ -256,7 +255,7 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
    }
 
    @Override
-   public void remove(SimpleString groupid, SimpleString clusterName, int distance) throws Exception
+   public void remove(String groupid, String clusterName, int distance) throws Exception
    {
       remove(groupid, clusterName);
 
@@ -269,8 +268,8 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       {
          lock.lock();
          responses.put(response.getGroupId(), response);
-         List<SimpleString> newList = new ArrayList<SimpleString>();
-         List<SimpleString> oldList = groupMap.putIfAbsent(response.getChosenClusterName(), newList);
+         List<String> newList = new ArrayList<String>();
+         List<String> oldList = groupMap.putIfAbsent(response.getChosenClusterName(), newList);
          if (oldList != null)
          {
             newList = oldList;
@@ -315,12 +314,12 @@ public final class RemoteGroupingHandler extends GroupHandlingAbstract
       // removing the groupid if the binding has been removed
       if (notification.getType() == CoreNotificationType.BINDING_REMOVED)
       {
-         SimpleString clusterName = notification.getProperties()
+         String clusterName = notification.getProperties()
             .getSimpleStringProperty(ManagementHelper.HDR_CLUSTER_NAME);
-         List<SimpleString> list = groupMap.remove(clusterName);
+         List<String> list = groupMap.remove(clusterName);
          if (list != null)
          {
-            for (SimpleString val : list)
+            for (String val : list)
             {
                if (val != null)
                {

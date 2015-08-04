@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.persistence.config.PersistedRoles;
 
 /**
@@ -32,7 +32,7 @@ import org.hornetq.core.persistence.config.PersistedRoles;
 public class RolesConfigurationStorageTest extends StorageManagerTestBase
 {
 
-   private Map<SimpleString, PersistedRoles> mapExpectedSets;
+   private Map<String, PersistedRoles> mapExpectedSets;
 
    @Override
    @Before
@@ -40,7 +40,7 @@ public class RolesConfigurationStorageTest extends StorageManagerTestBase
    {
       super.setUp();
 
-      mapExpectedSets = new HashMap<SimpleString, PersistedRoles>();
+      mapExpectedSets = new HashMap<String, PersistedRoles>();
    }
 
    protected void addSetting(PersistedRoles setting) throws Exception

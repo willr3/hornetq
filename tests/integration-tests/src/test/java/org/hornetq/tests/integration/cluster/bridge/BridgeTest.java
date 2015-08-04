@@ -25,7 +25,7 @@ import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -200,7 +200,7 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session1 = sf1.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -208,7 +208,7 @@ public class BridgeTest extends ServiceTestBase
 
       final byte[] bytes = new byte[messageSize];
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -384,7 +384,7 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session1 = sf1.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -392,7 +392,7 @@ public class BridgeTest extends ServiceTestBase
 
       final byte[] bytes = new byte[messageSize];
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -569,15 +569,15 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session1 = sf1.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
       session1.start();
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
-      final SimpleString selectorKey = new SimpleString("animal");
+      final String selectorKey = new String("animal");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -585,7 +585,7 @@ public class BridgeTest extends ServiceTestBase
 
          message.putIntProperty(propKey, i);
 
-         message.putStringProperty(selectorKey, new SimpleString("monkey"));
+         message.putStringProperty(selectorKey, new String("monkey"));
 
          if (largeMessage)
          {
@@ -603,7 +603,7 @@ public class BridgeTest extends ServiceTestBase
 
          message.putIntProperty(propKey, i);
 
-         message.putStringProperty(selectorKey, new SimpleString("goat"));
+         message.putStringProperty(selectorKey, new String("goat"));
 
          if (largeMessage)
          {
@@ -721,13 +721,13 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session0 = sf0.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       final int numMessages = 100;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
-      final SimpleString selectorKey = new SimpleString("animal");
+      final String selectorKey = new String("animal");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -737,7 +737,7 @@ public class BridgeTest extends ServiceTestBase
 
          message.putIntProperty(propKey, i);
 
-         message.putStringProperty(selectorKey, new SimpleString("monkey" + i));
+         message.putStringProperty(selectorKey, new String("monkey" + i));
 
          producer0.send(message);
       }
@@ -854,13 +854,13 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session0 = sf0.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       final int numMessages = 1000;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
-      final SimpleString selectorKey = new SimpleString("animal");
+      final String selectorKey = new String("animal");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -870,7 +870,7 @@ public class BridgeTest extends ServiceTestBase
 
          message.putIntProperty(propKey, i);
 
-         message.putStringProperty(selectorKey, new SimpleString("monkey" + i));
+         message.putStringProperty(selectorKey, new String("monkey" + i));
 
          producer0.send(message);
       }
@@ -881,7 +881,7 @@ public class BridgeTest extends ServiceTestBase
       {
          long[] ids = new long[100];
 
-         Queue queue = server0.locateQueue(new SimpleString(queueName0));
+         Queue queue = server0.locateQueue(new String(queueName0));
          LinkedListIterator<MessageReference> iterator = queue.iterator();
 
          for (int i = 0; i < 100; i++)
@@ -1045,7 +1045,7 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session1 = sf1.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -1053,13 +1053,13 @@ public class BridgeTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("wibble");
+      final String propKey = new String("wibble");
 
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = session0.createMessage(true);
 
-         message.putStringProperty(propKey, new SimpleString("bing"));
+         message.putStringProperty(propKey, new String("bing"));
 
          message.getBodyBuffer().writeString("doo be doo be doo be doo");
 
@@ -1072,9 +1072,9 @@ public class BridgeTest extends ServiceTestBase
 
          Assert.assertNotNull(message);
 
-         SimpleString val = (SimpleString) message.getObjectProperty(propKey);
+         String val = (String) message.getObjectProperty(propKey);
 
-         Assert.assertEquals(new SimpleString("bong"), val);
+         Assert.assertEquals(new String("bong"), val);
 
          String sval = message.getBodyBuffer().readString();
 
@@ -1250,7 +1250,7 @@ public class BridgeTest extends ServiceTestBase
 
                   session = sf.createSession(false, true, true);
 
-                  producer = session.createProducer(new SimpleString(testAddress));
+                  producer = session.createProducer(new String(testAddress));
 
                   for (int i = 0; i < nmsg; i++)
                   {
@@ -1437,7 +1437,7 @@ public class BridgeTest extends ServiceTestBase
 
          ClientSession session1 = sf1.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -1445,7 +1445,7 @@ public class BridgeTest extends ServiceTestBase
 
          final int numMessages = 6000;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          for (int i = 0; i < numMessages; i++)
          {
@@ -1718,7 +1718,7 @@ public class BridgeTest extends ServiceTestBase
 
          ClientSession session1 = sf1.createSession(false, true, true);
 
-         ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+         ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
          ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -1726,7 +1726,7 @@ public class BridgeTest extends ServiceTestBase
 
          final int numMessages = 50;
 
-         final SimpleString propKey = new SimpleString("testkey");
+         final String propKey = new String("testkey");
 
          final int LARGE_MESSAGE_SIZE = 1024;
          for (int i = 0; i < numMessages; i++)
@@ -1880,7 +1880,7 @@ public class BridgeTest extends ServiceTestBase
 
       ClientSession session1 = sf1.createSession(false, true, true);
 
-      ClientProducer producer0 = session0.createProducer(new SimpleString(testAddress));
+      ClientProducer producer0 = session0.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session1.createConsumer(queueName1);
 
@@ -1888,7 +1888,7 @@ public class BridgeTest extends ServiceTestBase
 
       final byte[] bytes = new byte[messageSize];
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {

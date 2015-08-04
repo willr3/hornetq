@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.protocol.core.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.Channel;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.wireformat.DisconnectConsumerMessage;
@@ -81,7 +81,7 @@ public final class CoreSessionCallback implements SessionCallback
       return size;
    }
 
-   public void sendProducerCreditsMessage(int credits, SimpleString address)
+   public void sendProducerCreditsMessage(int credits, String address)
    {
       Packet packet = new SessionProducerCreditsMessage(credits, address);
 
@@ -89,7 +89,7 @@ public final class CoreSessionCallback implements SessionCallback
    }
 
    @Override
-   public void sendProducerCreditsFailMessage(int credits, SimpleString address)
+   public void sendProducerCreditsFailMessage(int credits, String address)
    {
       Packet packet = new SessionProducerCreditsFailMessage(credits, address);
 

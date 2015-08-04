@@ -12,16 +12,7 @@
  */
 package org.hornetq.tests.integration.divert;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.config.DivertConfiguration;
 import org.hornetq.core.message.impl.MessageImpl;
@@ -31,6 +22,9 @@ import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A DivertTest
@@ -75,17 +69,17 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      session.createQueue(new SimpleString(forwardAddress), queueName1, null, false);
+      session.createQueue(new String(forwardAddress), queueName1, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName2, null, false);
+      session.createQueue(new String(testAddress), queueName2, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -93,7 +87,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 1;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -151,7 +145,7 @@ public class DivertTest extends ServiceTestBase
       conf.getAddressesSettings().clear();
 
       AddressSettings expirySettings = new AddressSettings();
-      expirySettings.setExpiryAddress(new SimpleString(expiryAddress));
+      expirySettings.setExpiryAddress(new String(expiryAddress));
 
       conf.getAddressesSettings().put("#", expirySettings);
 
@@ -180,19 +174,19 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, false, false);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      session.createQueue(new SimpleString(forwardAddress), queueName1, null, true);
+      session.createQueue(new String(forwardAddress), queueName1, null, true);
 
-      session.createQueue(new SimpleString(testAddress), queueName2, null, true);
+      session.createQueue(new String(testAddress), queueName2, null, true);
 
-      session.createQueue(new SimpleString(expiryAddress), new SimpleString(expiryAddress), null, true);
+      session.createQueue(new String(expiryAddress), new String(expiryAddress), null, true);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -200,7 +194,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 1;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -310,25 +304,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress), queueName1, null, false);
+      session.createQueue(new String(forwardAddress), queueName1, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName2, null, false);
+      session.createQueue(new String(testAddress), queueName2, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName3, null, false);
+      session.createQueue(new String(testAddress), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -340,7 +334,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -441,19 +435,19 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      session.createQueue(new SimpleString(forwardAddress), queueName1, null, false);
+      session.createQueue(new String(forwardAddress), queueName1, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -515,23 +509,23 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress), queueName1, null, false);
+      session.createQueue(new String(forwardAddress), queueName1, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName2, null, false);
-      session.createQueue(new SimpleString(testAddress), queueName3, null, false);
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName2, null, false);
+      session.createQueue(new String(testAddress), queueName3, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -543,7 +537,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -632,25 +626,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -662,7 +656,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -783,25 +777,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -813,7 +807,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -924,25 +918,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -954,7 +948,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -1056,25 +1050,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -1086,13 +1080,13 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
          ClientMessage message = session.createMessage(false);
 
-         message.putStringProperty(new SimpleString("animal"), new SimpleString("giraffe"));
+         message.putStringProperty(new String("animal"), new String("giraffe"));
 
          message.putIntProperty(propKey, i);
 
@@ -1155,7 +1149,7 @@ public class DivertTest extends ServiceTestBase
       {
          ClientMessage message = session.createMessage(false);
 
-         message.putStringProperty(new SimpleString("animal"), new SimpleString("antelope"));
+         message.putStringProperty(new String("animal"), new String("antelope"));
 
          message.putIntProperty(propKey, i);
 
@@ -1239,25 +1233,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -1269,7 +1263,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {
@@ -1401,25 +1395,25 @@ public class DivertTest extends ServiceTestBase
 
       ClientSession session = sf.createSession(false, true, true);
 
-      final SimpleString queueName1 = new SimpleString("queue1");
+      final String queueName1 = new String("queue1");
 
-      final SimpleString queueName2 = new SimpleString("queue2");
+      final String queueName2 = new String("queue2");
 
-      final SimpleString queueName3 = new SimpleString("queue3");
+      final String queueName3 = new String("queue3");
 
-      final SimpleString queueName4 = new SimpleString("queue4");
+      final String queueName4 = new String("queue4");
 
-      session.createQueue(new SimpleString(forwardAddress1), queueName1, null, false);
+      session.createQueue(new String(forwardAddress1), queueName1, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress2), queueName2, null, false);
+      session.createQueue(new String(forwardAddress2), queueName2, null, false);
 
-      session.createQueue(new SimpleString(forwardAddress3), queueName3, null, false);
+      session.createQueue(new String(forwardAddress3), queueName3, null, false);
 
-      session.createQueue(new SimpleString(testAddress), queueName4, null, false);
+      session.createQueue(new String(testAddress), queueName4, null, false);
 
       session.start();
 
-      ClientProducer producer = session.createProducer(new SimpleString(testAddress));
+      ClientProducer producer = session.createProducer(new String(testAddress));
 
       ClientConsumer consumer1 = session.createConsumer(queueName1);
 
@@ -1431,7 +1425,7 @@ public class DivertTest extends ServiceTestBase
 
       final int numMessages = 10;
 
-      final SimpleString propKey = new SimpleString("testkey");
+      final String propKey = new String("testkey");
 
       for (int i = 0; i < numMessages; i++)
       {

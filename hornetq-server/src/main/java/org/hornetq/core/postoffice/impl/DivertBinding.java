@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.postoffice.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.BindingType;
@@ -26,21 +26,21 @@ import org.hornetq.core.server.ServerMessage;
  */
 public class DivertBinding implements Binding
 {
-   private final SimpleString address;
+   private final String address;
 
    private final Divert divert;
 
    private final Filter filter;
 
-   private final SimpleString uniqueName;
+   private final String uniqueName;
 
-   private final SimpleString routingName;
+   private final String routingName;
 
    private final boolean exclusive;
 
    private final long id;
 
-   public DivertBinding(final long id, final SimpleString address, final Divert divert)
+   public DivertBinding(final long id, final String address, final Divert divert)
    {
       this.id = id;
 
@@ -67,7 +67,7 @@ public class DivertBinding implements Binding
       return filter;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -77,17 +77,17 @@ public class DivertBinding implements Binding
       return divert;
    }
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return routingName;
    }
 
-   public SimpleString getUniqueName()
+   public String getUniqueName()
    {
       return uniqueName;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return uniqueName;
    }
@@ -118,7 +118,7 @@ public class DivertBinding implements Binding
    }
 
    @Override
-   public void unproposed(SimpleString groupID)
+   public void unproposed(String groupID)
    {
    }
 

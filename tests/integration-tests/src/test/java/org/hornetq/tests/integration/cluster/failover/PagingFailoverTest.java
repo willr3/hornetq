@@ -12,15 +12,8 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import java.util.HashMap;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientSessionFactoryInternal;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
@@ -34,6 +27,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 /**
  * A PagingFailoverTest
  * <p/>
@@ -45,7 +40,7 @@ public class PagingFailoverTest extends FailoverTestBase
 {
    // Constants -----------------------------------------------------
 
-   private static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   private static final String ADDRESS = new String("SimpleAddress");
 
    private ServerLocator locator;
 
@@ -122,7 +117,7 @@ public class PagingFailoverTest extends FailoverTestBase
             session.commit();
          }
          ClientMessage msg = session.createMessage(true);
-         msg.putIntProperty(new SimpleString("key"), i);
+         msg.putIntProperty(new String("key"), i);
          prod.send(msg);
       }
 
@@ -153,7 +148,7 @@ public class PagingFailoverTest extends FailoverTestBase
          {
             session.commit();
          }
-         Assert.assertEquals(i, msg.getObjectProperty(new SimpleString("key")));
+         Assert.assertEquals(i, msg.getObjectProperty(new String("key")));
       }
 
       session.commit();
@@ -182,7 +177,7 @@ public class PagingFailoverTest extends FailoverTestBase
          Assert.assertNotNull(msg);
 
          msg.acknowledge();
-         int result = (Integer) msg.getObjectProperty(new SimpleString("key"));
+         int result = (Integer) msg.getObjectProperty(new String("key"));
          Assert.assertEquals(i, result);
       }
    }
@@ -206,7 +201,7 @@ public class PagingFailoverTest extends FailoverTestBase
       for (int i = 0; i < TOTAL_MESSAGES; i++)
       {
          ClientMessage msg = session.createMessage(true);
-         msg.putIntProperty(new SimpleString("key"), i);
+         msg.putIntProperty(new String("key"), i);
          msg.setExpiration(System.currentTimeMillis() + 1000);
          prod.send(msg);
       }

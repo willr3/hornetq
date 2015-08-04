@@ -12,11 +12,8 @@
  */
 package org.hornetq.core.protocol.stomp;
 
-import java.nio.charset.StandardCharsets;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.protocol.stomp.Stomp.Headers;
 import org.hornetq.core.protocol.stomp.v10.StompFrameHandlerV10;
@@ -25,6 +22,8 @@ import org.hornetq.core.protocol.stomp.v12.StompFrameHandlerV12;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.utils.DataConstants;
+
+import java.nio.charset.StandardCharsets;
 
 import static org.hornetq.core.protocol.stomp.HornetQStompProtocolMessageBundle.BUNDLE;
 
@@ -207,7 +206,7 @@ public abstract class VersionedStompFrameHandler
 
          ServerMessageImpl message = connection.createServerMessage();
          message.setTimestamp(timestamp);
-         message.setAddress(SimpleString.toSimpleString(destination));
+         message.setAddress((destination));
          StompUtils.copyStandardHeadersFromFrameToMessage(frame, message);
          if (frame.hasHeader(Stomp.Headers.CONTENT_LENGTH))
          {
@@ -218,7 +217,7 @@ public abstract class VersionedStompFrameHandler
          {
             message.setType(Message.TEXT_TYPE);
             String text = frame.getBody();
-            message.getBodyBuffer().writeNullableSimpleString(SimpleString.toSimpleString(text));
+            message.getBodyBuffer().writeNullableSimpleString((text));
          }
 
          connection.sendServerMessage(message, txID);
@@ -369,7 +368,7 @@ public abstract class VersionedStompFrameHandler
       }
       else
       {
-         SimpleString text = buffer.readNullableSimpleString();
+         String text = buffer.readNullableSimpleString();
          if (text != null)
          {
             data = text.toString().getBytes(StandardCharsets.UTF_8);

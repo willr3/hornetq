@@ -13,7 +13,7 @@
 
 package org.hornetq.core.server.group;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * @author Clebert Suconic
@@ -21,5 +21,5 @@ import org.hornetq.api.core.SimpleString;
 
 public interface UnproposalListener
 {
-   void unproposed(SimpleString groupID);
+   void unproposed(String groupID);
 }

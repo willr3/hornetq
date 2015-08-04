@@ -16,7 +16,7 @@ import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -51,7 +51,7 @@ public class InterceptorTest extends ServiceTestBase
 {
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("InterceptorTestQueue");
+   private final String QUEUE = new String("InterceptorTestQueue");
 
    private ServerLocator locator;
 
@@ -96,7 +96,7 @@ public class InterceptorTest extends ServiceTestBase
          {
             String userName = getUsername(packet, connection);
             CreateQueueMessage createQueue = (CreateQueueMessage) packet;
-            createQueue.setFilterString(new SimpleString("userName='" + userName + "'"));
+            createQueue.setFilterString(new String("userName='" + userName + "'"));
 
             System.out.println("userName = " + userName);
          }
@@ -131,7 +131,7 @@ public class InterceptorTest extends ServiceTestBase
          {
             String userName = getUsername(packet, connection);
             SessionCreateConsumerMessage createQueue = (SessionCreateConsumerMessage) packet;
-            createQueue.setFilterString(new SimpleString("userName='" + userName + "'"));
+            createQueue.setFilterString(new String("userName='" + userName + "'"));
 
             System.out.println("userName = " + userName);
          }
@@ -480,7 +480,7 @@ public class InterceptorTest extends ServiceTestBase
    public void testInterceptUsernameOnQueues() throws Exception
    {
 
-      SimpleString ANOTHER_QUEUE = QUEUE.concat("another");
+      String ANOTHER_QUEUE = QUEUE.concat("another");
       server.getSecurityManager().addUser("dumb", "dumber");
       server.getSecurityManager().addUser("an", "other");
 

@@ -12,11 +12,22 @@
  */
 package org.hornetq.ra.inflow;
 
-import javax.jms.Destination;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQExceptionType;
+import org.hornetq.api.core.HornetQNonExistentQueueException;
+import org.hornetq.api.core.HornetQNotConnectedException;
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.jms.HornetQJMSClient;
+import org.hornetq.core.client.impl.ClientSessionInternal;
+import org.hornetq.jms.client.HornetQConnectionFactory;
+import org.hornetq.jms.client.HornetQDestination;
+import org.hornetq.jms.server.recovery.XARecoveryConfig;
+import org.hornetq.ra.*;
+import org.hornetq.utils.FutureLatch;
+import org.hornetq.utils.SensitiveDataCodec;
+
+import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.resource.ResourceException;
@@ -28,26 +39,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.HornetQNonExistentQueueException;
-import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.jms.HornetQJMSClient;
-import org.hornetq.core.client.impl.ClientSessionInternal;
-import org.hornetq.jms.client.HornetQConnectionFactory;
-import org.hornetq.jms.client.HornetQDestination;
-import org.hornetq.jms.server.recovery.XARecoveryConfig;
-import org.hornetq.ra.HornetQRABundle;
-import org.hornetq.ra.HornetQRAConnectionFactory;
-import org.hornetq.ra.HornetQRALogger;
-import org.hornetq.ra.HornetQRaUtils;
-import org.hornetq.ra.HornetQResourceAdapter;
-import org.hornetq.utils.FutureLatch;
-import org.hornetq.utils.SensitiveDataCodec;
 
 /**
  * The activation.
@@ -103,7 +94,7 @@ public class HornetQActivation
    /**
     * The name of the temporary subscription name that all the sessions will share
     */
-   private SimpleString topicTemporaryQueue;
+   private String topicTemporaryQueue;
 
    private final List<HornetQMessageHandler> handlers = new ArrayList<HornetQMessageHandler>();
 
@@ -268,7 +259,7 @@ public class HornetQActivation
    /**
     * @return the topicTemporaryQueue
     */
-   public SimpleString getTopicTemporaryQueue()
+   public String getTopicTemporaryQueue()
    {
       return topicTemporaryQueue;
    }
@@ -276,7 +267,7 @@ public class HornetQActivation
    /**
     * @param topicTemporaryQueue the topicTemporaryQueue to set
     */
-   public void setTopicTemporaryQueue(SimpleString topicTemporaryQueue)
+   public void setTopicTemporaryQueue(String topicTemporaryQueue)
    {
       this.topicTemporaryQueue = topicTemporaryQueue;
    }
@@ -593,7 +584,7 @@ public class HornetQActivation
       }
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return destination.getSimpleAddress();
    }

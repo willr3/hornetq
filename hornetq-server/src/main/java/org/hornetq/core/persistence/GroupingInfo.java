@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.persistence;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -20,9 +20,9 @@ import org.hornetq.api.core.SimpleString;
  */
 public interface GroupingInfo
 {
-   SimpleString getClusterName();
+   String getClusterName();
 
-   SimpleString getGroupId();
+   String getGroupId();
 
    long getId();
 }

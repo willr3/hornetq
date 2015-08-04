@@ -14,33 +14,9 @@
 package org.hornetq.tools;
 
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientRequestor;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.api.core.management.ResourceNames;
 import org.hornetq.core.message.impl.MessageImpl;
@@ -48,6 +24,17 @@ import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.utils.Base64;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Read XML output from <code>org.hornetq.core.persistence.impl.journal.XmlDataExporter</code>, create a core session, and
@@ -457,7 +444,7 @@ public final class XmlDataImporter
             {
                realValue = value;
             }
-            message.putStringProperty(new SimpleString(key), new SimpleString(realValue));
+            message.putStringProperty(new String(key), new String(realValue));
             break;
          case XmlDataConstants.PROPERTY_TYPE_STRING:
             if (!value.equals(XmlDataConstants.NULL))
@@ -542,7 +529,7 @@ public final class XmlDataImporter
          }
       }
 
-      ClientSession.QueueQuery queueQuery = session.queueQuery(new SimpleString(queueName));
+      ClientSession.QueueQuery queueQuery = session.queueQuery(new String(queueName));
 
       if (!queueQuery.isExists())
       {

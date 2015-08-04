@@ -31,7 +31,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.hornetq.api.core.SimpleString;
+
 
 public final class UUIDGenerator
 {
@@ -187,9 +187,9 @@ public final class UUIDGenerator
       }
    }
 
-   public SimpleString generateSimpleStringUUID()
+   public String generateSimpleStringUUID()
    {
-      return new SimpleString(generateStringUUID());
+      return new String(generateStringUUID());
    }
 
    public UUID generateUUID()

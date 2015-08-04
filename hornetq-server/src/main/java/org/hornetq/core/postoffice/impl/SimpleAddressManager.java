@@ -12,21 +12,16 @@
  */
 package org.hornetq.core.postoffice.impl;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.core.postoffice.Address;
-import org.hornetq.core.postoffice.AddressManager;
-import org.hornetq.core.postoffice.Binding;
-import org.hornetq.core.postoffice.Bindings;
-import org.hornetq.core.postoffice.BindingsFactory;
+import org.hornetq.core.postoffice.*;
 import org.hornetq.core.server.HornetQMessageBundle;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.core.transaction.TransactionOperationAbstract;
 import org.hornetq.utils.ConcurrentHashSet;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * A simple address manager that maintains the addresses and bindings.
@@ -40,14 +35,14 @@ public class SimpleAddressManager implements AddressManager
    /**
     * HashMap<Address, Binding>
     */
-   private final ConcurrentMap<SimpleString, Bindings> mappings = new ConcurrentHashMap<SimpleString, Bindings>();
+   private final ConcurrentMap<String, Bindings> mappings = new ConcurrentHashMap<String, Bindings>();
 
    /**
     * HashMap<QueueName, Binding>
     */
-   private final ConcurrentMap<SimpleString, Binding> nameMap = new ConcurrentHashMap<SimpleString, Binding>();
+   private final ConcurrentMap<String, Binding> nameMap = new ConcurrentHashMap<String, Binding>();
 
-   private final ConcurrentHashSet<SimpleString> pendingDeletes = new ConcurrentHashSet<SimpleString>();
+   private final ConcurrentHashSet<String> pendingDeletes = new ConcurrentHashSet<String>();
 
    private final BindingsFactory bindingsFactory;
 
@@ -71,7 +66,7 @@ public class SimpleAddressManager implements AddressManager
       return addMappingInternal(binding.getAddress(), binding);
    }
 
-   public Binding removeBinding(final SimpleString uniqueName, Transaction tx) throws Exception
+   public Binding removeBinding(final String uniqueName, Transaction tx) throws Exception
    {
       final Binding binding = nameMap.remove(uniqueName);
 
@@ -107,22 +102,22 @@ public class SimpleAddressManager implements AddressManager
       return binding;
    }
 
-   public Bindings getBindingsForRoutingAddress(final SimpleString address) throws Exception
+   public Bindings getBindingsForRoutingAddress(final String address) throws Exception
    {
       return mappings.get(address);
    }
 
-   public Binding getBinding(final SimpleString bindableName)
+   public Binding getBinding(final String bindableName)
    {
       return nameMap.get(bindableName);
    }
 
-   public Map<SimpleString, Binding> getBindings()
+   public Map<String, Binding> getBindings()
    {
       return nameMap;
    }
 
-   public Bindings getMatchingBindings(final SimpleString address) throws Exception
+   public Bindings getMatchingBindings(final String address) throws Exception
    {
       Address add = new AddressImpl(address);
 
@@ -147,7 +142,7 @@ public class SimpleAddressManager implements AddressManager
       mappings.clear();
    }
 
-   protected void removeBindingInternal(final SimpleString address, final SimpleString bindableName)
+   protected void removeBindingInternal(final String address, final String bindableName)
    {
       Bindings bindings = mappings.get(address);
 
@@ -162,7 +157,7 @@ public class SimpleAddressManager implements AddressManager
       }
    }
 
-   protected Binding removeMapping(final SimpleString bindableName, final Bindings bindings)
+   protected Binding removeMapping(final String bindableName, final Bindings bindings)
    {
       Binding theBinding = null;
 
@@ -186,7 +181,7 @@ public class SimpleAddressManager implements AddressManager
       return theBinding;
    }
 
-   protected boolean addMappingInternal(final SimpleString address, final Binding binding) throws Exception
+   protected boolean addMappingInternal(final String address, final Binding binding) throws Exception
    {
       Bindings bindings = mappings.get(address);
 

@@ -12,16 +12,8 @@
  */
 package org.hornetq.tests.stress.paging;
 
-import java.util.HashMap;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.settings.impl.AddressSettings;
@@ -30,6 +22,8 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
 
 /**
  * This is an integration-tests that will take some time to run.
@@ -74,7 +68,7 @@ public class PageStressTest extends ServiceTestBase
 
          session = factory.createSession(null, null, false, false, true, false, 1024 * NUMBER_OF_MESSAGES);
 
-         SimpleString address = new SimpleString("page-adr");
+         String address = new String("page-adr");
 
          session.createQueue(address, address, null, true);
 
@@ -181,8 +175,8 @@ public class PageStressTest extends ServiceTestBase
       {
          session = factory.createSession(false, false, false);
 
-         SimpleString address = new SimpleString("page-adr");
-         SimpleString[] queue = new SimpleString[]{new SimpleString("queue1"), new SimpleString("queue2")};
+         String address = new String("page-adr");
+         String[] queue = new String[]{new String("queue1"), new String("queue2")};
 
          session.createQueue(address, queue[0], null, true);
          session.createQueue(address, queue[1], null, true);
@@ -240,7 +234,7 @@ public class PageStressTest extends ServiceTestBase
 
    }
 
-   private int readMessages(final ClientSession session, final ClientConsumer consumer, final SimpleString queue) throws HornetQException
+   private int readMessages(final ClientSession session, final ClientConsumer consumer, final String queue) throws HornetQException
    {
       session.start();
       int msgs = 0;

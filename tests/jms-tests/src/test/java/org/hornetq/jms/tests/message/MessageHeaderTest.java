@@ -12,17 +12,16 @@
  */
 package org.hornetq.jms.tests.message;
 
-import javax.jms.BytesMessage;
-import javax.jms.DeliveryMode;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageFormatException;
-import javax.jms.MessageNotWriteableException;
-import javax.jms.ObjectMessage;
-import javax.jms.StreamMessage;
-import javax.jms.TextMessage;
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.client.*;
+import org.hornetq.core.client.impl.ClientMessageImpl;
+import org.hornetq.core.remoting.FailureListener;
+import org.hornetq.jms.client.*;
+import org.hornetq.jms.tests.util.ProxyAssertSupport;
+import org.junit.Test;
+
+import javax.jms.*;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
@@ -31,27 +30,6 @@ import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.FailoverEventListener;
-import org.hornetq.api.core.client.SendAcknowledgementHandler;
-import org.hornetq.api.core.client.SessionFailureListener;
-import org.hornetq.core.client.impl.ClientMessageImpl;
-import org.hornetq.core.remoting.FailureListener;
-import org.hornetq.jms.client.HornetQBytesMessage;
-import org.hornetq.jms.client.HornetQMapMessage;
-import org.hornetq.jms.client.HornetQMessage;
-import org.hornetq.jms.client.HornetQObjectMessage;
-import org.hornetq.jms.client.HornetQStreamMessage;
-import org.hornetq.jms.client.HornetQTextMessage;
-import org.hornetq.jms.tests.util.ProxyAssertSupport;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
@@ -974,18 +952,18 @@ public class MessageHeaderTest extends MessageHeaderTestBase
 
    class FakeSession implements ClientSession
    {
-      public ClientConsumer createConsumer(final SimpleString queueName, final boolean browseOnly) throws HornetQException
-      {
-         // TODO Auto-generated method stub
-         return null;
-      }
-
-
       public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
       {
          // TODO Auto-generated method stub
          return null;
       }
+
+
+//      public ClientConsumer createConsumer(final String queueName, final boolean browseOnly) throws HornetQException
+//      {
+//         // TODO Auto-generated method stub
+//         return null;
+//      }
 
       public void createQueue(final String address, final String queueName) throws HornetQException
       {
@@ -1000,24 +978,24 @@ public class MessageHeaderTest extends MessageHeaderTestBase
          this.message = message;
       }
 
-      public void createQueue(final SimpleString address,
-                              final SimpleString queueName,
-                              final SimpleString filterString,
-                              final boolean durable) throws HornetQException
-      {
-      }
+//      public void createQueue(final String address,
+//                              final String queueName,
+//                              final String filterString,
+//                              final boolean durable) throws HornetQException
+//      {
+//      }
 
-      public void createQueue(final SimpleString address, final SimpleString queueName, final boolean durable) throws HornetQException
+//      public void createQueue(final String address, final String queueName, final boolean durable) throws HornetQException
+//      {
+//      }
+
+      @Override
+      public void createSharedQueue(String address, String queueName, boolean durable) throws HornetQException
       {
       }
 
       @Override
-      public void createSharedQueue(SimpleString address, SimpleString queueName, boolean durable) throws HornetQException
-      {
-      }
-
-      @Override
-      public void createSharedQueue(SimpleString address, SimpleString queueName, SimpleString filter, boolean durable) throws HornetQException
+      public void createSharedQueue(String address, String queueName, String filter, boolean durable) throws HornetQException
       {
       }
 
@@ -1025,12 +1003,12 @@ public class MessageHeaderTest extends MessageHeaderTestBase
       {
       }
 
-      public void createQueue(final SimpleString address,
-                              final SimpleString queueName,
-                              final boolean durable,
-                              final boolean temporary) throws HornetQException
-      {
-      }
+//      public void createQueue(final String address,
+//                              final String queueName,
+//                              final boolean durable,
+//                              final boolean temporary) throws HornetQException
+//      {
+//      }
 
       public void createQueue(final String address,
                               final String queueName,
@@ -1046,57 +1024,57 @@ public class MessageHeaderTest extends MessageHeaderTestBase
       {
       }
 
-      public void createTemporaryQueue(final SimpleString address, final SimpleString queueName) throws HornetQException
-      {
-      }
+//      public void createTemporaryQueue(final String address, final String queueName) throws HornetQException
+//      {
+//      }
 
       public void createTemporaryQueue(final String address, final String queueName) throws HornetQException
       {
       }
 
-      public void createTemporaryQueue(final SimpleString address,
-                                       final SimpleString queueName,
-                                       final SimpleString filter) throws HornetQException
-      {
-      }
+//      public void createTemporaryQueue(final String address,
+//                                       final String queueName,
+//                                       final String filter) throws HornetQException
+//      {
+//      }
 
       public void createTemporaryQueue(final String address, final String queueName, final String filter) throws HornetQException
       {
       }
 
-      public void deleteQueue(final SimpleString queueName) throws HornetQException
-      {
-      }
+//      public void deleteQueue(final String queueName) throws HornetQException
+//      {
+//      }
 
       public void deleteQueue(final String queueName) throws HornetQException
       {
       }
 
-      public ClientConsumer createConsumer(final SimpleString queueName) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createConsumer(final String queueName) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createConsumer(final SimpleString queueName, final SimpleString filterString) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createConsumer(final String queueName, final String filterString) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createConsumer(final SimpleString queueName,
-                                           final SimpleString filterString,
-                                           final boolean browseOnly) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createConsumer(final String queueName,
+//                                           final String filterString,
+//                                           final boolean browseOnly) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createConsumer(final SimpleString queueName,
-                                           final SimpleString filterString,
-                                           final int windowSize,
-                                           final int maxRate,
-                                           final boolean browseOnly) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createConsumer(final String queueName,
+//                                           final String filterString,
+//                                           final int windowSize,
+//                                           final int maxRate,
+//                                           final boolean browseOnly) throws HornetQException
+//      {
+//         return null;
+//      }
 
       public ClientConsumer createConsumer(final String queueName) throws HornetQException
       {
@@ -1122,35 +1100,35 @@ public class MessageHeaderTest extends MessageHeaderTestBase
          return null;
       }
 
-      public ClientConsumer createFileConsumer(final File directory, final SimpleString queueName) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createFileConsumer(final File directory, final String queueName) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createFileConsumer(final File directory,
-                                               final SimpleString queueName,
-                                               final SimpleString filterString) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createFileConsumer(final File directory,
+//                                               final String queueName,
+//                                               final String filterString) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createFileConsumer(final File directory,
-                                               final SimpleString queueName,
-                                               final SimpleString filterString,
-                                               final boolean browseOnly) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createFileConsumer(final File directory,
+//                                               final String queueName,
+//                                               final String filterString,
+//                                               final boolean browseOnly) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientConsumer createFileConsumer(final File directory,
-                                               final SimpleString queueName,
-                                               final SimpleString filterString,
-                                               final int windowSize,
-                                               final int maxRate,
-                                               final boolean browseOnly) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientConsumer createFileConsumer(final File directory,
+//                                               final String queueName,
+//                                               final String filterString,
+//                                               final int windowSize,
+//                                               final int maxRate,
+//                                               final boolean browseOnly) throws HornetQException
+//      {
+//         return null;
+//      }
 
       public ClientConsumer createFileConsumer(final File directory, final String queueName) throws HornetQException
       {
@@ -1185,23 +1163,23 @@ public class MessageHeaderTest extends MessageHeaderTestBase
          return null;
       }
 
-      public ClientProducer createProducer(final SimpleString address) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientProducer createProducer(final String address) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientProducer createProducer(final SimpleString address, final int rate) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientProducer createProducer(final String address, final int rate) throws HornetQException
+//      {
+//         return null;
+//      }
 
-      public ClientProducer createProducer(final SimpleString address,
-                                           final int maxRate,
-                                           final boolean blockOnNonDurableSend,
-                                           final boolean blockOnDurableSend) throws HornetQException
-      {
-         return null;
-      }
+//      public ClientProducer createProducer(final String address,
+//                                           final int maxRate,
+//                                           final boolean blockOnNonDurableSend,
+//                                           final boolean blockOnDurableSend) throws HornetQException
+//      {
+//         return null;
+//      }
 
       public ClientProducer createProducer(final String address) throws HornetQException
       {
@@ -1221,12 +1199,12 @@ public class MessageHeaderTest extends MessageHeaderTestBase
          return null;
       }
 
-      public QueueQuery queueQuery(final SimpleString queueName) throws HornetQException
+      public QueueQuery queueQuery(final String queueName) throws HornetQException
       {
          return null;
       }
 
-      public BindingQuery bindingQuery(final SimpleString address) throws HornetQException
+      public BindingQuery bindingQuery(final String address) throws HornetQException
       {
          return null;
       }
@@ -1414,13 +1392,13 @@ public class MessageHeaderTest extends MessageHeaderTestBase
       }
 
       /* (non-Javadoc)
-       * @see org.hornetq.api.core.client.ClientSession#createQueue(org.hornetq.utils.SimpleString, org.hornetq.utils.SimpleString)
+       * @see org.hornetq.api.core.client.ClientSession#createQueue(org.hornetq.utils.String, org.hornetq.utils.String)
        */
-      public void createQueue(SimpleString address, SimpleString queueName) throws HornetQException
-      {
-         // TODO Auto-generated method stub
-
-      }
+//      public void createQueue(String address, String queueName) throws HornetQException
+//      {
+//         // TODO Auto-generated method stub
+//
+//      }
 
       /* (non-Javadoc)
        * @see org.hornetq.api.core.client.ClientSession#setClientID(java.lang.String)

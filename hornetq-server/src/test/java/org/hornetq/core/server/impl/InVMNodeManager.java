@@ -12,18 +12,14 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.io.IOException;
-import java.util.concurrent.Semaphore;
-
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.utils.UUIDGenerator;
 
-import static org.hornetq.core.server.impl.InVMNodeManager.State.FAILING_BACK;
-import static org.hornetq.core.server.impl.InVMNodeManager.State.LIVE;
-import static org.hornetq.core.server.impl.InVMNodeManager.State.NOT_STARTED;
-import static org.hornetq.core.server.impl.InVMNodeManager.State.PAUSED;
+import java.io.IOException;
+import java.util.concurrent.Semaphore;
+
+import static org.hornetq.core.server.impl.InVMNodeManager.State.*;
 
 /**
  * NodeManager used to run multiple servers in the same VM.
@@ -157,7 +153,7 @@ public final class InVMNodeManager extends NodeManager
    }
 
    @Override
-   public SimpleString readNodeId() throws HornetQIllegalStateException, IOException
+   public String readNodeId() throws HornetQIllegalStateException, IOException
    {
       return getNodeId();
    }

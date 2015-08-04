@@ -12,19 +12,6 @@
  */
 package org.hornetq.core.paging.impl;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.journal.IOCriticalErrorListener;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.journal.impl.NIOSequentialFileFactory;
@@ -37,6 +24,12 @@ import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.utils.ExecutorFactory;
 import org.hornetq.utils.UUIDGenerator;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  *
@@ -91,7 +84,7 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
    {
    }
 
-   public synchronized PagingStore newStore(final SimpleString address, final AddressSettings settings)
+   public synchronized PagingStore newStore(final String address, final AddressSettings settings)
    {
 
       return new PagingStoreImpl(address,
@@ -107,12 +100,12 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
                                  syncNonTransactional);
    }
 
-   public synchronized SequentialFileFactory newFileFactory(final SimpleString address) throws Exception
+   public synchronized SequentialFileFactory newFileFactory(final String address) throws Exception
    {
 
       String guid = UUIDGenerator.getInstance().generateStringUUID();
 
-      SequentialFileFactory factory = newFileFactory(guid);
+      SequentialFileFactory factory = newInternalFileFactory(guid);
 
       factory.createDirs();
 
@@ -181,7 +174,7 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
                reader.close();
             }
 
-            SimpleString address = new SimpleString(addressString);
+            String address = new String(addressString);
 
             SequentialFileFactory factory = newFileFactory(guid);
 
@@ -206,7 +199,7 @@ public class PagingStoreFactoryNIO implements PagingStoreFactory
       }
    }
 
-   private SequentialFileFactory newFileFactory(final String directoryName)
+   private SequentialFileFactory newInternalFileFactory(final String directoryName)
    {
       return new NIOSequentialFileFactory(directory + File.separatorChar + directoryName, false, critialErrorListener);
    }

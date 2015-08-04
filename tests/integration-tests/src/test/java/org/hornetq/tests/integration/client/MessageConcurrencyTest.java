@@ -12,19 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.RandomUtil;
@@ -32,6 +20,11 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * A MessageConcurrencyTest
@@ -44,9 +37,9 @@ public class MessageConcurrencyTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString ADDRESS = new SimpleString("MessageConcurrencyTestAddress");
+   private final String ADDRESS = new String("MessageConcurrencyTestAddress");
 
-   private final SimpleString QUEUE_NAME = new SimpleString("MessageConcurrencyTestQueue");
+   private final String QUEUE_NAME = new String("MessageConcurrencyTestQueue");
 
    private ServerLocator locator;
 

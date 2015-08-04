@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.server.group.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 
 /**
  * A group binding
@@ -24,20 +24,20 @@ public class GroupBinding
 {
    private long id;
 
-   private final SimpleString groupId;
+   private final String groupId;
 
-   private final SimpleString clusterName;
+   private final String clusterName;
 
    volatile long timeUsed;
 
-   public GroupBinding(final SimpleString groupId, final SimpleString clusterName)
+   public GroupBinding(final String groupId, final String clusterName)
    {
       this.groupId = groupId;
       this.clusterName = clusterName;
       use();
    }
 
-   public GroupBinding(final long id, final SimpleString groupId, final SimpleString clusterName)
+   public GroupBinding(final long id, final String groupId, final String clusterName)
    {
       this.id = id;
       this.groupId = groupId;
@@ -55,12 +55,12 @@ public class GroupBinding
       this.id = id;
    }
 
-   public SimpleString getGroupId()
+   public String getGroupId()
    {
       return groupId;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return clusterName;
    }

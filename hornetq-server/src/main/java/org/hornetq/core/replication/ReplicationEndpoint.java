@@ -12,23 +12,7 @@
  */
 package org.hornetq.core.replication;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.IOCriticalErrorListener;
 import org.hornetq.core.journal.Journal;
@@ -49,24 +33,8 @@ import org.hornetq.core.protocol.core.Channel;
 import org.hornetq.core.protocol.core.ChannelHandler;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
-import org.hornetq.core.protocol.core.impl.wireformat.BackupReplicationStartFailedMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.HornetQExceptionMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationCommitMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageBeginMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageEndMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageEventMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPrepareMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationResponseMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.*;
 import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessage.SyncDataType;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
 import org.hornetq.core.replication.ReplicationManager.ADD_OPERATION_TYPE;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.HornetQMessageBundle;
@@ -74,6 +42,17 @@ import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.HornetQServerImpl;
 import org.hornetq.core.server.impl.QuorumManager;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.*;
 
 /**
  * Handles all the synchronization necessary for replication on the backup side (that is the
@@ -110,8 +89,8 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
 
    private PagingManager pageManager;
 
-   private final ConcurrentMap<SimpleString, ConcurrentMap<Integer, Page>> pageIndex =
-      new ConcurrentHashMap<SimpleString, ConcurrentMap<Integer, Page>>();
+   private final ConcurrentMap<String, ConcurrentMap<Integer, Page>> pageIndex =
+      new ConcurrentHashMap<String, ConcurrentMap<Integer, Page>>();
    private final ConcurrentMap<Long, ReplicatedLargeMessage> largeMessages =
       new ConcurrentHashMap<Long, ReplicatedLargeMessage>();
 
@@ -831,7 +810,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
       page.write(pgdMessage);
    }
 
-   private ConcurrentMap<Integer, Page> getPageMap(final SimpleString storeName)
+   private ConcurrentMap<Integer, Page> getPageMap(final String storeName)
    {
       ConcurrentMap<Integer, Page> resultIndex = pageIndex.get(storeName);
 
@@ -848,7 +827,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
       return resultIndex;
    }
 
-   private Page getPage(final SimpleString storeName, final int pageId) throws Exception
+   private Page getPage(final String storeName, final int pageId) throws Exception
    {
       ConcurrentMap<Integer, Page> map = getPageMap(storeName);
 
@@ -868,7 +847,7 @@ public final class ReplicationEndpoint implements ChannelHandler, HornetQCompone
     * @return
     */
    private synchronized Page newPage(final int pageId,
-                                     final SimpleString storeName,
+                                     final String storeName,
                                      final ConcurrentMap<Integer, Page> map) throws Exception
    {
       Page page = map.get(pageId);

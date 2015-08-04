@@ -13,7 +13,7 @@
 package org.hornetq.core.protocol.core.impl.wireformat;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.protocol.core.impl.PacketImpl;
 
 /**
@@ -25,7 +25,7 @@ public class ReplicationPageEventMessage extends PacketImpl
 
    private int pageNumber;
 
-   private SimpleString storeName;
+   private String storeName;
 
    /**
     * True = delete page, False = close page
@@ -37,7 +37,7 @@ public class ReplicationPageEventMessage extends PacketImpl
       super(PacketImpl.REPLICATION_PAGE_EVENT);
    }
 
-   public ReplicationPageEventMessage(final SimpleString storeName, final int pageNumber, final boolean isDelete)
+   public ReplicationPageEventMessage(final String storeName, final int pageNumber, final boolean isDelete)
    {
       this();
       this.pageNumber = pageNumber;
@@ -72,7 +72,7 @@ public class ReplicationPageEventMessage extends PacketImpl
    /**
     * @return the storeName
     */
-   public SimpleString getStoreName()
+   public String getStoreName()
    {
       return storeName;
    }

@@ -12,24 +12,16 @@
  */
 package org.hornetq.core.server.cluster.impl;
 
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.filter.impl.FilterImpl;
 import org.hornetq.core.message.impl.MessageImpl;
 import org.hornetq.core.postoffice.BindingType;
-import org.hornetq.core.server.Bindable;
-import org.hornetq.core.server.HornetQServerLogger;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.RoutingContext;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.cluster.RemoteQueueBinding;
+
+import java.nio.ByteBuffer;
+import java.util.*;
 
 /**
  * A RemoteQueueBindingImpl
@@ -42,13 +34,13 @@ import org.hornetq.core.server.cluster.RemoteQueueBinding;
  */
 public class RemoteQueueBindingImpl implements RemoteQueueBinding
 {
-   private final SimpleString address;
+   private final String address;
 
    private final Queue storeAndForwardQueue;
 
-   private final SimpleString uniqueName;
+   private final String uniqueName;
 
-   private final SimpleString routingName;
+   private final String routingName;
 
    private final long remoteQueueID;
 
@@ -56,24 +48,24 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
 
    private final Set<Filter> filters = new HashSet<Filter>();
 
-   private final Map<SimpleString, Integer> filterCounts = new HashMap<SimpleString, Integer>();
+   private final Map<String, Integer> filterCounts = new HashMap<String, Integer>();
 
    private int consumerCount;
 
-   private final SimpleString idsHeaderName;
+   private final String idsHeaderName;
 
    private final long id;
 
    private final int distance;
 
    public RemoteQueueBindingImpl(final long id,
-                                 final SimpleString address,
-                                 final SimpleString uniqueName,
-                                 final SimpleString routingName,
+                                 final String address,
+                                 final String uniqueName,
+                                 final String routingName,
                                  final Long remoteQueueID,
-                                 final SimpleString filterString,
+                                 final String filterString,
                                  final Queue storeAndForwardQueue,
-                                 final SimpleString bridgeName,
+                                 final String bridgeName,
                                  final int distance) throws Exception
    {
       this.id = id;
@@ -100,7 +92,7 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
       return id;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -115,17 +107,17 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
       return storeAndForwardQueue;
    }
 
-   public SimpleString getRoutingName()
+   public String getRoutingName()
    {
       return routingName;
    }
 
-   public SimpleString getUniqueName()
+   public String getUniqueName()
    {
       return uniqueName;
    }
 
-   public SimpleString getClusterName()
+   public String getClusterName()
    {
       return uniqueName;
    }
@@ -177,7 +169,7 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
 
 
    @Override
-   public void unproposed(SimpleString groupID)
+   public void unproposed(String groupID)
    {
    }
 
@@ -195,7 +187,7 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
       }
    }
 
-   public synchronized void addConsumer(final SimpleString filterString) throws Exception
+   public synchronized void addConsumer(final String filterString) throws Exception
    {
       if (filterString != null)
       {
@@ -219,7 +211,7 @@ public class RemoteQueueBindingImpl implements RemoteQueueBinding
       consumerCount++;
    }
 
-   public synchronized void removeConsumer(final SimpleString filterString) throws Exception
+   public synchronized void removeConsumer(final String filterString) throws Exception
    {
       if (filterString != null)
       {

@@ -13,26 +13,12 @@
 
 package org.hornetq.core.protocol.proton;
 
-import java.nio.ByteBuffer;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.qpid.proton.amqp.Binary;
 import org.apache.qpid.proton.amqp.Symbol;
 import org.apache.qpid.proton.amqp.UnsignedByte;
 import org.apache.qpid.proton.amqp.UnsignedInteger;
-import org.apache.qpid.proton.amqp.messaging.AmqpValue;
-import org.apache.qpid.proton.amqp.messaging.ApplicationProperties;
-import org.apache.qpid.proton.amqp.messaging.Data;
-import org.apache.qpid.proton.amqp.messaging.DeliveryAnnotations;
-import org.apache.qpid.proton.amqp.messaging.Footer;
-import org.apache.qpid.proton.amqp.messaging.Header;
-import org.apache.qpid.proton.amqp.messaging.MessageAnnotations;
+import org.apache.qpid.proton.amqp.messaging.*;
 import org.apache.qpid.proton.amqp.messaging.Properties;
-import org.apache.qpid.proton.amqp.messaging.Section;
 import org.apache.qpid.proton.codec.CompositeWritableBuffer;
 import org.apache.qpid.proton.codec.DroppingWritableBuffer;
 import org.apache.qpid.proton.codec.WritableBuffer;
@@ -40,10 +26,12 @@ import org.apache.qpid.proton.jms.EncodedMessage;
 import org.apache.qpid.proton.message.Message;
 import org.apache.qpid.proton.message.MessageFormat;
 import org.apache.qpid.proton.message.impl.MessageImpl;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;
 import org.hornetq.utils.TypedProperties;
+
+import java.nio.ByteBuffer;
+import java.util.*;
 
 import static org.hornetq.api.core.Message.TEXT_TYPE;
 
@@ -74,18 +62,18 @@ public class ProtonUtils
    private static final String GROUP_SEQUENCE = PREFIX + "GROUP_SEQUENCE";
    private static final String REPLY_TO_GROUP_ID = PREFIX + "REPLY_TO_GROUP_ID";
 
-   private static final SimpleString USER_ID_SS = new SimpleString(USER_ID);
-   private static final SimpleString SUBJECT_SS = new SimpleString(SUBJECT);
-   private static final SimpleString REPLY_TO_SS = new SimpleString(REPLY_TO);
-   private static final SimpleString CORRELATION_ID_SS = new SimpleString(CORRELATION_ID);
-   private static final SimpleString CONTENT_TYPE_SS = new SimpleString(CONTENT_TYPE);
-   private static final SimpleString CONTENT_ENCODING_SS = new SimpleString(CONTENT_ENCODING);
-   private static final SimpleString ABSOLUTE_EXPIRY_TIME_SS = new SimpleString(ABSOLUTE_EXPIRY_TIME);
-   private static final SimpleString CREATION_TIME_SS = new SimpleString(CREATION_TIME);
-   private static final SimpleString GROUP_ID_SS = new SimpleString(GROUP_ID);
-   private static final SimpleString GROUP_SEQUENCE_SS = new SimpleString(GROUP_SEQUENCE);
-   private static final SimpleString REPLY_TO_GROUP_ID_SS = new SimpleString(REPLY_TO_GROUP_ID);
-   private static final SimpleString PROTON_MESSAGE_SIZE_SS = new SimpleString(PROTON_MESSAGE_SIZE);
+   private static final String USER_ID_SS = new String(USER_ID);
+   private static final String SUBJECT_SS = new String(SUBJECT);
+   private static final String REPLY_TO_SS = new String(REPLY_TO);
+   private static final String CORRELATION_ID_SS = new String(CORRELATION_ID);
+   private static final String CONTENT_TYPE_SS = new String(CONTENT_TYPE);
+   private static final String CONTENT_ENCODING_SS = new String(CONTENT_ENCODING);
+   private static final String ABSOLUTE_EXPIRY_TIME_SS = new String(ABSOLUTE_EXPIRY_TIME);
+   private static final String CREATION_TIME_SS = new String(CREATION_TIME);
+   private static final String GROUP_ID_SS = new String(GROUP_ID);
+   private static final String GROUP_SEQUENCE_SS = new String(GROUP_SEQUENCE);
+   private static final String REPLY_TO_GROUP_ID_SS = new String(REPLY_TO_GROUP_ID);
+   private static final String PROTON_MESSAGE_SIZE_SS = new String(PROTON_MESSAGE_SIZE);
 
    private static Set<String> SPECIAL_PROPS = new HashSet<String>();
 
@@ -125,9 +113,9 @@ public class ProtonUtils
          ServerMessageImpl message = connection.createServerMessage();
          TypedProperties properties = message.getProperties();
 
-         properties.putLongProperty(new SimpleString(MESSAGE_FORMAT), encodedMessage.getMessageFormat());
-         properties.putLongProperty(new SimpleString(PROTON_MESSAGE_FORMAT), getMessageFormat(protonMessage.getMessageFormat()));
-         properties.putIntProperty(new SimpleString(PROTON_MESSAGE_SIZE), encodedMessage.getLength());
+         properties.putLongProperty(new String(MESSAGE_FORMAT), encodedMessage.getMessageFormat());
+         properties.putLongProperty(new String(PROTON_MESSAGE_FORMAT), getMessageFormat(protonMessage.getMessageFormat()));
+         properties.putIntProperty(new String(PROTON_MESSAGE_SIZE), encodedMessage.getLength());
 
          populateSpecialProps(header, protonMessage, message, properties);
          populateHeaderProperties(header, properties, message);
@@ -165,9 +153,9 @@ public class ProtonUtils
       {
          if (header.getFirstAcquirer() != null)
          {
-            properties.putBooleanProperty(new SimpleString(FIRST_ACQUIRER), header.getFirstAcquirer());
+            properties.putBooleanProperty(new String(FIRST_ACQUIRER), header.getFirstAcquirer());
          }
-         properties.putIntProperty(new SimpleString(MESSAGE_TYPE), getMessageType(protonMessage));
+         properties.putIntProperty(new String(MESSAGE_TYPE), getMessageType(protonMessage));
       }
 
       private static void populateHeaderProperties(Header header, TypedProperties properties, ServerMessageImpl message)
@@ -198,7 +186,7 @@ public class ProtonUtils
             {
                Symbol symbol = (Symbol) key;
                Object value = values.get(key);
-               properties.putSimpleStringProperty(new SimpleString(DELIVERY_ANNOTATIONS + symbol.toString()), new SimpleString(value.toString()));
+               properties.putSimpleStringProperty(new String(DELIVERY_ANNOTATIONS + symbol.toString()), new String(value.toString()));
             }
          }
       }
@@ -213,7 +201,7 @@ public class ProtonUtils
             {
                Symbol symbol = (Symbol) key;
                Object value = values.get(key);
-               properties.putSimpleStringProperty(new SimpleString(FOOTER_VALUES + symbol.toString()), new SimpleString(value.toString()));
+               properties.putSimpleStringProperty(new String(FOOTER_VALUES + symbol.toString()), new String(value.toString()));
             }
          }
       }
@@ -226,7 +214,7 @@ public class ProtonUtils
          }
          if (amqpProperties.getTo() != null)
          {
-            message.setAddress(new SimpleString(amqpProperties.getTo()));
+            message.setAddress(new String(amqpProperties.getTo()));
          }
          if (amqpProperties.getUserId() != null)
          {
@@ -234,23 +222,23 @@ public class ProtonUtils
          }
          if (amqpProperties.getSubject() != null)
          {
-            properties.putSimpleStringProperty(SUBJECT_SS, new SimpleString(amqpProperties.getSubject()));
+            properties.putSimpleStringProperty(SUBJECT_SS, new String(amqpProperties.getSubject()));
          }
          if (amqpProperties.getReplyTo() != null)
          {
-            properties.putSimpleStringProperty(REPLY_TO_SS, new SimpleString(amqpProperties.getReplyTo()));
+            properties.putSimpleStringProperty(REPLY_TO_SS, new String(amqpProperties.getReplyTo()));
          }
          if (amqpProperties.getCorrelationId() != null)
          {
-            properties.putSimpleStringProperty(CORRELATION_ID_SS, new SimpleString(amqpProperties.getCorrelationId().toString()));
+            properties.putSimpleStringProperty(CORRELATION_ID_SS, new String(amqpProperties.getCorrelationId().toString()));
          }
          if (amqpProperties.getContentType() != null)
          {
-            properties.putSimpleStringProperty(CONTENT_TYPE_SS, new SimpleString(amqpProperties.getContentType().toString()));
+            properties.putSimpleStringProperty(CONTENT_TYPE_SS, new String(amqpProperties.getContentType().toString()));
          }
          if (amqpProperties.getContentEncoding() != null)
          {
-            properties.putSimpleStringProperty(CONTENT_ENCODING_SS, new SimpleString(amqpProperties.getContentEncoding().toString()));
+            properties.putSimpleStringProperty(CONTENT_ENCODING_SS, new String(amqpProperties.getContentEncoding().toString()));
          }
          if (amqpProperties.getAbsoluteExpiryTime() != null)
          {
@@ -262,7 +250,7 @@ public class ProtonUtils
          }
          if (amqpProperties.getGroupId() != null)
          {
-            properties.putSimpleStringProperty(GROUP_ID_SS, new SimpleString(amqpProperties.getGroupId()));
+            properties.putSimpleStringProperty(GROUP_ID_SS, new String(amqpProperties.getGroupId()));
          }
          if (amqpProperties.getGroupSequence() != null)
          {
@@ -270,7 +258,7 @@ public class ProtonUtils
          }
          if (amqpProperties.getReplyToGroupId() != null)
          {
-            message.getProperties().putSimpleStringProperty(REPLY_TO_GROUP_ID_SS, new SimpleString(amqpProperties.getReplyToGroupId()));
+            message.getProperties().putSimpleStringProperty(REPLY_TO_GROUP_ID_SS, new String(amqpProperties.getReplyToGroupId()));
          }
       }
 
@@ -291,27 +279,27 @@ public class ProtonUtils
       {
          if (val instanceof String)
          {
-            properties.putSimpleStringProperty(new SimpleString((String) key), new SimpleString((String) val));
+            properties.putSimpleStringProperty(new String((String) key), new String((String) val));
          }
          else if (val instanceof Boolean)
          {
-            properties.putBooleanProperty(new SimpleString((String) key), (Boolean) val);
+            properties.putBooleanProperty(new String((String) key), (Boolean) val);
          }
          else if (val instanceof Double)
          {
-            properties.putDoubleProperty(new SimpleString((String) key), (Double) val);
+            properties.putDoubleProperty(new String((String) key), (Double) val);
          }
          else if (val instanceof Float)
          {
-            properties.putFloatProperty(new SimpleString((String) key), (Float) val);
+            properties.putFloatProperty(new String((String) key), (Float) val);
          }
          else if (val instanceof Integer)
          {
-            properties.putIntProperty(new SimpleString((String) key), (Integer) val);
+            properties.putIntProperty(new String((String) key), (Integer) val);
          }
          else if (val instanceof Byte)
          {
-            properties.putByteProperty(new SimpleString((String) key), (Byte) val);
+            properties.putByteProperty(new String((String) key), (Byte) val);
          }
       }
 
@@ -325,7 +313,7 @@ public class ProtonUtils
             {
                Symbol symbol = (Symbol) key;
                Object value = values.get(key);
-               properties.putSimpleStringProperty(new SimpleString(MESSAGE_ANNOTATIONS + symbol.toString()), new SimpleString(value.toString()));
+               properties.putSimpleStringProperty(new String(MESSAGE_ANNOTATIONS + symbol.toString()), new String(value.toString()));
             }
          }
       }
@@ -346,21 +334,21 @@ public class ProtonUtils
          ApplicationProperties applicationProperties = populateApplicationProperties(message);
          Section section = populateBody(message);
          Footer footer = populateFooter(message);
-         Set<SimpleString> propertyNames = message.getPropertyNames();
-         for (SimpleString propertyName : propertyNames)
+         Set<String> propertyNames = message.getPropertyNames();
+         for (String propertyName : propertyNames)
          {
             TypedProperties typedProperties = message.getTypedProperties();
             String realName = propertyName.toString();
             if (realName.startsWith(MESSAGE_ANNOTATIONS))
             {
 
-               SimpleString value = (SimpleString) typedProperties.getProperty(propertyName);
+               String value = (String) typedProperties.getProperty(propertyName);
                Symbol symbol = Symbol.getSymbol(realName.replace(MESSAGE_ANNOTATIONS, ""));
                messageAnnotations.getValue().put(symbol, value.toString());
             }
          }
          MessageImpl protonMessage = new MessageImpl(header, deliveryAnnotations, messageAnnotations, props, applicationProperties, section, footer);
-         protonMessage.setMessageFormat(getMessageFormat(message.getLongProperty(new SimpleString(PROTON_MESSAGE_FORMAT))));
+         protonMessage.setMessageFormat(getMessageFormat(message.getLongProperty(new String(PROTON_MESSAGE_FORMAT))));
          ByteBuffer buffer = ByteBuffer.wrap(new byte[size]);
          final DroppingWritableBuffer overflow = new DroppingWritableBuffer();
          int c = protonMessage.encode(new CompositeWritableBuffer(new WritableBuffer.ByteBufferWrapper(buffer), overflow));
@@ -387,13 +375,13 @@ public class ProtonUtils
       {
          HashMap actualValues = new HashMap();
          DeliveryAnnotations deliveryAnnotations = new DeliveryAnnotations(actualValues);
-         for (SimpleString name : message.getPropertyNames())
+         for (String name : message.getPropertyNames())
          {
             String sName = name.toString();
             if (sName.startsWith(DELIVERY_ANNOTATIONS))
             {
                Object val = message.getTypedProperties().getProperty(name);
-               if (val instanceof SimpleString)
+               if (val instanceof String)
                {
                   actualValues.put(sName.subSequence(sName.indexOf(DELIVERY_ANNOTATIONS), sName.length()), val.toString());
                }
@@ -411,13 +399,13 @@ public class ProtonUtils
       {
          HashMap actualValues = new HashMap();
          MessageAnnotations messageAnnotations = new MessageAnnotations(actualValues);
-         for (SimpleString name : message.getPropertyNames())
+         for (String name : message.getPropertyNames())
          {
             String sName = name.toString();
             if (sName.startsWith(MESSAGE_ANNOTATIONS))
             {
                Object val = message.getTypedProperties().getProperty(name);
-               if (val instanceof SimpleString)
+               if (val instanceof String)
                {
                   actualValues.put(sName.subSequence(sName.indexOf(MESSAGE_ANNOTATIONS), sName.length()), val.toString());
                }
@@ -492,14 +480,14 @@ public class ProtonUtils
       private static ApplicationProperties populateApplicationProperties(ServerMessage message)
       {
          HashMap<String, Object> values = new HashMap<String, Object>();
-         for (SimpleString name : message.getPropertyNames())
+         for (String name : message.getPropertyNames())
          {
             setProperty(name, message.getTypedProperties().getProperty(name), values);
          }
          return new ApplicationProperties(values);
       }
 
-      private static void setProperty(SimpleString name, Object property, HashMap<String, Object> values)
+      private static void setProperty(String name, Object property, HashMap<String, Object> values)
       {
          String s = name.toString();
          if (SPECIAL_PROPS.contains(s) ||
@@ -509,7 +497,7 @@ public class ProtonUtils
          {
             return;
          }
-         if (property instanceof SimpleString)
+         if (property instanceof String)
          {
             values.put(s, property.toString());
          }
@@ -523,13 +511,13 @@ public class ProtonUtils
       {
          HashMap actualValues = new HashMap();
          Footer footer = new Footer(actualValues);
-         for (SimpleString name : message.getPropertyNames())
+         for (String name : message.getPropertyNames())
          {
             String sName = name.toString();
             if (sName.startsWith(FOOTER_VALUES))
             {
                Object val = message.getTypedProperties().getProperty(name);
-               if (val instanceof SimpleString)
+               if (val instanceof String)
                {
                   actualValues.put(sName.subSequence(sName.indexOf(FOOTER_VALUES), sName.length()), val.toString());
                }

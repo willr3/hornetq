@@ -13,14 +13,14 @@
 
 package org.hornetq.core.buffers.impl;
 
-import java.nio.ByteBuffer;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.SSU;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.UTF8Util;
+
+import java.nio.ByteBuffer;
 
 /**
  * A ChannelBufferWrapper
@@ -68,7 +68,7 @@ public class ChannelBufferWrapper implements HornetQBuffer
       return readByte() != 0;
    }
 
-   public SimpleString readNullableSimpleString()
+   public String readNullableSimpleString()
    {
       int b = buffer.readByte();
       if (b == DataConstants.NULL)
@@ -88,17 +88,17 @@ public class ChannelBufferWrapper implements HornetQBuffer
       return readStringInternal();
    }
 
-   public SimpleString readSimpleString()
+   public String readSimpleString()
    {
       return readSimpleStringInternal();
    }
 
-   private SimpleString readSimpleStringInternal()
+   private String readSimpleStringInternal()
    {
       int len = buffer.readInt();
       byte[] data = new byte[len];
       buffer.readBytes(data);
-      return new SimpleString(data);
+      return new String(data);
    }
 
    public String readString()
@@ -139,7 +139,7 @@ public class ChannelBufferWrapper implements HornetQBuffer
       buffer.writeByte((byte)(val ? -1 : 0));
    }
 
-   public void writeNullableSimpleString(final SimpleString val)
+   public void writeNullableSimpleString(final String val)
    {
       if (val == null)
       {
@@ -165,14 +165,14 @@ public class ChannelBufferWrapper implements HornetQBuffer
       }
    }
 
-   public void writeSimpleString(final SimpleString val)
+   public void writeSimpleString(final String val)
    {
       writeSimpleStringInternal(val);
    }
 
-   private void writeSimpleStringInternal(final SimpleString val)
+   private void writeSimpleStringInternal(final String val)
    {
-      byte[] data = val.getData();
+      byte[] data = SSU.getData(val);
       buffer.writeInt(data.length);
       buffer.writeBytes(data);
    }
@@ -203,8 +203,8 @@ public class ChannelBufferWrapper implements HornetQBuffer
       }
       else
       {
-         // Store as SimpleString, since can't store utf > 0xffff in length
-         writeSimpleStringInternal(new SimpleString(val));
+         // Store asString, since can't store utf > 0xffff in length
+         writeSimpleStringInternal(new String(val));
       }
    }
 

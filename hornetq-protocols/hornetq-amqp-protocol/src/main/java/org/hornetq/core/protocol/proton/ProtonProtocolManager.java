@@ -13,10 +13,6 @@
 
 package org.hornetq.core.protocol.proton;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.EnumSet;
-
 import io.netty.channel.ChannelPipeline;
 import org.apache.qpid.proton.amqp.Binary;
 import org.apache.qpid.proton.amqp.messaging.AmqpValue;
@@ -26,17 +22,12 @@ import org.apache.qpid.proton.amqp.transaction.Declared;
 import org.apache.qpid.proton.amqp.transaction.Discharge;
 import org.apache.qpid.proton.amqp.transport.AmqpError;
 import org.apache.qpid.proton.amqp.transport.ErrorCondition;
-import org.apache.qpid.proton.engine.Delivery;
-import org.apache.qpid.proton.engine.EndpointState;
-import org.apache.qpid.proton.engine.Link;
-import org.apache.qpid.proton.engine.Receiver;
-import org.apache.qpid.proton.engine.Sender;
+import org.apache.qpid.proton.engine.*;
 import org.apache.qpid.proton.engine.impl.LinkImpl;
 import org.apache.qpid.proton.engine.impl.TransportImpl;
 import org.apache.qpid.proton.jms.EncodedMessage;
 import org.apache.qpid.proton.message.impl.MessageImpl;
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.journal.IOAsyncTask;
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPException;
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPIllegalStateException;
@@ -53,6 +44,10 @@ import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.spi.core.remoting.Acceptor;
 import org.hornetq.spi.core.remoting.Connection;
 import org.hornetq.utils.UUIDGenerator;
+
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.EnumSet;
 
 /**
  * A proton protocol manager, basically reads the Proton Input and maps proton resources to HornetQ resources
@@ -160,7 +155,7 @@ public class ProtonProtocolManager implements ProtocolManager, NotificationListe
          //use the address on the receiver if not null, if null let's hope it was set correctly on the message
          if (address != null)
          {
-            message.setAddress(new SimpleString(address));
+            message.setAddress(new String(address));
          }
          //todo decide on whether to deliver direct
          protonSession.getServerSession().send(message, true);

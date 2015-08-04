@@ -12,22 +12,7 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientConsumerInternal;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.Bindings;
@@ -42,15 +27,23 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  * @author <a href="mailto:clebert.suconic@jboss.org">Clebert Suconic</a>
  */
 public class ConsumerWindowSizeTest extends ServiceTestBase
 {
-   private final SimpleString addressA = new SimpleString("addressA");
+   private final String addressA = new String("addressA");
 
-   private final SimpleString queueA = new SimpleString("queueA");
+   private final String queueA = new String("queueA");
 
    private final int TIMEOUT = 5;
 
@@ -74,7 +67,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
       locator = createFactory(isNetty());
    }
 
-   private int getMessageEncodeSize(final SimpleString address) throws Exception
+   private int getMessageEncodeSize(final String address) throws Exception
    {
       ServerLocator locator = createInVMNonHALocator();
       ClientSessionFactory cf = createSessionFactory(locator);
@@ -530,7 +523,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session = sf.createSession(false, true, true);
 
-         SimpleString ADDRESS = addressA;
+         String ADDRESS = addressA;
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
@@ -625,7 +618,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session = sf.createSession(false, true, true);
 
-         SimpleString ADDRESS = addressA;
+         String ADDRESS = addressA;
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
@@ -759,7 +752,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session2.start();
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          session1.createQueue(ADDRESS, ADDRESS, true);
 
@@ -933,7 +926,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session1.start();
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          session1.createQueue(ADDRESS, ADDRESS, true);
 
@@ -1056,7 +1049,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session = sf.createSession(false, false, false);
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
@@ -1145,7 +1138,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session = sf.createSession(false, true, true);
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
@@ -1307,7 +1300,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          session = sf.createSession(false, true, true);
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          session.createQueue(ADDRESS, ADDRESS, true);
 
@@ -1475,7 +1468,7 @@ public class ConsumerWindowSizeTest extends ServiceTestBase
 
          sessionA = sf.createSession(false, true, true);
 
-         SimpleString ADDRESS = new SimpleString("some-queue");
+         String ADDRESS = new String("some-queue");
 
          sessionA.createQueue(ADDRESS, ADDRESS, true);
 

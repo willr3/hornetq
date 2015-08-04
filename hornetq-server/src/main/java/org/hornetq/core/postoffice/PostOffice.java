@@ -13,7 +13,7 @@
 package org.hornetq.core.postoffice;
 
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.MessageReference;
 import org.hornetq.core.server.Queue;
@@ -40,25 +40,25 @@ public interface PostOffice extends HornetQComponent
 {
    void addBinding(Binding binding) throws Exception;
 
-   Binding removeBinding(SimpleString uniqueName, Transaction tx) throws Exception;
+   Binding removeBinding(String uniqueName, Transaction tx) throws Exception;
 
    /**
     * It will lookup the Binding without creating an item on the Queue if non-existent
     * @param address
     * @throws Exception
     */
-   Bindings lookupBindingsForAddress(SimpleString address) throws Exception;
+   Bindings lookupBindingsForAddress(String address) throws Exception;
 
    /**
     * Differently to lookupBindings, this will always create a new element on the Queue if non-existent
     * @param address
     * @throws Exception
     */
-   Bindings getBindingsForAddress(SimpleString address) throws Exception;
+   Bindings getBindingsForAddress(String address) throws Exception;
 
-   Binding getBinding(SimpleString uniqueName);
+   Binding getBinding(String uniqueName);
 
-   Bindings getMatchingBindings(SimpleString address) throws Exception;
+   Bindings getMatchingBindings(String address) throws Exception;
 
    void route(ServerMessage message, boolean direct) throws Exception;
 
@@ -76,15 +76,15 @@ public interface PostOffice extends HornetQComponent
 
    void processRoute(final ServerMessage message, final RoutingContext context, final boolean direct) throws Exception;
 
-   DuplicateIDCache getDuplicateIDCache(SimpleString address);
+   DuplicateIDCache getDuplicateIDCache(String address);
 
-   void sendQueueInfoToQueue(SimpleString queueName, SimpleString address) throws Exception;
+   void sendQueueInfoToQueue(String queueName, String address) throws Exception;
 
    Object getNotificationLock();
 
    // we can't start expiry scanner until the system is load otherwise we may get weird races - https://issues.jboss.org/browse/HORNETQ-1142
    void startExpiryScanner();
 
-   boolean isAddressBound(final SimpleString address) throws Exception;
+   boolean isAddressBound(final String address) throws Exception;
 
 }

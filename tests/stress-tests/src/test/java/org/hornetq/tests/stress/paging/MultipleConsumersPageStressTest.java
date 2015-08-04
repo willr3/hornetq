@@ -11,31 +11,22 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.stress.paging;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.junit.Assert;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.impl.QueueImpl;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.unit.UnitTestLogger;
 import org.hornetq.tests.util.ServiceTestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A MultipleConsumersPageStressTest
@@ -55,7 +46,7 @@ public class MultipleConsumersPageStressTest extends ServiceTestBase
 
    private static final int TIME_TO_RUN = 60 * 1000;
 
-   private static final SimpleString ADDRESS = new SimpleString("page-adr");
+   private static final String ADDRESS = new String("page-adr");
 
    private int numberOfProducers;
 

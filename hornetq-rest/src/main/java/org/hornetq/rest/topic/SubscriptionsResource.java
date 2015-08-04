@@ -12,24 +12,7 @@
  */
 package org.hornetq.rest.topic;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.rest.HornetQRestLogger;
@@ -38,6 +21,14 @@ import org.hornetq.rest.queue.Acknowledgement;
 import org.hornetq.rest.queue.DestinationServiceManager;
 import org.hornetq.rest.queue.QueueConsumer;
 import org.hornetq.rest.util.TimeoutTask;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -400,7 +391,7 @@ public class SubscriptionsResource implements TimeoutTask.Callback
       {
          session = sessionFactory.createSession();
 
-         ClientSession.QueueQuery query = session.queueQuery(new SimpleString(subscriptionId));
+         ClientSession.QueueQuery query = session.queueQuery(new String(subscriptionId));
          return query.isExists();
       }
       catch (HornetQException e)

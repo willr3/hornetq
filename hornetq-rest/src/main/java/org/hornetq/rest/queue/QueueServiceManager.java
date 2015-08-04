@@ -12,13 +12,12 @@
  */
 package org.hornetq.rest.queue;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.rest.queue.push.FilePushStore;
 import org.hornetq.rest.queue.push.PushStore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -88,7 +87,7 @@ public class QueueServiceManager extends DestinationServiceManager
       }
       String queueName = queueDeployment.getName();
       ClientSession session = sessionFactory.createSession(false, false, false);
-      ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+      ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
       if (!query.isExists())
       {
          session.createQueue(queueName, queueName, queueDeployment.isDurableSend());

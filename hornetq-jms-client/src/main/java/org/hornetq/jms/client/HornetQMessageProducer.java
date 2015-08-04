@@ -12,32 +12,16 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.BytesMessage;
-import javax.jms.CompletionListener;
-import javax.jms.DeliveryMode;
-import javax.jms.Destination;
-import javax.jms.IllegalStateException;
-import javax.jms.InvalidDestinationException;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageProducer;
-import javax.jms.ObjectMessage;
-import javax.jms.Queue;
-import javax.jms.QueueSender;
-import javax.jms.StreamMessage;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
-import javax.jms.TopicPublisher;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.SendAcknowledgementHandler;
 import org.hornetq.utils.UUID;
 import org.hornetq.utils.UUIDGenerator;
+
+import javax.jms.*;
+import javax.jms.IllegalStateException;
 /**
  * HornetQ implementation of a JMS MessageProducer.
  *
@@ -49,7 +33,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
 {
    private final HornetQConnection connection;
 
-   private final SimpleString connID;
+   private final String connID;
 
    private final ClientProducer clientProducer;
    private final ClientSession clientSession;
@@ -71,7 +55,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
    {
       this.connection = connection;
 
-      connID = connection.getClientID() != null ? new SimpleString(connection.getClientID()) : connection.getUID();
+      connID = connection.getClientID() != null ? new String(connection.getClientID()) : connection.getUID();
 
       this.clientProducer = producer;
 
@@ -379,7 +363,7 @@ public class HornetQMessageProducer implements MessageProducer, QueueSender, Top
          jmsMessage.setJMSTimestamp(0);
       }
 
-      SimpleString address = null;
+      String address = null;
 
       if (destination == null)
       {

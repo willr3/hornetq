@@ -30,7 +30,7 @@ import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.HornetQQueueExistsException;
 import org.hornetq.api.core.HornetQSecurityException;
 import org.hornetq.api.core.HornetQSessionCreationException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
 import org.hornetq.core.security.CheckType;
@@ -93,10 +93,10 @@ public interface HornetQMessageBundle
    HornetQInternalErrorException replicationUnhandledDataType();
 
    @Message(id = 119012, value = "No binding for divert {0}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInternalErrorException noBindingForDivert(SimpleString name);
+   HornetQInternalErrorException noBindingForDivert(String name);
 
    @Message(id = 119013, value = "Binding {0} is not a divert", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInternalErrorException bindingNotDivert(SimpleString name);
+   HornetQInternalErrorException bindingNotDivert(String name);
 
    @Message(id = 119014,
             value = "Did not receive data from {0}. It is likely the client has exited or crashed without "
@@ -111,19 +111,19 @@ public interface HornetQMessageBundle
    HornetQIOErrorException ioTimeout();
 
    @Message(id = 119016, value =  "queue {0} has been removed cannot deliver message, queues should not be removed when grouping is used", format = Message.Format.MESSAGE_FORMAT)
-   HornetQNonExistentQueueException groupingQueueRemoved(SimpleString chosenClusterName);
+   HornetQNonExistentQueueException groupingQueueRemoved(String chosenClusterName);
 
    @Message(id = 119017, value =  "Queue {0} does not exist", format = Message.Format.MESSAGE_FORMAT)
-   HornetQNonExistentQueueException noSuchQueue(SimpleString queueName);
+   HornetQNonExistentQueueException noSuchQueue(String queueName);
 
    @Message(id = 119018, value =  "Binding already exists {0}", format = Message.Format.MESSAGE_FORMAT)
    HornetQQueueExistsException bindingAlreadyExists(Binding binding);
 
    @Message(id = 119019, value =  "Queue already exists {0}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQQueueExistsException queueAlreadyExists(SimpleString queueName);
+   HornetQQueueExistsException queueAlreadyExists(String queueName);
 
    @Message(id = 119020, value =  "Invalid filter: {0}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, SimpleString filter);
+   HornetQInvalidFilterExpressionException invalidFilter(@Cause Throwable e, String filter);
 
    @Message(id = 119021, value =  "MessageId was not assigned to Message", format = Message.Format.MESSAGE_FORMAT)
    HornetQIllegalStateException messageIdNotAssigned();
@@ -138,13 +138,13 @@ public interface HornetQMessageBundle
    HornetQIllegalStateException alreadyHaveReplicationServer();
 
    @Message(id = 119025, value =  "Cannot delete queue {0} on binding {1} - it has consumers = {2}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQIllegalStateException cannotDeleteQueue(SimpleString name, SimpleString queueName, String s);
+   HornetQIllegalStateException cannotDeleteQueue(String name, String queueName, String s);
 
    @Message(id = 119026, value =  "Backup Server was not yet in sync with live", format = Message.Format.MESSAGE_FORMAT)
    HornetQIllegalStateException backupServerNotInSync();
 
    @Message(id = 119027, value =  "Could not find reference on consumer ID={0}, messageId = {1} queue = {2}", format = Message.Format.MESSAGE_FORMAT)
-   HornetQIllegalStateException consumerNoReference(Long id, Long messageID, SimpleString name);
+   HornetQIllegalStateException consumerNoReference(Long id, Long messageID, String name);
 
    @Message(id = 119028, value =  "Consumer {0} doesn't exist on the server" , format = Message.Format.MESSAGE_FORMAT)
    HornetQIllegalStateException consumerDoesntExist(long consumerID);
@@ -313,10 +313,10 @@ public interface HornetQMessageBundle
    HornetQException noDiscoveryGroupFound(DiscoveryGroupConfiguration dg);
 
    @Message(id = 119082, value =  "Queue {0} already exists on another subscription", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInvalidTransientQueueUseException queueSubscriptionBelongsToDifferentAddress(SimpleString queueName);
+   HornetQInvalidTransientQueueUseException queueSubscriptionBelongsToDifferentAddress(String queueName);
 
    @Message(id = 119083, value =  "Queue {0} has a different filter than requested", format = Message.Format.MESSAGE_FORMAT)
-   HornetQInvalidTransientQueueUseException queueSubscriptionBelongsToDifferentFilter(SimpleString queueName);
+   HornetQInvalidTransientQueueUseException queueSubscriptionBelongsToDifferentFilter(String queueName);
 
    @Message(id = 119085, value = "Classpath lacks a protocol-manager for protocol {0}",
             format = Message.Format.MESSAGE_FORMAT)

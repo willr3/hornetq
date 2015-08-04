@@ -12,21 +12,16 @@
  */
 package org.hornetq.rest.queue;
 
+import org.hornetq.api.core.client.ClientSession;
+import org.hornetq.rest.HornetQRestLogger;
+import org.hornetq.rest.queue.push.PushConsumerResource;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.rest.HornetQRestLogger;
-import org.hornetq.rest.queue.push.PushConsumerResource;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -191,7 +186,7 @@ public class QueueResource extends DestinationResource
       ClientSession session = serviceManager.getSessionFactory().createSession(false, false, false);
       try
       {
-         SimpleString queueName = new SimpleString(destination);
+         String queueName = new String(destination);
          session.deleteQueue(queueName);
       }
       finally

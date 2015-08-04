@@ -12,22 +12,8 @@
  */
 package org.hornetq.tests.integration.cluster.failover;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hornetq.api.core.HornetQDuplicateIdException;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQTransactionOutcomeUnknownException;
-import org.hornetq.api.core.HornetQTransactionRolledBackException;
-import org.hornetq.api.core.HornetQUnBlockedException;
-import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientSessionFactoryInternal;
 import org.hornetq.core.client.impl.ClientSessionInternal;
 import org.hornetq.core.client.impl.DelegatingSession;
@@ -37,6 +23,9 @@ import org.hornetq.tests.util.CountDownSessionFailureListener;
 import org.hornetq.tests.util.TransportConfigurationUtils;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A MultiThreadFailoverTest
@@ -413,7 +402,7 @@ public class AsynchronousFailoverTest extends FailoverTestBase
 
                      message.putIntProperty("counter", i);
 
-                     message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new SimpleString("id:" + i +
+                     message.putStringProperty(Message.HDR_DUPLICATE_DETECTION_ID, new String("id:" + i +
                                                                                                        ",exec:" +
                                                                                                        executionId));
 

@@ -12,26 +12,16 @@
  */
 package org.hornetq.core.cluster;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.hornetq.api.core.BroadcastEndpoint;
-import org.hornetq.api.core.BroadcastEndpointFactory;
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQInterruptedException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
+import org.hornetq.api.core.*;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.core.client.HornetQClientLogger;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.management.Notification;
 import org.hornetq.core.server.management.NotificationService;
 import org.hornetq.utils.TypedProperties;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class is used to search for members on the cluster through the opaque interface {@link BroadcastEndpoint}.
@@ -116,7 +106,7 @@ public final class DiscoveryGroup implements HornetQComponent
       {
          TypedProperties props = new TypedProperties();
 
-         props.putSimpleStringProperty(new SimpleString("name"), new SimpleString(name));
+         props.putSimpleStringProperty(new String("name"), new String(name));
 
          Notification notification = new Notification(nodeID, CoreNotificationType.DISCOVERY_GROUP_STARTED, props);
 
@@ -184,7 +174,7 @@ public final class DiscoveryGroup implements HornetQComponent
       if (notificationService != null)
       {
          TypedProperties props = new TypedProperties();
-         props.putSimpleStringProperty(new SimpleString("name"), new SimpleString(name));
+         props.putSimpleStringProperty(new String("name"), new String(name));
          Notification notification = new Notification(nodeID, CoreNotificationType.DISCOVERY_GROUP_STOPPED, props);
          try
          {

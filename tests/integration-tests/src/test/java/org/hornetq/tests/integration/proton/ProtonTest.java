@@ -12,22 +12,8 @@
  */
 package org.hornetq.tests.integration.proton;
 
-import javax.jms.Connection;
-import javax.jms.ExceptionListener;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.QueueBrowser;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Random;
-
 import org.apache.qpid.amqp_1_0.jms.impl.ConnectionFactoryImpl;
 import org.apache.qpid.amqp_1_0.jms.impl.QueueImpl;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.core.remoting.impl.netty.TransportConstants;
 import org.hornetq.core.server.HornetQServer;
@@ -36,6 +22,11 @@ import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Random;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -60,28 +51,28 @@ public class ProtonTest extends ServiceTestBase
 
       server.getConfiguration().getAcceptorConfigurations().add(transportConfiguration);
       server.start();
-      server.createQueue(new SimpleString(address), new SimpleString(address), null, false, false);
-      server.createQueue(new SimpleString(address + "1"), new SimpleString(address + "1"), null, false, false);
-      server.createQueue(new SimpleString(address + "2"), new SimpleString(address + "2"), null, false, false);
-      server.createQueue(new SimpleString(address + "3"), new SimpleString(address + "3"), null, false, false);
-      server.createQueue(new SimpleString(address + "4"), new SimpleString(address + "4"), null, false, false);
-      server.createQueue(new SimpleString(address + "5"), new SimpleString(address + "5"), null, false, false);
-      server.createQueue(new SimpleString(address + "6"), new SimpleString(address + "6"), null, false, false);
-      server.createQueue(new SimpleString(address + "7"), new SimpleString(address + "7"), null, false, false);
-      server.createQueue(new SimpleString(address + "8"), new SimpleString(address + "8"), null, false, false);
-      server.createQueue(new SimpleString(address + "9"), new SimpleString(address + "9"), null, false, false);
-      server.createQueue(new SimpleString(address + "10"), new SimpleString(address + "10"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic"), new SimpleString("amqp_testtopic"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "1"), new SimpleString("amqp_testtopic" + "1"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "2"), new SimpleString("amqp_testtopic" + "2"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "3"), new SimpleString("amqp_testtopic" + "3"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "4"), new SimpleString("amqp_testtopic" + "4"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "5"), new SimpleString("amqp_testtopic" + "5"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "6"), new SimpleString("amqp_testtopic" + "6"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "7"), new SimpleString("amqp_testtopic" + "7"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "8"), new SimpleString("amqp_testtopic" + "8"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "9"), new SimpleString("amqp_testtopic" + "9"), null, false, false);
-      server.createQueue(new SimpleString("amqp_testtopic" + "10"), new SimpleString("amqp_testtopic" + "10"), null, false, false);
+      server.createQueue(new String(address), new String(address), null, false, false);
+      server.createQueue(new String(address + "1"), new String(address + "1"), null, false, false);
+      server.createQueue(new String(address + "2"), new String(address + "2"), null, false, false);
+      server.createQueue(new String(address + "3"), new String(address + "3"), null, false, false);
+      server.createQueue(new String(address + "4"), new String(address + "4"), null, false, false);
+      server.createQueue(new String(address + "5"), new String(address + "5"), null, false, false);
+      server.createQueue(new String(address + "6"), new String(address + "6"), null, false, false);
+      server.createQueue(new String(address + "7"), new String(address + "7"), null, false, false);
+      server.createQueue(new String(address + "8"), new String(address + "8"), null, false, false);
+      server.createQueue(new String(address + "9"), new String(address + "9"), null, false, false);
+      server.createQueue(new String(address + "10"), new String(address + "10"), null, false, false);
+      server.createQueue(new String("amqp_testtopic"), new String("amqp_testtopic"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "1"), new String("amqp_testtopic" + "1"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "2"), new String("amqp_testtopic" + "2"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "3"), new String("amqp_testtopic" + "3"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "4"), new String("amqp_testtopic" + "4"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "5"), new String("amqp_testtopic" + "5"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "6"), new String("amqp_testtopic" + "6"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "7"), new String("amqp_testtopic" + "7"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "8"), new String("amqp_testtopic" + "8"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "9"), new String("amqp_testtopic" + "9"), null, false, false);
+      server.createQueue(new String("amqp_testtopic" + "10"), new String("amqp_testtopic" + "10"), null, false, false);
       connection = createConnection();
 
    }
@@ -142,7 +133,7 @@ public class ProtonTest extends ServiceTestBase
             }
 
             connection.close();
-            Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+            Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
             assertEquals(q.getMessageCount(), numMessages);
 
             connection = createConnection();
@@ -183,7 +174,7 @@ public class ProtonTest extends ServiceTestBase
       }
       session.commit();
       connection.close();
-      Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+      Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
       assertEquals(q.getMessageCount(), numMessages);
    }
 
@@ -203,7 +194,7 @@ public class ProtonTest extends ServiceTestBase
          p.send(message);
       }
       connection.close();
-      Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+      Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
       assertEquals(q.getMessageCount(), 0);
    }
 
@@ -224,7 +215,7 @@ public class ProtonTest extends ServiceTestBase
          p.send(message);
       }
       connection.close();
-      Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+      Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
       assertEquals(q.getMessageCount(), numMessages);
       //now create a new connection and receive
       connection = createConnection();
@@ -255,7 +246,7 @@ public class ProtonTest extends ServiceTestBase
          p.send(message);
       }
       connection.close();
-      Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+      Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
       assertEquals(q.getMessageCount(), numMessages);
       //now create a new connection and receive
       connection = createConnection();
@@ -323,7 +314,7 @@ public class ProtonTest extends ServiceTestBase
          p.send(message);
       }
       t.join();
-      Queue q = (Queue) server.getPostOffice().getBinding(new SimpleString(address)).getBindable();
+      Queue q = (Queue) server.getPostOffice().getBinding(new String(address)).getBindable();
 
       connection.close();
       assertEquals(0, q.getMessageCount());

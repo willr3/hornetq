@@ -23,7 +23,7 @@ import org.apache.qpid.proton.amqp.transport.ErrorCondition;
 import org.apache.qpid.proton.engine.Receiver;
 import org.apache.qpid.proton.engine.Sender;
 import org.apache.qpid.proton.engine.impl.TransportImpl;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.persistence.OperationContext;
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPException;
@@ -113,12 +113,12 @@ public class ProtonSession implements SessionCallback
    }
 
    @Override
-   public void sendProducerCreditsMessage(int credits, SimpleString address)
+   public void sendProducerCreditsMessage(int credits, String address)
    {
    }
 
    @Override
-   public void sendProducerCreditsFailMessage(int credits, SimpleString address)
+   public void sendProducerCreditsFailMessage(int credits, String address)
    {
    }
 

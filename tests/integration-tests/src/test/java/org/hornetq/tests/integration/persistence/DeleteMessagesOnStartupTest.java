@@ -15,7 +15,7 @@ package org.hornetq.tests.integration.persistence;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.persistence.GroupingInfo;
 import org.hornetq.core.persistence.QueueBindingInfo;
@@ -45,7 +45,7 @@ public class DeleteMessagesOnStartupTest extends StorageManagerTestBase
    {
       createStorage();
 
-      Queue theQueue = new FakeQueue(new SimpleString(""));
+      Queue theQueue = new FakeQueue(new String(""));
       HashMap<Long, Queue> queues = new HashMap<Long, Queue>();
       queues.put(100L, theQueue);
 

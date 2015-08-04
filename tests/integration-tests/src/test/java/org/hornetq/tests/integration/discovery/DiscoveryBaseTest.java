@@ -13,17 +13,7 @@
 
 package org.hornetq.tests.integration.discovery;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.core.cluster.DiscoveryEntry;
@@ -37,6 +27,10 @@ import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
 import org.hornetq.utils.UUIDGenerator;
 import org.junit.Assert;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.*;
 
 /**
  * @author Clebert Suconic
@@ -227,7 +221,7 @@ public class DiscoveryBaseTest extends UnitTestCase
       }
 
       @Override
-      public SimpleString readNodeId() throws HornetQIllegalStateException, IOException
+      public String readNodeId() throws HornetQIllegalStateException, IOException
       {
          return null;
       }

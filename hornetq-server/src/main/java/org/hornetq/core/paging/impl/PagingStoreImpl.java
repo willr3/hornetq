@@ -12,7 +12,7 @@
  */
 package org.hornetq.core.paging.impl;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.SequentialFile;
 import org.hornetq.core.journal.SequentialFileFactory;
 import org.hornetq.core.paging.PageTransactionInfo;
@@ -64,7 +64,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
  */
 public class PagingStoreImpl implements PagingStore
 {
-   private final SimpleString address;
+   private final String address;
 
    private final StorageManager storageManager;
 
@@ -72,7 +72,7 @@ public class PagingStoreImpl implements PagingStore
 
    private final AtomicInteger currentPageSize = new AtomicInteger(0);
 
-   private final SimpleString storeName;
+   private final String storeName;
 
    // The FileFactory is created lazily as soon as the first write is attempted
    private volatile SequentialFileFactory fileFactory;
@@ -117,14 +117,14 @@ public class PagingStoreImpl implements PagingStore
 
    private static final boolean isTrace = HornetQServerLogger.LOGGER.isTraceEnabled();
 
-   public PagingStoreImpl(final SimpleString address,
+   public PagingStoreImpl(final String address,
                           final ScheduledExecutorService scheduledExecutor,
                           final long syncTimeout,
                           final PagingManager pagingManager,
                           final StorageManager storageManager,
                           final SequentialFileFactory fileFactory,
                           final PagingStoreFactory storeFactory,
-                          final SimpleString storeName,
+                          final String storeName,
                           final AddressSettings addressSettings,
                           final Executor executor,
                           final boolean syncNonTransactional)
@@ -234,7 +234,7 @@ public class PagingStoreImpl implements PagingStore
       return firstPageId;
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
@@ -308,7 +308,7 @@ public class PagingStoreImpl implements PagingStore
       return currentPageId;
    }
 
-   public SimpleString getStoreName()
+   public String getStoreName()
    {
       return storeName;
    }

@@ -11,38 +11,26 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.client;
-import org.junit.Assume;
-import org.junit.Before;
-
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import javax.transaction.xa.XAResource;
-import javax.transaction.xa.Xid;
-
-import org.junit.Assert;
-
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.HornetQClient;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.server.HornetQServers;
 import org.hornetq.core.transaction.impl.XidImpl;
 import org.hornetq.tests.integration.IntegrationTestLogger;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.Assert;
+import org.junit.Assume;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
@@ -57,7 +45,7 @@ public class MessageGroupingTest extends UnitTestCase
 
    private ClientSessionFactory clientSessionFactory;
 
-   private final SimpleString qName = new SimpleString("MessageGroupingTestQueue");
+   private final String qName = new String("MessageGroupingTestQueue");
    private ServerLocator locator;
 
    @Test
@@ -170,7 +158,7 @@ public class MessageGroupingTest extends UnitTestCase
       ClientConsumer consumer2 = clientSession.createConsumer(qName);
       clientSession.start();
 
-      SimpleString groupId = new SimpleString("grp1");
+      String groupId = new String("grp1");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -202,8 +190,8 @@ public class MessageGroupingTest extends UnitTestCase
       //need to wait a bit or consumers might be busy
       Thread.sleep(200);
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -245,8 +233,8 @@ public class MessageGroupingTest extends UnitTestCase
       {
          clientSession.start();
       }
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -293,8 +281,8 @@ public class MessageGroupingTest extends UnitTestCase
       //Wait a bit otherwise consumers might be busy
       Thread.sleep(200);
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -354,8 +342,8 @@ public class MessageGroupingTest extends UnitTestCase
       //need to wait a bit or consumers might be busy
       Thread.sleep(200);
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -429,8 +417,8 @@ public class MessageGroupingTest extends UnitTestCase
       Xid xid = new XidImpl("bq".getBytes(), 4, "gtid".getBytes());
       clientSession.start(xid, XAResource.TMNOFLAGS);
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -490,8 +478,8 @@ public class MessageGroupingTest extends UnitTestCase
       Xid xid = new XidImpl("bq".getBytes(), 4, "gtid".getBytes());
       clientSession.start(xid, XAResource.TMNOFLAGS);
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 100;
       for (int i = 0; i < numMessages; i++)
       {
@@ -564,8 +552,8 @@ public class MessageGroupingTest extends UnitTestCase
       ClientConsumer consumer2 = clientSession.createConsumer(qName);
       clientSession.start();
 
-      SimpleString groupId = new SimpleString("grp1");
-      SimpleString groupId2 = new SimpleString("grp2");
+      String groupId = new String("grp1");
+      String groupId2 = new String("grp2");
       int numMessages = 4;
       for (int i = 0; i < numMessages; i++)
       {

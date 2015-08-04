@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
 import org.junit.Assert;
 
 import org.hornetq.api.config.HornetQDefaultConfiguration;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.journal.impl.JournalConstants;
 import org.hornetq.core.server.JournalType;
@@ -175,7 +175,7 @@ public class ConfigurationImplTest extends UnitTestCase
          Assert.assertEquals(i, conf.getJournalMaxIO_NIO());
 
          s = RandomUtil.randomString();
-         conf.setManagementAddress(new SimpleString(s));
+         conf.setManagementAddress(new String(s));
          Assert.assertEquals(s, conf.getManagementAddress().toString());
 
          i = RandomUtil.randomInt();
@@ -218,7 +218,7 @@ public class ConfigurationImplTest extends UnitTestCase
          conf.setThreadPoolMaxSize(i);
          Assert.assertEquals(i, conf.getThreadPoolMaxSize());
 
-         SimpleString ss = RandomUtil.randomSimpleString();
+         String ss = RandomUtil.randomSimpleString();
          conf.setManagementNotificationAddress(ss);
          Assert.assertEquals(ss, conf.getManagementNotificationAddress());
 
@@ -390,7 +390,7 @@ public class ConfigurationImplTest extends UnitTestCase
       Assert.assertEquals(i, conf.getJournalMaxIO_NIO());
 
       s = RandomUtil.randomString();
-      conf.setManagementAddress(new SimpleString(s));
+      conf.setManagementAddress(new String(s));
       Assert.assertEquals(s, conf.getManagementAddress().toString());
 
       i = RandomUtil.randomInt();
@@ -434,7 +434,7 @@ public class ConfigurationImplTest extends UnitTestCase
       Assert.assertEquals(i, conf.getThreadPoolMaxSize());
 
 
-      SimpleString ss = RandomUtil.randomSimpleString();
+      String ss = RandomUtil.randomSimpleString();
       conf.setManagementNotificationAddress(ss);
       Assert.assertEquals(ss, conf.getManagementNotificationAddress());
 

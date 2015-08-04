@@ -29,7 +29,7 @@ import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.core.client.impl.ServerLocatorInternal;
@@ -437,7 +437,7 @@ public final class ClusterManager implements HornetQComponent
 
       Transformer transformer = instantiateTransformer(config.getTransformerClassName());
 
-      Binding binding = postOffice.getBinding(new SimpleString(config.getQueueName()));
+      Binding binding = postOffice.getBinding(new String(config.getQueueName()));
 
       if (binding == null)
       {
@@ -557,11 +557,11 @@ public final class ClusterManager implements HornetQComponent
                                      config.getRetryIntervalMultiplier(),
                                      config.getMaxRetryInterval(),
                                      nodeManager.getUUID(),
-                                     new SimpleString(config.getName()),
+                                     new String(config.getName()),
                                      queue,
                                      executorFactory.getExecutor(),
                                      FilterImpl.createFilter(config.getFilterString()),
-                                     SimpleString.toSimpleString(config.getForwardingAddress()),
+                                     (config.getForwardingAddress()),
                                      scheduledExecutor,
                                      transformer,
                                      config.isUseDuplicateDetection(),
@@ -721,8 +721,8 @@ public final class ClusterManager implements HornetQComponent
          clusterConnection = new ClusterConnectionImpl(this,
                                                        dg,
                                                        connector,
-                                                       new SimpleString(config.getName()),
-                                                       new SimpleString(config.getAddress()),
+                                                       new String(config.getName()),
+                                                       new String(config.getAddress()),
                                                        config.getMinLargeMessageSize(),
                                                        config.getClientFailureCheckPeriod(),
                                                        config.getConnectionTTL(),
@@ -761,8 +761,8 @@ public final class ClusterManager implements HornetQComponent
          clusterConnection = new ClusterConnectionImpl(this,
                                                        tcConfigs,
                                                        connector,
-                                                       new SimpleString(config.getName()),
-                                                       new SimpleString(config.getAddress()),
+                                                       new String(config.getName()),
+                                                       new String(config.getAddress()),
                                                        config.getMinLargeMessageSize(),
                                                        config.getClientFailureCheckPeriod(),
                                                        config.getConnectionTTL(),

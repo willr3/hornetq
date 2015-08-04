@@ -35,7 +35,7 @@ import org.hornetq.api.core.HornetQInterruptedException;
 import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.Interceptor;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.FailoverEventListener;
@@ -1579,7 +1579,7 @@ public class ClientSessionFactoryImpl implements ClientSessionFactoryInternal, C
          {
             final DisconnectMessage msg = (DisconnectMessage) packet;
 
-            SimpleString nodeID = msg.getNodeID();
+            String nodeID = msg.getNodeID();
 
             if (HornetQClientLogger.LOGGER.isTraceEnabled())
             {

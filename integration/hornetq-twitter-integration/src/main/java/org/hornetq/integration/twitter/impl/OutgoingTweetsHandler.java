@@ -12,30 +12,19 @@
  */
 package org.hornetq.integration.twitter.impl;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.PostOffice;
-import org.hornetq.core.server.ConnectorService;
-import org.hornetq.core.server.Consumer;
-import org.hornetq.core.server.HandleStatus;
-import org.hornetq.core.server.HornetQServerLogger;
-import org.hornetq.core.server.MessageReference;
-import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.ServerMessage;
+import org.hornetq.core.server.*;
 import org.hornetq.integration.twitter.TwitterConstants;
 import org.hornetq.twitter.HornetQTwitterLogger;
 import org.hornetq.utils.ConfigurationHelper;
-import twitter4j.GeoLocation;
-import twitter4j.StatusUpdate;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.http.AccessToken;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * OutgoingTweetsHandler consumes from configured HornetQ address
@@ -105,7 +94,7 @@ public class OutgoingTweetsHandler implements Consumer, ConnectorService
          throw new Exception("invalid queue name: " + queueName);
       }
 
-      SimpleString name = new SimpleString(this.queueName);
+      String name = new String(this.queueName);
       Binding b = this.postOffice.getBinding(name);
       if (b == null)
       {

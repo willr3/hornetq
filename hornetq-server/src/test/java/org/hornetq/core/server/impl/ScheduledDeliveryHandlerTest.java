@@ -13,36 +13,16 @@
 package org.hornetq.core.server.impl;
 
 
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQPropertyConversionException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.filter.Filter;
 import org.hornetq.core.message.BodyEncoder;
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.paging.cursor.PageSubscription;
-import org.hornetq.core.server.Consumer;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.server.MessageReference;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.RoutingContext;
-import org.hornetq.core.server.ServerMessage;
 import org.hornetq.core.transaction.Transaction;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.utils.LinkedListIterator;
@@ -51,6 +31,11 @@ import org.hornetq.utils.TypedProperties;
 import org.hornetq.utils.UUID;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.InputStream;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Clebert Suconic
@@ -346,7 +331,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public void forceAddress(SimpleString address)
+      public void forceAddress(String address)
       {
 
       }
@@ -556,7 +541,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public void setAddressTransient(SimpleString address)
+      public void setAddressTransient(String address)
       {
 
       }
@@ -580,13 +565,13 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return null;
       }
 
       @Override
-      public Message setAddress(SimpleString address)
+      public Message setAddress(String address)
       {
          return null;
       }
@@ -676,22 +661,16 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public Message putBooleanProperty(SimpleString key, boolean value)
-      {
-         return null;
-      }
-
-      @Override
       public Message putBooleanProperty(String key, boolean value)
       {
          return null;
       }
 
-      @Override
-      public Message putByteProperty(SimpleString key, byte value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putBooleanProperty(String key, boolean value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putByteProperty(String key, byte value)
@@ -699,11 +678,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putBytesProperty(SimpleString key, byte[] value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putByteProperty(String key, byte value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putBytesProperty(String key, byte[] value)
@@ -711,11 +690,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putShortProperty(SimpleString key, short value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putBytesProperty(String key, byte[] value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putShortProperty(String key, short value)
@@ -723,11 +702,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putCharProperty(SimpleString key, char value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putShortProperty(String key, short value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putCharProperty(String key, char value)
@@ -735,11 +714,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putIntProperty(SimpleString key, int value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putCharProperty(String key, char value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putIntProperty(String key, int value)
@@ -747,11 +726,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putLongProperty(SimpleString key, long value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putIntProperty(String key, int value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putLongProperty(String key, long value)
@@ -759,11 +738,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putFloatProperty(SimpleString key, float value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putLongProperty(String key, long value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putFloatProperty(String key, float value)
@@ -771,11 +750,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putDoubleProperty(SimpleString key, double value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putFloatProperty(String key, float value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putDoubleProperty(String key, double value)
@@ -783,11 +762,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putStringProperty(SimpleString key, SimpleString value)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putDoubleProperty(String key, double value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putStringProperty(String key, String value)
@@ -795,11 +774,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Message putObjectProperty(SimpleString key, Object value) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Message putStringProperty(String key, String value)
+//      {
+//         return null;
+//      }
 
       @Override
       public Message putObjectProperty(String key, Object value) throws HornetQPropertyConversionException
@@ -807,11 +786,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Object removeProperty(SimpleString key)
-      {
-         return null;
-      }
+//      @Override
+//      public Message putObjectProperty(String key, Object value) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Object removeProperty(String key)
@@ -819,11 +798,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public boolean containsProperty(SimpleString key)
-      {
-         return false;
-      }
+//      @Override
+//      public Object removeProperty(String key)
+//      {
+//         return null;
+//      }
 
       @Override
       public boolean containsProperty(String key)
@@ -831,11 +810,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return false;
       }
 
-      @Override
-      public Boolean getBooleanProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public boolean containsProperty(String key)
+//      {
+//         return false;
+//      }
 
       @Override
       public Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException
@@ -843,11 +822,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Byte getByteProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Boolean getBooleanProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Byte getByteProperty(String key) throws HornetQPropertyConversionException
@@ -855,11 +834,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Double getDoubleProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Byte getByteProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Double getDoubleProperty(String key) throws HornetQPropertyConversionException
@@ -867,11 +846,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Integer getIntProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Double getDoubleProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Integer getIntProperty(String key) throws HornetQPropertyConversionException
@@ -879,11 +858,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Long getLongProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Integer getIntProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Long getLongProperty(String key) throws HornetQPropertyConversionException
@@ -891,11 +870,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Object getObjectProperty(SimpleString key)
-      {
-         return null;
-      }
+//      @Override
+//      public Long getLongProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Object getObjectProperty(String key)
@@ -903,11 +882,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Short getShortProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Object getObjectProperty(String key)
+//      {
+//         return null;
+//      }
 
       @Override
       public Short getShortProperty(String key) throws HornetQPropertyConversionException
@@ -915,11 +894,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public Float getFloatProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Short getShortProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public Float getFloatProperty(String key) throws HornetQPropertyConversionException
@@ -927,11 +906,11 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
-      @Override
-      public String getStringProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
+//      @Override
+//      public Float getFloatProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public String getStringProperty(String key) throws HornetQPropertyConversionException
@@ -939,23 +918,23 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return null;
       }
 
+//      @Override
+//      public String getStringProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
+
       @Override
-      public SimpleString getSimpleStringProperty(SimpleString key) throws HornetQPropertyConversionException
+      public String getSimpleStringProperty(String key) throws HornetQPropertyConversionException
       {
          return null;
       }
 
-      @Override
-      public SimpleString getSimpleStringProperty(String key) throws HornetQPropertyConversionException
-      {
-         return null;
-      }
-
-      @Override
-      public byte[] getBytesProperty(SimpleString key) throws HornetQPropertyConversionException
-      {
-         return new byte[0];
-      }
+//      @Override
+//      public String getSimpleStringProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return null;
+//      }
 
       @Override
       public byte[] getBytesProperty(String key) throws HornetQPropertyConversionException
@@ -963,8 +942,14 @@ public class ScheduledDeliveryHandlerTest extends Assert
          return new byte[0];
       }
 
+//      @Override
+//      public byte[] getBytesProperty(String key) throws HornetQPropertyConversionException
+//      {
+//         return new byte[0];
+//      }
+
       @Override
-      public Set<SimpleString> getPropertyNames()
+      public Set<String> getPropertyNames()
       {
          return null;
       }
@@ -981,7 +966,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
    {
 
       @Override
-      public void unproposed(SimpleString groupID)
+      public void unproposed(String groupID)
       {
 
       }
@@ -1001,7 +986,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       LinkedList<MessageReference> messages = new LinkedList<>();
 
       @Override
-      public SimpleString getName()
+      public String getName()
       {
          return null;
       }
@@ -1328,25 +1313,25 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public boolean moveReference(long messageID, SimpleString toAddress) throws Exception
+      public boolean moveReference(long messageID, String toAddress) throws Exception
       {
          return false;
       }
 
       @Override
-      public boolean moveReference(long messageID, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+      public boolean moveReference(long messageID, String toAddress, boolean rejectDuplicates) throws Exception
       {
          return false;
       }
 
       @Override
-      public int moveReferences(Filter filter, SimpleString toAddress) throws Exception
+      public int moveReferences(Filter filter, String toAddress) throws Exception
       {
          return 0;
       }
 
       @Override
-      public int moveReferences(int flushLimit, Filter filter, SimpleString toAddress, boolean rejectDuplicates) throws Exception
+      public int moveReferences(int flushLimit, Filter filter, String toAddress, boolean rejectDuplicates) throws Exception
       {
          return 0;
       }
@@ -1394,7 +1379,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getExpiryAddress()
+      public String getExpiryAddress()
       {
          return null;
       }
@@ -1448,7 +1433,7 @@ public class ScheduledDeliveryHandlerTest extends Assert
       }
 
       @Override
-      public SimpleString getAddress()
+      public String getAddress()
       {
          return null;
       }

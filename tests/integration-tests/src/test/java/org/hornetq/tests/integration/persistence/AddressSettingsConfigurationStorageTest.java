@@ -11,20 +11,17 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.integration.persistence;
-import org.junit.Before;
+import org.hornetq.core.persistence.config.PersistedAddressSetting;
+import org.hornetq.core.persistence.impl.journal.JournalStorageManager;
+import org.hornetq.core.settings.impl.AddressFullMessagePolicy;
+import org.hornetq.core.settings.impl.AddressSettings;
 import org.junit.After;
-
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.core.persistence.config.PersistedAddressSetting;
-import org.hornetq.core.persistence.impl.journal.JournalStorageManager;
-import org.hornetq.core.settings.impl.AddressFullMessagePolicy;
-import org.hornetq.core.settings.impl.AddressSettings;
 
 /**
  * A ConfigurationStorageTest
@@ -33,7 +30,7 @@ import org.hornetq.core.settings.impl.AddressSettings;
 public class AddressSettingsConfigurationStorageTest extends StorageManagerTestBase
 {
 
-   private Map<SimpleString, PersistedAddressSetting> mapExpectedAddresses;
+   private Map<String, PersistedAddressSetting> mapExpectedAddresses;
 
    @Override
    @Before
@@ -41,7 +38,7 @@ public class AddressSettingsConfigurationStorageTest extends StorageManagerTestB
    {
       super.setUp();
 
-      mapExpectedAddresses = new HashMap<SimpleString, PersistedAddressSetting>();
+      mapExpectedAddresses = new HashMap<String, PersistedAddressSetting>();
    }
 
    @Override
@@ -55,7 +52,7 @@ public class AddressSettingsConfigurationStorageTest extends StorageManagerTestB
 
    protected void addAddress(JournalStorageManager journal1, String address, AddressSettings setting) throws Exception
    {
-      SimpleString str = new SimpleString(address);
+      String str = new String(address);
       PersistedAddressSetting persistedSetting = new PersistedAddressSetting(str, setting);
       mapExpectedAddresses.put(str, persistedSetting);
       journal1.storeAddressSetting(persistedSetting);
@@ -72,7 +69,7 @@ public class AddressSettingsConfigurationStorageTest extends StorageManagerTestB
 
       setting.setAddressFullMessagePolicy(AddressFullMessagePolicy.BLOCK);
 
-      setting.setDeadLetterAddress(new SimpleString("some-test"));
+      setting.setDeadLetterAddress(new String("some-test"));
 
       addAddress(journal, "a2", setting);
 
@@ -84,7 +81,7 @@ public class AddressSettingsConfigurationStorageTest extends StorageManagerTestB
 
       setting = new AddressSettings();
 
-      setting.setDeadLetterAddress(new SimpleString("new-adddress"));
+      setting.setDeadLetterAddress(new String("new-adddress"));
 
       // Replacing the first setting
       addAddress(journal, "a1", setting);

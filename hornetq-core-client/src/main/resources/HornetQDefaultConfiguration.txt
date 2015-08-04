@@ -1,6 +1,6 @@
 package org.hornetq.api.config;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.impl.JournalConstants;
 
 /**

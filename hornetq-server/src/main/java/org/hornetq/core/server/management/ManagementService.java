@@ -12,13 +12,7 @@
  */
 package org.hornetq.core.server.management;
 
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-
-import javax.management.ObjectName;
-
 import org.hornetq.api.core.BroadcastGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.management.ObjectNameBuilder;
 import org.hornetq.core.config.BridgeConfiguration;
@@ -32,12 +26,7 @@ import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.PostOffice;
 import org.hornetq.core.remoting.server.RemotingService;
 import org.hornetq.core.security.Role;
-import org.hornetq.core.server.Divert;
-import org.hornetq.core.server.HornetQComponent;
-import org.hornetq.core.server.HornetQServer;
-import org.hornetq.core.server.Queue;
-import org.hornetq.core.server.QueueFactory;
-import org.hornetq.core.server.ServerMessage;
+import org.hornetq.core.server.*;
 import org.hornetq.core.server.cluster.Bridge;
 import org.hornetq.core.server.cluster.BroadcastGroup;
 import org.hornetq.core.server.cluster.ClusterConnection;
@@ -45,6 +34,10 @@ import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.core.transaction.ResourceManager;
 import org.hornetq.spi.core.remoting.Acceptor;
+
+import javax.management.ObjectName;
+import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
@@ -57,9 +50,9 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    MessageCounterManager getMessageCounterManager();
 
-   SimpleString getManagementAddress();
+   String getManagementAddress();
 
-   SimpleString getManagementNotificationAddress();
+   String getManagementNotificationAddress();
 
    ObjectNameBuilder getObjectNameBuilder();
 
@@ -90,13 +83,13 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    void unregisterFromRegistry(final String resourceName);
 
-   void registerAddress(SimpleString address) throws Exception;
+   void registerAddress(String address) throws Exception;
 
-   void unregisterAddress(SimpleString address) throws Exception;
+   void unregisterAddress(String address) throws Exception;
 
-   void registerQueue(Queue queue, SimpleString address, StorageManager storageManager) throws Exception;
+   void registerQueue(Queue queue, String address, StorageManager storageManager) throws Exception;
 
-   void unregisterQueue(SimpleString name, SimpleString address) throws Exception;
+   void unregisterQueue(String name, String address) throws Exception;
 
    void registerAcceptor(Acceptor acceptor, TransportConfiguration configuration) throws Exception;
 
@@ -104,7 +97,7 @@ public interface ManagementService extends NotificationService, HornetQComponent
 
    void registerDivert(Divert divert, DivertConfiguration config) throws Exception;
 
-   void unregisterDivert(SimpleString name) throws Exception;
+   void unregisterDivert(String name) throws Exception;
 
    void registerBroadcastGroup(BroadcastGroup broadcastGroup, BroadcastGroupConfiguration configuration) throws Exception;
 

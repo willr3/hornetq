@@ -34,7 +34,7 @@ import java.util.Set;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.FailoverEventListener;
@@ -70,7 +70,7 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
 
    public static final String EXCEPTION_DISCONNECT = "DISCONNECT";
 
-   public static final SimpleString CONNECTION_ID_PROPERTY_NAME = new SimpleString("__HQ_CID");
+   public static final String CONNECTION_ID_PROPERTY_NAME = new String("__HQ_CID");
 
    // Static ---------------------------------------------------------------------------------------
 
@@ -80,9 +80,9 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
 
    private final Set<HornetQSession> sessions = new org.hornetq.utils.ConcurrentHashSet<HornetQSession>();
 
-   private final Set<SimpleString> tempQueues = new org.hornetq.utils.ConcurrentHashSet<SimpleString>();
+   private final Set<String> tempQueues = new org.hornetq.utils.ConcurrentHashSet<String>();
 
-   private final Set<SimpleString> knownDestinations = new ConcurrentHashSet<SimpleString>();
+   private final Set<String> knownDestinations = new ConcurrentHashSet<String>();
 
    private volatile boolean hasNoLocal;
 
@@ -102,7 +102,7 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
 
    private final ClientSessionFactory sessionFactory;
 
-   private final SimpleString uid;
+   private final String uid;
 
    private final String username;
 
@@ -353,7 +353,7 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
             {
                // Remove any temporary queues
 
-               for (SimpleString queueName : tempQueues)
+               for (String queueName : tempQueues)
                {
                   if (!initialSession.isClosed())
                   {
@@ -531,28 +531,28 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
       return failoverEventListener;
    }
 
-   public void addTemporaryQueue(final SimpleString queueAddress)
+   public void addTemporaryQueue(final String queueAddress)
    {
       tempQueues.add(queueAddress);
       knownDestinations.add(queueAddress);
    }
 
-   public void removeTemporaryQueue(final SimpleString queueAddress)
+   public void removeTemporaryQueue(final String queueAddress)
    {
       tempQueues.remove(queueAddress);
    }
 
-   public void addKnownDestination(final SimpleString address)
+   public void addKnownDestination(final String address)
    {
       knownDestinations.add(address);
    }
 
-   public boolean containsKnownDestination(final SimpleString address)
+   public boolean containsKnownDestination(final String address)
    {
       return knownDestinations.contains(address);
    }
 
-   public boolean containsTemporaryQueue(final SimpleString queueAddress)
+   public boolean containsTemporaryQueue(final String queueAddress)
    {
       return tempQueues.contains(queueAddress);
    }
@@ -567,7 +567,7 @@ public class HornetQConnection extends HornetQConnectionForContextImpl implement
       hasNoLocal = true;
    }
 
-   public SimpleString getUID()
+   public String getUID()
    {
       return uid;
    }

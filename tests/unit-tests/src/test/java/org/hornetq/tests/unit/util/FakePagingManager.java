@@ -12,15 +12,14 @@
  */
 package org.hornetq.tests.unit.util;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.paging.PageTransactionInfo;
 import org.hornetq.core.paging.PagingManager;
 import org.hornetq.core.paging.PagingStore;
 import org.hornetq.core.postoffice.PostOffice;
 import org.hornetq.core.server.ServerMessage;
+
+import java.util.Collection;
+import java.util.Map;
 
 public final class FakePagingManager implements PagingManager
 {
@@ -38,7 +37,7 @@ public final class FakePagingManager implements PagingManager
    {
    }
 
-   public PagingStore createPageStore(final SimpleString destination) throws Exception
+   public PagingStore createPageStore(final String destination) throws Exception
    {
       return null;
    }
@@ -48,7 +47,7 @@ public final class FakePagingManager implements PagingManager
       return 0;
    }
 
-   public SimpleString[] getStoreNames()
+   public String[] getStoreNames()
    {
       return null;
    }
@@ -58,12 +57,12 @@ public final class FakePagingManager implements PagingManager
       return 0;
    }
 
-   public PagingStore getPageStore(final SimpleString address) throws Exception
+   public PagingStore getPageStore(final String address) throws Exception
    {
       return null;
    }
 
-   public void deletePageStore(SimpleString storeName) throws Exception
+   public void deletePageStore(String storeName) throws Exception
    {
    }
 
@@ -82,7 +81,7 @@ public final class FakePagingManager implements PagingManager
       return false;
    }
 
-   public boolean isPaging(final SimpleString destination) throws Exception
+   public boolean isPaging(final String destination) throws Exception
    {
       return false;
    }
@@ -118,7 +117,7 @@ public final class FakePagingManager implements PagingManager
    {
    }
 
-   public void sync(final Collection<SimpleString> destinationsToSync) throws Exception
+   public void sync(final Collection<String> destinationsToSync) throws Exception
    {
    }
 

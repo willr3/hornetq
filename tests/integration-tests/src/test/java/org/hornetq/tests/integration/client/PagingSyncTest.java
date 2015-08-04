@@ -12,21 +12,16 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.util.HashMap;
 
 /**
  * A PagingOrderTest.
@@ -46,7 +41,7 @@ public class PagingSyncTest extends ServiceTestBase
 
    // Static --------------------------------------------------------
 
-   static final SimpleString ADDRESS = new SimpleString("SimpleAddress");
+   static final String ADDRESS = new String("SimpleAddress");
 
    @Test
    public void testOrder1() throws Throwable
@@ -101,7 +96,7 @@ public class PagingSyncTest extends ServiceTestBase
 
          bodyLocal.writeBytes(body);
 
-         message.putIntProperty(new SimpleString("id"), i);
+         message.putIntProperty(new String("id"), i);
 
          producer.send(message);
       }

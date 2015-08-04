@@ -12,14 +12,13 @@
  */
 package org.hornetq.tests.util;
 
+import org.hornetq.api.core.HornetQBuffer;
+import org.hornetq.api.core.HornetQBuffers;
+import org.hornetq.core.transaction.impl.XidImpl;
+
 import javax.transaction.xa.Xid;
 import java.util.Random;
 import java.util.UUID;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.core.transaction.impl.XidImpl;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
@@ -39,9 +38,9 @@ public final class RandomUtil
       return UUID.randomUUID().toString();
    }
 
-   public static SimpleString randomSimpleString()
+   public static String randomSimpleString()
    {
-      return new SimpleString(RandomUtil.randomString());
+      return new String(RandomUtil.randomString());
    }
 
    public static char randomChar()

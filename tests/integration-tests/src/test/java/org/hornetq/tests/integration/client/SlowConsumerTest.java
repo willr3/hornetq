@@ -22,7 +22,7 @@ import org.hornetq.api.config.HornetQDefaultConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.HornetQObjectClosedException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -68,7 +68,7 @@ public class SlowConsumerTest extends ServiceTestBase
 
    private HornetQServer server;
 
-   private final SimpleString QUEUE = new SimpleString("ConsumerTestQueue");
+   private final String QUEUE = new String("ConsumerTestQueue");
 
    private ServerLocator locator;
 
@@ -153,7 +153,7 @@ public class SlowConsumerTest extends ServiceTestBase
          producer.send(createTextMessage(session, "m" + i));
       }
 
-      SimpleString notifQueue = RandomUtil.randomSimpleString();
+      String notifQueue = RandomUtil.randomSimpleString();
 
       session.createQueue(HornetQDefaultConfiguration.getDefaultManagementNotificationAddress(), notifQueue, null, false);
 
@@ -175,7 +175,7 @@ public class SlowConsumerTest extends ServiceTestBase
             }
             else
             {
-               assertEquals(SimpleString.toSimpleString("invm:0"), message.getSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
+               assertEquals(("invm:0"), message.getSimpleStringProperty(ManagementHelper.HDR_REMOTE_ADDRESS));
             }
             assertNotNull(message.getSimpleStringProperty(ManagementHelper.HDR_CONNECTION_NAME));
             assertNotNull(message.getSimpleStringProperty(ManagementHelper.HDR_CONSUMER_NAME));
@@ -312,12 +312,12 @@ public class SlowConsumerTest extends ServiceTestBase
    @Test
    public void testSlowWildcardConsumer() throws Exception
    {
-      SimpleString addressAB = new SimpleString("a.b");
-      SimpleString addressAC = new SimpleString("a.c");
-      SimpleString address = new SimpleString("a.*");
-      SimpleString queueName1 = new SimpleString("Q1");
-      SimpleString queueName2 = new SimpleString("Q2");
-      SimpleString queueName = new SimpleString("Q");
+      String addressAB = new String("a.b");
+      String addressAC = new String("a.c");
+      String address = new String("a.*");
+      String queueName1 = new String("Q1");
+      String queueName2 = new String("Q2");
+      String queueName = new String("Q");
 
       AddressSettings addressSettings = new AddressSettings();
       addressSettings.setSlowConsumerCheckPeriod(2);

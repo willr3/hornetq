@@ -11,17 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.unit.core.remoting;
-import org.junit.Before;
-import org.junit.After;
-
-import org.junit.Test;
-
-import org.junit.Assert;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+import org.hornetq.api.core.SSU;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>.
@@ -96,21 +94,21 @@ public abstract class HornetQBufferTestBase extends UnitTestCase
    @Test
    public void testEmptySimpleString() throws Exception
    {
-      SimpleString emptySimpleString = new SimpleString("");
-      SimpleString result = putAndGetNullableSimpleString(emptySimpleString);
+      String emptySimpleString = new String("");
+      String result = putAndGetNullableSimpleString(emptySimpleString);
 
       Assert.assertNotNull(result);
-      UnitTestCase.assertEqualsByteArrays(emptySimpleString.getData(), result.getData());
+      UnitTestCase.assertEqualsByteArrays(SSU.getData(emptySimpleString), SSU.getData(result));
    }
 
    @Test
    public void testNonEmptySimpleString() throws Exception
    {
-      SimpleString junk = RandomUtil.randomSimpleString();
-      SimpleString result = putAndGetNullableSimpleString(junk);
+      String junk = RandomUtil.randomSimpleString();
+      String result = putAndGetNullableSimpleString(junk);
 
       Assert.assertNotNull(result);
-      UnitTestCase.assertEqualsByteArrays(junk.getData(), result.getData());
+      UnitTestCase.assertEqualsByteArrays(SSU.getData(junk), SSU.getData(result));
    }
 
    @Test
@@ -346,7 +344,7 @@ public abstract class HornetQBufferTestBase extends UnitTestCase
       return wrapper.readNullableString();
    }
 
-   private SimpleString putAndGetNullableSimpleString(final SimpleString nullableSimpleString) throws Exception
+   private String putAndGetNullableSimpleString(final String nullableSimpleString) throws Exception
    {
       wrapper.writeNullableSimpleString(nullableSimpleString);
 

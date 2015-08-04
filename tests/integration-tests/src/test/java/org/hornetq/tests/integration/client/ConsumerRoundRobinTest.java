@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientProducer;
@@ -34,9 +34,9 @@ public class ConsumerRoundRobinTest extends ServiceTestBase
 {
    private static final IntegrationTestLogger log = IntegrationTestLogger.LOGGER;
 
-   public final SimpleString addressA = new SimpleString("addressA");
+   public final String addressA = new String("addressA");
 
-   public final SimpleString queueA = new SimpleString("queueA");
+   public final String queueA = new String("queueA");
 
    @Test
    public void testConsumersRoundRobinCorrectly() throws Exception

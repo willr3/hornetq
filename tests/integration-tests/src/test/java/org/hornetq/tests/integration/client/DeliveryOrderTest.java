@@ -12,37 +12,30 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  */
 public class DeliveryOrderTest extends ServiceTestBase
 {
-   public final SimpleString addressA = new SimpleString("addressA");
+   public final String addressA = new String("addressA");
 
-   public final SimpleString queueA = new SimpleString("queueA");
+   public final String queueA = new String("queueA");
 
-   public final SimpleString queueB = new SimpleString("queueB");
+   public final String queueB = new String("queueB");
 
-   public final SimpleString queueC = new SimpleString("queueC");
+   public final String queueC = new String("queueC");
 
    private ServerLocator locator;
 

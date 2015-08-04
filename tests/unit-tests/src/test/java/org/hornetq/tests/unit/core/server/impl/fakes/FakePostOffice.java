@@ -13,7 +13,7 @@
 package org.hornetq.tests.unit.core.server.impl.fakes;
 
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.persistence.impl.nullpm.NullStorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.Bindings;
@@ -59,33 +59,33 @@ public class FakePostOffice implements PostOffice
    }
 
    @Override
-   public Binding getBinding(final SimpleString uniqueName)
+   public Binding getBinding(final String uniqueName)
    {
 
       return null;
    }
 
    @Override
-   public Bindings getBindingsForAddress(final SimpleString address) throws Exception
+   public Bindings getBindingsForAddress(final String address) throws Exception
    {
 
       return null;
    }
 
-   public Bindings lookupBindingsForAddress(final SimpleString address) throws Exception
+   public Bindings lookupBindingsForAddress(final String address) throws Exception
    {
 
       return null;
    }
 
    @Override
-   public DuplicateIDCache getDuplicateIDCache(final SimpleString address)
+   public DuplicateIDCache getDuplicateIDCache(final String address)
    {
       return new DuplicateIDCacheImpl(address, 2000, new NullStorageManager(), false);
    }
 
    @Override
-   public Bindings getMatchingBindings(final SimpleString address)
+   public Bindings getMatchingBindings(final String address)
    {
 
       return null;
@@ -104,20 +104,20 @@ public class FakePostOffice implements PostOffice
    }
 
    @Override
-   public boolean isAddressBound(SimpleString address) throws Exception
+   public boolean isAddressBound(String address) throws Exception
    {
       return false;
    }
 
    @Override
-   public Binding removeBinding(final SimpleString uniqueName, final Transaction tx) throws Exception
+   public Binding removeBinding(final String uniqueName, final Transaction tx) throws Exception
    {
 
       return null;
    }
 
    @Override
-   public void sendQueueInfoToQueue(final SimpleString queueName, final SimpleString address) throws Exception
+   public void sendQueueInfoToQueue(final String queueName, final String address) throws Exception
    {
 
 

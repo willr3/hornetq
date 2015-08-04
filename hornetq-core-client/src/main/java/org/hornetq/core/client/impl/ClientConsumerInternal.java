@@ -13,7 +13,7 @@
 package org.hornetq.core.client.impl;
 
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionQueueQueryResponseMessage;
@@ -33,9 +33,9 @@ public interface ClientConsumerInternal extends ClientConsumer
 {
    long getID();
 
-   SimpleString getQueueName();
+   String getQueueName();
 
-   SimpleString getFilterString();
+   String getFilterString();
 
    boolean isBrowseOnly();
 

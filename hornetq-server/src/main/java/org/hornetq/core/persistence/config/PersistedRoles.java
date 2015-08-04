@@ -13,7 +13,8 @@
 package org.hornetq.core.persistence.config;
 
 import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.SimpleString;
+
+import org.hornetq.api.core.SSU;
 import org.hornetq.core.journal.EncodingSupport;
 
 /**
@@ -32,21 +33,21 @@ public class PersistedRoles implements EncodingSupport
 
    private long storeId;
 
-   private SimpleString addressMatch;
+   private String addressMatch;
 
-   private SimpleString sendRoles;
+   private String sendRoles;
 
-   private SimpleString consumeRoles;
+   private String consumeRoles;
 
-   private SimpleString createDurableQueueRoles;
+   private String createDurableQueueRoles;
 
-   private SimpleString deleteDurableQueueRoles;
+   private String deleteDurableQueueRoles;
 
-   private SimpleString createNonDurableQueueRoles;
+   private String createNonDurableQueueRoles;
 
-   private SimpleString deleteNonDurableQueueRoles;
+   private String deleteNonDurableQueueRoles;
 
-   private SimpleString manageRoles;
+   private String manageRoles;
 
    // Static --------------------------------------------------------
 
@@ -77,14 +78,14 @@ public class PersistedRoles implements EncodingSupport
                          final String manageRoles)
    {
       super();
-      this.addressMatch = SimpleString.toSimpleString(addressMatch);
-      this.sendRoles = SimpleString.toSimpleString(sendRoles);
-      this.consumeRoles = SimpleString.toSimpleString(consumeRoles);
-      this.createDurableQueueRoles = SimpleString.toSimpleString(createDurableQueueRoles);
-      this.deleteDurableQueueRoles = SimpleString.toSimpleString(deleteDurableQueueRoles);
-      this.createNonDurableQueueRoles = SimpleString.toSimpleString(createNonDurableQueueRoles);
-      this.deleteNonDurableQueueRoles = SimpleString.toSimpleString(deleteNonDurableQueueRoles);
-      this.manageRoles = SimpleString.toSimpleString(manageRoles);
+      this.addressMatch = (addressMatch);
+      this.sendRoles = (sendRoles);
+      this.consumeRoles = (consumeRoles);
+      this.createDurableQueueRoles = (createDurableQueueRoles);
+      this.deleteDurableQueueRoles = (deleteDurableQueueRoles);
+      this.createNonDurableQueueRoles = (createNonDurableQueueRoles);
+      this.deleteNonDurableQueueRoles = (deleteNonDurableQueueRoles);
+      this.manageRoles = (manageRoles);
    }
 
    // Public --------------------------------------------------------
@@ -102,7 +103,7 @@ public class PersistedRoles implements EncodingSupport
    /**
     * @return the addressMatch
     */
-   public SimpleString getAddressMatch()
+   public String getAddressMatch()
    {
       return addressMatch;
    }
@@ -179,13 +180,13 @@ public class PersistedRoles implements EncodingSupport
    @Override
    public int getEncodeSize()
    {
-      return addressMatch.sizeof() + SimpleString.sizeofNullableString(sendRoles) +
-             SimpleString.sizeofNullableString(consumeRoles) +
-             SimpleString.sizeofNullableString(createDurableQueueRoles) +
-             SimpleString.sizeofNullableString(deleteDurableQueueRoles) +
-             SimpleString.sizeofNullableString(createNonDurableQueueRoles) +
-             SimpleString.sizeofNullableString(deleteNonDurableQueueRoles) +
-             SimpleString.sizeofNullableString(manageRoles);
+      return SSU.sizeof(addressMatch) + SSU.sizeof(sendRoles) +
+             SSU.sizeof(consumeRoles) +
+             SSU.sizeof(createDurableQueueRoles) +
+             SSU.sizeof(deleteDurableQueueRoles) +
+             SSU.sizeof(createNonDurableQueueRoles) +
+             SSU.sizeof(deleteNonDurableQueueRoles) +
+             SSU.sizeof(manageRoles);
 
    }
 

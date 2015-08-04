@@ -12,14 +12,6 @@
  */
 package org.hornetq.core.paging.impl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.paging.PageTransactionInfo;
 import org.hornetq.core.paging.PagingManager;
 import org.hornetq.core.paging.PagingStore;
@@ -27,6 +19,13 @@ import org.hornetq.core.paging.PagingStoreFactory;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.settings.HierarchicalRepository;
 import org.hornetq.core.settings.impl.AddressSettings;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author <a href="mailto:clebert.suconic@jboss.com">Clebert Suconic</a>
@@ -45,7 +44,7 @@ public final class PagingManagerImpl implements PagingManager
     */
    private final ReentrantReadWriteLock syncLock = new ReentrantReadWriteLock();
 
-   private final ConcurrentMap<SimpleString, PagingStore> stores = new ConcurrentHashMap<SimpleString, PagingStore>();
+   private final ConcurrentMap<String, PagingStore> stores = new ConcurrentHashMap<String, PagingStore>();
 
    private final HierarchicalRepository<AddressSettings> addressSettingsRepository;
 
@@ -131,10 +130,10 @@ public final class PagingManagerImpl implements PagingManager
       }
    }
 
-   public SimpleString[] getStoreNames()
+   public String[] getStoreNames()
    {
-      Set<SimpleString> names = stores.keySet();
-      return names.toArray(new SimpleString[names.size()]);
+      Set<String> names = stores.keySet();
+      return names.toArray(new String[names.size()]);
    }
 
    public void reloadStores() throws Exception
@@ -165,7 +164,7 @@ public final class PagingManagerImpl implements PagingManager
 
    }
 
-   public void deletePageStore(final SimpleString storeName) throws Exception
+   public void deletePageStore(final String storeName) throws Exception
    {
       syncLock.readLock().lock();
       try
@@ -185,7 +184,7 @@ public final class PagingManagerImpl implements PagingManager
    /**
     * stores is a ConcurrentHashMap, so we don't need to synchronize this method
     */
-   public PagingStore getPageStore(final SimpleString storeName) throws Exception
+   public PagingStore getPageStore(final String storeName) throws Exception
    {
       PagingStore store = stores.get(storeName);
 
@@ -293,7 +292,7 @@ public final class PagingManagerImpl implements PagingManager
    }
 
 
-   private PagingStore newStore(final SimpleString address) throws Exception
+   private PagingStore newStore(final String address) throws Exception
    {
       syncLock.readLock().lock();
       try

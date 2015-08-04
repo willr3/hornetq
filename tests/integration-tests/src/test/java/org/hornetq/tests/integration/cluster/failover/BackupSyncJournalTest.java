@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.client.ClientConsumer;
 import org.hornetq.api.core.client.ClientMessage;
@@ -273,7 +273,7 @@ public class BackupSyncJournalTest extends FailoverTestBase
          id.position(0);
          id.get(bytes);
          UUID uuid = new UUID(UUID.TYPE_TIME_BASED, bytes);
-         SimpleString storedNodeId = new SimpleString(uuid.toString());
+         String storedNodeId = new String(uuid.toString());
          assertEquals("nodeId must match", backupServer.getServer().getNodeID(), storedNodeId);
       }
       finally

@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.journal.IOAsyncTask;
 import org.hornetq.core.journal.Journal;
 import org.hornetq.core.journal.JournalLoadInformation;
@@ -83,9 +83,9 @@ public interface StorageManager extends HornetQComponent
 
    // Message related operations
 
-   void pageClosed(SimpleString storeName, int pageNumber);
+   void pageClosed(String storeName, int pageNumber);
 
-   void pageDeleted(SimpleString storeName, int pageNumber);
+   void pageDeleted(String storeName, int pageNumber);
 
    void pageWrite(PagedMessage message, int pageNumber);
 
@@ -172,7 +172,7 @@ public interface StorageManager extends HornetQComponent
 
    void updateScheduledDeliveryTime(MessageReference ref) throws Exception;
 
-   void storeDuplicateID(SimpleString address, byte[] duplID, long recordID) throws Exception;
+   void storeDuplicateID(String address, byte[] duplID, long recordID) throws Exception;
 
    void deleteDuplicateID(long recordID) throws Exception;
 
@@ -194,9 +194,9 @@ public interface StorageManager extends HornetQComponent
 
    void updateScheduledDeliveryTimeTransactional(long txID, MessageReference ref) throws Exception;
 
-   void storeDuplicateIDTransactional(long txID, SimpleString address, byte[] duplID, long recordID) throws Exception;
+   void storeDuplicateIDTransactional(long txID, String address, byte[] duplID, long recordID) throws Exception;
 
-   void updateDuplicateIDTransactional(long txID, SimpleString address, byte[] duplID, long recordID) throws Exception;
+   void updateDuplicateIDTransactional(long txID, String address, byte[] duplID, long recordID) throws Exception;
 
    void deleteDuplicateIDTransactional(long txID, long recordID) throws Exception;
 
@@ -265,7 +265,7 @@ public interface StorageManager extends HornetQComponent
                                              final PagingManager pagingManager,
                                              final ResourceManager resourceManager,
                                              Map<Long, QueueBindingInfo> queueInfos,
-                                             final Map<SimpleString, List<Pair<byte[], Long>>> duplicateIDMap,
+                                             final Map<String, List<Pair<byte[], Long>>> duplicateIDMap,
                                              final Set<Pair<Long, Long>> pendingLargeMessages,
                                              List<PageCountPending> pendingNonTXPageCounter,
                                              final JournalLoader journalLoader
@@ -290,13 +290,13 @@ public interface StorageManager extends HornetQComponent
 
    void storeAddressSetting(PersistedAddressSetting addressSetting) throws Exception;
 
-   void deleteAddressSetting(SimpleString addressMatch) throws Exception;
+   void deleteAddressSetting(String addressMatch) throws Exception;
 
    List<PersistedAddressSetting> recoverAddressSettings() throws Exception;
 
    void storeSecurityRoles(PersistedRoles persistedRoles) throws Exception;
 
-   void deleteSecurityRoles(SimpleString addressMatch) throws Exception;
+   void deleteSecurityRoles(String addressMatch) throws Exception;
 
    List<PersistedRoles> recoverPersistedRoles() throws Exception;
 

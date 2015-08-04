@@ -12,18 +12,16 @@
  */
 package org.hornetq.jms.client;
 
-import java.util.Enumeration;
-import java.util.NoSuchElementException;
+import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.client.ClientConsumer;
+import org.hornetq.api.core.client.ClientMessage;
+import org.hornetq.api.core.client.ClientSession;
 
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.QueueBrowser;
-
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientSession;
+import java.util.Enumeration;
+import java.util.NoSuchElementException;
 
 /**
  * HornetQ implementation of a JMS QueueBrowser.
@@ -46,7 +44,7 @@ public final class HornetQQueueBrowser implements QueueBrowser
 
    private final HornetQQueue queue;
 
-   private SimpleString filterString;
+   private String filterString;
 
    // Constructors ---------------------------------------------------------------------------------
 
@@ -56,7 +54,7 @@ public final class HornetQQueueBrowser implements QueueBrowser
       this.queue = queue;
       if (messageSelector != null)
       {
-         filterString = new SimpleString(SelectorTranslator.convertToHornetQFilterString(messageSelector));
+         filterString = new String(SelectorTranslator.convertToHornetQFilterString(messageSelector));
       }
    }
 

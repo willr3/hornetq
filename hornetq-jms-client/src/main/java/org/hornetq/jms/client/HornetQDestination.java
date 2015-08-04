@@ -12,8 +12,9 @@
  */
 package org.hornetq.jms.client;
 
-import java.io.Serializable;
-import java.util.UUID;
+import org.hornetq.api.core.Pair;
+import org.hornetq.jms.referenceable.DestinationObjectFactory;
+import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -21,11 +22,8 @@ import javax.jms.JMSRuntimeException;
 import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.Referenceable;
-
-import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.jms.referenceable.DestinationObjectFactory;
-import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
+import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * HornetQ implementation of a JMS Destination.
@@ -188,14 +186,14 @@ public class HornetQDestination implements Destination, Serializable, Referencea
       return pair;
    }
 
-   public static SimpleString createQueueAddressFromName(final String name)
+   public static String createQueueAddressFromName(final String name)
    {
-      return new SimpleString(JMS_QUEUE_ADDRESS_PREFIX + name);
+      return new String(JMS_QUEUE_ADDRESS_PREFIX + name);
    }
 
-   public static SimpleString createTopicAddressFromName(final String name)
+   public static String createTopicAddressFromName(final String name)
    {
-      return new SimpleString(JMS_TOPIC_ADDRESS_PREFIX + name);
+      return new String(JMS_TOPIC_ADDRESS_PREFIX + name);
    }
 
    public static HornetQQueue createQueue(final String name)
@@ -255,9 +253,9 @@ public class HornetQDestination implements Destination, Serializable, Referencea
    private final String address;
 
    /**
-    * SimpleString version of address
+    * String version of address
     */
-   private final SimpleString simpleAddress;
+   private final String simpleAddress;
 
    private final boolean temporary;
 
@@ -276,7 +274,7 @@ public class HornetQDestination implements Destination, Serializable, Referencea
 
       this.name = name;
 
-      simpleAddress = new SimpleString(address);
+      simpleAddress = new String(address);
 
       this.temporary = temporary;
 
@@ -327,7 +325,7 @@ public class HornetQDestination implements Destination, Serializable, Referencea
       return address;
    }
 
-   public SimpleString getSimpleAddress()
+   public String getSimpleAddress()
    {
       return simpleAddress;
    }

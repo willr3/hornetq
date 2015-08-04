@@ -11,16 +11,15 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.util;
-import java.util.Iterator;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.utils.TypedProperties;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Iterator;
 
 /**
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
@@ -34,10 +33,10 @@ public class TypedPropertiesTest
       Assert.assertNotNull(actual);
       Assert.assertEquals(expected.getEncodeSize(), actual.getEncodeSize());
       Assert.assertEquals(expected.getPropertyNames(), actual.getPropertyNames());
-      Iterator<SimpleString> iterator = actual.getPropertyNames().iterator();
+      Iterator<String> iterator = actual.getPropertyNames().iterator();
       while (iterator.hasNext())
       {
-         SimpleString key = iterator.next();
+         String key = iterator.next();
          Object expectedValue = expected.getProperty(key);
          Object actualValue = actual.getProperty(key);
          if (expectedValue instanceof byte[] && actualValue instanceof byte[])
@@ -59,7 +58,7 @@ public class TypedPropertiesTest
 
    private TypedProperties props;
 
-   private SimpleString key;
+   private String key;
 
    @Test
    public void testCopyContructor() throws Exception
@@ -150,10 +149,10 @@ public class TypedPropertiesTest
    @Test
    public void testTypedProperties() throws Exception
    {
-      SimpleString longKey = RandomUtil.randomSimpleString();
+      String longKey = RandomUtil.randomSimpleString();
       long longValue = RandomUtil.randomLong();
-      SimpleString simpleStringKey = RandomUtil.randomSimpleString();
-      SimpleString simpleStringValue = RandomUtil.randomSimpleString();
+      String simpleStringKey = RandomUtil.randomSimpleString();
+      String simpleStringValue = RandomUtil.randomSimpleString();
       TypedProperties otherProps = new TypedProperties();
       otherProps.putLongProperty(longKey, longValue);
       otherProps.putSimpleStringProperty(simpleStringKey, simpleStringValue);
@@ -162,7 +161,7 @@ public class TypedPropertiesTest
 
       long ll = props.getLongProperty(longKey);
       Assert.assertEquals(longValue, ll);
-      SimpleString ss = props.getSimpleStringProperty(simpleStringKey);
+      String ss = props.getSimpleStringProperty(simpleStringKey);
       Assert.assertEquals(simpleStringValue, ss);
    }
 
@@ -201,7 +200,7 @@ public class TypedPropertiesTest
       props.putCharProperty(RandomUtil.randomSimpleString(), RandomUtil.randomChar());
       props.putSimpleStringProperty(RandomUtil.randomSimpleString(), RandomUtil.randomSimpleString());
       props.putSimpleStringProperty(RandomUtil.randomSimpleString(), null);
-      SimpleString keyToRemove = RandomUtil.randomSimpleString();
+      String keyToRemove = RandomUtil.randomSimpleString();
       props.putSimpleStringProperty(keyToRemove, RandomUtil.randomSimpleString());
 
       HornetQBuffer buffer = HornetQBuffers.dynamicBuffer(1024);

@@ -12,7 +12,7 @@
  */
 package org.hornetq.rest.topic;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.rest.queue.DestinationServiceManager;
 
@@ -89,7 +89,7 @@ public class TopicServiceManager extends DestinationServiceManager
       }
       String queueName = topicDeployment.getName();
       ClientSession session = sessionFactory.createSession(false, false, false);
-      ClientSession.QueueQuery query = session.queueQuery(new SimpleString(queueName));
+      ClientSession.QueueQuery query = session.queueQuery(new String(queueName));
       boolean defaultDurable = topicDeployment.isDurableSend();
       if (query.isExists())
       {

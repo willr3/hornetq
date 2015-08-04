@@ -12,21 +12,10 @@
  */
 package org.hornetq.core.replication;
 
-import java.io.FileInputStream;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.HornetQExceptionType;
 import org.hornetq.api.core.Pair;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.SessionFailureListener;
 import org.hornetq.core.journal.EncodingSupport;
 import org.hornetq.core.journal.SequentialFile;
@@ -41,25 +30,18 @@ import org.hornetq.core.protocol.core.CoreRemotingConnection;
 import org.hornetq.core.protocol.core.Packet;
 import org.hornetq.core.protocol.core.impl.ChannelImpl.CHANNEL_ID;
 import org.hornetq.core.protocol.core.impl.PacketImpl;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationAddTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationCommitMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationDeleteTXMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageBeginMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageEndMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLargeMessageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.*;
 import org.hornetq.core.protocol.core.impl.wireformat.ReplicationLiveIsStoppingMessage.LiveStopping;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageEventMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPageWriteMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationPrepareMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationStartSyncMessage;
-import org.hornetq.core.protocol.core.impl.wireformat.ReplicationSyncFileMessage;
 import org.hornetq.core.server.HornetQComponent;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.spi.core.protocol.RemotingConnection;
 import org.hornetq.utils.ExecutorFactory;
+
+import java.io.FileInputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Manages replication tasks on the live server (that is the live server side of a "remote backup"
@@ -207,7 +189,7 @@ public final class ReplicationManager implements HornetQComponent
     * @param storeName
     * @param pageNumber
     */
-   public void pageClosed(final SimpleString storeName, final int pageNumber)
+   public void pageClosed(final String storeName, final int pageNumber)
    {
       if (enabled)
       {
@@ -215,7 +197,7 @@ public final class ReplicationManager implements HornetQComponent
       }
    }
 
-   public void pageDeleted(final SimpleString storeName, final int pageNumber)
+   public void pageDeleted(final String storeName, final int pageNumber)
    {
       if (enabled)
       {
@@ -501,7 +483,7 @@ public final class ReplicationManager implements HornetQComponent
       }
    }
 
-   public void syncPages(SequentialFile file, long id, SimpleString queueName) throws Exception
+   public void syncPages(SequentialFile file, long id, String queueName) throws Exception
    {
       if (enabled)
          sendLargeFile(null, queueName, id, file, Long.MAX_VALUE);
@@ -517,7 +499,7 @@ public final class ReplicationManager implements HornetQComponent
     * @param maxBytesToSend maximum number of bytes to read and send from the file
     * @throws Exception
     */
-   private void sendLargeFile(JournalContent content, SimpleString pageStore, final long id, SequentialFile file,
+   private void sendLargeFile(JournalContent content, String pageStore, final long id, SequentialFile file,
                               long maxBytesToSend) throws Exception
    {
       if (!enabled)

@@ -12,11 +12,6 @@
  */
 package org.hornetq.core.security.impl;
 
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.management.CoreNotificationType;
 import org.hornetq.api.core.management.ManagementHelper;
 import org.hornetq.core.security.CheckType;
@@ -32,6 +27,10 @@ import org.hornetq.core.settings.HierarchicalRepositoryChangeListener;
 import org.hornetq.spi.core.security.HornetQSecurityManager;
 import org.hornetq.utils.ConcurrentHashSet;
 import org.hornetq.utils.TypedProperties;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * The HornetQ SecurityStore implementation
@@ -57,7 +56,7 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
 
    private final HornetQSecurityManager securityManager;
 
-   private final ConcurrentMap<String, ConcurrentHashSet<SimpleString>> cache = new ConcurrentHashMap<String, ConcurrentHashSet<SimpleString>>();
+   private final ConcurrentMap<String, ConcurrentHashSet<String>> cache = new ConcurrentHashMap<String, ConcurrentHashSet<String>>();
 
    private final long invalidationInterval;
 
@@ -133,7 +132,7 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
             {
                TypedProperties props = new TypedProperties();
 
-               props.putSimpleStringProperty(ManagementHelper.HDR_USER, SimpleString.toSimpleString(user));
+               props.putSimpleStringProperty(ManagementHelper.HDR_USER, (user));
 
                Notification notification = new Notification(null, CoreNotificationType.SECURITY_AUTHENTICATION_VIOLATION, props);
 
@@ -145,7 +144,7 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
       }
    }
 
-   public void check(final SimpleString address, final CheckType checkType, final ServerSession session) throws Exception
+   public void check(final String address, final CheckType checkType, final ServerSession session) throws Exception
    {
       if (securityEnabled)
       {
@@ -178,8 +177,8 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
                TypedProperties props = new TypedProperties();
 
                props.putSimpleStringProperty(ManagementHelper.HDR_ADDRESS, address);
-               props.putSimpleStringProperty(ManagementHelper.HDR_CHECK_TYPE, new SimpleString(checkType.toString()));
-               props.putSimpleStringProperty(ManagementHelper.HDR_USER, SimpleString.toSimpleString(user));
+               props.putSimpleStringProperty(ManagementHelper.HDR_CHECK_TYPE, new String(checkType.toString()));
+               props.putSimpleStringProperty(ManagementHelper.HDR_USER, (user));
 
                Notification notification = new Notification(null, CoreNotificationType.SECURITY_PERMISSION_VIOLATION, props);
 
@@ -189,8 +188,8 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
             throw HornetQMessageBundle.BUNDLE.userNoPermissions(session.getUsername(), checkType, saddress);
          }
          // if we get here we're granted, add to the cache
-         ConcurrentHashSet<SimpleString> set = new ConcurrentHashSet<SimpleString>();
-         ConcurrentHashSet<SimpleString> act = cache.putIfAbsent(user + "." + checkType.name(), set);
+         ConcurrentHashSet<String> set = new ConcurrentHashSet<String>();
+         ConcurrentHashSet<String> act = cache.putIfAbsent(user + "." + checkType.name(), set);
          if (act != null)
          {
             set = act;
@@ -217,7 +216,7 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
       cache.clear();
    }
 
-   private boolean checkCached(final SimpleString dest, final String user, final CheckType checkType)
+   private boolean checkCached(final String dest, final String user, final CheckType checkType)
    {
       long now = System.currentTimeMillis();
 
@@ -231,7 +230,7 @@ public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryC
       }
       else
       {
-         ConcurrentHashSet<SimpleString> act = cache.get(user + "." + checkType.name());
+         ConcurrentHashSet<String> act = cache.get(user + "." + checkType.name());
          if (act != null)
          {
             granted = act.contains(dest);

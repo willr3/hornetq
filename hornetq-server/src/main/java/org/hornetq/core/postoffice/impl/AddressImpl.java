@@ -12,11 +12,10 @@
  */
 package org.hornetq.core.postoffice.impl;
 
+import org.hornetq.core.postoffice.Address;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.core.postoffice.Address;
 
 /**
  * splits an address string into its hierarchical parts split by '.'
@@ -25,27 +24,27 @@ import org.hornetq.core.postoffice.Address;
  */
 public class AddressImpl implements Address
 {
-   private final SimpleString address;
+   private final String address;
 
-   private final SimpleString[] addressParts;
+   private final String[] addressParts;
 
    private final boolean containsWildCard;
 
    private final List<Address> linkedAddresses = new ArrayList<Address>();
 
-   public AddressImpl(final SimpleString address)
+   public AddressImpl(final String address)
    {
       this.address = address;
-      addressParts = address.split(WildcardAddressManager.DELIM);
-      containsWildCard = address.contains(WildcardAddressManager.SINGLE_WORD) || address.contains(WildcardAddressManager.ANY_WORDS);
+      addressParts = address.split(""+WildcardAddressManager.DELIM);
+      containsWildCard = address.contains(""+WildcardAddressManager.SINGLE_WORD) || address.contains(""+WildcardAddressManager.ANY_WORDS);
    }
 
-   public SimpleString getAddress()
+   public String getAddress()
    {
       return address;
    }
 
-   public SimpleString[] getAddressParts()
+   public String[] getAddressParts()
    {
       return addressParts;
    }
@@ -82,7 +81,7 @@ public class AddressImpl implements Address
       int pos = 0;
       int matchPos = 0;
 
-      SimpleString nextToMatch;
+      String nextToMatch;
       for (; matchPos < add.getAddressParts().length; )
       {
          if (pos >= addressParts.length)
@@ -90,9 +89,9 @@ public class AddressImpl implements Address
             // test for # as last address part
             return pos + 1 == add.getAddressParts().length && add.getAddressParts()[pos].equals(WildcardAddressManager.ANY_WORDS_SIMPLESTRING);
          }
-         SimpleString curr = addressParts[pos];
-         SimpleString next = addressParts.length > pos + 1 ? addressParts[pos + 1] : null;
-         SimpleString currMatch = add.getAddressParts()[matchPos];
+         String curr = addressParts[pos];
+         String next = addressParts.length > pos + 1 ? addressParts[pos + 1] : null;
+         String currMatch = add.getAddressParts()[matchPos];
          if (currMatch.equals(WildcardAddressManager.SINGLE_WORD_SIMPLESTRING))
          {
             pos++;

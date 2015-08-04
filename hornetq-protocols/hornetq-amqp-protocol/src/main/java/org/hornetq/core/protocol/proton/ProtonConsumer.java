@@ -26,7 +26,7 @@ import org.apache.qpid.proton.amqp.transport.SenderSettleMode;
 import org.apache.qpid.proton.engine.Delivery;
 import org.apache.qpid.proton.engine.Sender;
 import org.apache.qpid.proton.jms.EncodedMessage;
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.core.client.impl.ClientConsumerImpl;
 import org.hornetq.core.protocol.proton.exceptions.HornetQAMQPException;
 import org.hornetq.core.server.HornetQServer;
@@ -88,18 +88,18 @@ public class ProtonConsumer implements ProtonDeliveryHandler
    {
       org.apache.qpid.proton.amqp.messaging.Source source = (org.apache.qpid.proton.amqp.messaging.Source) sender.getRemoteSource();
 
-      SimpleString queue;
+      String queue;
 
       consumerID = server.getStorageManager().generateUniqueID();
 
-      SimpleString selector = null;
+      String selector = null;
       Map filter = source.getFilter();
       if (filter != null)
       {
          DescribedType value = (DescribedType) filter.get(SELECTOR);
          if (value != null)
          {
-            selector = new SimpleString(value.getDescribed().toString());
+            selector = new String(value.getDescribed().toString());
          }
       }
 
@@ -107,7 +107,7 @@ public class ProtonConsumer implements ProtonDeliveryHandler
       {
          //if dynamic we have to create the node (queue) and set the address on the target, the node is temporary and
          // will be deleted on closing of the session
-         queue = new SimpleString(java.util.UUID.randomUUID().toString());
+         queue = new String(java.util.UUID.randomUUID().toString());
          try
          {
             protonSession.getServerSession().createQueue(queue, queue, null, true, false);
@@ -128,11 +128,11 @@ public class ProtonConsumer implements ProtonDeliveryHandler
             throw HornetQAMQPProtocolMessageBundle.BUNDLE.sourceAddressNotSet();
          }
 
-         queue = new SimpleString(source.getAddress());
+         queue = new String(source.getAddress());
          QueueQueryResult queryResult;
          try
          {
-            queryResult = protonSession.getServerSession().executeQueueQuery(new SimpleString(address));
+            queryResult = protonSession.getServerSession().executeQueueQuery(new String(address));
          }
          catch (Exception e)
          {

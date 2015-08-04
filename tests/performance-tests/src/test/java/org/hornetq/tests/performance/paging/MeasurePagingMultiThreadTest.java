@@ -11,22 +11,17 @@
  * permissions and limitations under the License.
  */
 package org.hornetq.tests.performance.paging;
-import java.util.HashMap;
-import java.util.concurrent.CountDownLatch;
-
 import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.Configuration;
 import org.hornetq.core.server.HornetQServer;
 import org.hornetq.core.settings.impl.AddressSettings;
 import org.hornetq.tests.util.ServiceTestBase;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A MeasurePagingMultiThreadTest
@@ -59,7 +54,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
       {
 
          final ClientSessionFactory factory = createSessionFactory(locator);
-         final SimpleString adr = new SimpleString("test-adr");
+         final String adr = new String("test-adr");
 
          createDestination(factory, adr);
 
@@ -183,7 +178,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
     * @param factory
     * @throws HornetQException
     */
-   private void sendInitialBatch(final SimpleString adr,
+   private void sendInitialBatch(final String adr,
                                  final int nMessages,
                                  final int messageSize,
                                  final ClientSessionFactory factory) throws HornetQException
@@ -216,7 +211,7 @@ public class MeasurePagingMultiThreadTest extends ServiceTestBase
     * @param adr
     * @throws HornetQException
     */
-   private void createDestination(final ClientSessionFactory factory, final SimpleString adr) throws HornetQException
+   private void createDestination(final ClientSessionFactory factory, final String adr) throws HornetQException
    {
       {
          ClientSession session = factory.createSession(false, false, false);

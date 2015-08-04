@@ -12,11 +12,8 @@
  */
 package org.hornetq.core.config.impl;
 
-import java.util.Collections;
-
 import org.hornetq.api.core.BroadcastGroupConfiguration;
 import org.hornetq.api.core.DiscoveryGroupConfiguration;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.core.UDPBroadcastGroupConfiguration;
 import org.hornetq.core.config.BridgeConfiguration;
@@ -28,6 +25,8 @@ import org.hornetq.core.server.JournalType;
 import org.hornetq.core.settings.impl.SlowConsumerPolicy;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Collections;
 
 /**
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>
@@ -50,8 +49,8 @@ public class FileConfigurationTest extends ConfigurationImplTest
       Assert.assertEquals(false, conf.isSecurityEnabled());
       Assert.assertEquals(5423, conf.getSecurityInvalidationInterval());
       Assert.assertEquals(true, conf.isWildcardRoutingEnabled());
-      Assert.assertEquals(new SimpleString("Giraffe"), conf.getManagementAddress());
-      Assert.assertEquals(new SimpleString("Whatever"), conf.getManagementNotificationAddress());
+      Assert.assertEquals(new String("Giraffe"), conf.getManagementAddress());
+      Assert.assertEquals(new String("Whatever"), conf.getManagementNotificationAddress());
       Assert.assertEquals("Frog", conf.getClusterUser());
       Assert.assertEquals("Wombat", conf.getClusterPassword());
       Assert.assertEquals(false, conf.isJMXManagementEnabled());

@@ -12,24 +12,14 @@
  */
 package org.hornetq.jms.tests.message;
 
-import javax.jms.Connection;
-import javax.jms.JMSContext;
-import javax.jms.JMSException;
-import javax.jms.JMSProducer;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageFormatException;
-import javax.jms.MessageFormatRuntimeException;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.jms.tests.HornetQServerTestCase;
 import org.hornetq.jms.tests.util.ProxyAssertSupport;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.jms.*;
 
 /**
  * Testing of message property conversion. See {@link javax.jms.Message} for details
@@ -175,7 +165,7 @@ public class MessagePropertyConversionTest extends HornetQServerTestCase
       }
       try
       {
-         producer.setProperty(null, new SimpleString("foo"));
+         producer.setProperty(null, new String("foo"));
          ProxyAssertSupport.fail("expected IllegalArgumentException");
       }
       catch (IllegalArgumentException e)

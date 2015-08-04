@@ -12,13 +12,8 @@
  */
 package org.hornetq.tests.unit.core.message.impl;
 
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.client.impl.ClientMessageImpl;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
 import org.hornetq.core.server.impl.ServerMessageImpl;
@@ -26,6 +21,10 @@ import org.hornetq.tests.util.RandomUtil;
 import org.hornetq.tests.util.UnitTestCase;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
@@ -58,7 +57,7 @@ public class MessageImplTest extends UnitTestCase
          Assert.assertEquals(timestamp, message.getTimestamp());
          Assert.assertEquals(priority, message.getPriority());
 
-         final SimpleString destination = new SimpleString(RandomUtil.randomString());
+         final String destination = new String(RandomUtil.randomString());
          final boolean durable2 = RandomUtil.randomBoolean();
          final long expiration2 = RandomUtil.randomLong();
          final long timestamp2 = RandomUtil.randomLong();
@@ -110,40 +109,40 @@ public class MessageImplTest extends UnitTestCase
       {
          Message msg = new ClientMessageImpl();
 
-         SimpleString prop1 = new SimpleString("prop1");
+         String prop1 = new String("prop1");
          boolean val1 = RandomUtil.randomBoolean();
          msg.putBooleanProperty(prop1, val1);
 
-         SimpleString prop2 = new SimpleString("prop2");
+         String prop2 = new String("prop2");
          byte val2 = RandomUtil.randomByte();
          msg.putByteProperty(prop2, val2);
 
-         SimpleString prop3 = new SimpleString("prop3");
+         String prop3 = new String("prop3");
          byte[] val3 = RandomUtil.randomBytes();
          msg.putBytesProperty(prop3, val3);
 
-         SimpleString prop4 = new SimpleString("prop4");
+         String prop4 = new String("prop4");
          double val4 = RandomUtil.randomDouble();
          msg.putDoubleProperty(prop4, val4);
 
-         SimpleString prop5 = new SimpleString("prop5");
+         String prop5 = new String("prop5");
          float val5 = RandomUtil.randomFloat();
          msg.putFloatProperty(prop5, val5);
 
-         SimpleString prop6 = new SimpleString("prop6");
+         String prop6 = new String("prop6");
          int val6 = RandomUtil.randomInt();
          msg.putIntProperty(prop6, val6);
 
-         SimpleString prop7 = new SimpleString("prop7");
+         String prop7 = new String("prop7");
          long val7 = RandomUtil.randomLong();
          msg.putLongProperty(prop7, val7);
 
-         SimpleString prop8 = new SimpleString("prop8");
+         String prop8 = new String("prop8");
          short val8 = RandomUtil.randomShort();
          msg.putShortProperty(prop8, val8);
 
-         SimpleString prop9 = new SimpleString("prop9");
-         SimpleString val9 = new SimpleString(RandomUtil.randomString());
+         String prop9 = new String("prop9");
+         String val9 = new String(RandomUtil.randomString());
          msg.putStringProperty(prop9, val9);
 
          Assert.assertEquals(9, msg.getPropertyNames().size());
@@ -177,7 +176,7 @@ public class MessageImplTest extends UnitTestCase
          Assert.assertEquals(val8, msg.getObjectProperty(prop8));
          Assert.assertEquals(val9, msg.getObjectProperty(prop9));
 
-         SimpleString val10 = new SimpleString(RandomUtil.randomString());
+         String val10 = new String(RandomUtil.randomString());
          // test overwrite
          msg.putStringProperty(prop9, val10);
          Assert.assertEquals(val10, msg.getObjectProperty(prop9));
@@ -243,7 +242,7 @@ public class MessageImplTest extends UnitTestCase
 
       msg.setMessageID(RandomUtil.randomLong());
       msg.encodeMessageIDToBuffer();
-      msg.setAddress(new SimpleString("Batatantkashf aksjfh aksfjh askfdjh askjfh "));
+      msg.setAddress(new String("Batatantkashf aksjfh aksfjh askfdjh askjfh "));
 
       final AtomicInteger errors = new AtomicInteger(0);
 

@@ -12,26 +12,8 @@
  */
 package org.hornetq.tests.integration.client;
 
-import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQDisconnectedException;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.HornetQIOErrorException;
-import org.hornetq.api.core.HornetQInternalErrorException;
-import org.hornetq.api.core.HornetQNonExistentQueueException;
-import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.MessageHandler;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.client.impl.ClientProducerImpl;
 import org.hornetq.core.client.impl.ClientSessionInternal;
 import org.hornetq.core.protocol.core.Packet;
@@ -51,6 +33,11 @@ import org.hornetq.tests.util.UnitTestCase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A TemporaryQueueTest
@@ -77,8 +64,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    @Test
    public void testConsumeFromTemporaryQueue() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -105,8 +92,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    {
       for (int i = 0; i < 1000; i++)
       {
-         SimpleString queue = RandomUtil.randomSimpleString();
-         SimpleString address = RandomUtil.randomSimpleString();
+         String queue = RandomUtil.randomSimpleString();
+         String address = RandomUtil.randomSimpleString();
          session.createTemporaryQueue(address, queue);
 
          session.close();
@@ -126,8 +113,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    @Test
    public void testPaginStoreIsRemovedWhenQueueIsDeleted() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -142,7 +129,7 @@ public class TemporaryQueueTest extends SingleServerTestBase
       Assert.assertNotNull(message);
       message.acknowledge();
 
-      SimpleString[] storeNames = server.getPagingManager().getStoreNames();
+      String[] storeNames = server.getPagingManager().getStoreNames();
       assertTrue(Arrays.asList(storeNames).contains(address));
 
       consumer.close();
@@ -157,8 +144,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    @Test
    public void testConsumeFromTemporaryQueueCreatedByOtherSession() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
 
@@ -187,8 +174,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    @Test
    public void testDeleteTemporaryQueueAfterConnectionIsClosed() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
       RemotingConnectionImpl conn = (RemotingConnectionImpl) server.getRemotingService()
@@ -326,8 +313,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
    @Test
    public void testDeleteTemporaryQueueAfterConnectionIsClosed_2() throws Exception
    {
-      SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       session.createTemporaryQueue(address, queue);
       Assert.assertEquals(1, server.getConnectionCount());
@@ -504,8 +491,8 @@ public class TemporaryQueueTest extends SingleServerTestBase
       session.close();
       sf.close();
 
-      final SimpleString queue = RandomUtil.randomSimpleString();
-      SimpleString address = RandomUtil.randomSimpleString();
+      final String queue = RandomUtil.randomSimpleString();
+      String address = RandomUtil.randomSimpleString();
 
       // server must received at least one ping from the client to pass
       // so that the server connection TTL is configured with the client value

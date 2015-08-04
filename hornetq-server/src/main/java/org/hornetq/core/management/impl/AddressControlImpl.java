@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.hornetq.api.core.SimpleString;
+
 import org.hornetq.api.core.management.AddressControl;
 import org.hornetq.core.paging.PagingManager;
 import org.hornetq.core.paging.PagingStore;
@@ -42,7 +42,7 @@ public class AddressControlImpl extends AbstractControl implements AddressContro
 
    // Attributes ----------------------------------------------------
 
-   private final SimpleString address;
+   private final String address;
 
    private final PostOffice postOffice;
 
@@ -54,7 +54,7 @@ public class AddressControlImpl extends AbstractControl implements AddressContro
 
    // Constructors --------------------------------------------------
 
-   public AddressControlImpl(final SimpleString address,
+   public AddressControlImpl(final String address,
                              final PostOffice postOffice,
                              final PagingManager pagingManager,
                              final StorageManager storageManager,

@@ -12,15 +12,14 @@
  */
 package org.hornetq.jms.client;
 
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-
 import org.hornetq.api.core.HornetQBuffer;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Message;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientMessage;
 import org.hornetq.api.core.client.ClientSession;
+
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
 
 /**
  * HornetQ implementation of a JMS TextMessage.
@@ -43,9 +42,9 @@ public class HornetQTextMessage extends HornetQMessage implements TextMessage
 
    // Attributes ----------------------------------------------------
 
-   // We cache it locally - it's more performant to cache as a SimpleString, the AbstractChannelBuffer write
-   // methods are more efficient for a SimpleString
-   private SimpleString text;
+   // We cache it locally - it's more performant to cache as a String, the AbstractChannelBuffer write
+   // methods are more efficient for a String
+   private String text;
 
    // Static --------------------------------------------------------
 
@@ -91,7 +90,7 @@ public class HornetQTextMessage extends HornetQMessage implements TextMessage
 
       if (text != null)
       {
-         this.text = new SimpleString(text);
+         this.text = new String(text);
       }
       else
       {

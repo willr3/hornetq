@@ -12,7 +12,6 @@
  */
 package org.hornetq.core.server;
 
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.utils.ReferenceCounter;
 
 /**
@@ -21,5 +20,5 @@ import org.hornetq.utils.ReferenceCounter;
 
 public interface TransientQueueManager extends ReferenceCounter
 {
-   SimpleString getQueueName();
+   String getQueueName();
 }

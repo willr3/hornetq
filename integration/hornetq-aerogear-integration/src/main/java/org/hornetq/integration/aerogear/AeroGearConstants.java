@@ -12,7 +12,7 @@
  */
 package org.hornetq.integration.aerogear;
 
-import org.hornetq.api.core.SimpleString;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,13 +37,13 @@ public class AeroGearConstants
    public static final String DEVICE_TYPE_NAME = "device-types";
 
 
-   public static final SimpleString AEROGEAR_ALERT = new SimpleString("AEROGEAR_ALERT");
-   public static final SimpleString AEROGEAR_SOUND = new SimpleString("AEROGEAR_SOUND");
-   public static final SimpleString AEROGEAR_BADGE = new SimpleString("AEROGEAR_BADGE");
-   public static final SimpleString AEROGEAR_TTL = new SimpleString("AEROGEAR_TTL");
-   public static final SimpleString AEROGEAR_VARIANTS = new SimpleString("AEROGEAR_VARIANTS");
-   public static final SimpleString AEROGEAR_ALIASES = new SimpleString("AEROGEAR_ALIASES");
-   public static final SimpleString AEROGEAR_DEVICE_TYPES = new SimpleString("AEROGEAR_DEVICE_TYPES");
+   public static final String AEROGEAR_ALERT = new String("AEROGEAR_ALERT");
+   public static final String AEROGEAR_SOUND = new String("AEROGEAR_SOUND");
+   public static final String AEROGEAR_BADGE = new String("AEROGEAR_BADGE");
+   public static final String AEROGEAR_TTL = new String("AEROGEAR_TTL");
+   public static final String AEROGEAR_VARIANTS = new String("AEROGEAR_VARIANTS");
+   public static final String AEROGEAR_ALIASES = new String("AEROGEAR_ALIASES");
+   public static final String AEROGEAR_DEVICE_TYPES = new String("AEROGEAR_DEVICE_TYPES");
 
    public static final String DEFAULT_SOUND = "default";
    public static final Integer DEFAULT_TTL = 3600;

@@ -12,47 +12,11 @@
  */
 package org.hornetq.tests.integration.replication;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.hornetq.api.core.HornetQBuffer;
-import org.hornetq.api.core.HornetQBuffers;
-import org.hornetq.api.core.HornetQException;
-import org.hornetq.api.core.HornetQExceptionType;
-import org.hornetq.api.core.HornetQNotConnectedException;
-import org.hornetq.api.core.Interceptor;
-import org.hornetq.api.core.SimpleString;
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.api.core.client.ClientConsumer;
-import org.hornetq.api.core.client.ClientMessage;
-import org.hornetq.api.core.client.ClientProducer;
-import org.hornetq.api.core.client.ClientSession;
-import org.hornetq.api.core.client.ClientSessionFactory;
-import org.hornetq.api.core.client.ServerLocator;
+import org.hornetq.api.core.*;
+import org.hornetq.api.core.client.*;
 import org.hornetq.core.config.ClusterConnectionConfiguration;
 import org.hornetq.core.config.Configuration;
-import org.hornetq.core.journal.EncodingSupport;
-import org.hornetq.core.journal.IOAsyncTask;
-import org.hornetq.core.journal.IOCompletion;
-import org.hornetq.core.journal.Journal;
-import org.hornetq.core.journal.JournalLoadInformation;
-import org.hornetq.core.journal.LoaderCallback;
-import org.hornetq.core.journal.PreparedTransactionInfo;
-import org.hornetq.core.journal.RecordInfo;
-import org.hornetq.core.journal.SequentialFileFactory;
-import org.hornetq.core.journal.TransactionFailureCallback;
+import org.hornetq.core.journal.*;
 import org.hornetq.core.journal.impl.JournalFile;
 import org.hornetq.core.paging.PagedMessage;
 import org.hornetq.core.paging.PagingManager;
@@ -86,6 +50,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * A ReplicationTest
  *
@@ -108,7 +81,7 @@ public final class ReplicationTest extends ServiceTestBase
    private ServerLocator locator;
 
    private ReplicationManager manager;
-   private static final SimpleString ADDRESS = new SimpleString("foobar123");
+   private static final String ADDRESS = new String("foobar123");
 
    private void setupServer(boolean backup, String... interceptors) throws Exception
    {
@@ -265,7 +238,7 @@ public final class ReplicationTest extends ServiceTestBase
 
       ServerMessage msg = new ServerMessageImpl(1, 1024);
 
-      SimpleString dummy = new SimpleString("dummy");
+      String dummy = new String("dummy");
       msg.setAddress(dummy);
 
       replicatedJournal.appendAddRecordTransactional(23, 24, (byte) 1, new FakeData());
@@ -298,7 +271,7 @@ public final class ReplicationTest extends ServiceTestBase
 
       ServerMessageImpl serverMsg = new ServerMessageImpl();
       serverMsg.setMessageID(500);
-      serverMsg.setAddress(new SimpleString("tttt"));
+      serverMsg.setAddress(new String("tttt"));
 
       HornetQBuffer buffer = HornetQBuffers.dynamicBuffer(100);
       serverMsg.encodeHeadersAndProperties(buffer);

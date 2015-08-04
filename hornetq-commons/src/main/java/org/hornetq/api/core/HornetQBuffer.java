@@ -13,9 +13,9 @@
 
 package org.hornetq.api.core;
 
-import java.nio.ByteBuffer;
-
 import io.netty.buffer.ByteBuf;
+
+import java.nio.ByteBuffer;
 
 /**
  * A HornetQBuffer wraps a Netty's ChannelBuffer and is used throughout HornetQ code base.
@@ -704,7 +704,7 @@ public interface HornetQBuffer
    /**
     * Gets a SimpleString (potentially {@code null}) at the current {@code readerIndex}
     */
-   SimpleString readNullableSimpleString();
+   String readNullableSimpleString();
 
    /**
     * Gets a String (potentially {@code null}) at the current {@code readerIndex}
@@ -714,7 +714,7 @@ public interface HornetQBuffer
    /**
     * Gets a non-null SimpleString at the current {@code readerIndex}
     */
-   SimpleString readSimpleString();
+   String readSimpleString();
 
    /**
     * Gets a non-null String at the current {@code readerIndex}
@@ -922,7 +922,7 @@ public interface HornetQBuffer
    /**
     * Sets the specified SimpleString (potentially {@code null}) at the current {@code writerIndex}
     */
-   void writeNullableSimpleString(SimpleString val);
+   void writeNullableSimpleString(String val);
 
    /**
     * Sets the specified String (potentially {@code null}) at the current {@code writerIndex}
@@ -932,7 +932,7 @@ public interface HornetQBuffer
    /**
     * Sets the specified non-null SimpleString at the current {@code writerIndex}
     */
-   void writeSimpleString(SimpleString val);
+   void writeSimpleString(String val);
 
    /**
     * Sets the specified non-null String at the current {@code writerIndex}

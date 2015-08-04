@@ -12,15 +12,14 @@
  */
 package org.hornetq.core.server.impl;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileLock;
-
 import org.hornetq.api.core.HornetQIllegalStateException;
-import org.hornetq.api.core.SimpleString;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.NodeManager;
 import org.hornetq.utils.UUID;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileLock;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.com">Andy Taylor</a>
@@ -246,7 +245,7 @@ public class FileLockNodeManager extends NodeManager
    }
 
    @Override
-   public final SimpleString readNodeId() throws HornetQIllegalStateException, IOException
+   public final String readNodeId() throws HornetQIllegalStateException, IOException
    {
       ByteBuffer id = ByteBuffer.allocateDirect(16);
       int read = channel.read(id, 3);
